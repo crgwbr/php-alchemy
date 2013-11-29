@@ -7,6 +7,7 @@ class InclusiveExpression extends Expression {
     protected $left;
     protected $in = array();
 
+
     public function __construct(Column $left, array $in) {
         $this->left = &$left;
 
@@ -16,9 +17,10 @@ class InclusiveExpression extends Expression {
             }
 
             $this->in[] = &$scalar;
-            $this->scalar[] = &$scaler;
+            $this->scalars[] = &$scalar;
         }
     }
+
 
     public function __toString() {
         $in = implode(", ", $this->in);

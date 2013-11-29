@@ -17,6 +17,7 @@ class Operator {
 
     protected $type;
 
+
     public static function __callStatic($name, $args) {
         $const = "self::O_" . strtoupper($name);
         if (!defined($const)) {
@@ -27,9 +28,11 @@ class Operator {
         return new self($oper);
     }
 
+
     public function __construct($type) {
         $this->type = $type;
     }
+
 
     public function __toString() {
         return $this->type;

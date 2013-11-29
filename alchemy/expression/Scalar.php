@@ -11,13 +11,16 @@ abstract class Scalar extends Value {
         $this->value = $value;
     }
 
+
     public function __toString() {
         return '?';
     }
 
+
     public function getDataType() {
         return static::$data_type;
     }
+
 
     public function getValue() {
         return $this->value;

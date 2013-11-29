@@ -19,5 +19,12 @@ class InsertQueryTest extends BaseTest {
                        ->row(new String("user1"), new String("user1@example.com"));
 
         $this->assertExpectedString('InsertQueryTest-1.sql', (string)$query);
+
+        $params = $query->getParameters();
+        $this->assertEquals(2, count($params));
+        $this->assertTrue($params[0] instanceof String);
+        $this->assertEquals("user1", $params[0]->getValue());
+        $this->assertTrue($params[1] instanceof String);
+        $this->assertEquals("user1@example.com", $params[1]->getValue());
     }
 }

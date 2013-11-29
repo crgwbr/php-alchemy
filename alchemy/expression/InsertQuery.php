@@ -9,6 +9,7 @@ class InsertQuery extends Query {
     protected $into;
     protected $rows = array();
 
+
     public function __toString() {
         $columns = $this->getColumnSQL();
         $rows = $this->getRowSQL();
@@ -19,9 +20,16 @@ class InsertQuery extends Query {
         return $str;
     }
 
+
     public function column(Column $column) {
        $this->columns[] = $column;
     }
+
+
+    public function into(Table $table) {
+        $this->into = $table;
+    }
+
 
     public function row() {
         $columns = func_get_args();
@@ -37,9 +45,18 @@ class InsertQuery extends Query {
         $this->rows[] = $row;
     }
 
-    public function into(Table $table) {
-        $this->into = $table;
+
+    public function getParameters() {
+        $params = array();
+        foreach ($this->rows as $row) {
+            foreach ($row as $value) {
+                $params[] = $value;
+            }
+        }
+
+        return $params;
     }
+
 
     protected function getColumnSQL() {
         if (count($this->columns) <= 0) {
@@ -52,6 +69,7 @@ class InsertQuery extends Query {
         $columns = implode(", ", $columns);
         return $columns;
     }
+
 
     protected function getRowSQL() {
         if (count($this->rows) <= 0) {

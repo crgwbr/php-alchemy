@@ -15,6 +15,7 @@ class Join {
     protected $table;
     protected $on;
 
+
     public function __construct($direction, $type, Table $table, Expression $on) {
         $this->direction = $direction;
         $this->type = $type;
@@ -22,7 +23,13 @@ class Join {
         $this->on = &$on;
     }
 
+
     public function __toString() {
         return "{$this->direction} {$this->type} JOIN {$this->table} ON {$this->on}";
+    }
+
+
+    public function getParameters() {
+        return $this->on->getParameters();
     }
 }

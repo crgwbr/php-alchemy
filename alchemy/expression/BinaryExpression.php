@@ -8,6 +8,7 @@ class BinaryExpression extends Expression {
     protected $right;
     protected $operator;
 
+
     public function __construct(Value $left, Operator $operator, Value $right) {
         $this->left = &$left;
         $this->operator = &$operator;
@@ -21,6 +22,7 @@ class BinaryExpression extends Expression {
             $this->scalars[] = &$right;
         }
     }
+
 
     public function __toString() {
         return "{$this->left} {$this->operator} {$this->right}";
