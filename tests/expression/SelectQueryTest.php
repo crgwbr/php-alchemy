@@ -4,9 +4,7 @@ use Alchemy\expression\Table;
 use Alchemy\expression\Column;
 use Alchemy\expression\QueryManager;
 use Alchemy\expression\BinaryExpression;
-use Alchemy\expression\InclusiveExpression;
 use Alchemy\expression\Operator;
-use Alchemy\expression\Integer;
 
 
 class SelectQueryTest extends BaseTest {

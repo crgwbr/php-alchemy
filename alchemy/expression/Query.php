@@ -4,7 +4,6 @@ namespace Alchemy\expression;
 
 
 class Query {
-    protected $from;
     protected $joins = array();
     protected $where;
 
@@ -12,12 +11,12 @@ class Query {
         return "";
     }
 
-    public function from(Table $table) {
-        $this->from = $table;
-    }
-
-    public function outerJoin(Table $table, Expression $on, $direction = null) {
-        return $this->join($table, $on, $direction, Join::OUTER);
+    public function insert() {
+        $query = new InsertQuery();
+        foreach (func_get_args() as $column) {
+            $query->column($column);
+        }
+        return $query;
     }
 
     public function join(Table $table, Expression $on, $direction = null, $type = null) {
@@ -29,21 +28,17 @@ class Query {
     public function select() {
         $query = new SelectQuery();
         foreach (func_get_args() as $column) {
-            $query->addColumn($column);
+            $query->column($column);
         }
         return $query;
     }
 
-    public function where(Expression $expr) {
-       $this->where = $expr;
+    public function outerJoin(Table $table, Expression $on, $direction = null) {
+        return $this->join($table, $on, $direction, Join::OUTER);
     }
 
-    protected function getFromSQL() {
-        if (empty($this->from)) {
-            return "";
-        }
-
-        return "FROM {$this->from}";
+    public function where(Expression $expr) {
+       $this->where = $expr;
     }
 
     protected function getJoinSQL() {

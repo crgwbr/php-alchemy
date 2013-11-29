@@ -6,6 +6,7 @@ use Exception;
 
 class SelectQuery extends Query {
     protected $columns = array();
+    protected $from;
 
     public function __toString() {
         $columns = $this->getColumnSQL();
@@ -19,8 +20,12 @@ class SelectQuery extends Query {
         return $str;
     }
 
-    public function addColumn(Column $column) {
+    public function column(Column $column) {
        $this->columns[] = $column;
+    }
+
+    public function from(Table $table) {
+        $this->from = $table;
     }
 
     protected function getColumnSQL() {
@@ -33,5 +38,13 @@ class SelectQuery extends Query {
         }, $this->columns);
         $columns = implode(", ", $columns);
         return $columns;
+    }
+
+    protected function getFromSQL() {
+        if (empty($this->from)) {
+            throw new Exception("No 'from' table has been set");
+        }
+
+        return "FROM {$this->from}";
     }
 }

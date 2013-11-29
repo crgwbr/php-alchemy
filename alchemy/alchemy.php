@@ -26,3 +26,4 @@ require_once "expression/Join.php";
 require_once "expression/QueryManager.php";
 require_once "expression/Query.php";
 require_once "expression/SelectQuery.php";
+require_once "expression/InsertQuery.php";

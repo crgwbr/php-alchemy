@@ -19,6 +19,10 @@ class Column extends Value {
         return "{$tableAlias}.{$this->columnName}";
     }
 
+    public function getName() {
+        return $this->columnName;
+    }
+
     public function getSelectDeclaration() {
         return "{$this} as {$this->columnAlias}";
     }
