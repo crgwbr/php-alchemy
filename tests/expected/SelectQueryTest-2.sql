@@ -1,0 +1,1 @@
+SELECT us1.UserName as UserName, us1.Email as Email, ad2.StreetAddress as StreetAddress FROM users us1 LEFT INNER JOIN addresses ad2 ON ad2.UserID = us1.UserID

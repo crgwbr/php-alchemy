@@ -1,0 +1,1 @@
+SELECT us1.UserName as UserName, us1.Email as Email FROM users us1
