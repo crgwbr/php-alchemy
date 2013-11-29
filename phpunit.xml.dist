@@ -5,4 +5,9 @@
          strict="true"
          verbose="false"
          colors="true">
+    <testsuites>
+        <testsuite name="All PHPAlchemy Tests">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
