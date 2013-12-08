@@ -14,7 +14,7 @@ class InsertQuery extends Query {
         $columns = $this->getColumnSQL();
         $rows = $this->getRowSQL();
 
-        $str = "INSERT INTO {$this->into} ($columns) VALUES {$rows}";
+        $str = "INSERT INTO {$this->into->getName()} ($columns) VALUES {$rows}";
 
         $str = trim($str);
         return $str;

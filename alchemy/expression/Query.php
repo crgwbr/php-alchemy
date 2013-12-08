@@ -9,7 +9,28 @@ class Query {
 
 
     public function __toString() {
-        return "";
+        throw new Exception("__toString functionality should be overridden in a subclass");
+    }
+
+
+    public function __call($name, $args) {
+        $name = ucfirst($name);
+        $class = "Alchemy\\expression\\{$name}Query";
+        if (class_exists($class)) {
+            return $this->changeQueryType($class, $args);
+        }
+
+        throw new \BadMethodCallException("Class {$class} not found");
+    }
+
+
+    protected function changeQueryType($class, $columns) {
+        $query = new $class();
+        foreach ($columns as $column) {
+            $query->column($column);
+        }
+
+        return $query;
     }
 
 
@@ -18,28 +39,10 @@ class Query {
     }
 
 
-    public function insert() {
-        $query = new InsertQuery();
-        foreach (func_get_args() as $column) {
-            $query->column($column);
-        }
-        return $query;
-    }
-
-
     public function join(Table $table, Expression $on, $direction = null, $type = null) {
         $direction = $direction ?: Join::LEFT;
         $type = $type ?: Join::INNER;
         $this->joins[] = new Join($direction, $type, $table, $on);
-    }
-
-
-    public function select() {
-        $query = new SelectQuery();
-        foreach (func_get_args() as $column) {
-            $query->column($column);
-        }
-        return $query;
     }
 
 
