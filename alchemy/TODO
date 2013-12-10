@@ -1,0 +1,18 @@
+General:
+    - Document and comment everything
+
+Engine:
+    - Wrap PDOStatement results in class
+
+Expression:
+    - Support UPDATE statements
+    - Design way to support multiple SQL dialects
+    - Support LIMIT, OFFSET
+
+ORM:
+    - Support UPDATEs
+    - Support indexes, uniques, primary keys
+    - Support Select query filtering
+    - Support ForeignKeys and object relationships
+        - Include options for eager / lazy relationship loading
+    - Add DROP support to DDL
