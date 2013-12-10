@@ -22,6 +22,11 @@ class Session {
 
     public function add($obj) {
         $cls = get_class($obj);
+
+        if (!array_key_exists($cls, $this->records)) {
+            $this->records[$cls] = array();
+        }
+
         $id = count($this->records[$cls]);
 
         $this->records[$cls][] = array();
@@ -97,7 +102,7 @@ class Session {
 
 
     public function setProperty($cls, $id, $prop, $value) {
-        if ($this->records[$cls][$id][$prop] === $value) {
+        if (isset($this->records[$cls][$id][$prop]) && $this->records[$cls][$id][$prop] === $value) {
             return;
         }
 
@@ -109,6 +114,10 @@ class Session {
     protected function wrap($cls, $rows) {
         $objects = array();
         $schema = $cls::schema_definition();
+
+        if (!array_key_exists($cls, $this->records)) {
+            $this->records[$cls] = array();
+        }
 
         foreach ($rows as $row) {
             $i = count($this->records[$cls]);
