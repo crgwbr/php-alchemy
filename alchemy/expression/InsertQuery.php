@@ -33,6 +33,7 @@ class InsertQuery extends Query {
 
     public function row() {
         $columns = func_get_args();
+        $columns = is_array($columns[0]) ? $columns[0] : $columns;
         $row = array();
         foreach ($columns as $column) {
             if (!$column instanceof Scalar) {

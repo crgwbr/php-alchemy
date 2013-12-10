@@ -2,6 +2,8 @@
 
 require_once "alchemy/alchemy.php";
 
+date_default_timezone_set('UTC');
+
 
 abstract class BaseTest extends PHPUnit_Framework_TestCase {
 

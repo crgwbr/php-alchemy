@@ -19,13 +19,13 @@ class Operator {
 
 
     public static function __callStatic($name, $args) {
-        $const = "self::O_" . strtoupper($name);
+        $const = "static::O_" . strtoupper($name);
         if (!defined($const)) {
             throw new BadMethodCallException("Bad Operator Type[{$name}]");
         }
 
         $oper = constant($const);
-        return new self($oper);
+        return new static($oper);
     }
 
 

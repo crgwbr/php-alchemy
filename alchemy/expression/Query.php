@@ -17,6 +17,7 @@ class Query {
         $name = ucfirst($name);
         $class = "Alchemy\\expression\\{$name}Query";
         if (class_exists($class)) {
+            $args = is_array($args[0]) ? $args[0] : $args;
             return $this->changeQueryType($class, $args);
         }
 

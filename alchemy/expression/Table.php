@@ -12,7 +12,7 @@ class Table {
 
     public function __construct($name) {
        $this->name = $name;
-       $this->alias = substr($name, 0, 2) . (++self::$tableCounter);
+       $this->alias = strtolower(substr($name, 0, 2)) . (++static::$tableCounter);
     }
 
 

@@ -16,7 +16,7 @@ class CompoundExpression extends Expression {
 
 
     public function __call($conjoin, $args) {
-        if (!in_array($conjoin, self::$conjoinTypes)) {
+        if (!in_array($conjoin, static::$conjoinTypes)) {
             throw new BadMethodCallException("Bad Expression Conjoiner[{$conjoin}]");
         }
 
