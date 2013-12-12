@@ -19,7 +19,7 @@ class String extends Column {
     public function columnDefinition() {
         $def = array();
         $size = $this->args[0];
-        $def[] = "`{$this->name}` VARCHAR({$size})";
+        $def[] = "{$this->name} VARCHAR({$size})";
 
         if ($this->kwargs['collation']) {
             $def[] = "COLLATE {$this->kwargs['collation']}";

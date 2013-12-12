@@ -16,7 +16,7 @@ class Text extends String {
 
     public function columnDefinition() {
         $def = array();
-        $def[] = "`{$this->name}` TEXT";
+        $def[] = "{$this->name} TEXT";
 
         if ($this->kwargs['collation']) {
             $def[] = "COLLATE {$this->kwargs['collation']}";

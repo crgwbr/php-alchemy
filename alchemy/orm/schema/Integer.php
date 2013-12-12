@@ -21,7 +21,7 @@ class Integer extends Column {
     public function columnDefinition() {
         $def = array();
         $width = $this->args[0];
-        $def[] = "`{$this->name}` INT({$width})";
+        $def[] = "{$this->name} INT({$width})";
 
         if ($this->kwargs['unsigned']) {
             $def[] = "unsigned";

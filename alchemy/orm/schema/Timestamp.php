@@ -17,7 +17,7 @@ class Timestamp extends String {
 
     public function columnDefinition() {
         $def = array();
-        $def[] = "`{$this->name}` TIMESTAMP";
+        $def[] = "{$this->name} TIMESTAMP";
 
         if ($this->kwargs['null']) {
             $def[] = "NULL";
