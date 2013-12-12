@@ -5,12 +5,17 @@ use Alchemy\expression\QueryManager;
 use PDO;
 
 
-class Engine {
+class Engine implements IEngine {
     protected $connector;
 
     public function __construct($dsn, $username = null, $password = null) {
         $this->connector = new PDO($dsn, $username, $password);
         $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+
+
+    public function beginTransaction() {
+        $this->connector->beginTransaction();
     }
 
 
@@ -41,10 +46,5 @@ class Engine {
 
     public function rollbackTransaction() {
         $this->connector->rollbackTransaction();
-    }
-
-
-    public function startTransaction() {
-        $this->connector->beginTransaction();
     }
 }

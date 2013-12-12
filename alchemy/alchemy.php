@@ -28,6 +28,7 @@ require_once "expression/QueryManager.php";
 require_once "expression/SelectQuery.php";
 require_once "expression/InsertQuery.php";
 
+require_once "engine/IEngine.php";
 require_once "engine/Engine.php";
 
 require_once "orm/schema/Column.php";

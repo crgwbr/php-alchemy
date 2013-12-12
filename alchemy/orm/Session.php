@@ -1,6 +1,7 @@
 <?php
 
 namespace Alchemy\orm;
+use Alchemy\engine\IEngine;
 use Alchemy\orm\query\DeferredQueryManager;
 use Alchemy\orm\ddl\DDL;
 use Alchemy\expression\Table;
@@ -15,7 +16,7 @@ class Session {
     private $updated = array();
 
 
-    public function __construct($engine) {
+    public function __construct(IEngine $engine) {
         $this->engine = $engine;
     }
 
