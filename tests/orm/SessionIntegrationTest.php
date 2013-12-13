@@ -17,6 +17,7 @@ class SessionIntegrationTest extends BaseTest {
 
         foreach ($engines as $engine) {
             $session = new Session($engine);
+            $session->ddl()->dropAll();
             $session->ddl()->createAll();
 
             // Insert

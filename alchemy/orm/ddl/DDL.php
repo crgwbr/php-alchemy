@@ -25,6 +25,19 @@ class DDL {
     }
 
 
+    public function drop($cls) {
+        $create = new Drop($cls);
+        $create->execute($this->session->engine());
+    }
+
+
+    public function dropAll() {
+        foreach ($this->listMappers() as $cls) {
+            $this->drop($cls);
+        }
+    }
+
+
     public function listMappers() {
         $result = array();
         foreach (get_declared_classes() as $cls) {

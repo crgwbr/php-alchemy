@@ -41,6 +41,7 @@ require_once "orm/schema/Timestamp.php";
 
 require_once "orm/ddl/DDL.php";
 require_once "orm/ddl/Create.php";
+require_once "orm/ddl/Drop.php";
 
 require_once "orm/query/DeferredSelect.php";
 require_once "orm/query/DeferredQueryManager.php";

@@ -23,4 +23,19 @@ class SessionTest extends BaseTest {
         $session = new Session($engine);
         $session->ddl()->createAll();
     }
+
+
+    public function testDrop() {
+        $engine = $this->getMockBuilder('Alchemy\engine\Engine')
+                       ->setConstructorArgs(array('sqlite::memory:'))
+                       ->setMethods(array('execute'))
+                       ->getMock();
+
+        $engine->expects($this->once())
+               ->method('execute')
+               ->with($this->equalTo('DROP TABLE IF EXISTS Alchemy_tests_Language;'));
+
+        $session = new Session($engine);
+        $session->ddl()->drop('Alchemy\tests\Language');
+    }
 }

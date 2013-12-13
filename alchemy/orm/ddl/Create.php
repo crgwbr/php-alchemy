@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\orm\ddl;
-use Alchemy\engine\Engine;
+use Alchemy\engine\IEngine;
 
 
 class Create {
@@ -12,7 +12,7 @@ class Create {
     }
 
 
-    public function execute(Engine $engine) {
+    public function execute(IEngine $engine) {
         $columns = $this->listColumns();
         $columns = implode(", ", $columns);
         $cls = $this->mapper;
