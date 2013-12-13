@@ -115,6 +115,7 @@ class Session {
     protected function wrap($cls, $rows) {
         $objects = array();
         $schema = $cls::schema_definition();
+        $rows = $rows ?: array();
 
         if (!array_key_exists($cls, $this->records)) {
             $this->records[$cls] = array();

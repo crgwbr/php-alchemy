@@ -6,6 +6,8 @@ namespace  Alchemy\orm;
 class DataMapper {
     const SCHEMA_NS = "Alchemy\\orm\\schema\\";
 
+    protected static $table_name = null;
+
     private static $schema_cache = array();
     private $deltas = array();
     private $session;
@@ -13,7 +15,9 @@ class DataMapper {
 
 
     public static function table_name() {
-        return get_called_class();
+        $cls = static::$table_name ?: get_called_class();
+        $cls = preg_replace("/[^A-Za-z0-9]/", "_", $cls);
+        return $cls;
     }
 
 

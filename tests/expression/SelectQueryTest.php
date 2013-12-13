@@ -1,5 +1,6 @@
 <?php
 
+namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Column;
 use Alchemy\expression\QueryManager;

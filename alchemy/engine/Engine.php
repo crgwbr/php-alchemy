@@ -8,7 +8,7 @@ use PDO;
 class Engine implements IEngine {
     protected $connector;
 
-    public function __construct($dsn, $username = null, $password = null) {
+    public function __construct($dsn, $username = '', $password = '') {
         $this->connector = new PDO($dsn, $username, $password);
         $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
@@ -25,22 +25,21 @@ class Engine implements IEngine {
 
 
     public function query(QueryManager $query) {
-        $statement = $this->connector->prepare((string)$query);
+        $sql = (string)$query;
+        $params = $query->getParameters();
+        return $this->execute($sql, $params);
+    }
 
-        foreach ($query->getParameters() as $i => $param) {
+
+    public function execute($sql, $params = array()) {
+        $statement = $this->connector->prepare($sql);
+
+        foreach ($params as $i => $param) {
             $statement->bindValue($i + 1, $param->getValue(), $param->getDataType());
         }
 
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-        return $statement->fetchAll();
-    }
-
-
-    public function execute($sql) {
-        $statement = $this->connector->prepare($sql);
-        $statement->execute();
-        return $statement->rowCount();
+        return new ResultSet($statement);
     }
 
 

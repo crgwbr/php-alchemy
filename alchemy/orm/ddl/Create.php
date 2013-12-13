@@ -15,7 +15,9 @@ class Create {
     public function execute(Engine $engine) {
         $columns = $this->listColumns();
         $columns = implode(", ", $columns);
-        $sql = "CREATE TABLE {$this->mapper} ({$columns});";
+        $cls = $this->mapper;
+        $table = $cls::table_name();
+        $sql = "CREATE TABLE IF NOT EXISTS {$table} ({$columns});";
         $engine->execute($sql);
     }
 

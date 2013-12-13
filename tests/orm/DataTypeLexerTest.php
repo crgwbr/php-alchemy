@@ -1,5 +1,6 @@
 <?php
 
+namespace Alchemy\tests;
 use Alchemy\orm\DataTypeLexer;
 
 

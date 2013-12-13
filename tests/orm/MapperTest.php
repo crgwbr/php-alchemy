@@ -1,25 +1,26 @@
 <?php
 
-use Alchemy\orm\DataMapper;
+namespace Alchemy\tests;
 use Alchemy\engine\Engine;
 use Alchemy\orm\Session;
+use Datetime;
 
-
-class Language extends DataMapper {
-    protected static $props = array(
-        'LanguageID' => 'Integer(primary_key = true)',
-        'ISO2Code' => 'String(2, unique = true)',
-        'LatestChangeStamp' => 'Timestamp',
-    );
-}
+require_once 'resources/Language.php';
 
 
 class MapperTest extends BaseTest {
 
-    public function testMapper() {
-        $engine = new Engine('sqlite::memory:');
+    public function testInsert() {
+        $engine = $this->getMockBuilder('Alchemy\engine\Engine')
+                       ->setConstructorArgs(array('sqlite::memory:'))
+                       ->setMethods(array('execute'))
+                       ->getMock();
+
+        $engine->expects($this->once())
+               ->method('execute')
+               ->with($this->equalTo('INSERT INTO Alchemy_tests_Language (LanguageID, ISO2Code, LatestChangeStamp) VALUES (?, ?, ?)'));
+
         $session = new Session($engine);
-        $session->ddl()->createAll();
 
         $lang = new Language();
         $lang->LanguageID = 10;
@@ -28,15 +29,20 @@ class MapperTest extends BaseTest {
 
         $session->add($lang);
         $session->commit();
+    }
+
+
+    public function testSelect() {
+        $engine = $this->getMockBuilder('Alchemy\engine\Engine')
+                       ->setConstructorArgs(array('sqlite::memory:'))
+                       ->setMethods(array('execute'))
+                       ->getMock();
+
+        $engine->expects($this->once())
+               ->method('execute')
+               ->with($this->equalTo('SELECT al1.LanguageID as LanguageID, al1.ISO2Code as ISO2Code, al1.LatestChangeStamp as LatestChangeStamp FROM Alchemy_tests_Language al1'));
 
         $session = new Session($engine);
-        $all = $session->objects('Language')->all();
-
-        $this->assertEquals(1, count($all));
-
-        $lang = $all[0];
-        $this->assertEquals(10, $lang->LanguageID);
-        $this->assertEquals('es', $lang->ISO2Code);
-        $this->assertEquals('1984-01-01', $lang->LatestChangeStamp->format('Y-m-d'));
+        $all = $session->objects('Alchemy\tests\Language')->all();
     }
 }
