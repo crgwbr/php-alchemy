@@ -10,17 +10,6 @@ class InsertQuery extends Query {
     protected $rows = array();
 
 
-    public function __toString() {
-        $columns = $this->getColumnSQL();
-        $rows = $this->getRowSQL();
-
-        $str = "INSERT INTO {$this->into->getName()} ($columns) VALUES {$rows}";
-
-        $str = trim($str);
-        return $str;
-    }
-
-
     public function column(Column $column) {
        $this->columns[] = $column;
     }
@@ -56,32 +45,5 @@ class InsertQuery extends Query {
         }
 
         return $params;
-    }
-
-
-    protected function getColumnSQL() {
-        if (count($this->columns) <= 0) {
-            throw new Exception("No columns to insert");
-        }
-
-        $columns = array_map(function($column) {
-            return $column->getName();
-        }, $this->columns);
-        $columns = implode(", ", $columns);
-        return $columns;
-    }
-
-
-    protected function getRowSQL() {
-        if (count($this->rows) <= 0) {
-            throw new Exception("No rows to insert");
-        }
-
-        $rows = array();
-        foreach ($this->rows as $row) {
-            $rows[] = implode(", ", $row);
-        }
-        $rows = implode("), (", $rows);
-        return "({$rows})";
     }
 }

@@ -10,7 +10,7 @@
  *     >>> $type->getKeywordArgs();
  *     array("primary_key" => true)
  */
-namespace  Alchemy\orm;
+namespace  Alchemy\util;
 
 
 class DataTypeLexer {

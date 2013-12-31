@@ -20,10 +20,4 @@ class InclusiveExpression extends Expression {
             $this->scalars[] = &$scalar;
         }
     }
-
-
-    public function __toString() {
-        $in = implode(", ", $this->in);
-        return "{$this->left} IN ({$in})";
-    }
 }

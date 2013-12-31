@@ -1,0 +1,1 @@
+SELECT us1.UserName as UserName, ad2.StreetAddress as StreetAddress, ph3.PhoneNum as PhoneNum FROM users us1 LEFT INNER JOIN addresses ad2 ON (ad2.UserID = us1.UserID AND ad2.AddressType = ?) LEFT INNER JOIN phones ph3 ON ph3.UserID = us1.UserID

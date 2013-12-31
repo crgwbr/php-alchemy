@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\orm\DataTypeLexer;
+use Alchemy\util\DataTypeLexer;
 
 
 class DataTypeLexerTest extends BaseTest {

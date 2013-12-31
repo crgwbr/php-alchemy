@@ -1,6 +1,8 @@
 <?php
 
-namespace Alchemy\orm\ddl;
+namespace Alchemy\orm;
+use Alchemy\expression\Create;
+use Alchemy\expression\Drop;
 
 
 class DDL {
@@ -13,8 +15,8 @@ class DDL {
 
 
     public function create($cls) {
-        $create = new Create($cls);
-        $create->execute($this->session->engine());
+        $create = new Create($cls::table());
+        $this->session->engine()->query($create);
     }
 
 
@@ -26,8 +28,8 @@ class DDL {
 
 
     public function drop($cls) {
-        $create = new Drop($cls);
-        $create->execute($this->session->engine());
+        $drop = new Drop($cls::table());
+        $this->session->engine()->query($drop);
     }
 
 

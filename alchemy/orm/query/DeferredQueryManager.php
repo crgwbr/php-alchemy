@@ -1,18 +1,19 @@
 <?php
 
-namespace Alchemy\orm\query;
+namespace Alchemy\orm;
+use Alchemy\expression\Table;
 
 
 class DeferredQueryManager {
     protected $session;
-    protected $type;
+    protected $queryType;
     protected $query;
 
 
-    public function __construct($type, \Alchemy\orm\Session &$session, $class, $table, array $columns) {
-        $type = "Alchemy\\orm\\query\\{$type}";
-        $this->type = $type;
-        $this->query = new $type($session, $class, $table, $columns);
+    public function __construct($queryType, Session &$session, $mapper, Table $table) {
+        $queryType = "Alchemy\\orm\\{$queryType}";
+        $this->queryType = $queryType;
+        $this->query = new $queryType($session, $mapper, $table);
     }
 
 
@@ -21,8 +22,8 @@ class DeferredQueryManager {
         $method = array($that->query, $name);
 
         $ret = call_user_func_array($method, $args);
-        $type = $this->type;
-        if ($ret && $ret instanceof $type) {
+        $queryType = $this->queryType;
+        if ($ret && $ret instanceof $queryType) {
             $that->query = $ret;
         } elseif (!is_null($ret)) {
             return $ret;

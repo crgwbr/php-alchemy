@@ -24,11 +24,6 @@ class Join {
     }
 
 
-    public function __toString() {
-        return "{$this->direction} {$this->type} JOIN {$this->table} ON {$this->on}";
-    }
-
-
     public function getParameters() {
         return $this->on->getParameters();
     }

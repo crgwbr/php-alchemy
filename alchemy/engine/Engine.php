@@ -1,16 +1,25 @@
 <?php
 
 namespace Alchemy\engine;
-use Alchemy\expression\QueryManager;
+use Alchemy\expression\IQuery;
+use Alchemy\dialect\DialectTranslator;
 use PDO;
 
 
 class Engine implements IEngine {
     protected $connector;
+    protected $dialect;
+
 
     public function __construct($dsn, $username = '', $password = '') {
+        // Get connection
         $this->connector = new PDO($dsn, $username, $password);
         $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Set dialect
+        $dialect = explode(":", $dsn);
+        $dialect = reset($dialect);
+        $this->dialect = new DialectTranslator($dialect);
     }
 
 
@@ -24,8 +33,8 @@ class Engine implements IEngine {
     }
 
 
-    public function query(QueryManager $query) {
-        $sql = (string)$query;
+    public function query(IQuery $query) {
+        $sql = (string)$this->dialect->translate($query);
         $params = $query->getParameters();
         return $this->execute($sql, $params);
     }

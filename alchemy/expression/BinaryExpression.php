@@ -22,9 +22,4 @@ class BinaryExpression extends Expression {
             $this->scalars[] = &$right;
         }
     }
-
-
-    public function __toString() {
-        return "{$this->left} {$this->operator} {$this->right}";
-    }
 }

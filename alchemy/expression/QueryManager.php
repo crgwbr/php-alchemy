@@ -3,7 +3,7 @@
 namespace Alchemy\expression;
 
 
-class QueryManager {
+class QueryManager implements IQuery {
     protected $query;
 
 
@@ -27,7 +27,13 @@ class QueryManager {
     }
 
 
-    public function __toString() {
-        return (string)$this->query;
+    public function getParameters() {
+        return $this->query->getParameters();
+    }
+
+
+    public function getQuery() {
+        $query = clone $this->query;
+        return $query;
     }
 }

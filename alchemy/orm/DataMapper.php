@@ -1,6 +1,8 @@
 <?php
 
 namespace  Alchemy\orm;
+use Alchemy\expression\Table;
+use Exception;
 
 
 class DataMapper {
@@ -21,20 +23,11 @@ class DataMapper {
     }
 
 
-    public static function schema_definition() {
+    public static function table() {
         $cls = get_called_class();
         if (!array_key_exists($cls, self::$schema_cache)) {
-            $columns = array();
-            foreach ($cls::$props as $name => $definition) {
-                $type = new DataTypeLexer($definition);
-                $columnClass = static::SCHEMA_NS . $type->getType();
-                $args = $type->getArgs();
-                $kwargs = $type->getKeywordArgs();
-                $column = new $columnClass($name, $args, $kwargs);
-                $columns[$name] = $column;
-            }
-
-            self::$schema_cache[$cls] = $columns;
+            $table = new Table($cls::table_name(), $cls::$props);
+            self::$schema_cache[$cls] = $table;
         }
 
         return self::$schema_cache[$cls];
@@ -50,8 +43,8 @@ class DataMapper {
 
 
     public function __get($prop) {
-        $columns = static::schema_definition();
-        if (!array_key_exists($prop, $columns)) {
+        $table = static::table();
+        if (!$table->isColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
         }
 
@@ -63,8 +56,8 @@ class DataMapper {
 
 
     public function __set($prop, $value) {
-        $columns = static::schema_definition();
-        if (!array_key_exists($prop, $columns)) {
+        $table = static::table();
+        if (!$table->isColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
         }
 
@@ -78,7 +71,6 @@ class DataMapper {
         }
 
         $cls = get_class($this);
-        $columns = static::schema_definition();
         foreach ($this->deltas as $prop => $value) {
             $this->session->setProperty($cls, $this->sessionID, $prop, $value);
         }

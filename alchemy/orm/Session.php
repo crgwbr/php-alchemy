@@ -2,8 +2,6 @@
 
 namespace Alchemy\orm;
 use Alchemy\engine\IEngine;
-use Alchemy\orm\query\DeferredQueryManager;
-use Alchemy\orm\ddl\DDL;
 use Alchemy\expression\Table;
 use Alchemy\expression\Column;
 use Alchemy\expression\QueryManager;
@@ -72,13 +70,13 @@ class Session {
 
 
     protected function insert($cls, $data) {
-        $schema = $cls::schema_definition();
-        $table = new Table($cls::table_name());
-        $columns = array();
+        $table = $cls::table();
+
         $scalars = array();
+        $columns = array();
         foreach ($data as $name => $value) {
-            $columns[] = new Column($table, $name);
-            $scalars[] = $schema[$name]->encode($value);
+            $columns[] = $table->$name;
+            $scalars[] = $table->$name->encode($value);
         }
 
         $query = new QueryManager();
@@ -94,8 +92,7 @@ class Session {
             'DeferredSelect',
             $this,
             $cls,
-            $cls::table_name(),
-            $cls::schema_definition()
+            $cls::table()
         );
 
         return $query;
@@ -114,7 +111,7 @@ class Session {
 
     protected function wrap($cls, $rows) {
         $objects = array();
-        $schema = $cls::schema_definition();
+        $table = $cls::table();
         $rows = $rows ?: array();
 
         if (!array_key_exists($cls, $this->records)) {
@@ -126,7 +123,7 @@ class Session {
 
             $record = array();
             foreach ($row as $column => $value) {
-                $record[$column] = $schema[$column]->decode($value);
+                $record[$column] = $table->$column->decode($value);
             }
 
             $this->records[$cls][] = $record;

@@ -1,30 +1,23 @@
 <?php
 
-namespace Alchemy\orm\query;
+namespace Alchemy\orm;
 use Alchemy\expression\Table;
 use Alchemy\expression\QueryManager;
 
 class DeferredSelect {
     private $session;
     private $class;
-    private $table;
-    private $columns;
     private $query;
 
 
-    public function __construct(&$session, $class, $table, array $columns) {
+    public function __construct(&$session, $class, Table $table) {
         $this->session = &$session;
         $this->class = $class;
-        $this->table = new Table($table);
-        $this->columns = $columns;
 
         $query = new QueryManager();
-        $query = $query->select();
-        foreach ($columns as $c) {
-            $query = $c->modifySelect($this->table, $query);
-        }
+        $query = $query->select($table->listColumns())
+                       ->from($table);
 
-        $query = $query->from($this->table);
         $this->query = $query;
     }
 

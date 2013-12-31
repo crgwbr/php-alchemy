@@ -5,8 +5,6 @@ use BadMethodCallException;
 
 
 class CompoundExpression extends Expression {
-    protected static $conjoinTypes = array('and', 'or');
-
     protected $components = array();
 
 
@@ -15,24 +13,14 @@ class CompoundExpression extends Expression {
     }
 
 
-    public function __call($conjoin, $args) {
-        if (!in_array($conjoin, static::$conjoinTypes)) {
-            throw new BadMethodCallException("Bad Expression Conjoiner[{$conjoin}]");
+    public function __call($name, $args) {
+        if (!in_array($name, self::$conjoin_types)) {
+            throw new Exception("Bad method called");
         }
 
-        $expr = array_pop($args);
-        if (!$expr instanceof Expression) {
-            throw new Exception("Invalid Expression Supplied");
-        }
-
-        $this->components[] = Operator::$conjoin();
-        $this->components[] = &$expr;
-    }
-
-
-    public function __toString() {
-        $expr = implode(" ", $this->components);
-        return "({$expr})";
+        $this->components[] = Operator::$name();
+        $this->components[] = $args[0];
+        return $this;
     }
 
 

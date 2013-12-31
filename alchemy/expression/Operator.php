@@ -6,7 +6,7 @@ use BadMethodCallException;
 
 class Operator {
     const O_EQUAL = "=";
-    const O_NOT_EQUAL = "!=";
+    const O_NOT = "!=";
     const O_GT = ">";
     const O_LT = "<";
     const O_GTE = ">=";
@@ -31,10 +31,5 @@ class Operator {
 
     public function __construct($type) {
         $this->type = $type;
-    }
-
-
-    public function __toString() {
-        return $this->type;
     }
 }

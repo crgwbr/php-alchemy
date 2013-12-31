@@ -3,14 +3,9 @@
 namespace Alchemy\expression;
 
 
-class Query {
+class Query implements IQuery {
     protected $joins = array();
     protected $where;
-
-
-    public function __toString() {
-        throw new Exception("__toString functionality should be overridden in a subclass");
-    }
 
 
     public function __call($name, $args) {
@@ -54,19 +49,5 @@ class Query {
 
     public function where(Expression $expr) {
        $this->where = $expr;
-    }
-
-
-    protected function getJoinSQL() {
-        return implode(" ", $this->joins);
-    }
-
-
-    protected function getWhereSQL() {
-        if (empty($this->where)) {
-            return "";
-        }
-
-        return "WHERE {$this->where}";
     }
 }
