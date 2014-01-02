@@ -16,10 +16,7 @@ class Scalar extends Value {
 
     public function __construct($value, $dataType = null) {
         $this->value = $value;
-
-        if ($dataType) {
-            $this->dataType = $dataType;
-        }
+        $this->dataType = $dataType ?: $this->inferDataType($value);
     }
 
 
