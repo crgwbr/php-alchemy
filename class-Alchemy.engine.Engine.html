@@ -6,8 +6,8 @@
 
 	<title>Class Alchemy\engine\Engine</title>
 
-	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?1003786344"></script>
+	<script type="text/javascript" src="resources/combined.js?380956574"></script>
+	<script type="text/javascript" src="elementlist.js?2636475752"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -123,7 +123,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.engine.html">engine</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.engine.Engine.html#10-79" title="Go to source code">alchemy/engine/Engine.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.engine.Engine.html#10-87" title="Go to source code">alchemy/engine/Engine.php</a><br />
 	</div>
 
 
@@ -141,7 +141,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#16-25" title="Go to source code">__construct</a>( <span>mixed <var>$dsn</var></span>, <span>mixed <var>$username</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$password</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#17-26" title="Go to source code">__construct</a>( <span>mixed <var>$dsn</var></span>, <span>mixed <var>$username</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$password</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -170,7 +170,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_beginTransaction">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#28-30" title="Go to source code">beginTransaction</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#29-33" title="Go to source code">beginTransaction</a>( )</code>
 
 		<div class="description short">
 			
@@ -201,7 +201,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_commitTransaction">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#33-35" title="Go to source code">commitTransaction</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#36-41" title="Go to source code">commitTransaction</a>( )</code>
 
 		<div class="description short">
 			
@@ -232,7 +232,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_echoQuery">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#38-48" title="Go to source code">echoQuery</a>( <span>mixed <var>$sql</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#44-54" title="Go to source code">echoQuery</a>( <span>mixed <var>$sql</var></span> )</code>
 
 		<div class="description short">
 			
@@ -261,7 +261,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_query">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#51-55" title="Go to source code">query</a>( <span>mixed <var>$query</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#57-61" title="Go to source code">query</a>( <span>mixed <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -292,7 +292,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#58-68" title="Go to source code">execute</a>( <span>mixed <var>$sql</var></span>, <span>mixed <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#64-74" title="Go to source code">execute</a>( <span>mixed <var>$sql</var></span>, <span>mixed <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -323,7 +323,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rollbackTransaction">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#71-73" title="Go to source code">rollbackTransaction</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#77-81" title="Go to source code">rollbackTransaction</a>( )</code>
 
 		<div class="description short">
 			
@@ -354,7 +354,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setEcho">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#76-78" title="Go to source code">setEcho</a>( <span>mixed <var>$echoQueries</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#84-86" title="Go to source code">setEcho</a>( <span>mixed <var>$echoQueries</var></span> )</code>
 
 		<div class="description short">
 			
@@ -445,6 +445,29 @@
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
 			<a href="#$echoQueries" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="pendingTransaction" id="$pendingTransaction">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.engine.Engine.html#14" title="Go to source code"><var>$pendingTransaction</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$pendingTransaction" class="anchor">#</a>
 
 			<div class="description short">
 				
