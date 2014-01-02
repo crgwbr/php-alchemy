@@ -11,6 +11,7 @@ class Engine implements IEngine {
     protected $connector;
     protected $dialect;
     protected $echoQueries = false;
+    protected $pendingTransaction = false;
 
 
     public function __construct($dsn, $username = '', $password = '') {
@@ -26,12 +27,17 @@ class Engine implements IEngine {
 
 
     public function beginTransaction() {
-        $this->connector->beginTransaction();
+        if (!$this->pendingTransaction) {
+            $this->connector->beginTransaction();
+        }
     }
 
 
     public function commitTransaction() {
-        $this->connector->commitTransaction();
+        if ($this->pendingTransaction) {
+            $this->connector->commit();
+            $this->pendingTransaction = false;
+        }
     }
 
 
@@ -69,7 +75,9 @@ class Engine implements IEngine {
 
 
     public function rollbackTransaction() {
-        $this->connector->rollbackTransaction();
+        if ($this->pendingTransaction) {
+            $this->connector->rollBack();
+        }
     }
 
 

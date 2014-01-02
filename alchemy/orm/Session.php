@@ -8,15 +8,15 @@ use Alchemy\expression\Select;
 use Alchemy\expression\Insert;
 
 class Session {
-
+    protected $queue;
     private $engine;
     private $records = array();
-    private $added = array();
     private $updated = array();
 
 
     public function __construct(IEngine $engine) {
         $this->engine = $engine;
+        $this->queue = new WorkQueue();
     }
 
 
@@ -29,23 +29,17 @@ class Session {
 
         $id = count($this->records[$cls]);
 
-        $this->records[$cls][] = array();
-        $this->added[$cls][] = $id;
-
+        $this->records[$cls][$id] = array();
         $obj->setSession($this, $id);
         $obj->save();
+
+        $this->queue->insert($cls, $this->records[$cls][$id]);
     }
 
 
     public function commit() {
-        foreach ($this->added as $cls => $added) {
-            foreach ($added as $id) {
-                $this->insert($cls, $this->updated[$cls][$id]);
-                unset($this->updated[$cls][$id]);
-            }
-
-            $this->added[$cls] = array();
-        }
+        $this->flush();
+        $this->engine->commitTransaction();
     }
 
 
@@ -65,25 +59,14 @@ class Session {
     }
 
 
-    public function &getProperty($cls, $id, $prop) {
-        return $this->records[$cls][$id][$prop];
+    public function flush() {
+        $this->engine->beginTransaction();
+        $this->queue->flush($this->engine);
     }
 
 
-    protected function insert($cls, $data) {
-        $table = $cls::table();
-
-        $scalars = array();
-        $columns = array();
-        foreach ($data as $name => $value) {
-            $columns[] = $table->$name;
-            $scalars[] = $table->$name->encode($value);
-        }
-
-        $query = Insert::init()->columns($columns)
-                               ->into($table)
-                               ->row($scalars);
-        $this->engine->query($query);
+    public function &getProperty($cls, $id, $prop) {
+        return $this->records[$cls][$id][$prop];
     }
 
 

@@ -54,6 +54,7 @@ require_once "engine/Engine.php";
 
 // ORM Proper
 require_once "orm/DDL.php";
+require_once "orm/WorkQueue.php";
 require_once "orm/Session.php";
 require_once "orm/SessionSelect.php";
 require_once "orm/DataMapper.php";
