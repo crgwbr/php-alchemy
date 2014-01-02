@@ -1,7 +1,12 @@
 # TODO
 
+## Milestone 0.1
+
 General:
-    - Document and comment everything
+    - Document and comment everything using standard PHPDoc notation.
+
+Dialect:
+    - Target MySQL and SQLite3 only
 
 Expression:
     - UPDATE, DELETE statements
@@ -19,16 +24,30 @@ Expression:
         - float
         - binary
     - Indexes, uniques, primary keys
-    - Collations
+        - Primary keys should be allowed to be composite
+    - String Collations
+    - Improve Expression building interface to be more understandable
 
 ORM:
     - UPDATE operations
+    - Unit of work queuing
     - Select query filtering
+    - Session flush / transaction handing
+    - Query  Executors:
+        - first()
+        - one()
     - ForeignKeys and object relationships
         - Include options for eager / lazy relationship loading
+            - Eager: join on initial object select
+            - Lazy: Secondary select on reference
         - Types:
             - OneToMany
             - ManyToOne
             - OnetoOne
             - ManyToMany
-    -
+
+
+## Milestone 0.2
+
+ORM:
+    - DataMapper sub-class tree support through single/joined table inheritance
