@@ -10,6 +10,7 @@ use PDO;
 class Engine implements IEngine {
     protected $connector;
     protected $dialect;
+    protected $echoQueries = false;
 
 
     public function __construct($dsn, $username = '', $password = '') {
@@ -34,6 +35,19 @@ class Engine implements IEngine {
     }
 
 
+    protected function echoQuery($sql) {
+        if (!$this->echoQueries) {
+            return;
+        }
+
+        if (is_callable($this->echoQueries)) {
+            return $this->echoQueries($sql);
+        }
+
+        echo $sql . "\n";
+    }
+
+
     public function query($query) {
         $sql = (string)$this->dialect->translate($query);
         $params = $query->getParameters();
@@ -42,6 +56,7 @@ class Engine implements IEngine {
 
 
     public function execute($sql, $params = array()) {
+        $this->echoQuery($sql);
         $statement = $this->connector->prepare($sql);
 
         foreach ($params as $i => $param) {
@@ -55,5 +70,10 @@ class Engine implements IEngine {
 
     public function rollbackTransaction() {
         $this->connector->rollbackTransaction();
+    }
+
+
+    public function setEcho($echoQueries) {
+        $this->echoQueries = $echoQueries;
     }
 }
