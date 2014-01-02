@@ -4,7 +4,8 @@ namespace Alchemy\orm;
 use Alchemy\engine\IEngine;
 use Alchemy\expression\Table;
 use Alchemy\expression\Column;
-use Alchemy\expression\QueryManager;
+use Alchemy\expression\Select;
+use Alchemy\expression\Insert;
 
 class Session {
 
@@ -79,23 +80,15 @@ class Session {
             $scalars[] = $table->$name->encode($value);
         }
 
-        $query = new QueryManager();
-        $query = $query->insert($columns)
-                       ->into($table)
-                       ->row($scalars);
+        $query = Insert::init()->columns($columns)
+                               ->into($table)
+                               ->row($scalars);
         $this->engine->query($query);
     }
 
 
     public function objects($cls) {
-        $query = new DeferredQueryManager(
-            'DeferredSelect',
-            $this,
-            $cls,
-            $cls::table()
-        );
-
-        return $query;
+        return new SessionSelect($this, $cls, $cls::table());
     }
 
 

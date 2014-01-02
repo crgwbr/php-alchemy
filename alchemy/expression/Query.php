@@ -1,32 +1,33 @@
 <?php
 
 namespace Alchemy\expression;
+use Alchemy\util\Monad;
 
 
-class Query implements IQuery {
+abstract class Query implements IQuery {
+    protected $columns = array();
     protected $joins = array();
     protected $where;
 
 
-    public function __call($name, $args) {
-        $name = ucfirst($name);
-        $class = "Alchemy\\expression\\{$name}Query";
-        if (class_exists($class)) {
-            $args = count($args) > 0 && is_array($args[0]) ? $args[0] : $args;
-            return $this->changeQueryType($class, $args);
-        }
-
-        throw new \BadMethodCallException("Class {$class} not found");
+    public static function init() {
+        $cls = get_called_class();
+        return new Monad(new $cls());
     }
 
 
-    protected function changeQueryType($class, $columns) {
-        $query = new $class();
-        foreach ($columns as $column) {
-            $query->column($column);
-        }
+    public function column(Value $column) {
+       $this->columns[] = $column;
+    }
 
-        return $query;
+
+    public function columns() {
+        $columns = func_get_args();
+        $columns = is_array($columns[0]) ? $columns[0] : $columns;
+
+        foreach ($columns as $column) {
+            $this->column($column);
+        }
     }
 
 

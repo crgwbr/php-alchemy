@@ -135,7 +135,7 @@ class ANSI_InclusiveExpression extends ANSI_DialectBase {
 
 
 
-class ANSI_InsertQuery extends ANSI_Query {
+class ANSI_Insert extends ANSI_Query {
 
     public function __toString() {
         $columns = $this->getColumnSQL();
@@ -214,7 +214,7 @@ class ANSI_Scalar extends ANSI_DialectBase {
 
 
 
-class ANSI_SelectQuery extends ANSI_Query {
+class ANSI_Select extends ANSI_Query {
 
     public function __toString() {
         $columns = $this->getColumnSQL();

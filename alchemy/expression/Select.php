@@ -4,14 +4,8 @@ namespace Alchemy\expression;
 use Exception;
 
 
-class SelectQuery extends Query {
-    protected $columns = array();
+class Select extends Query {
     protected $from;
-
-
-    public function column(Value $column) {
-       $this->columns[] = $column;
-    }
 
 
     public function from(Table $table) {

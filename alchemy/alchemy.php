@@ -5,6 +5,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
 
 // Utils
 require_once "util/DataTypeLexer.php";
+require_once "util/Monad.php";
 
 // Basic expressions
 require_once "expression/Value.php";
@@ -33,9 +34,8 @@ require_once "expression/Join.php";
 // Queries
 require_once "expression/IQuery.php";
 require_once "expression/Query.php";
-require_once "expression/QueryManager.php";
-require_once "expression/SelectQuery.php";
-require_once "expression/InsertQuery.php";
+require_once "expression/Select.php";
+require_once "expression/Insert.php";
 
 // DDL
 require_once "expression/DDLQuery.php";
@@ -52,11 +52,8 @@ require_once "engine/IEngine.php";
 require_once "engine/ResultSet.php";
 require_once "engine/Engine.php";
 
-// ORM Queries
-require_once "orm/query/DeferredSelect.php";
-require_once "orm/query/DeferredQueryManager.php";
-
 // ORM Proper
 require_once "orm/DDL.php";
 require_once "orm/Session.php";
+require_once "orm/SessionSelect.php";
 require_once "orm/DataMapper.php";

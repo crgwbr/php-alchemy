@@ -3,11 +3,11 @@
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Column;
-use Alchemy\expression\QueryManager;
+use Alchemy\expression\Insert;
 use Alchemy\expression\Scalar;
 
 
-class InsertQueryTest extends BaseTest {
+class InsertTest extends BaseTest {
 
     public function testSimpleInsert() {
         $users = new Table('users', array(
@@ -15,10 +15,9 @@ class InsertQueryTest extends BaseTest {
             'Email' => 'String',
         ));
 
-        $query = new QueryManager();
-        $query = $query->insert($users->UserName, $users->Email)
-                       ->into($users)
-                       ->row(new Scalar("user1"), new Scalar("user1@example.com"));
+        $query = Insert::init()->columns($users->UserName, $users->Email)
+                               ->into($users)
+                               ->row("user1", "user1@example.com");
 
         $params = $query->getParameters();
         $this->assertEquals(2, count($params));

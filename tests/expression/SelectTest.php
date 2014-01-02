@@ -2,16 +2,11 @@
 
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
-use Alchemy\expression\Column;
-use Alchemy\expression\QueryManager;
-use Alchemy\expression\BinaryExpression;
-use Alchemy\expression\CompoundExpression;
-use Alchemy\expression\Operator;
-use Alchemy\expression\Integer;
+use Alchemy\expression\Select;
 use Alchemy\expression\Scalar;
 
 
-class SelectQueryTest extends BaseTest {
+class SelectTest extends BaseTest {
 
     public function testGetParams() {
         $users = new Table('users', array(
@@ -36,11 +31,10 @@ class SelectQueryTest extends BaseTest {
 
         $phoneJoin = $phones->UserID->equal($users->UserID);
 
-        $query = new QueryManager();
-        $query = $query->select($users->UserName, $addrs->StreetAddress, $phones->PhoneNum)
-                       ->from($users)
-                       ->join($addrs, $addrJoin)
-                       ->join($phones, $phoneJoin);
+        $query = Select::init()->columns($users->UserName, $addrs->StreetAddress, $phones->PhoneNum)
+                               ->from($users)
+                               ->join($addrs, $addrJoin)
+                               ->join($phones, $phoneJoin);
 
         $params = $query->getParameters();
         $this->assertEquals(1, count($params));

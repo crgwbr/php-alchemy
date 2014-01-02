@@ -3,6 +3,7 @@
 namespace Alchemy\engine;
 use Alchemy\expression\IQuery;
 use Alchemy\dialect\DialectTranslator;
+use Alchemy\util\Monad;
 use PDO;
 
 
@@ -33,7 +34,7 @@ class Engine implements IEngine {
     }
 
 
-    public function query(IQuery $query) {
+    public function query($query) {
         $sql = (string)$this->dialect->translate($query);
         $params = $query->getParameters();
         return $this->execute($sql, $params);

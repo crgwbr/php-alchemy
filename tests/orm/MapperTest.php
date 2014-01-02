@@ -1,7 +1,6 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\engine\Engine;
 use Alchemy\orm\Session;
 use Datetime;
 

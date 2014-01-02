@@ -8,7 +8,7 @@ interface IEngine {
 
     public function beginTransaction();
     public function commitTransaction();
-    public function query(IQuery $query);
+    public function query($query);
     public function execute($sql);
     public function rollbackTransaction();
 }

@@ -4,15 +4,9 @@ namespace Alchemy\expression;
 use Exception;
 
 
-class InsertQuery extends Query {
-    protected $columns = array();
+class Insert extends Query {
     protected $into;
     protected $rows = array();
-
-
-    public function column(Column $column) {
-       $this->columns[] = $column;
-    }
 
 
     public function into(Table $table) {
@@ -26,7 +20,7 @@ class InsertQuery extends Query {
         $row = array();
         foreach ($columns as $column) {
             if (!$column instanceof Scalar) {
-                throw new Exception("All arguments must be instances of Scalar");
+                $column = new Scalar($column);
             }
 
             $row[] = $column;

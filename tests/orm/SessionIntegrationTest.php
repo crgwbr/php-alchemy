@@ -12,7 +12,7 @@ class SessionIntegrationTest extends BaseTest {
     public function testSQLiteModelRoundTrip() {
         $engines = array(
             $this->getSQLiteEngine(),
-            //$this->getMySQLEngine(),
+            $this->getMySQLEngine(),
         );
 
         foreach ($engines as $engine) {

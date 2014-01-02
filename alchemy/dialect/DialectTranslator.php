@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\dialect;
-use Alchemy\expression\QueryManager;
+use Alchemy\util\Monad;
 use Exception;
 
 
@@ -47,8 +47,8 @@ class DialectTranslator {
 
     public function translate($sqlexpr) {
         // Get rid of the monad wrapper
-        if ($sqlexpr instanceof QueryManager) {
-            $sqlexpr = $sqlexpr->getQuery();
+        if ($sqlexpr instanceof Monad) {
+            $sqlexpr = $sqlexpr->unwrap();
         }
 
         // Array?

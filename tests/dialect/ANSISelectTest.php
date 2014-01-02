@@ -2,7 +2,7 @@
 
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
-use Alchemy\expression\QueryManager;
+use Alchemy\expression\Select;
 use Alchemy\dialect\DialectTranslator;
 
 
@@ -15,9 +15,8 @@ class ANSISelectTest extends BaseTest {
             'Email' => 'String',
         ));
 
-        $query = new QueryManager();
-        $query = $query->select($users->UserName, $users->Email)
-                       ->from($users);
+        $query = Select::init()->columns($users->UserName, $users->Email)
+                               ->from($users);
 
         $translator = new DialectTranslator('ANSI');
         $vern = $translator->translate($query);
@@ -37,10 +36,9 @@ class ANSISelectTest extends BaseTest {
             'StreetAddress' => 'String'
         ));
 
-        $query = new QueryManager();
-        $query = $query->select($users->UserName, $users->Email, $addrs->StreetAddress)
-                       ->from($users)
-                       ->join($addrs, $addrs->UserID->equal($users->UserID));
+        $query = Select::init()->columns($users->UserName, $users->Email, $addrs->StreetAddress)
+                               ->from($users)
+                               ->join($addrs, $addrs->UserID->equal($users->UserID));
 
         $translator = new DialectTranslator('ANSI');
         $vern = $translator->translate($query);
@@ -71,11 +69,10 @@ class ANSISelectTest extends BaseTest {
 
         $phoneJoin = $phones->UserID->equal($users->UserID);
 
-        $query = new QueryManager();
-        $query = $query->select($users->UserName, $addrs->StreetAddress, $phones->PhoneNum)
-                       ->from($users)
-                       ->join($addrs, $addrJoin)
-                       ->join($phones, $phoneJoin);
+        $query = Select::init()->columns($users->UserName, $addrs->StreetAddress, $phones->PhoneNum)
+                               ->from($users)
+                               ->join($addrs, $addrJoin)
+                               ->join($phones, $phoneJoin);
 
         $translator = new DialectTranslator('ANSI');
         $vern = $translator->translate($query);
@@ -89,10 +86,9 @@ class ANSISelectTest extends BaseTest {
             'UserName' => 'String',
         ));
 
-        $query = new QueryManager();
-        $query = $query->select($users->UserID, $users->UserName)
-                       ->from($users)
-                       ->where($users->UserName->equal('user1@example.com'));
+        $query = Select::init()->columns($users->UserID, $users->UserName)
+                               ->from($users)
+                               ->where($users->UserName->equal('user1@example.com'));
 
         $translator = new DialectTranslator('ANSI');
         $vern = $translator->translate($query);
