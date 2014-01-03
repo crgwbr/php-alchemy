@@ -5,18 +5,37 @@ use Alchemy\util\Monad;
 use Exception;
 
 
+/**
+ * Translate a SQL query into it's frozen, vernacular form. This
+ * is how we get around differences in RDBMS query structure and
+ * syntax.
+ */
 class DialectTranslator {
     const FALLBACK_DIALECT = "ANSI";
 
     protected $dialect;
     protected $namespace;
 
+    /**
+     * Object constructor.
+     *
+     * @param string $dialect Which SQL dialect to translate into to
+     * @param string $namespace Namespace of dialect classes
+     */
     public function __construct($dialect, $namespace = "Alchemy\\dialect") {
         $this->dialect = $dialect;
         $this->namespace = $namespace;
     }
 
 
+    /**
+     * Get the name of the vernacular class which corresponds to the
+     * given class and dialect.
+     *
+     * @param string $master Class Name
+     * @param string $dialect
+     * @return string Vernacular Class Name
+     */
     protected function getVernacularClassName($master, $dialect) {
         // String namespace from class name
         $cls = explode("\\", $master);
@@ -45,6 +64,12 @@ class DialectTranslator {
     }
 
 
+    /**
+     * Translate a query into vernacular form
+     *
+     * @param Query $sqlexpr Query, optionally wrapped in a Monad
+     * @return ANSI_Query
+     */
     public function translate($sqlexpr) {
         // Get rid of the monad wrapper
         if ($sqlexpr instanceof Monad) {

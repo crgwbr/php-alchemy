@@ -1,4 +1,9 @@
 <?php
+/**
+ * PHPAlchemy
+ *
+ * Include this file in your application to start using PHP's best ORM
+ */
 
 // Update include path so that the following includes work
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));

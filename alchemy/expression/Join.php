@@ -3,6 +3,9 @@
 namespace Alchemy\expression;
 
 
+/**
+ * Represent a JOIN clause
+ */
 class Join {
     const LEFT = 'LEFT';
     const RIGHT = 'RIGHT';
@@ -16,6 +19,14 @@ class Join {
     protected $on;
 
 
+    /**
+     * Object constructor
+     *
+     * @param string $direction Join::LEFT or Join::RIGHT
+     * @param string $type Join::FULL, Join::INNER, or Join::OUTER
+     * @param Table $table
+     * @param Expression $on
+     */
     public function __construct($direction, $type, Table $table, Expression $on) {
         $this->direction = $direction;
         $this->type = $type;
@@ -24,6 +35,12 @@ class Join {
     }
 
 
+    /**
+     * Recursively get all scalar parameters used by this clause
+     * in the order which they are used in the expression
+     *
+     * @return array(Scalar, Scalar, ...)
+     */
     public function getParameters() {
         return $this->on->getParameters();
     }

@@ -3,12 +3,22 @@
 namespace Alchemy\expression;
 use Exception;
 
+
+/**
+ * Represent an inclusive expression in SQL
+ */
 class InclusiveExpression extends Expression {
     protected $left;
     protected $in = array();
 
 
-    public function __construct(Column $left, array $in) {
+    /**
+     * Object constructor. Tests if $left is in $in
+     *
+     * @param Value $left
+     * @param array $in
+     */
+    public function __construct(Value $left, array $in) {
         $this->left = &$left;
 
         foreach ($in as &$scalar) {

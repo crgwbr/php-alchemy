@@ -2,15 +2,33 @@
 
 namespace Alchemy\util;
 
+
+/**
+ * Allow method chaining and simulated object immutablity
+ * by performing every method call on a clone of the object
+ * you started with.
+ */
 class Monad {
     protected $value;
 
 
+    /**
+     * Object constructor.
+     *
+     * @param Object $value Object to wrap
+     */
     public function __construct($value) {
         $this->value = $value;
     }
 
 
+    /**
+     * Clone the inner object, call a method on it, and return it
+     *
+     * @param string $fn Method Name
+     * @param array $args
+     * @return Monad
+     */
     public function __call($fn, $args) {
         $that = clone $this;
 
@@ -32,6 +50,19 @@ class Monad {
     }
 
 
+    /**
+     * Force PHP to deep clone
+     */
+    public function __clone() {
+        $this->value = clone $this->value;
+    }
+
+
+    /**
+     * Unwrap the value
+     *
+     * @return mixed
+     */
     public function unwrap() {
         return clone $this->value;
     }

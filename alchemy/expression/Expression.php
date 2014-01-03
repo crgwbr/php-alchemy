@@ -4,12 +4,22 @@ namespace Alchemy\expression;
 use Exception;
 
 
+/**
+ * Abstract base class for representing an expression in SQL
+ */
 abstract class Expression {
     protected static $conjoin_types = array('and', 'or');
 
     protected $scalars = array();
 
 
+    /**
+     * Convert this expression into a CompoundExpression
+     * using either an AND or OR conjoiner
+     *
+     * @param string $name "and" or "or"
+     * @param array $args array([0] => Expression)
+     */
     public function __call($name, $args) {
         if (!in_array($name, self::$conjoin_types)) {
             throw new Exception("Bad method called");
@@ -21,6 +31,12 @@ abstract class Expression {
     }
 
 
+    /**
+     * Recursively get all scalar parameters used by this expression
+     * in the order which they are used in the expression
+     *
+     * @return array(Scalar, Scalar, ...)
+     */
     public function getParameters() {
         return $this->scalars;
     }

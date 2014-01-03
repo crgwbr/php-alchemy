@@ -7,6 +7,9 @@ use Alchemy\util\Monad;
 use PDO;
 
 
+/**
+ * Basic Engine implementation using PDO as it's DBAPI layer
+ */
 class Engine implements IEngine {
     protected $connector;
     protected $dialect;
@@ -14,6 +17,13 @@ class Engine implements IEngine {
     protected $pendingTransaction = false;
 
 
+    /**
+     * Object constructor. Opens a connection to the database using PDO
+     *
+     * @param string $dsn See PDO documentation for DSN reference
+     * @param string $username
+     * @param string $password
+     */
     public function __construct($dsn, $username = '', $password = '') {
         // Get connection
         $this->connector = new PDO($dsn, $username, $password);
@@ -26,6 +36,9 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * @see IEngine::beginTransaction()
+     */
     public function beginTransaction() {
         if (!$this->pendingTransaction) {
             $this->connector->beginTransaction();
@@ -33,6 +46,9 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * @see IEngine::commitTransaction()
+     */
     public function commitTransaction() {
         if ($this->pendingTransaction) {
             $this->connector->commit();
@@ -41,6 +57,11 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * Log a SQL statement if echo is enabled
+     *
+     * @param string $sql
+     */
     protected function echoQuery($sql) {
         if (!$this->echoQueries) {
             return;
@@ -54,6 +75,9 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * @see IEngine::query()
+     */
     public function query($query) {
         $sql = (string)$this->dialect->translate($query);
         $params = $query->getParameters();
@@ -61,6 +85,9 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * @see IEngine::execute()
+     */
     public function execute($sql, $params = array()) {
         $this->echoQuery($sql);
         $statement = $this->connector->prepare($sql);
@@ -74,6 +101,9 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * @see IEngine::rollbackTransaction()
+     */
     public function rollbackTransaction() {
         if ($this->pendingTransaction) {
             $this->connector->rollBack();
@@ -81,6 +111,11 @@ class Engine implements IEngine {
     }
 
 
+    /**
+     * Optionally enable echo'ing of SQL run on the RDBMS.
+     *
+     * @param mixed $echoQueries False to disable. True to log to STDOUT. Callable to enable custom logging
+     */
     public function setEcho($echoQueries) {
         $this->echoQueries = $echoQueries;
     }

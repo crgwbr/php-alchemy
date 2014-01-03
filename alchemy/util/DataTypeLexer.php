@@ -1,4 +1,8 @@
 <?php
+
+namespace  Alchemy\util;
+
+
 /**
  * Parse a data type definition into it's various components.
  * For example:
@@ -10,9 +14,6 @@
  *     >>> $type->getKeywordArgs();
  *     array("primary_key" => true)
  */
-namespace  Alchemy\util;
-
-
 class DataTypeLexer {
     const T_EQUALS = '=';
 
@@ -23,27 +24,53 @@ class DataTypeLexer {
     private $kwargs;
 
 
+    /**
+     * Object Constructor
+     *
+     * @param string $def Data Type Definition
+     */
     public function __construct($def) {
         $this->definition = $def;
         $this->parse($def);
     }
 
 
+    /**
+     * Get the positional arguments in the definition
+     *
+     * @return array
+     */
     public function getArgs() {
         return $this->args;
     }
 
 
+    /**
+     * Get the keyword arguments in the definition
+     *
+     * @return array
+     */
     public function getKeywordArgs() {
         return $this->kwargs;
     }
 
 
+    /**
+     * Get the Data Type form the definition
+     *
+     * @return string
+     */
     public function getType() {
         return $this->type;
     }
 
 
+    /**
+     * Lexically analyze the given string into a stream of tokens.
+     *
+     * @param string $def
+     * @return array
+     */
     protected function lexString($def) {
         $def = str_split($def);
         $tokens = array();
@@ -93,25 +120,41 @@ class DataTypeLexer {
     }
 
 
+    /**
+     * Normalize the given token into PHP values
+     *
+     * @param string $token
+     * @return mixed
+     */
     protected function normalizeToken($token) {
         switch (true) {
+            // Boolean True?
             case $token === 'true':
                 return true;
 
+            // Boolean False?
             case $token === 'false':
                 return false;
 
+            // Integer?
             case (string)(int)$token == $token:
                 return (int)$token;
 
+            // Float?
             case is_numeric($token):
                 return (float)$token;
         }
 
+        // Just a string.
         return $token;
     }
 
 
+    /**
+     * Lex and parse the given token, saving it's data into the object
+     *
+     * @param string $def
+     */
     protected function parse($def) {
         $tokens = $this->lexString($def);
         $this->type = array_shift($tokens);

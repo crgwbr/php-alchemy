@@ -4,15 +4,29 @@ namespace Alchemy\expression;
 use BadMethodCallException;
 
 
+/**
+ * Represent a SQL compound expression
+ */
 class CompoundExpression extends Expression {
     protected $components = array();
 
 
+    /**
+     * Object constructor
+     *
+     * @param Expression $expr Base child expression
+     */
     public function __construct(Expression $expr) {
         $this->components[] = $expr;
     }
 
 
+    /**
+     * Add to the expression using either AND or OR conjoiners
+     *
+     * @param string $name "and" or "or"
+     * @param array $args array([0] => Expression)
+     */
     public function __call($name, $args) {
         if (!in_array($name, self::$conjoin_types)) {
             throw new Exception("Bad method called");
@@ -24,6 +38,9 @@ class CompoundExpression extends Expression {
     }
 
 
+    /**
+     * @see Expression::getParameters()
+     */
     public function getParameters() {
         $params = array();
 

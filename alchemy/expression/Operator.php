@@ -4,6 +4,9 @@ namespace Alchemy\expression;
 use BadMethodCallException;
 
 
+/**
+ * Represent a logical operator
+ */
 class Operator {
     const O_EQUAL = "=";
     const O_NOT = "!=";
@@ -18,6 +21,12 @@ class Operator {
     protected $type;
 
 
+    /**
+     * Construct an operator of the given type
+     *
+     * @param $name Operator name constant (Operator::O_*)
+     * @return Operator
+     */
     public static function __callStatic($name, $args) {
         $const = "static::O_" . strtoupper($name);
         if (!defined($const)) {

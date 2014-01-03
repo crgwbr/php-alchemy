@@ -4,15 +4,26 @@ namespace Alchemy\dialect;
 use Exception;
 
 
+/**
+ * Abstract base class for vernacular query chunks
+ */
 abstract class ANSI_DialectBase {
     protected $data;
 
 
-    public function __construct($data) {
+    /**
+     * Object constructor
+     *
+     * @param array $data
+     */
+    public function __construct(array $data) {
         $this->data = $data;
     }
 
 
+    /**
+     * Magic getter for keys of $this->data
+     */
     public function __get($name) {
         if (!array_key_exists($name, $this->data)) {
             throw new Exception("Property {$name} doesn't exist");
@@ -22,31 +33,60 @@ abstract class ANSI_DialectBase {
     }
 
 
+    /**
+     * String Cast
+     */
     abstract public function __toString();
 }
 
 
-
+/**
+ * Abstract base class for representing a DB column
+ */
 abstract class ANSI_Column extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         return "{$this->tableAlias}.{$this->name}";
     }
 
 
+    /**
+     * Column Definition for a create table statement
+     *
+     * @return string
+     */
     abstract public function definition();
 
 
+    /**
+     * Column Name
+     *
+     * @return string
+     */
     public function getName() {
         return $this->name;
     }
 
 
+    /**
+     * Get configuration keyword argument
+     *
+     * @param string $name Arg Name
+     * @return string|integer|bool
+     */
     public function getKwarg($name) {
         return array_key_exists($name, $this->kwargs) ? $this->kwargs[$name] : null;
     }
 
 
+    /**
+     * Declaration for column select
+     *
+     * @return string
+     */
     public function getSelectDeclaration() {
         return "{$this} as {$this->alias}";
     }
@@ -54,13 +94,26 @@ abstract class ANSI_Column extends ANSI_DialectBase {
 
 
 
+/**
+ * Abstract class for representing a vernacular query
+ */
 abstract class ANSI_Query extends ANSI_DialectBase {
 
+    /**
+     * Get SQL for JOINs
+     *
+     * @return string
+     */
     protected function getJoinSQL() {
         return implode(" ", $this->joins);
     }
 
 
+    /**
+     * Get SQL for WHERE
+     *
+     * @return string
+     */
     protected function getWhereSQL() {
         if (!$this->where) {
             return "";
@@ -72,15 +125,29 @@ abstract class ANSI_Query extends ANSI_DialectBase {
 
 
 
+/**
+ * Represents a binary (two argument) expression with a single operator
+ */
 class ANSI_BinaryExpression extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         return "{$this->left} {$this->operator} {$this->right}";
     }
 }
 
 
+
+/**
+ * Represents a boolean column
+ */
 class ANSI_Bool extends ANSI_Column {
+
+    /**
+     * @see ANSI_Column::definition()
+     */
     public function definition() {
         $sql = "{$this->name} BOOL ";
         $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
@@ -90,8 +157,15 @@ class ANSI_Bool extends ANSI_Column {
 
 
 
+/**
+ * Represents a collection of other expressions conjoined
+ * with either AND or OR
+ */
 class ANSI_CompoundExpression extends ANSI_DialectBase {
 
+    /**
+     * Stirng Cast
+     */
     public function __toString() {
         $expr = implode(" ", $this->components);
         return "({$expr})";
@@ -100,8 +174,14 @@ class ANSI_CompoundExpression extends ANSI_DialectBase {
 
 
 
+/**
+ * Represents a CREATE statement
+ */
 class ANSI_Create extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         $table = $this->table->getName();
 
@@ -128,8 +208,14 @@ class ANSI_Create extends ANSI_DialectBase {
 
 
 
+/**
+ * Represents a DROP statement
+ */
 class ANSI_Drop extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         $table = $this->table->getName();
 
@@ -140,8 +226,14 @@ class ANSI_Drop extends ANSI_DialectBase {
 
 
 
+/**
+ * Represent a inclusive expression like: "table.column IN (?, ?, ?)"
+ */
 class ANSI_InclusiveExpression extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         $in = implode(", ", $this->in);
         return "{$this->left} IN ({$in})";
@@ -150,8 +242,14 @@ class ANSI_InclusiveExpression extends ANSI_DialectBase {
 
 
 
+/**
+ * Represent a INSERT statement
+ */
 class ANSI_Insert extends ANSI_Query {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         $columns = $this->getColumnSQL();
         $rows = $this->getRowSQL();
@@ -163,6 +261,11 @@ class ANSI_Insert extends ANSI_Query {
     }
 
 
+    /**
+     * Get SQL for columns to insert
+     *
+     * @return string
+     */
     protected function getColumnSQL() {
         if (count($this->columns) <= 0) {
             throw new Exception("No columns to insert");
@@ -176,6 +279,11 @@ class ANSI_Insert extends ANSI_Query {
     }
 
 
+    /**
+     * Get SQL for rows to insert
+     *
+     * @return string
+     */
     protected function getRowSQL() {
         if (count($this->rows) <= 0) {
             throw new Exception("No rows to insert");
@@ -192,7 +300,14 @@ class ANSI_Insert extends ANSI_Query {
 
 
 
+/**
+ * Represent an integer column
+ */
 class ANSI_Integer extends ANSI_Column {
+
+    /**
+     * @see ANSI_Column::definition()
+     */
     public function definition() {
         $sql = "{$this->name} INT({$this->args[0]}) ";
         $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
@@ -202,8 +317,14 @@ class ANSI_Integer extends ANSI_Column {
 
 
 
+/**
+ * Represent a JOIN clause
+ */
 class ANSI_Join extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         return "{$this->direction} {$this->type} JOIN {$this->table} ON {$this->on}";
     }
@@ -211,8 +332,14 @@ class ANSI_Join extends ANSI_DialectBase {
 
 
 
+/**
+ * Represent a logical operator
+ */
 class ANSI_Operator extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         return $this->type;
     }
@@ -220,8 +347,14 @@ class ANSI_Operator extends ANSI_DialectBase {
 
 
 
+/**
+ * Represent a scalar value
+ */
 class ANSI_Scalar extends ANSI_DialectBase {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         return '?';
     }
@@ -229,8 +362,14 @@ class ANSI_Scalar extends ANSI_DialectBase {
 
 
 
+/**
+ * Represent a SELECt statement
+ */
 class ANSI_Select extends ANSI_Query {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         $columns = $this->getColumnSQL();
         $from = $this->getFromSQL();
@@ -244,6 +383,11 @@ class ANSI_Select extends ANSI_Query {
     }
 
 
+    /**
+     * Get SQL for columns to SELECT
+     *
+     * @return string
+     */
     protected function getColumnSQL() {
         if (count($this->columns) <= 0) {
             throw new Exception("No columns to select");
@@ -257,6 +401,9 @@ class ANSI_Select extends ANSI_Query {
     }
 
 
+    /**
+     * Get SQL for FROM
+     */
     protected function getFromSQL() {
         return "FROM {$this->from}";
     }
@@ -264,7 +411,14 @@ class ANSI_Select extends ANSI_Query {
 
 
 
+/**
+ * Represent a VARCHAR column
+ */
 class ANSI_String extends ANSI_Column {
+
+    /**
+     * @see ANSI_Column::definition()
+     */
     public function definition() {
         $sql = "{$this->name} VARCHAR({$this->args[0]}) ";
         $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
@@ -274,26 +428,48 @@ class ANSI_String extends ANSI_Column {
 
 
 
+/**
+ * Represent a table
+ */
 class ANSI_Table extends ANSI_DialectBase {
 
+    /**
+     * Stirng Cast
+     */
     public function __toString() {
         return "{$this->name} {$this->alias}";
     }
 
 
+    /**
+     * Get the table name
+     *
+     * @return string
+     */
     public function getName() {
         return $this->name;
     }
 
 
+    /**
+     * Return the table alias
+     *
+     * @return string
+     */
     public function getAlias() {
         return $this->alias;
     }
 }
 
 
-
+/**
+ * Represent a timestamp column
+ */
 class ANSI_Timestamp extends ANSI_Column {
+
+    /**
+     * @see ANSI_Column::definition()
+     */
     public function definition() {
         $sql = "{$this->name} TIMESTAMP ";
         $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
@@ -303,8 +479,14 @@ class ANSI_Timestamp extends ANSI_Column {
 
 
 
+/**
+ * Represent an UPDATE statement
+ */
 class ANSI_Update extends ANSI_Query {
 
+    /**
+     * String Cast
+     */
     public function __toString() {
         $sets = array();
         foreach ($this->values as $column => $value) {
