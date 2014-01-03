@@ -99,6 +99,11 @@
 	<h1>Class Engine</h1>
 
 
+	<div class="description">
+	
+<p>Basic Engine implementation using PDO as it's DBAPI layer</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -123,7 +128,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.engine.html">engine</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.engine.Engine.html#10-87" title="Go to source code">alchemy/engine/Engine.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.engine.Engine.html#10-122" title="Go to source code">alchemy/engine/Engine.php</a><br />
 	</div>
 
 
@@ -141,16 +146,29 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#17-26" title="Go to source code">__construct</a>( <span>mixed <var>$dsn</var></span>, <span>mixed <var>$username</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$password</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#20-36" title="Go to source code">__construct</a>( <span>string <var>$dsn</var></span>, <span>string <var>$username</var> = <span class="php-quote">''</span></span>, <span>string <var>$password</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Object constructor. Opens a connection to the database using PDO</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object constructor. Opens a connection to the database using PDO</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dsn</var></dt>
+					<dd><code>string</code><br>$dsn See PDO documentation for DSN reference</dd>
+					<dt><var>$username</var></dt>
+					<dd><code>string</code><br>$username</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code><br>$password</dd>
+				</dl></div>
 
 
 
@@ -170,7 +188,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_beginTransaction">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#29-33" title="Go to source code">beginTransaction</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#39-46" title="Go to source code">beginTransaction</a>( )</code>
 
 		<div class="description short">
 			
@@ -183,6 +201,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IEngine.html#_beginTransaction">Alchemy\engine\IEngine::beginTransaction()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -201,7 +223,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_commitTransaction">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#36-41" title="Go to source code">commitTransaction</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#49-57" title="Go to source code">commitTransaction</a>( )</code>
 
 		<div class="description short">
 			
@@ -214,6 +236,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IEngine.html#_commitTransaction">Alchemy\engine\IEngine::commitTransaction()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -232,16 +258,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_echoQuery">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#44-54" title="Go to source code">echoQuery</a>( <span>mixed <var>$sql</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#60-75" title="Go to source code">echoQuery</a>( <span>string <var>$sql</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Log a SQL statement if echo is enabled</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Log a SQL statement if echo is enabled</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql</var></dt>
+					<dd><code>string</code><br>$sql</dd>
+				</dl></div>
 
 
 
@@ -254,14 +289,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Alchemy.engine.ResultSet.html">Alchemy\engine\ResultSet</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_query">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#57-61" title="Go to source code">query</a>( <span>mixed <var>$query</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#78-85" title="Go to source code">query</a>( <span>Query|<code><a href="class-Alchemy.util.Monad.html">Alchemy\util\Monad</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -271,9 +306,22 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>Query|<code><a href="class-Alchemy.util.Monad.html">Alchemy\util\Monad</a></code></code><br>Query to compile</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.engine.ResultSet.html">Alchemy\engine\ResultSet</a></code></code><br />
+				</div>
 
 
-
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IEngine.html#_query">Alchemy\engine\IEngine::query()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -285,14 +333,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Alchemy.engine.ResultSet.html">Alchemy\engine\ResultSet</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#64-74" title="Go to source code">execute</a>( <span>mixed <var>$sql</var></span>, <span>mixed <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#88-101" title="Go to source code">execute</a>( <span>string <var>$sql</var></span>, <span>array <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -302,9 +350,24 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql</var></dt>
+					<dd><code>string</code><br>$sql Statement string</dd>
+					<dt><var>$params</var></dt>
+					<dd><code>array</code><br>$params Params to bind to statement</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.engine.ResultSet.html">Alchemy\engine\ResultSet</a></code></code><br />
+				</div>
 
 
-
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IEngine.html#_execute">Alchemy\engine\IEngine::execute()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -323,7 +386,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rollbackTransaction">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#77-81" title="Go to source code">rollbackTransaction</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#104-111" title="Go to source code">rollbackTransaction</a>( )</code>
 
 		<div class="description short">
 			
@@ -336,6 +399,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IEngine.html#_rollbackTransaction">Alchemy\engine\IEngine::rollbackTransaction()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -354,16 +421,26 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setEcho">#</a>
-		<code><a href="source-class-Alchemy.engine.Engine.html#84-86" title="Go to source code">setEcho</a>( <span>mixed <var>$echoQueries</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.Engine.html#114-121" title="Go to source code">setEcho</a>( <span>mixed <var>$echoQueries</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Optionally enable echo'ing of SQL run on the RDBMS.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Optionally enable echo'ing of SQL run on the RDBMS.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$echoQueries</var></dt>
+					<dd><code>mixed</code><br>$echoQueries False to disable. True to log to STDOUT. Callable to enable custom
+logging</dd>
+				</dl></div>
 
 
 
@@ -394,7 +471,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.Engine.html#11" title="Go to source code"><var>$connector</var></a>
+				<a href="source-class-Alchemy.engine.Engine.html#14" title="Go to source code"><var>$connector</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -417,7 +494,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.Engine.html#12" title="Go to source code"><var>$dialect</var></a>
+				<a href="source-class-Alchemy.engine.Engine.html#15" title="Go to source code"><var>$dialect</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -440,7 +517,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.Engine.html#13" title="Go to source code"><var>$echoQueries</var></a>
+				<a href="source-class-Alchemy.engine.Engine.html#16" title="Go to source code"><var>$echoQueries</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -463,7 +540,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.Engine.html#14" title="Go to source code"><var>$pendingTransaction</var></a>
+				<a href="source-class-Alchemy.engine.Engine.html#17" title="Go to source code"><var>$pendingTransaction</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>

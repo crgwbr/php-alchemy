@@ -95,6 +95,15 @@
 	<h1>Class DataTypeLexer</h1>
 
 
+	<div class="description">
+	
+<p>Parse a data type definition into it's various components. For example:
+&gt;&gt;&gt; $type = new DataTypeLexer("Integer(11, primary_key = true)");
+&gt;&gt;&gt; $type-&gt;getType(); "Integer" &gt;&gt;&gt; $type-&gt;getArgs();
+array(11) &gt;&gt;&gt; $type-&gt;getKeywordArgs(); array("primary_key" =&gt;
+true)</p>
+
+	</div>
 
 
 
@@ -110,7 +119,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.util.html">util</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.util.DataTypeLexer.html#16-136" title="Go to source code">alchemy/util/DataTypeLexer.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.util.DataTypeLexer.html#6-179" title="Go to source code">alchemy/util/DataTypeLexer.php</a><br />
 	</div>
 
 
@@ -128,16 +137,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#26-29" title="Go to source code">__construct</a>( <span>mixed <var>$def</var></span> )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#27-35" title="Go to source code">__construct</a>( <span>string <var>$def</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Object Constructor</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object Constructor</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$def</var></dt>
+					<dd><code>string</code><br>$def Data Type Definition</dd>
+				</dl></div>
 
 
 
@@ -150,24 +168,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getArgs">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#32-34" title="Go to source code">getArgs</a>( )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#38-45" title="Go to source code">getArgs</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the positional arguments in the definition</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the positional arguments in the definition</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
 
 
 
@@ -179,24 +205,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getKeywordArgs">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#37-39" title="Go to source code">getKeywordArgs</a>( )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#48-55" title="Go to source code">getKeywordArgs</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the keyword arguments in the definition</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the keyword arguments in the definition</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
 
 
 
@@ -208,24 +242,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getType">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#42-44" title="Go to source code">getType</a>( )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#58-65" title="Go to source code">getType</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the Data Type form the definition</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the Data Type form the definition</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
 
 
 
@@ -237,24 +279,37 @@
 
 		<td class="attributes"><code>
 			 protected 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lexString">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#47-93" title="Go to source code">lexString</a>( <span>mixed <var>$def</var></span> )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#68-120" title="Go to source code">lexString</a>( <span>string <var>$def</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Lexically analyze the given string into a stream of tokens.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Lexically analyze the given string into a stream of tokens.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$def</var></dt>
+					<dd><code>string</code><br>$def</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
 
 
 
@@ -266,24 +321,37 @@
 
 		<td class="attributes"><code>
 			 protected 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_normalizeToken">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#96-112" title="Go to source code">normalizeToken</a>( <span>mixed <var>$token</var></span> )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#123-150" title="Go to source code">normalizeToken</a>( <span>string <var>$token</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Normalize the given token into PHP values</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Normalize the given token into PHP values</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$token</var></dt>
+					<dd><code>string</code><br>$token</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
 
 
 
@@ -302,16 +370,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parse">#</a>
-		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#115-135" title="Go to source code">parse</a>( <span>mixed <var>$def</var></span> )</code>
+		<code><a href="source-class-Alchemy.util.DataTypeLexer.html#153-178" title="Go to source code">parse</a>( <span>string <var>$def</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Lex and parse the given token, saving it's data into the object</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Lex and parse the given token, saving it's data into the object</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$def</var></dt>
+					<dd><code>string</code><br>$def</dd>
+				</dl></div>
 
 
 
@@ -335,7 +412,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.util.DataTypeLexer.html#17" title="Go to source code"><b>T_EQUALS</b></a>
+				<a href="source-class-Alchemy.util.DataTypeLexer.html#18" title="Go to source code"><b>T_EQUALS</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">'='</span></code></td>
 		<td class="description"><div>

@@ -118,6 +118,11 @@
 	<h1>Class Insert</h1>
 
 
+	<div class="description">
+	
+<p>Represent an INSERT statement</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -149,7 +154,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Insert.html#7-43" title="Go to source code">alchemy/expression/Insert.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Insert.html#7-59" title="Go to source code">alchemy/expression/Insert.php</a><br />
 	</div>
 
 
@@ -167,16 +172,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_into">#</a>
-		<code><a href="source-class-Alchemy.expression.Insert.html#12-14" title="Go to source code">into</a>( <span><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code> <var>$table</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Insert.html#15-22" title="Go to source code">into</a>( <span><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code> <var>$table</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set the table to insert into</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set the table to insert into</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd><code><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code></code><br>$table</dd>
+				</dl></div>
 
 
 
@@ -196,14 +210,18 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_row">#</a>
-		<code><a href="source-class-Alchemy.expression.Insert.html#17-30" title="Go to source code">row</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Insert.html#25-43" title="Go to source code">row</a>( )</code>
 
 		<div class="description short">
 			
+<p>Add a row to insert. Each parameter corresponds to a column set with <code><a href="class-Alchemy.expression.Query.html#_columns">Alchemy\expression\Query::columns()</a></code>. Optionally Send all columns as a single array.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add a row to insert. Each parameter corresponds to a column set with <code><a href="class-Alchemy.expression.Query.html#_columns">Alchemy\expression\Query::columns()</a></code>. Optionally Send all columns as a single array.</p>
+
 
 
 
@@ -218,14 +236,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array(Scalar,
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-Alchemy.expression.Insert.html#33-42" title="Go to source code">getParameters</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Insert.html#46-58" title="Go to source code">getParameters</a>( )</code>
 
 		<div class="description short">
 			
@@ -236,8 +254,16 @@
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array(Scalar,</code><br>Scalar, ...)<br />
+				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						Query::getParamters()<br />
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-Alchemy.expression.Query.html#_getParameters">Alchemy\expression\Query::getParameters()</a></code></div>
@@ -280,7 +306,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Insert.html#8" title="Go to source code"><var>$into</var></a>
+				<a href="source-class-Alchemy.expression.Insert.html#11" title="Go to source code"><var>$into</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -303,7 +329,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Insert.html#9" title="Go to source code"><var>$rows</var></a>
+				<a href="source-class-Alchemy.expression.Insert.html#12" title="Go to source code"><var>$rows</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

@@ -99,6 +99,11 @@
 	<h1>Class ResultSet</h1>
 
 
+	<div class="description">
+	
+<p>Implementation of IResultSet for PDO results</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -123,7 +128,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.engine.html">engine</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.engine.ResultSet.html#11-65" title="Go to source code">alchemy/engine/ResultSet.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.engine.ResultSet.html#11-98" title="Go to source code">alchemy/engine/ResultSet.php</a><br />
 	</div>
 
 
@@ -141,16 +146,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#18-25" title="Go to source code">__construct</a>( <span><code><a href="class-PDO.html">PDO</a></code> <var>$connector</var></span>, <span><code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$statement</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#21-34" title="Go to source code">__construct</a>( <span><code><a href="class-PDO.html">PDO</a></code> <var>$connector</var></span>, <span><code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Object constructor.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object constructor.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$connector</var></dt>
+					<dd><code><code><a href="class-PDO.html">PDO</a></code></code><br>$connector</dd>
+					<dt><var>$statement</var></dt>
+					<dd><code><code><a href="class-PDOStatement.html">PDOStatement</a></code></code><br>$statement</dd>
+				</dl></div>
 
 
 
@@ -170,7 +186,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_current">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#28-30" title="Go to source code">current</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#37-42" title="Go to source code">current</a>( )</code>
 
 		<div class="description short">
 			
@@ -183,6 +199,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						Iterator::current()<br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -201,14 +221,18 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetch">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#33-35" title="Go to source code">fetch</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#45-50" title="Go to source code">fetch</a>( )</code>
 
 		<div class="description short">
 			
+<p>Fetch the next result from the cursor</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Fetch the next result from the cursor</p>
+
 
 
 
@@ -223,14 +247,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lastInsertID">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#38-40" title="Go to source code">lastInsertID</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#53-58" title="Go to source code">lastInsertID</a>( )</code>
 
 		<div class="description short">
 			
@@ -241,8 +265,16 @@
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IResultSet.html#_lastInsertID">Alchemy\engine\IResultSet::lastInsertID()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -261,7 +293,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_key">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#43-45" title="Go to source code">key</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#61-66" title="Go to source code">key</a>( )</code>
 
 		<div class="description short">
 			
@@ -274,6 +306,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						Iterator::key()<br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -292,7 +328,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_next">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#48-51" title="Go to source code">next</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#69-75" title="Go to source code">next</a>( )</code>
 
 		<div class="description short">
 			
@@ -305,6 +341,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						Iterator::next()<br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -323,7 +363,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rewind">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#54" title="Go to source code">rewind</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#78-81" title="Go to source code">rewind</a>( )</code>
 
 		<div class="description short">
 			
@@ -336,6 +376,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						Iterator::rewind()<br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -347,14 +391,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			integer
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rowCount">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#57-59" title="Go to source code">rowCount</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#84-89" title="Go to source code">rowCount</a>( )</code>
 
 		<div class="description short">
 			
@@ -365,8 +409,16 @@
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.engine.IResultSet.html#_rowCount">Alchemy\engine\IResultSet::rowCount()</a></code></code><br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -385,7 +437,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_valid">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#62-64" title="Go to source code">valid</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#92-97" title="Go to source code">valid</a>( )</code>
 
 		<div class="description short">
 			
@@ -398,6 +450,10 @@
 
 
 
+				<h4>See</h4>
+				<div class="list">
+						Iterator::valid()<br />
+				</div>
 
 
 				<h4>Implementation of</h4>
@@ -427,7 +483,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#12" title="Go to source code"><var>$connector</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#15" title="Go to source code"><var>$connector</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -450,7 +506,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#13" title="Go to source code"><var>$statement</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#16" title="Go to source code"><var>$statement</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -473,7 +529,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#14" title="Go to source code"><var>$index</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#17" title="Go to source code"><var>$index</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -496,7 +552,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#15" title="Go to source code"><var>$current</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#18" title="Go to source code"><var>$current</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

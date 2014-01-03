@@ -97,6 +97,13 @@
 	<h1>Class DataMapper</h1>
 
 
+	<div class="description">
+	
+<p>Abstract base class for custom ORM models. this class doesn't actually store
+any data, it merely acts as an interface between Domain objects and the Session
+(which actually owns all of the DB records).</p>
+
+	</div>
 
 
 
@@ -111,19 +118,19 @@
 
 
 	<div class="info">
-		
+		<b>Abstract</b><br />
 		
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.DataMapper.html#8-106" title="Go to source code">alchemy/orm/DataMapper.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.DataMapper.html#8-164" title="Go to source code">alchemy/orm/DataMapper.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="table_name" id="_table_name">
+	<tr data-order="from_session" id="_from_session">
 
 		<td class="attributes"><code>
 			 public static
@@ -133,17 +140,28 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_table_name">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#19-23" title="Go to source code">table_name</a>( )</code>
+		<a class="anchor" href="#_from_session">#</a>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#28-39" title="Go to source code">from_session</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Instantiate a domain object from the session</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Instantiate a domain object from the session</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$session</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code></code><br>$session The database session which owns this record</dd>
+					<dt><var>$sessionID</var></dt>
+					<dd><code>mixed</code><br>$sessionID A pointer to the record for this objects data in the session</dd>
+				</dl></div>
 
 
 
@@ -156,24 +174,34 @@
 
 		<td class="attributes"><code>
 			 public static
-			
+			<code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_table">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#26-34" title="Go to source code">table</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#42-56" title="Go to source code">table</a>( )</code>
 
 		<div class="description short">
 			
+<p>Gen an instance of Table that represents the schema of this domain
+object.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Gen an instance of Table that represents the schema of this domain
+object.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code></code><br />
+				</div>
 
 
 
@@ -181,28 +209,36 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="from_session" id="_from_session">
+	<tr data-order="table_name" id="_table_name">
 
 		<td class="attributes"><code>
 			 public static
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_from_session">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#37-42" title="Go to source code">from_session</a>( <span>mixed <var>&amp; $session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
+		<a class="anchor" href="#_table_name">#</a>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#59-68" title="Go to source code">table_name</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the table name for this mapper</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the table name for this mapper</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Table Name<br />
+				</div>
 
 
 
@@ -214,24 +250,37 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#45-61" title="Go to source code">__get</a>( <span>mixed <var>$prop</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#71-93" title="Go to source code">__get</a>( <span>string <var>$prop</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Get the value of a column on this object</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the value of a column on this object</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prop</var></dt>
+					<dd><code>string</code><br>$prop</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
 
 
 
@@ -250,16 +299,29 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#64-71" title="Go to source code">__set</a>( <span>mixed <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#96-110" title="Go to source code">__set</a>( <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Get the value of a column on this object. Nothing is actually written back to
+the session until {@DataMapper::save()} is called.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the value of a column on this object. Nothing is actually written back to
+the session until {@DataMapper::save()} is called.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prop</var></dt>
+					<dd><code>string</code><br>$prop Column Name</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
 
 
 
@@ -272,24 +334,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#74-81" title="Go to source code">getPrimaryKey</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#113-126" title="Go to source code">getPrimaryKey</a>( )</code>
 
 		<div class="description short">
 			
+<p>Return a set of values which represent this object's primary key.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Return a set of values which represent this object's primary key.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
 
 
 
@@ -308,16 +378,29 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#84-99" title="Go to source code">save</a>( <span>mixed <var>$queueUpdate</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#129-151" title="Go to source code">save</a>( <span>boolean <var>$queueUpdate</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Save this object's data back to the session. By default this will queue an
+UPDATE statement to be run on the server as soon as {@Session::commit()} is
+called.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Save this object's data back to the session. By default this will queue an
+UPDATE statement to be run on the server as soon as {@Session::commit()} is
+called.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$queueUpdate</var></dt>
+					<dd><code>boolean</code><br>$queueUpdate Default's to true</dd>
+				</dl></div>
 
 
 
@@ -337,16 +420,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSession">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#102-105" title="Go to source code">setSession</a>( <span>mixed <var>$session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#154-163" title="Go to source code">setSession</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>integer|string <var>$sessionID</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Set the Session and Session pointer for this object</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Set the Session and Session pointer for this object</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$session</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code></code><br>$session Session which owns this object</dd>
+					<dt><var>$sessionID</var></dt>
+					<dd><code>integer|string</code><br>$sessionID Pointer to data record in $session</dd>
+				</dl></div>
 
 
 
@@ -364,29 +458,6 @@
 
 
 
-	<table class="summary" id="constants">
-	<caption>Constants summary</caption>
-	<tr data-order="SCHEMA_NS" id="SCHEMA_NS">
-
-		<td class="attributes"><code>string</code></td>
-		<td class="name"><code>
-				<a href="source-class-Alchemy.orm.DataMapper.html#9" title="Go to source code"><b>SCHEMA_NS</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-quote">&quot;Alchemy\\orm\\schema\\&quot;</span></code></td>
-		<td class="description"><div>
-			<a href="#SCHEMA_NS" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	</table>
 
 
 
@@ -400,7 +471,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.DataMapper.html#11" title="Go to source code"><var>$table_name</var></a>
+				<a href="source-class-Alchemy.orm.DataMapper.html#16-20" title="Go to source code"><var>$table_name</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -408,10 +479,16 @@
 
 			<div class="description short">
 				
+<p>Optional: Define the table name here. If left null, the class name will be
+used</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Optional: Define the table name here. If left null, the class name will be
+used</p>
+
 
 			</div>
 		</div></td>

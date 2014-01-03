@@ -115,6 +115,12 @@
 	<h1>Class DialectTranslator</h1>
 
 
+	<div class="description">
+	
+<p>Translate a SQL query into it's frozen, vernacular form. This is how we get
+around differences in RDBMS query structure and syntax.</p>
+
+	</div>
 
 
 
@@ -130,7 +136,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.dialect.html">dialect</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.dialect.DialectTranslator.html#8-82" title="Go to source code">alchemy/dialect/DialectTranslator.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.dialect.DialectTranslator.html#8-107" title="Go to source code">alchemy/dialect/DialectTranslator.php</a><br />
 	</div>
 
 
@@ -148,16 +154,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.dialect.DialectTranslator.html#14-17" title="Go to source code">__construct</a>( <span>mixed <var>$dialect</var></span>, <span>mixed <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\dialect&quot;</span></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.DialectTranslator.html#19-28" title="Go to source code">__construct</a>( <span>string <var>$dialect</var></span>, <span>string <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\dialect&quot;</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Object constructor.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object constructor.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dialect</var></dt>
+					<dd><code>string</code><br>$dialect Which SQL dialect to translate into to</dd>
+					<dt><var>$namespace</var></dt>
+					<dd><code>string</code><br>$namespace Namespace of dialect classes</dd>
+				</dl></div>
 
 
 
@@ -170,24 +187,41 @@
 
 		<td class="attributes"><code>
 			 protected 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getVernacularClassName">#</a>
-		<code><a href="source-class-Alchemy.dialect.DialectTranslator.html#20-45" title="Go to source code">getVernacularClassName</a>( <span>mixed <var>$master</var></span>, <span>mixed <var>$dialect</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.DialectTranslator.html#31-64" title="Go to source code">getVernacularClassName</a>( <span>string <var>$master</var></span>, <span>string <var>$dialect</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Get the name of the vernacular class which corresponds to the given class and
+dialect.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the name of the vernacular class which corresponds to the given class and
+dialect.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$master</var></dt>
+					<dd><code>string</code><br>$master Class Name</dd>
+					<dt><var>$dialect</var></dt>
+					<dd><code>string</code><br>$dialect</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Vernacular Class Name<br />
+				</div>
 
 
 
@@ -199,24 +233,37 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Alchemy.dialect.ANSI_Query.html">Alchemy\dialect\ANSI_Query</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_translate">#</a>
-		<code><a href="source-class-Alchemy.dialect.DialectTranslator.html#48-81" title="Go to source code">translate</a>( <span>mixed <var>$sqlexpr</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.DialectTranslator.html#67-106" title="Go to source code">translate</a>( <span>Query <var>$sqlexpr</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Translate a query into vernacular form</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Translate a query into vernacular form</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sqlexpr</var></dt>
+					<dd><code>Query</code><br>$sqlexpr Query, optionally wrapped in a Monad</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.dialect.ANSI_Query.html">Alchemy\dialect\ANSI_Query</a></code></code><br />
+				</div>
 
 
 
@@ -239,7 +286,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.dialect.DialectTranslator.html#9" title="Go to source code"><b>FALLBACK_DIALECT</b></a>
+				<a href="source-class-Alchemy.dialect.DialectTranslator.html#14" title="Go to source code"><b>FALLBACK_DIALECT</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;ANSI&quot;</span></code></td>
 		<td class="description"><div>
@@ -269,7 +316,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.dialect.DialectTranslator.html#11" title="Go to source code"><var>$dialect</var></a>
+				<a href="source-class-Alchemy.dialect.DialectTranslator.html#16" title="Go to source code"><var>$dialect</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -292,7 +339,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.dialect.DialectTranslator.html#12" title="Go to source code"><var>$namespace</var></a>
+				<a href="source-class-Alchemy.dialect.DialectTranslator.html#17" title="Go to source code"><var>$namespace</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

@@ -95,6 +95,12 @@
 	<h1>Class Promise</h1>
 
 
+	<div class="description">
+	
+<p>Allow you to define deferred callbacks for events that happen at an unknown
+time in the future, potentially never.</p>
+
+	</div>
 
 
 
@@ -110,7 +116,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.util.html">util</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.util.Promise.html#6-22" title="Go to source code">alchemy/util/Promise.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.util.Promise.html#6-36" title="Go to source code">alchemy/util/Promise.php</a><br />
 	</div>
 
 
@@ -128,16 +134,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_done">#</a>
-		<code><a href="source-class-Alchemy.util.Promise.html#9-11" title="Go to source code">done</a>( <span>mixed <var>$fn</var></span> )</code>
+		<code><a href="source-class-Alchemy.util.Promise.html#15-22" title="Go to source code">done</a>( <span>function <var>$fn</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Register a function to be called when this promise is resolved.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Register a function to be called when this promise is resolved.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fn</var></dt>
+					<dd><code>function</code><br>$fn</dd>
+				</dl></div>
 
 
 
@@ -157,14 +172,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resolve">#</a>
-		<code><a href="source-class-Alchemy.util.Promise.html#14-21" title="Go to source code">resolve</a>( )</code>
+		<code><a href="source-class-Alchemy.util.Promise.html#25-35" title="Go to source code">resolve</a>( )</code>
 
 		<div class="description short">
 			
+<p>Resolve the promise. Accepts a variable number of arguments to send any
+registered callbacks.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Resolve the promise. Accepts a variable number of arguments to send any
+registered callbacks.</p>
+
 
 
 
@@ -197,7 +218,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.util.Promise.html#7" title="Go to source code"><var>$resolvedHandlers</var></a>
+				<a href="source-class-Alchemy.util.Promise.html#12" title="Go to source code"><var>$resolvedHandlers</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

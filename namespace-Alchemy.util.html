@@ -99,15 +99,21 @@
 <caption>Classes summary</caption>
 <tr>
 	<td class="name"><a href="class-Alchemy.util.DataTypeLexer.html">DataTypeLexer</a></td>
-	<td></td>
+	<td>Parse a data type definition into it's various components. For example:
+&gt;&gt;&gt; $type = new DataTypeLexer("Integer(11, primary_key = true)");
+&gt;&gt;&gt; $type-&gt;getType(); "Integer" &gt;&gt;&gt; $type-&gt;getArgs();
+array(11) &gt;&gt;&gt; $type-&gt;getKeywordArgs(); array("primary_key" =&gt;
+true)</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.util.Monad.html">Monad</a></td>
-	<td></td>
+	<td>Allow method chaining and simulated object immutablity by performing every
+method call on a clone of the object you started with.</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.util.Promise.html">Promise</a></td>
-	<td></td>
+	<td>Allow you to define deferred callbacks for events that happen at an unknown time
+in the future, potentially never.</td>
 </tr>
 </table>
 

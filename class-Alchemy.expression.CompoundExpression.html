@@ -118,6 +118,11 @@
 	<h1>Class CompoundExpression</h1>
 
 
+	<div class="description">
+	
+<p>Represent a SQL compound expression</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -147,7 +152,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.CompoundExpression.html#7-38" title="Go to source code">alchemy/expression/CompoundExpression.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.CompoundExpression.html#7-55" title="Go to source code">alchemy/expression/CompoundExpression.php</a><br />
 	</div>
 
 
@@ -165,16 +170,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.expression.CompoundExpression.html#11-13" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a></code> <var>$expr</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.CompoundExpression.html#14-21" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a></code> <var>$expr</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Object constructor</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object constructor</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$expr</var></dt>
+					<dd><code><code><a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a></code></code><br>$expr Base child expression</dd>
+				</dl></div>
 
 
 
@@ -194,16 +208,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___call">#</a>
-		<code><a href="source-class-Alchemy.expression.CompoundExpression.html#16-24" title="Go to source code">__call</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$args</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.CompoundExpression.html#24-38" title="Go to source code">__call</a>( <span>string <var>$name</var></span>, <span>array <var>$args</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Add to the expression using either AND or OR conjoiners</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add to the expression using either AND or OR conjoiners</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name "and" or "or"</dd>
+					<dt><var>$args</var></dt>
+					<dd><code>array</code><br>$args array([0] =&gt; Expression)</dd>
+				</dl></div>
 
 
 
@@ -218,14 +243,14 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array(Scalar,
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-Alchemy.expression.CompoundExpression.html#27-37" title="Go to source code">getParameters</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.CompoundExpression.html#41-54" title="Go to source code">getParameters</a>( )</code>
 
 		<div class="description short">
 			
@@ -236,8 +261,16 @@
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array(Scalar,</code><br>Scalar, ...)<br />
+				</div>
 
 
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Alchemy.expression.Expression.html#_getParameters">Alchemy\expression\Expression::getParameters()</a></code></code><br />
+				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-Alchemy.expression.Expression.html#_getParameters">Alchemy\expression\Expression::getParameters()</a></code></div>
@@ -267,7 +300,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.CompoundExpression.html#8" title="Go to source code"><var>$components</var></a>
+				<a href="source-class-Alchemy.expression.CompoundExpression.html#11" title="Go to source code"><var>$components</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

@@ -101,23 +101,27 @@
 <caption>Classes summary</caption>
 <tr>
 	<td class="name"><a href="class-Alchemy.orm.DataMapper.html">DataMapper</a></td>
-	<td></td>
+	<td>Abstract base class for custom ORM models. this class doesn't actually store any
+data, it merely acts as an interface between Domain objects and the Session
+(which actually owns all of the DB records).</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.orm.DDL.html">DDL</a></td>
-	<td></td>
+	<td>Controller for performing DDL operations on the database</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.orm.Session.html">Session</a></td>
-	<td></td>
+	<td>Acts as a controller between domain objects, the SQL expression language, and
+the RDBMS Engine layer. Manages queuing of work and transactions</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.orm.SessionSelect.html">SessionSelect</a></td>
-	<td></td>
+	<td>Extension of Monad to allow building a SELECT statement while retaining a
+reference to the Session you started with</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.orm.WorkQueue.html">WorkQueue</a></td>
-	<td></td>
+	<td>Queue for scheduling queries to be run later, in the proper order</td>
 </tr>
 </table>
 

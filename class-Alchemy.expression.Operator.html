@@ -118,6 +118,11 @@
 	<h1>Class Operator</h1>
 
 
+	<div class="description">
+	
+<p>Represent a logical operator</p>
+
+	</div>
 
 
 
@@ -133,7 +138,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Operator.html#7-35" title="Go to source code">alchemy/expression/Operator.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Operator.html#7-44" title="Go to source code">alchemy/expression/Operator.php</a><br />
 	</div>
 
 
@@ -144,24 +149,39 @@
 
 		<td class="attributes"><code>
 			 public static
-			
+			<code><a href="class-Alchemy.expression.Operator.html">Alchemy\expression\Operator</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___callStatic">#</a>
-		<code><a href="source-class-Alchemy.expression.Operator.html#21-29" title="Go to source code">__callStatic</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$args</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Operator.html#24-38" title="Go to source code">__callStatic</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$args</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Construct an operator of the given type</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Construct an operator of the given type</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>mixed</code><br>$name Operator name constant (Operator::O_*)</dd>
+					<dt><var>$args</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.expression.Operator.html">Alchemy\expression\Operator</a></code></code><br />
+				</div>
 
 
 
@@ -180,7 +200,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.expression.Operator.html#32-34" title="Go to source code">__construct</a>( <span>mixed <var>$type</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Operator.html#41-43" title="Go to source code">__construct</a>( <span>mixed <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -213,7 +233,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#8" title="Go to source code"><b>O_EQUAL</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#11" title="Go to source code"><b>O_EQUAL</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;=&quot;</span></code></td>
 		<td class="description"><div>
@@ -233,7 +253,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#9" title="Go to source code"><b>O_NOT</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#12" title="Go to source code"><b>O_NOT</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;!=&quot;</span></code></td>
 		<td class="description"><div>
@@ -253,7 +273,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#10" title="Go to source code"><b>O_GT</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#13" title="Go to source code"><b>O_GT</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;&gt;&quot;</span></code></td>
 		<td class="description"><div>
@@ -273,7 +293,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#11" title="Go to source code"><b>O_LT</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#14" title="Go to source code"><b>O_LT</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;&lt;&quot;</span></code></td>
 		<td class="description"><div>
@@ -293,7 +313,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#12" title="Go to source code"><b>O_GTE</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#15" title="Go to source code"><b>O_GTE</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;&gt;=&quot;</span></code></td>
 		<td class="description"><div>
@@ -313,7 +333,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#13" title="Go to source code"><b>O_LTE</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#16" title="Go to source code"><b>O_LTE</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;&lt;=&quot;</span></code></td>
 		<td class="description"><div>
@@ -333,7 +353,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#14" title="Go to source code"><b>O_LIKE</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#17" title="Go to source code"><b>O_LIKE</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;LIKE&quot;</span></code></td>
 		<td class="description"><div>
@@ -353,7 +373,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#15" title="Go to source code"><b>O_AND</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#18" title="Go to source code"><b>O_AND</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;AND&quot;</span></code></td>
 		<td class="description"><div>
@@ -373,7 +393,7 @@
 
 		<td class="attributes"><code>string</code></td>
 		<td class="name"><code>
-				<a href="source-class-Alchemy.expression.Operator.html#16" title="Go to source code"><b>O_OR</b></a>
+				<a href="source-class-Alchemy.expression.Operator.html#19" title="Go to source code"><b>O_OR</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-quote">&quot;OR&quot;</span></code></td>
 		<td class="description"><div>
@@ -403,7 +423,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Operator.html#18" title="Go to source code"><var>$type</var></a>
+				<a href="source-class-Alchemy.expression.Operator.html#21" title="Go to source code"><var>$type</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

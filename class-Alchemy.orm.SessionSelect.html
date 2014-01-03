@@ -97,6 +97,12 @@
 	<h1>Class SessionSelect</h1>
 
 
+	<div class="description">
+	
+<p>Extension of Monad to allow building a SELECT statement while retaining a
+reference to the Session you started with</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -126,7 +132,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.SessionSelect.html#10-28" title="Go to source code">alchemy/orm/SessionSelect.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.SessionSelect.html#9-44" title="Go to source code">alchemy/orm/SessionSelect.php</a><br />
 	</div>
 
 
@@ -144,16 +150,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.orm.SessionSelect.html#15-22" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>&amp; $session</var></span>, <span>mixed <var>$mapper</var></span>, <span><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code> <var>$table</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.SessionSelect.html#18-33" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$mapper</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Object constructor.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object constructor.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$session</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code></code><br>$session Session to use for running select</dd>
+					<dt><var>$mapper</var></dt>
+					<dd><code>string</code><br>$mapper DataMapper class to return objects as</dd>
+				</dl></div>
 
 
 
@@ -168,24 +185,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_all">#</a>
-		<code><a href="source-class-Alchemy.orm.SessionSelect.html#25-27" title="Go to source code">all</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.SessionSelect.html#36-43" title="Go to source code">all</a>( )</code>
 
 		<div class="description short">
 			
+<p>Execute the query and return a set of all results</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Execute the query and return a set of all results</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
 
 
 
@@ -200,6 +225,7 @@
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.util.Monad.html#___call">__call()</a>, 
+			<a href="class-Alchemy.util.Monad.html#___clone">__clone()</a>, 
 			<a href="class-Alchemy.util.Monad.html#_unwrap">unwrap()</a>
 		</code></td>
 	</tr>
@@ -224,7 +250,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.SessionSelect.html#11" title="Go to source code"><var>$session</var></a>
+				<a href="source-class-Alchemy.orm.SessionSelect.html#14" title="Go to source code"><var>$session</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -247,7 +273,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.SessionSelect.html#12" title="Go to source code"><var>$mapper</var></a>
+				<a href="source-class-Alchemy.orm.SessionSelect.html#15" title="Go to source code"><var>$mapper</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

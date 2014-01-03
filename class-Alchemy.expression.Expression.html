@@ -118,6 +118,11 @@
 	<h1>Class Expression</h1>
 
 
+	<div class="description">
+	
+<p>Abstract base class for representing an expression in SQL</p>
+
+	</div>
 
 
 
@@ -139,7 +144,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Expression.html#7-27" title="Go to source code">alchemy/expression/Expression.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Expression.html#7-43" title="Go to source code">alchemy/expression/Expression.php</a><br />
 	</div>
 
 
@@ -157,16 +162,29 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___call">#</a>
-		<code><a href="source-class-Alchemy.expression.Expression.html#13-21" title="Go to source code">__call</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$args</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Expression.html#16-31" title="Go to source code">__call</a>( <span>string <var>$name</var></span>, <span>array <var>$args</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Convert this expression into a CompoundExpression using either an AND or OR
+conjoiner</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Convert this expression into a CompoundExpression using either an AND or OR
+conjoiner</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name "and" or "or"</dd>
+					<dt><var>$args</var></dt>
+					<dd><code>array</code><br>$args array([0] =&gt; Expression)</dd>
+				</dl></div>
 
 
 
@@ -179,24 +197,34 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			array(Scalar,
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-Alchemy.expression.Expression.html#24-26" title="Go to source code">getParameters</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Expression.html#34-42" title="Go to source code">getParameters</a>( )</code>
 
 		<div class="description short">
 			
+<p>Recursively get all scalar parameters used by this expression in the order
+which they are used in the expression</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Recursively get all scalar parameters used by this expression in the order
+which they are used in the expression</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array(Scalar,</code><br>Scalar, ...)<br />
+				</div>
 
 
 
@@ -226,7 +254,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Expression.html#8" title="Go to source code"><var>$conjoin_types</var></a>
+				<a href="source-class-Alchemy.expression.Expression.html#11" title="Go to source code"><var>$conjoin_types</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'and'</span>, <span class="php-quote">'or'</span>)</code></td>
 		<td class="description"><div>
@@ -249,7 +277,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Expression.html#10" title="Go to source code"><var>$scalars</var></a>
+				<a href="source-class-Alchemy.expression.Expression.html#13" title="Go to source code"><var>$scalars</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

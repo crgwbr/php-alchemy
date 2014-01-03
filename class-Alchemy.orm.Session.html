@@ -97,6 +97,12 @@
 	<h1>Class Session</h1>
 
 
+	<div class="description">
+	
+<p>Acts as a controller between domain objects, the SQL expression language, and
+the RDBMS Engine layer. Manages queuing of work and transactions</p>
+
+	</div>
 
 
 
@@ -112,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.Session.html#11-181" title="Go to source code">alchemy/orm/Session.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.Session.html#12-280" title="Go to source code">alchemy/orm/Session.php</a><br />
 	</div>
 
 
@@ -130,16 +136,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#18-21" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#23-31" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Object constructor</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Object constructor</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$engine</var></dt>
+					<dd><code><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code></code><br>$engine</dd>
+				</dl></div>
 
 
 
@@ -152,24 +167,37 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			Promise
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#24-47" title="Go to source code">add</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#34-65" title="Go to source code">add</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Add a new domain object to the session</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add a new domain object to the session</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Promise</code><br>Resolved when INSERT is sent to the database<br />
+				</div>
 
 
 
@@ -188,14 +216,20 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_commit">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#50-53" title="Go to source code">commit</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#68-77" title="Go to source code">commit</a>( )</code>
 
 		<div class="description short">
 			
+<p>Commit changed to the database. Will automatically call <code><a href="class-Alchemy.orm.Session.html#_flush">Alchemy\orm\Session::flush()</a></code> to send queries to the database then commit the transaction.
+You should almost always call this instead of <code><a href="class-Alchemy.orm.Session.html#_flush">Alchemy\orm\Session::flush()</a></code></p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Commit changed to the database. Will automatically call <code><a href="class-Alchemy.orm.Session.html#_flush">Alchemy\orm\Session::flush()</a></code> to send queries to the database then commit the transaction.
+You should almost always call this instead of <code><a href="class-Alchemy.orm.Session.html#_flush">Alchemy\orm\Session::flush()</a></code></p>
+
 
 
 
@@ -210,24 +244,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Alchemy.orm.DDL.html">Alchemy\orm\DDL</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ddl">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#56-58" title="Go to source code">ddl</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#80-87" title="Go to source code">ddl</a>( )</code>
 
 		<div class="description short">
 			
+<p>Returns a DDL object for this session</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Returns a DDL object for this session</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.DDL.html">Alchemy\orm\DDL</a></code></code><br />
+				</div>
 
 
 
@@ -239,24 +281,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_engine">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#61-63" title="Go to source code">engine</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#90-97" title="Go to source code">engine</a>( )</code>
 
 		<div class="description short">
 			
+<p>Return the Engine associated with this session</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Return the Engine associated with this session</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code></code><br />
+				</div>
 
 
 
@@ -275,16 +325,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#66-69" title="Go to source code">execute</a>( <span>mixed <var>$class</var></span>, <span>mixed <var>$query</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#100-110" title="Go to source code">execute</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Execute a query, wrap the results in the given class and return a set.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Execute a query, wrap the results in the given class and return a set.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd><code>string</code><br>$cls Class Name of a DataMapper subclass</dd>
+					<dt><var>$query</var></dt>
+					<dd><code>mixed</code></dd>
+				</dl></div>
 
 
 
@@ -304,14 +365,22 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_flush">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#72-75" title="Go to source code">flush</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#113-121" title="Go to source code">flush</a>( )</code>
 
 		<div class="description short">
 			
+<p>Start a new transaction (if one isn't already open), and flushes all pending
+queries to the RDBMS in the order they were created. Leaves the transaction open
+for you to commit / rollback.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Start a new transaction (if one isn't already open), and flushes all pending
+queries to the RDBMS in the order they were created. Leaves the transaction open
+for you to commit / rollback.</p>
+
 
 
 
@@ -333,14 +402,22 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#78-95" title="Go to source code">getPrimaryKey</a>( <span>mixed <var>$cls</var></span>, <span>mixed <var>$record</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#124-147" title="Go to source code">getPrimaryKey</a>( <span>mixed <var>$cls</var></span>, <span>mixed <var>$record</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>Get the primary key for the given class and record. If one doesn't exist yet,
+it generates a transient key to be used until the database allocates the object
+a real key.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the primary key for the given class and record. If one doesn't exist yet,
+it generates a transient key to be used until the database allocates the object
+a real key.</p>
+
 
 
 
@@ -355,24 +432,41 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			&amp;
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getProperty">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#98-100" title="Go to source code">getProperty</a>( <span>mixed <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>mixed <var>$prop</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#150-160" title="Go to source code">getProperty</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>string <var>$prop</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Return a reference to the given field</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Return a reference to the given field</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd><code>string</code><br>$cls Class Name</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id Record ID</dd>
+					<dt><var>$prop</var></dt>
+					<dd><code>string</code><br>$prop Column Name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
 
 
 
@@ -384,24 +478,32 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Alchemy.orm.SessionSelect.html">Alchemy\orm\SessionSelect</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_objects">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#103-105" title="Go to source code">objects</a>( <span>mixed <var>$cls</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#163-170" title="Go to source code">objects</a>( <span>mixed <var>$cls</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Return a SessionSelect for the given class</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Return a SessionSelect for the given class</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.SessionSelect.html">Alchemy\orm\SessionSelect</a></code></code><br />
+				</div>
 
 
 
@@ -413,24 +515,39 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			Promise
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#108-122" title="Go to source code">save</a>( <span>mixed <var>$cls</var></span>, <span>mixed <var>$id</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#173-201" title="Go to source code">save</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Queue an UPDATE query to be run later to update values set with <code><a href="class-Alchemy.orm.Session.html#_setProperty">Alchemy\orm\Session::setProperty()</a></code></p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Queue an UPDATE query to be run later to update values set with <code><a href="class-Alchemy.orm.Session.html#_setProperty">Alchemy\orm\Session::setProperty()</a></code></p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd><code>string</code><br>$cls Class Name</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id Record ID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Promise</code><br>Resolved when the query is run<br />
+				</div>
 
 
 
@@ -449,16 +566,31 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setProperty">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#125-132" title="Go to source code">setProperty</a>( <span>mixed <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>mixed <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#204-220" title="Go to source code">setProperty</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Update a property value</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Update a property value</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd><code>string</code><br>$cls Class Name</dd>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id Record ID</dd>
+					<dt><var>$prop</var></dt>
+					<dd><code>string</code><br>$prop Column Name</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value Property Value</dd>
+				</dl></div>
 
 
 
@@ -478,16 +610,33 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updatePrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#135-155" title="Go to source code">updatePrimaryKey</a>( <span>mixed <var>$obj</var></span>, <span>mixed <var>$oldID</var></span>, <span>mixed <var>$newID</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#223-252" title="Go to source code">updatePrimaryKey</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span>, <span>mixed <var>$oldID</var></span>, <span>mixed <var>$newID</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Accepts an object and moves it from one primary key to a new primary key.
+This is only ever needed when migrating from a transient key to a real
+db-allocated key after an INSERT.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Accepts an object and moves it from one primary key to a new primary key.
+This is only ever needed when migrating from a transient key to a real
+db-allocated key after an INSERT.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+					<dt><var>$oldID</var></dt>
+					<dd><code>mixed</code><br>$oldID</dd>
+					<dt><var>$newID</var></dt>
+					<dd><code>mixed</code><br>$newID</dd>
+				</dl></div>
 
 
 
@@ -507,16 +656,27 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wrap">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#158-180" title="Go to source code">wrap</a>( <span>mixed <var>$cls</var></span>, <span>mixed <var>$rows</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#255-279" title="Go to source code">wrap</a>( <span>string <var>$cls</var></span>, <span>array <var>$rows</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Wrap a set of rows in the given DataMapper class</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Wrap a set of rows in the given DataMapper class</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd><code>string</code><br>$cls Class Name</dd>
+					<dt><var>$rows</var></dt>
+					<dd><code>array</code><br>$rows Two-dimensional array of records</dd>
+				</dl></div>
 
 
 
@@ -547,7 +707,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#12" title="Go to source code"><var>$queue</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#17" title="Go to source code"><var>$queue</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -570,7 +730,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#13" title="Go to source code"><var>$engine</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#18" title="Go to source code"><var>$engine</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -593,7 +753,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#14" title="Go to source code"><var>$records</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#19" title="Go to source code"><var>$records</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -616,7 +776,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#15" title="Go to source code"><var>$updated</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#20" title="Go to source code"><var>$updated</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
