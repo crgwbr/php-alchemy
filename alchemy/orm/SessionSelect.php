@@ -41,4 +41,25 @@ class SessionSelect extends Monad {
     public function all() {
         return $this->session->execute($this->mapper, $this->value);
     }
+
+    public function first() {
+        $all = $this->all();
+
+        if (count($all) == 0) {
+            throw new \Exception("Expected at least 1 row, got 0");
+        }
+
+        return $all[0];
+    }
+
+
+    public function one() {
+        $all = $this->all();
+
+        if (count($all) != 1) {
+            throw new \Exception("Expected 1 row, got " . count($all));
+        }
+
+        return $all[0];
+    }
 }

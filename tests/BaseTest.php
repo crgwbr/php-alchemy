@@ -34,4 +34,21 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase {
     protected function getSQLiteEngine() {
         return new Engine('sqlite::memory:');
     }
+
+    /**
+     * Assert that a callable throws an exception of a particular type when called
+     */
+    protected function assertThrows($strException, $fnSubject) {
+       $aArgs = func_get_args();
+       array_shift($aArgs);
+       array_shift($aArgs);
+
+       try {
+          call_user_func_array($fnSubject, $aArgs);
+       } catch(\Exception $e) {
+          return $this->assertInstanceOf($strException, $e);
+       }
+
+       return $this->fail("$strException was not thrown.");
+    }
 }

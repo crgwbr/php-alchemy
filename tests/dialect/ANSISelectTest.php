@@ -16,7 +16,8 @@ class ANSISelectTest extends BaseTest {
         ));
 
         $query = Select::init()->columns($users->UserName, $users->Email)
-                               ->from($users);
+                               ->from($users)
+                               ->limit(2);
 
         $translator = new DialectTranslator('ANSI');
         $vern = $translator->translate($query);
@@ -88,7 +89,8 @@ class ANSISelectTest extends BaseTest {
 
         $query = Select::init()->columns($users->UserID, $users->UserName)
                                ->from($users)
-                               ->where($users->UserName->equal('user1@example.com'));
+                               ->where($users->UserName->equal('user1@example.com'))
+                               ->limit(2, 5);
 
         $translator = new DialectTranslator('ANSI');
         $vern = $translator->translate($query);

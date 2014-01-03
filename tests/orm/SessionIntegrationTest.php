@@ -28,8 +28,9 @@ class SessionIntegrationTest extends BaseTest {
             $session->commit();
 
             // Select
-            $all = $session->objects('Alchemy\tests\Language')->all();
-            $this->assertEquals(1, count($all));
+            $objects = $session->objects('Alchemy\tests\Language');
+            $this->assertEquals(1, count($all = $objects->all()));
+            $this->assertEquals(1, count($one = $objects->one()));
 
             $lang = $all[0];
 
@@ -37,5 +38,50 @@ class SessionIntegrationTest extends BaseTest {
             $this->assertEquals('es', $lang->ISO2Code);
             $this->assertEquals('1984-01-01', $lang->LatestChangeStamp->format('Y-m-d'));
         }
+    }
+
+
+    public function testZeroRows() {
+        $session = new Session($this->getSQLiteEngine());
+
+        $session->ddl()->dropAll();
+        $session->ddl()->createAll();
+
+        $objects = $session->objects('Alchemy\tests\Language');
+        $this->assertEquals(0, count($all   = $objects->all()));
+        $this->assertThrows("\Exception", array($objects, 'first'));
+        $this->assertThrows("\Exception", array($objects, 'one'));
+    }
+
+
+    public function testMultipleRows() {
+        $session = new Session($this->getSQLiteEngine());
+
+        $session->ddl()->dropAll();
+        $session->ddl()->createAll();
+
+        $lang = new Language();
+        $lang->LanguageID = 10;
+        $lang->ISO2Code = 'es';
+        $lang->LatestChangeStamp = new DateTime("1984-01-01");
+        $session->add($lang);
+
+        $lang = new Language();
+        $lang->LanguageID = 12;
+        $lang->ISO2Code = 'fr';
+        $lang->LatestChangeStamp = new DateTime("1984-01-01");
+        $session->add($lang);
+
+        $session->commit();
+
+        $objects = $session->objects('Alchemy\tests\Language');
+        $this->assertEquals(2, count($all   = $objects->all()));
+        $this->assertEquals(1, count($first = $objects->first()));
+
+        $this->assertInstanceOf('Alchemy\tests\Language', $first);
+        $this->assertEquals(10, $first->LanguageID);
+        $this->assertEquals('es', $first->ISO2Code);
+
+        $this->assertThrows("Exception", array($objects, 'one'));
     }
 }

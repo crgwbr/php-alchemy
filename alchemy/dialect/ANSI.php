@@ -121,6 +121,17 @@ abstract class ANSI_Query extends ANSI_DialectBase {
 
         return "WHERE {$this->where}";
     }
+
+
+    protected function getLimitSQL() {
+        if (!$this->limit && !$this->offset) {
+            return "";
+        } elseif (!$this->offset) {
+            return "LIMIT {$this->limit}";
+        }
+
+        return "LIMIT {$this->offset}, {$this->limit}";
+    }
 }
 
 
@@ -371,12 +382,14 @@ class ANSI_Select extends ANSI_Query {
      * String Cast
      */
     public function __toString() {
-        $columns = $this->getColumnSQL();
-        $from = $this->getFromSQL();
-        $joins = $this->getJoinSQL();
-        $where = $this->getWhereSQL();
+        $parts = array(
+            $this->getColumnSQL(),
+            $this->getFromSQL(),
+            $this->getJoinSQL(),
+            $this->getWhereSQL(),
+            $this->getLimitSQL());
 
-        $str = "SELECT {$columns} {$from} {$joins} {$where}";
+        $str = "SELECT " . join(array_filter($parts), ' ');
 
         $str = trim($str);
         return $str;

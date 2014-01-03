@@ -11,6 +11,8 @@ abstract class Query implements IQuery {
     protected $columns = array();
     protected $joins = array();
     protected $where;
+    protected $limit;
+    protected $offset;
 
 
     /**
@@ -93,5 +95,13 @@ abstract class Query implements IQuery {
      */
     public function where(Expression $expr) {
        $this->where = $expr;
+    }
+
+
+    public function limit($a = null, $b = null) {
+       $this->limit  = $b == null ? $a : $b;
+       if ($b !== null) {
+           $this->offset = $a;
+       }
     }
 }
