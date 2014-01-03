@@ -7,7 +7,7 @@
 	<title>Class Alchemy\engine\ResultSet</title>
 
 	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?4243368938"></script>
+	<script type="text/javascript" src="elementlist.js?3884082132"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -123,7 +123,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.engine.html">engine</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.engine.ResultSet.html#11-58" title="Go to source code">alchemy/engine/ResultSet.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.engine.ResultSet.html#11-65" title="Go to source code">alchemy/engine/ResultSet.php</a><br />
 	</div>
 
 
@@ -141,7 +141,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#17-23" title="Go to source code">__construct</a>( <span><code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$statement</var></span> )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#18-25" title="Go to source code">__construct</a>( <span><code><a href="class-PDO.html">PDO</a></code> <var>$connector</var></span>, <span><code><a href="class-PDOStatement.html">PDOStatement</a></code> <var>$statement</var></span> )</code>
 
 		<div class="description short">
 			
@@ -170,7 +170,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_current">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#26-28" title="Go to source code">current</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#28-30" title="Go to source code">current</a>( )</code>
 
 		<div class="description short">
 			
@@ -201,7 +201,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetch">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#31-33" title="Go to source code">fetch</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#33-35" title="Go to source code">fetch</a>( )</code>
 
 		<div class="description short">
 			
@@ -219,6 +219,37 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="lastInsertID" id="_lastInsertID">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_lastInsertID">#</a>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#38-40" title="Go to source code">lastInsertID</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.engine.IResultSet.html#_lastInsertID">Alchemy\engine\IResultSet::lastInsertID()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="key" id="_key">
 
 		<td class="attributes"><code>
@@ -230,7 +261,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_key">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#36-38" title="Go to source code">key</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#43-45" title="Go to source code">key</a>( )</code>
 
 		<div class="description short">
 			
@@ -261,7 +292,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_next">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#41-44" title="Go to source code">next</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#48-51" title="Go to source code">next</a>( )</code>
 
 		<div class="description short">
 			
@@ -292,7 +323,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rewind">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#47" title="Go to source code">rewind</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#54" title="Go to source code">rewind</a>( )</code>
 
 		<div class="description short">
 			
@@ -323,7 +354,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rowCount">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#50-52" title="Go to source code">rowCount</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#57-59" title="Go to source code">rowCount</a>( )</code>
 
 		<div class="description short">
 			
@@ -354,7 +385,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_valid">#</a>
-		<code><a href="source-class-Alchemy.engine.ResultSet.html#55-57" title="Go to source code">valid</a>( )</code>
+		<code><a href="source-class-Alchemy.engine.ResultSet.html#62-64" title="Go to source code">valid</a>( )</code>
 
 		<div class="description short">
 			
@@ -389,6 +420,29 @@
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="connector" id="$connector">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.engine.ResultSet.html#12" title="Go to source code"><var>$connector</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$connector" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="statement" id="$statement">
 		<td class="attributes"><code>
 			protected  
@@ -396,7 +450,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#12" title="Go to source code"><var>$statement</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#13" title="Go to source code"><var>$statement</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -419,7 +473,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#13" title="Go to source code"><var>$index</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#14" title="Go to source code"><var>$index</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -442,7 +496,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.engine.ResultSet.html#14" title="Go to source code"><var>$current</var></a>
+				<a href="source-class-Alchemy.engine.ResultSet.html#15" title="Go to source code"><var>$current</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
