@@ -56,4 +56,19 @@ abstract class Column extends Value {
 
 
     abstract public function encode($value);
+
+
+    public function hasIndex() {
+        return $this->kwargs['index'];
+    }
+
+
+    public function isPrimaryKey() {
+        return $this->kwargs['primary_key'];
+    }
+
+
+    public function isUnique() {
+        return $this->kwargs['unique'];
+    }
 }

@@ -10,6 +10,15 @@ require_once 'resources/Language.php';
 class MapperTest extends BaseTest {
 
     public function testInsert() {
+        $result = $this->getMockBuilder('Alchemy\engine\ResultSet')
+                       ->disableOriginalConstructor()
+                       ->setMethods(array('lastInsertID'))
+                       ->getMock();
+
+        $result->expects($this->once())
+               ->method('lastInsertID')
+               ->will($this->returnValue(1234));
+
         $engine = $this->getMockBuilder('Alchemy\engine\Engine')
                        ->setConstructorArgs(array('sqlite::memory:'))
                        ->setMethods(array('execute'))
@@ -17,12 +26,12 @@ class MapperTest extends BaseTest {
 
         $engine->expects($this->once())
                ->method('execute')
-               ->with($this->equalTo('INSERT INTO Alchemy_tests_Language (LanguageID, ISO2Code, LatestChangeStamp) VALUES (?, ?, ?)'));
+               ->with($this->equalTo('INSERT INTO Alchemy_tests_Language (ISO2Code, LatestChangeStamp) VALUES (?, ?)'))
+               ->will($this->returnValue($result));
 
         $session = new Session($engine);
 
         $lang = new Language();
-        $lang->LanguageID = 10;
         $lang->ISO2Code = 'es';
         $lang->LatestChangeStamp = new DateTime("1984-01-01");
 

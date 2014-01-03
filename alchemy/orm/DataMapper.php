@@ -49,9 +49,15 @@ class DataMapper {
         }
 
         $cls = get_called_class();
-        return array_key_exists($prop, $this->deltas)
-            ? $this->deltas[$prop]
-            : $this->session->getProperty($cls, $this->sessionID, $prop);
+        if (array_key_exists($prop, $this->deltas)) {
+            return $this->deltas[$prop];
+        }
+
+        if (is_object($this->session)) {
+            return $this->session->getProperty($cls, $this->sessionID, $prop);
+        }
+
+        return null;
     }
 
 
@@ -65,7 +71,17 @@ class DataMapper {
     }
 
 
-    public function save() {
+    public function getPrimaryKey() {
+        $pk = array();
+        foreach (static::table()->listPrimaryKeyComponents() as $name => $column) {
+            $pk[] = $this->$name;
+        }
+
+        return $pk;
+    }
+
+
+    public function save($queueUpdate = true) {
         if (!$this->session) {
             throw new Exception("Can not save this DataMapper because it is not associated with a session");
         }
@@ -75,12 +91,16 @@ class DataMapper {
             $this->session->setProperty($cls, $this->sessionID, $prop, $value);
         }
 
+        if ($queueUpdate) {
+            $this->session->save($cls, $this->sessionID);
+        }
+
         $this->deltas = array();
     }
 
 
-    public function setSession(&$session, $sessionID) {
-        $this->session = &$session;
+    public function setSession($session, $sessionID) {
+        $this->session = $session;
         $this->sessionID = $sessionID;
     }
 }

@@ -2,7 +2,10 @@
 
 namespace Alchemy\orm;
 use Alchemy\engine\IEngine;
+use Alchemy\engine\ResultSet;
 use Alchemy\expression\Insert;
+use Alchemy\expression\CompoundExpression;
+use Alchemy\util\Promise;
 
 
 class WorkQueue {
@@ -10,8 +13,10 @@ class WorkQueue {
 
 
     public function flush(IEngine $engine) {
-        while ($query = array_shift($this->queue)) {
-            $engine->query($query);
+        while ($item = array_shift($this->queue)) {
+            list($query, $promise) = $item;
+            $r = $engine->query($query);
+            $promise->resolve($r);
         }
     }
 
@@ -29,11 +34,35 @@ class WorkQueue {
         $query = Insert::init()->columns($columns)
                                ->into($table)
                                ->row($scalars);
-        $this->push($query);
+        return $this->push($query);
     }
 
 
     protected function push($query) {
-        $this->queue[] = $query;
+        $promise = new Promise();
+        $this->queue[] = array($query, $promise);
+        return $promise;
+    }
+
+
+    public function update($cls, $pk, $data) {
+        $table = $cls::table();
+
+        $query = Update::init()->table($table);
+        foreach ($data as $name => $value) {
+            $query = $query->set($table->$name, $table->$name->encode($value));
+        }
+
+        $where = null;
+        foreach ($pk as $name => $value) {
+            if (!$where) {
+                $where = $table->$name->equal($value);
+            } else {
+                $where = $where->and($table->$name->equal($value));
+            }
+        }
+        $query = $query->where($where);
+
+        return $this->push($query);
     }
 }

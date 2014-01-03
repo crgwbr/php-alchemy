@@ -7,5 +7,6 @@ use Iterator;
 
 interface IResultSet extends Iterator {
 
+    public function lastInsertID();
     public function rowCount();
 }

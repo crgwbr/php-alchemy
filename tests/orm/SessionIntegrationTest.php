@@ -22,7 +22,6 @@ class SessionIntegrationTest extends BaseTest {
 
             // Insert
             $lang = new Language();
-            $lang->LanguageID = 10;
             $lang->ISO2Code = 'es';
             $lang->LatestChangeStamp = new DateTime("1984-01-01");
             $session->add($lang);
@@ -33,7 +32,8 @@ class SessionIntegrationTest extends BaseTest {
             $this->assertEquals(1, count($all));
 
             $lang = $all[0];
-            $this->assertEquals(10, $lang->LanguageID);
+
+            $this->assertEquals(1, $lang->LanguageID);
             $this->assertEquals('es', $lang->ISO2Code);
             $this->assertEquals('1984-01-01', $lang->LatestChangeStamp->format('Y-m-d'));
         }

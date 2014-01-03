@@ -9,12 +9,14 @@ use PDOException;
 
 
 class ResultSet implements IResultSet {
+    protected $connector;
     protected $statement;
     protected $index = 0;
     protected $current;
 
 
-    public function __construct(PDOStatement $statement) {
+    public function __construct(PDO $connector, PDOStatement $statement) {
+        $this->connector = $connector;
         $this->statement = $statement;
 
         try {
@@ -30,6 +32,11 @@ class ResultSet implements IResultSet {
 
     protected function fetch() {
         $this->current = $this->statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function lastInsertID() {
+        return $this->connector->lastInsertId();
     }
 
 

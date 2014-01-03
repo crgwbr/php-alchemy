@@ -42,6 +42,11 @@ abstract class ANSI_Column extends ANSI_DialectBase {
     }
 
 
+    public function getKwarg($name) {
+        return array_key_exists($name, $this->kwargs) ? $this->kwargs[$name] : null;
+    }
+
+
     public function getSelectDeclaration() {
         return "{$this} as {$this->alias}";
     }
@@ -78,7 +83,7 @@ class ANSI_BinaryExpression extends ANSI_DialectBase {
 class ANSI_Bool extends ANSI_Column {
     public function definition() {
         $sql = "{$this->name} BOOL ";
-        $sql .= $this->kwargs['null'] ? "NULL" : "NOT NULL";
+        $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
         return $sql;
     }
 }
@@ -101,11 +106,21 @@ class ANSI_Create extends ANSI_DialectBase {
         $table = $this->table->getName();
 
         $columns = array();
+        $pk = array();
         foreach ($this->table->columns as $column) {
             $columns[] = $column->definition();
-        }
-        $columns = implode(", ", $columns);
 
+            if ($column->getKwarg('primary_key')) {
+                $pk[] = $column->getName();
+            }
+        }
+
+        if (!empty($pk)) {
+            $pk = implode(", ", $pk);
+            $columns[] = "PRIMARY KEY ({$pk})";
+        }
+
+        $columns = implode(", ", $columns);
         $sql = "CREATE TABLE IF NOT EXISTS {$table} ({$columns})";
         return $sql;
     }
@@ -180,8 +195,8 @@ class ANSI_Insert extends ANSI_Query {
 class ANSI_Integer extends ANSI_Column {
     public function definition() {
         $sql = "{$this->name} INT({$this->args[0]}) ";
-        $sql .= $this->kwargs['null'] ? "NULL" : "NOT NULL";
-        return $sql;
+        $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
+        return trim($sql);
     }
 }
 
@@ -252,7 +267,7 @@ class ANSI_Select extends ANSI_Query {
 class ANSI_String extends ANSI_Column {
     public function definition() {
         $sql = "{$this->name} VARCHAR({$this->args[0]}) ";
-        $sql .= $this->kwargs['null'] ? "NULL" : "NOT NULL";
+        $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
         return $sql;
     }
 }
@@ -281,7 +296,27 @@ class ANSI_Table extends ANSI_DialectBase {
 class ANSI_Timestamp extends ANSI_Column {
     public function definition() {
         $sql = "{$this->name} TIMESTAMP ";
-        $sql .= $this->kwargs['null'] ? "NULL" : "NOT NULL";
+        $sql .= $this->getKwarg('null') ? "NULL" : "NOT NULL";
         return $sql;
+    }
+}
+
+
+
+class ANSI_Update extends ANSI_Query {
+
+    public function __toString() {
+        $sets = array();
+        foreach ($this->values as $column => $value) {
+            $sets = "{$column} = {$value}";
+        }
+
+        $sets = implode(", ", $sets);
+        $joins = $this->getJoinSQL();
+        $where = $this->getWhereSQL();
+
+        $str = "UPDATE {$this->table} SET {$sets} {$joins} {$where}";
+        $str = trim($str);
+        return $str;
     }
 }

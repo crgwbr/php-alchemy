@@ -64,7 +64,7 @@ class ANSITest extends BaseTest {
                 'columns' => array(new ANSI_Integer(array(
                     'name' => 'COL',
                     'args' => array(11),
-                    'kwargs' => array('null' => false),
+                    'kwargs' => array('null' => false, 'auto_increment' => false),
                 )))
             ))
         ));
@@ -103,7 +103,7 @@ class ANSITest extends BaseTest {
             'name' => 'COL',
             'alias' => 'ALIAS',
             'args' => array(11),
-            'kwargs' => array('null' => false),
+            'kwargs' => array('null' => false, 'auto_increment' => false),
         ));
 
         $this->assertEquals("TALIAS.COL", (string)$col);

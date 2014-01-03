@@ -70,7 +70,7 @@ class Engine implements IEngine {
         }
 
         $statement->execute();
-        return new ResultSet($statement);
+        return new ResultSet($this->connector, $statement);
     }
 
 

@@ -6,6 +6,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
 // Utils
 require_once "util/DataTypeLexer.php";
 require_once "util/Monad.php";
+require_once "util/Promise.php";
 
 // Basic expressions
 require_once "expression/Value.php";
@@ -36,6 +37,7 @@ require_once "expression/IQuery.php";
 require_once "expression/Query.php";
 require_once "expression/Select.php";
 require_once "expression/Insert.php";
+require_once "expression/Update.php";
 
 // DDL
 require_once "expression/DDLQuery.php";
@@ -45,6 +47,8 @@ require_once "expression/Drop.php";
 // Dialects
 require_once "dialect/DialectTranslator.php";
 require_once "dialect/ANSI.php";
+require_once "dialect/SQLite.php";
+require_once "dialect/MySQL.php";
 
 // Engines
 require_once "engine/IResultSet.php";

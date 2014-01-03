@@ -52,4 +52,16 @@ class Table {
     public function listColumns() {
         return $this->columns;
     }
+
+
+    public function listPrimaryKeyComponents() {
+        $pk = array();
+        foreach ($this->columns as $name => $column) {
+            if ($column->isPrimaryKey()) {
+                $pk[$name] = $column;
+            }
+        }
+
+        return $pk;
+    }
 }
