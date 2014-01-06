@@ -132,7 +132,7 @@ reference to the Session you started with</p>
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.SessionSelect.html#9-44" title="Go to source code">alchemy/orm/SessionSelect.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.SessionSelect.html#10-80" title="Go to source code">alchemy/orm/SessionSelect.php</a><br />
 	</div>
 
 
@@ -150,7 +150,7 @@ reference to the Session you started with</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.orm.SessionSelect.html#18-33" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$mapper</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.SessionSelect.html#19-34" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$mapper</var></span> )</code>
 
 		<div class="description short">
 			
@@ -192,7 +192,7 @@ reference to the Session you started with</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_all">#</a>
-		<code><a href="source-class-Alchemy.orm.SessionSelect.html#36-43" title="Go to source code">all</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.SessionSelect.html#37-44" title="Go to source code">all</a>( )</code>
 
 		<div class="description short">
 			
@@ -210,6 +210,84 @@ reference to the Session you started with</p>
 				<h4>Returns</h4>
 				<div class="list">
 					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="first" id="_first">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_first">#</a>
+		<code><a href="source-class-Alchemy.orm.SessionSelect.html#47-60" title="Go to source code">first</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return the first result of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the first result of the query.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>Query Result<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="one" id="_one">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_one">#</a>
+		<code><a href="source-class-Alchemy.orm.SessionSelect.html#63-79" title="Go to source code">one</a>( )</code>
+
+		<div class="description short">
+			
+<p>Similar to <code><a href="class-Alchemy.orm.SessionSelect.html#_first">Alchemy\orm\SessionSelect::first()</a></code>, but doesn't actually limit the
+query sent to the database. Instead, the full results of the query are
+retrieved, and an exception is thrown if there are more than one.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Similar to <code><a href="class-Alchemy.orm.SessionSelect.html#_first">Alchemy\orm\SessionSelect::first()</a></code>, but doesn't actually limit the
+query sent to the database. Instead, the full results of the query are
+retrieved, and an exception is thrown if there are more than one.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>Query Result<br />
 				</div>
 
 
@@ -250,7 +328,7 @@ reference to the Session you started with</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.SessionSelect.html#14" title="Go to source code"><var>$session</var></a>
+				<a href="source-class-Alchemy.orm.SessionSelect.html#15" title="Go to source code"><var>$session</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -273,7 +351,7 @@ reference to the Session you started with</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.SessionSelect.html#15" title="Go to source code"><var>$mapper</var></a>
+				<a href="source-class-Alchemy.orm.SessionSelect.html#16" title="Go to source code"><var>$mapper</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
