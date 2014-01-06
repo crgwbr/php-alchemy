@@ -1,1 +1,1 @@
-SELECT us1.UserID as UserID, us1.UserName as UserName FROM users us1  WHERE us1.UserName = :p0 LIMIT 2, 5
+SELECT us1.UserID as UserID, us1.UserName as UserName FROM users us1 WHERE us1.UserName = :p0 LIMIT 2, 5

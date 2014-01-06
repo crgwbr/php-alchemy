@@ -4,6 +4,7 @@ namespace Alchemy\orm;
 use Alchemy\expression\Select;
 use Alchemy\expression\Table;
 use Alchemy\util\Monad;
+use Exception;
 
 
 /**
@@ -42,17 +43,31 @@ class SessionSelect extends Monad {
         return $this->session->execute($this->mapper, $this->value);
     }
 
+
+    /**
+     * Return the first result of the query.
+     *
+     * @return DataMapper Query Result
+     */
     public function first() {
-        $all = $this->all();
+        $all = $this->limit(1)->all();
 
         if (count($all) == 0) {
-            throw new \Exception("Expected at least 1 row, got 0");
+            throw new Exception("Expected at least 1 row, got 0");
         }
 
         return $all[0];
     }
 
 
+    /**
+     * Similar to {@see SessionSelect::first()}, but doesn't actually
+     * limit the query sent to the database. Instead, the full results
+     * of the query are retrieved, and an exception is thrown if there
+     * are more than one.
+     *
+     * @return DataMapper Query Result
+     */
     public function one() {
         $all = $this->all();
 

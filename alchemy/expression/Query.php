@@ -106,8 +106,15 @@ abstract class Query implements IQuery {
     }
 
 
+
+    /**
+     * Provide limit / offset to query.
+     *
+     * @param integer $a Query offset if $b is provided; else query limit.
+     * @param integer $b Query limit.
+     */
     public function limit($a = null, $b = null) {
-       $this->limit  = $b == null ? $a : $b;
+       $this->limit = $b == null ? $a : $b;
        if ($b !== null) {
            $this->offset = $a;
        }
