@@ -82,7 +82,7 @@ class WorkQueue {
      * @param string $cls Class name of DataMapper subclass
      * @param array $pk array(ColumnName => IQueryValue) UPDATE Filters
      * @param array $data Array of properties to send in the INSERT
-     * @return Promise resolved when INSERT is actual run
+     * @return Promise resolved when INSERT is actually run
      */
     public function update($cls, $pk, $data) {
         $table = $cls::table();

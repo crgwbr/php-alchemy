@@ -57,7 +57,21 @@ abstract class Query implements IQuery {
      * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
-        $params = $this->where->getParameters();
+        $params = $this->where ? $this->where->getParameters() : array();
+
+        if ($this->limit) {
+            $params[] = $this->limit;
+        }
+
+        if ($this->offset) {
+            $params[] = $this->offset;
+        }
+
+        foreach ($this->columns as $column) {
+            if ($column instanceof Scalar) {
+                $params[] = $column;
+            }
+        }
 
         foreach ($this->joins as $expression) {
             $params = array_merge($params, $expression->getParameters());
@@ -102,7 +116,7 @@ abstract class Query implements IQuery {
      * @param Expression $expr
      */
     public function where(Expression $expr) {
-       $this->where = $expr;
+        $this->where = $expr;
     }
 
 
@@ -114,9 +128,15 @@ abstract class Query implements IQuery {
      * @param integer $b Query limit.
      */
     public function limit($a = null, $b = null) {
-       $this->limit = $b == null ? $a : $b;
-       if ($b !== null) {
-           $this->offset = $a;
-       }
+        $a = is_null($a) ? null : new Scalar($a);
+        $b = is_null($b) ? null : new Scalar($b);
+
+        if (is_null($b)) {
+            $this->limit = $a;
+            $this->offset = null;
+        } else {
+            $this->limit = $b;
+            $this->offset = $a;
+        }
     }
 }

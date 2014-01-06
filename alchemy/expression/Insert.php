@@ -49,7 +49,7 @@ class Insert extends Query {
      * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
-        $params = array();
+        $params = parent::getParameters();
         foreach ($this->rows as $row) {
             foreach ($row as $value) {
                 $params[] = $value;
