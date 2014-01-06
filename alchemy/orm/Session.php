@@ -177,6 +177,32 @@ class Session {
 
 
     /**
+     * Delete the given object form the database
+     *
+     * @return Promise resolved when DELETE statement is run
+     */
+    public function remove(DataMapper &$obj) {
+        $cls = get_class($obj);
+
+        $keys = array();
+        foreach ($cls::table()->listPrimaryKeyComponents() as $name => $column) {
+            $keys[$name] = $obj->$name;
+        }
+
+        // Queue an INSERT query to be run later
+        $deleting = $this->queue->delete($cls, $keys);
+
+        // Delete records
+        $id = $obj->getSessionID();
+        unset($this->records[$cls][$id]);
+        unset($this->updated[$cls][$id]);
+
+        // Return the promise for the user to do fun things with
+        return $deleting;
+    }
+
+
+    /**
      * Queue an UPDATE query to be run later to update values
      * set with {@see Session::setProperty()}
      *

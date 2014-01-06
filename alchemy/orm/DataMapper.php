@@ -127,6 +127,16 @@ abstract class DataMapper {
 
 
     /**
+     * Return the ID used to identify this objects record in the Session
+     *
+     * @return string
+     */
+    public function getSessionID() {
+        return $this->sessionID;
+    }
+
+
+    /**
      * Save this object's data back to the session. By default this will queue
      * an UPDATE statement to be run on the server as soon as {@Session::commit()}
      * is called.

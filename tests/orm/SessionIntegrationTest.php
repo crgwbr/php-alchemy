@@ -38,6 +38,22 @@ class SessionIntegrationTest extends BaseTest {
             $lang->LatestChangeStamp = new DateTime("1985-06-15");
             $lang->save();
             $session->commit();
+
+            // Select
+            $objects = $session->objects('Alchemy\tests\Language');
+            $this->assertEquals(1, count($one = $objects->one()));
+            $lang = $all[0];
+            $this->assertEquals(1, $lang->LanguageID);
+            $this->assertEquals('es', $lang->ISO2Code);
+            $this->assertEquals('1985-06-15', $lang->LatestChangeStamp->format('Y-m-d'));
+
+            // Delete
+            $session->remove($lang);
+            $session->commit();
+
+            // Select
+            $objects = $session->objects('Alchemy\tests\Language');
+            $this->assertEquals(0, count($one = $objects->all()));
         }
     }
 

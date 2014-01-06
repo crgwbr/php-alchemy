@@ -5,6 +5,7 @@ use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
 use Alchemy\expression\Insert;
 use Alchemy\expression\Update;
+use Alchemy\expression\Delete;
 use Alchemy\expression\CompoundExpression;
 use Alchemy\util\Promise;
 use Alchemy\util\Monad;
@@ -16,6 +17,34 @@ use Alchemy\util\Monad;
  */
 class WorkQueue {
     protected $queue = array();
+
+
+    /**
+     * Delete data based on the given filters
+     *
+     * @param string $cls Class name of DataMapper subclass
+     * @param array $pk array(ColumnName => IQueryValue) UPDATE Filters
+     * @return Promise resolved when DELETE is actually run
+     */
+    public function delete($cls, $pk) {
+        $table = $cls::table();
+
+        // Build UPDATE SETs
+        $query = Delete::init()->from($table);
+
+        // Filter the update by building a complex CompoundExpression
+        $where = null;
+        foreach ($pk as $name => $value) {
+            if (!$where) {
+                $where = $table->$name->equal($value);
+            } else {
+                $where = $where->and($table->$name->equal($value));
+            }
+        }
+        $query = $query->where($where);
+
+        return $this->push($query);
+    }
 
 
     /**

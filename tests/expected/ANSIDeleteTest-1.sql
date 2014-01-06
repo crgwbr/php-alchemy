@@ -1,0 +1,1 @@
+DELETE us1 FROM users us1 WHERE us1.Email = :p0

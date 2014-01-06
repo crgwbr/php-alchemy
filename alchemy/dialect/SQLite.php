@@ -28,6 +28,25 @@ class SQLite_Create extends ANSI_DialectBase {
 
 
 /**
+ * Represent an DELETE statement
+ */
+class SQLite_Delete extends ANSI_Delete {
+
+    /**
+     * Get an array of dialect specific settings
+     *
+     * @return array
+     */
+    public static function settings() {
+        $settings = parent::settings();
+        $settings['USE_TABLE_ALIASES'] = false;
+        return $settings;
+    }
+}
+
+
+
+/**
  * SQLite vernacular for Integer columns
  */
 class SQLite_Integer extends ANSI_Integer {

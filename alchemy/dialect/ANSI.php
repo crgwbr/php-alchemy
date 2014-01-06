@@ -240,6 +240,42 @@ class ANSI_Create extends ANSI_DialectBase {
 
 
 /**
+ * Represent a DELETE statement
+ */
+class ANSI_Delete extends ANSI_Query {
+
+    /**
+     * String Cast
+     */
+    public function __toString() {
+        $parts = array(
+            $this->getFromSQL(),
+            $this->getJoinSQL(),
+            $this->getWhereSQL(),
+            $this->getLimitSQL());
+
+        if ($this->settings['USE_TABLE_ALIASES']) {
+            array_unshift($parts, $this->from->getAlias());
+        }
+
+        $str = "DELETE " . join(array_filter($parts), ' ');
+
+        $str = trim($str);
+        return $str;
+    }
+
+
+    /**
+     * Get SQL for FROM
+     */
+    protected function getFromSQL() {
+        return "FROM {$this->from}";
+    }
+}
+
+
+
+/**
  * Represents a DROP statement
  */
 class ANSI_Drop extends ANSI_DialectBase {

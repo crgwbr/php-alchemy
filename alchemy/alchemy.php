@@ -46,6 +46,7 @@ require_once "expression/Query.php";
 require_once "expression/Select.php";
 require_once "expression/Insert.php";
 require_once "expression/Update.php";
+require_once "expression/Delete.php";
 
 // DDL
 require_once "expression/DDLQuery.php";
