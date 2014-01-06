@@ -54,7 +54,7 @@ class Session {
 
         // When the insert is run, update our record of the primary key
         $self = $this;
-        $inserting->done(function(ResultSet $r) use ($self, $obj, $tempID) {
+        $inserting->then(function(ResultSet $r) use ($self, $obj, $tempID) {
             $self->updatePrimaryKey($obj, $tempID, $r->lastInsertID());
         });
 

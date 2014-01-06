@@ -38,16 +38,16 @@ $aResults = $query
 
 
 $query = new QueryManager($session);
-$query->select($JWOName = PersonName::table())
+$query->select($name = PersonName::table())
    ->filter( // defaults to a SQL::AND(A, B, C) relationship
-      SQL::EQ($JWOName->PersonNameType, PERNAMETYPEID_JWOTRNSLITD)
-      SQL::GT($JWOName->Person->PerPersonID, 0),
-      SQL::EQ($JWOName->Person->DeletedDatetime, 0))
+      SQL::EQ($name->PersonNameType, PERNAMETYPEID_TRNSLITD)
+      SQL::GT($name->Person->PerPersonID, 0),
+      SQL::EQ($name->Person->DeletedDatetime, 0))
    ->except($query
       ->select($srcName = PersonName::table())
       ->filter(
          SQL::EQ($srcName->PersonNameType, $intTrnslitdSrcType),
-         SQL::EQ($srcName->Person, $JWOName->Person)))
+         SQL::EQ($srcName->Person, $name->Person)))
    ->delete();
 
 
@@ -70,15 +70,15 @@ $query = $table
 $aResults = $session->select($query)->all();
 
 
-$JWOName = PersonName::table(); // two tables with distinct aliases, etc
+$name = PersonName::table(); // two tables with distinct aliases, etc
 $srcName = PersonName::table();
 
-$query = $JWOName->filter(
-      SQL::EQ($JWOName->PersonNameTypeID, PERNAMETYPEID_JWOTRNSLITD)
-      SQL::GT($JWOName->Person->PerPersonID, 0),
-      SQL::EQ($JWOName->Person->DeletedDatetime, 0))
+$query = $name->filter(
+      SQL::EQ($name->PersonNameTypeID, PERNAMETYPEID_TRNSLITD)
+      SQL::GT($name->Person->PerPersonID, 0),
+      SQL::EQ($name->Person->DeletedDatetime, 0))
    ->except($srcName->filter(
       SQL::EQ($srcName->PersonNameTypeID, $intTrnslitdSrcType)),
-      SQL::EQ($srcName->Person, $JWOName->Person));
+      SQL::EQ($srcName->Person, $name->Person));
 
 $session->delete($query);

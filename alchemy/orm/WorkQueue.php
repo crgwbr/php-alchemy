@@ -7,8 +7,8 @@ use Alchemy\expression\Insert;
 use Alchemy\expression\Update;
 use Alchemy\expression\Delete;
 use Alchemy\expression\CompoundExpression;
-use Alchemy\util\Promise;
 use Alchemy\util\Monad;
+use Alchemy\util\promise\Promise;
 
 
 /**
@@ -98,7 +98,7 @@ class WorkQueue {
      * @return Promise resolved when query is actual run
      */
     protected function push(Monad $query) {
-        $promise = new Promise();
+        $promise = new Promise(null, "Alchemy\engine\ResultSet");
         $this->queue[] = array($query->unwrap(), $promise);
         return $promise;
     }

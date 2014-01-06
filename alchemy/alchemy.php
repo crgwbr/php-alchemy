@@ -11,7 +11,9 @@ set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
 // Utils
 require_once "util/DataTypeLexer.php";
 require_once "util/Monad.php";
-require_once "util/Promise.php";
+require_once "util/promise/Waitable.php";
+require_once "util/promise/Signal.php";
+require_once "util/promise/Promise.php";
 
 // Interfaces
 require_once "expression/IQueryFragment.php";
