@@ -6,8 +6,8 @@
 
 	<title>Class Alchemy\expression\Scalar</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -68,12 +68,13 @@
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
-				<li><a href="class-Alchemy.expression.Value.html">Value</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
 			</ul>
 
 
@@ -126,14 +127,9 @@
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-Alchemy.expression.Value.html"><span>Alchemy\expression\Value</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Alchemy\expression\Scalar</span></b>			
+			 implements 
+				<a href="class-Alchemy.expression.IQueryValue.html"><span>Alchemy\expression\IQueryValue</span></a>
 			
 			
 		</dd>
@@ -152,7 +148,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Scalar.html#7-73" title="Go to source code">alchemy/expression/Scalar.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Scalar.html#7-87" title="Go to source code">alchemy/expression/Scalar.php</a><br />
 	</div>
 
 
@@ -170,7 +166,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.expression.Scalar.html#20-29" title="Go to source code">__construct</a>( <span>mixed <var>$value</var></span>, <span>mixed <var>$dataType</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Scalar.html#23-33" title="Go to source code">__construct</a>( <span>mixed <var>$value</var></span>, <span>mixed <var>$dataType</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -210,7 +206,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDataType">#</a>
-		<code><a href="source-class-Alchemy.expression.Scalar.html#32-39" title="Go to source code">getDataType</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Scalar.html#36-43" title="Go to source code">getDataType</a>( )</code>
 
 		<div class="description short">
 			
@@ -232,6 +228,43 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getName" id="_getName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getName">#</a>
+		<code><a href="source-class-Alchemy.expression.Scalar.html#46-53" title="Go to source code">getName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return the name of this parameter</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the name of this parameter</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getValue" id="_getValue">
 
 		<td class="attributes"><code>
@@ -243,7 +276,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getValue">#</a>
-		<code><a href="source-class-Alchemy.expression.Scalar.html#42-49" title="Go to source code">getValue</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Scalar.html#56-63" title="Go to source code">getValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -276,7 +309,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_inferDataType">#</a>
-		<code><a href="source-class-Alchemy.expression.Scalar.html#52-72" title="Go to source code">inferDataType</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Scalar.html#66-86" title="Go to source code">inferDataType</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -405,6 +438,29 @@
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="scalarCounter" id="$scalarCounter">
+		<td class="attributes"><code>
+			protected static 
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.expression.Scalar.html#16" title="Go to source code"><var>$scalarCounter</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#$scalarCounter" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="dataType" id="$dataType">
 		<td class="attributes"><code>
 			protected  
@@ -412,7 +468,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Scalar.html#16" title="Go to source code"><var>$dataType</var></a>
+				<a href="source-class-Alchemy.expression.Scalar.html#18" title="Go to source code"><var>$dataType</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -435,11 +491,34 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Scalar.html#17" title="Go to source code"><var>$value</var></a>
+				<a href="source-class-Alchemy.expression.Scalar.html#19" title="Go to source code"><var>$value</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$value" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="name" id="$name">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.expression.Scalar.html#20" title="Go to source code"><var>$name</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$name" class="anchor">#</a>
 
 			<div class="description short">
 				

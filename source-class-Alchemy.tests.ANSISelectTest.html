@@ -7,8 +7,8 @@
 
 	<title>File tests/dialect/ANSISelectTest.php</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -51,6 +51,7 @@
 				<li><a href="class-Alchemy.tests.ANSIInsertTest.html">ANSIInsertTest</a></li>
 				<li class="active"><a href="class-Alchemy.tests.ANSISelectTest.html">ANSISelectTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSITest.html">ANSITest</a></li>
+				<li><a href="class-Alchemy.tests.ANSIUpdateTest.html">ANSIUpdateTest</a></li>
 				<li><a href="class-Alchemy.tests.BaseTest.html">BaseTest</a></li>
 				<li><a href="class-Alchemy.tests.BinaryExpressionTest.html">BinaryExpressionTest</a></li>
 				<li><a href="class-Alchemy.tests.BoolTest.html">BoolTest</a></li>
@@ -128,7 +129,7 @@
 </span><span id="19" class="l"><a class="l" href="#19">19: </a>                               -&gt;from(<span class="php-var">$users</span>);
 </span><span id="20" class="l"><a class="l" href="#20">20: </a>
 </span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-var">$translator</span> = <span class="php-keyword1">new</span> DialectTranslator(<span class="php-quote">'ANSI'</span>);
-</span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>);
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>-&gt;unwrap());
 </span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSISelectTest-1.sql'</span>, (string)<span class="php-var">$vern</span>);
 </span><span id="24" class="l"><a class="l" href="#24">24: </a>    }
 </span><span id="25" class="l"><a class="l" href="#25">25: </a>
@@ -150,7 +151,7 @@
 </span><span id="41" class="l"><a class="l" href="#41">41: </a>                               -&gt;<span class="php-keyword2">join</span>(<span class="php-var">$addrs</span>, <span class="php-var">$addrs</span>-&gt;UserID-&gt;equal(<span class="php-var">$users</span>-&gt;UserID));
 </span><span id="42" class="l"><a class="l" href="#42">42: </a>
 </span><span id="43" class="l"><a class="l" href="#43">43: </a>        <span class="php-var">$translator</span> = <span class="php-keyword1">new</span> DialectTranslator(<span class="php-quote">'ANSI'</span>);
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>);
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>-&gt;unwrap());
 </span><span id="45" class="l"><a class="l" href="#45">45: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSISelectTest-2.sql'</span>, (string)<span class="php-var">$vern</span>);
 </span><span id="46" class="l"><a class="l" href="#46">46: </a>    }
 </span><span id="47" class="l"><a class="l" href="#47">47: </a>
@@ -184,7 +185,7 @@
 </span><span id="75" class="l"><a class="l" href="#75">75: </a>                               -&gt;<span class="php-keyword2">join</span>(<span class="php-var">$phones</span>, <span class="php-var">$phoneJoin</span>);
 </span><span id="76" class="l"><a class="l" href="#76">76: </a>
 </span><span id="77" class="l"><a class="l" href="#77">77: </a>        <span class="php-var">$translator</span> = <span class="php-keyword1">new</span> DialectTranslator(<span class="php-quote">'ANSI'</span>);
-</span><span id="78" class="l"><a class="l" href="#78">78: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>);
+</span><span id="78" class="l"><a class="l" href="#78">78: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>-&gt;unwrap());
 </span><span id="79" class="l"><a class="l" href="#79">79: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSISelectTest-3.sql'</span>, (string)<span class="php-var">$vern</span>);
 </span><span id="80" class="l"><a class="l" href="#80">80: </a>    }
 </span><span id="81" class="l"><a class="l" href="#81">81: </a>
@@ -200,7 +201,7 @@
 </span><span id="91" class="l"><a class="l" href="#91">91: </a>                               -&gt;where(<span class="php-var">$users</span>-&gt;UserName-&gt;equal(<span class="php-quote">'user1@example.com'</span>));
 </span><span id="92" class="l"><a class="l" href="#92">92: </a>
 </span><span id="93" class="l"><a class="l" href="#93">93: </a>        <span class="php-var">$translator</span> = <span class="php-keyword1">new</span> DialectTranslator(<span class="php-quote">'ANSI'</span>);
-</span><span id="94" class="l"><a class="l" href="#94">94: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>);
+</span><span id="94" class="l"><a class="l" href="#94">94: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>-&gt;unwrap());
 </span><span id="95" class="l"><a class="l" href="#95">95: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSISelectTest-4.sql'</span>, (string)<span class="php-var">$vern</span>);
 </span><span id="96" class="l"><a class="l" href="#96">96: </a>    }
 </span><span id="97" class="l"><a class="l" href="#97">97: </a>}

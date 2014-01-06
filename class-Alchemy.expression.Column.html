@@ -6,8 +6,8 @@
 
 	<title>Class Alchemy\expression\Column</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -68,12 +68,13 @@
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
-				<li><a href="class-Alchemy.expression.Value.html">Value</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
 			</ul>
 
 
@@ -126,14 +127,9 @@
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-Alchemy.expression.Value.html"><span>Alchemy\expression\Value</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Alchemy\expression\Column</span></b>			
+			 implements 
+				<a href="class-Alchemy.expression.IQueryValue.html"><span>Alchemy\expression\IQueryValue</span></a>
 			
 			
 		</dd>
@@ -269,14 +265,14 @@
 		<div class="description short">
 			
 <p>Build and return a BinaryExpression by comparing this column to another
-Value</p>
+IQueryValue</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>Build and return a BinaryExpression by comparing this column to another
-Value</p>
+IQueryValue</p>
 
 
 
@@ -285,7 +281,7 @@ Value</p>
 					<dt><var>$name</var></dt>
 					<dd><code>mixed</code><br>$name Operator Name: and, or</dd>
 					<dt><var>$args</var></dt>
-					<dd><code>mixed</code><br>$args array([0] =&gt; Value, ...) Value to compare to</dd>
+					<dd><code>mixed</code><br>$args array([0] =&gt; IQueryValue, ...) IQueryValue to compare to</dd>
 				</dl></div>
 
 

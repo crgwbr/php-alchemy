@@ -6,8 +6,8 @@
 
 	<title>Class Alchemy\dialect\ANSI_Scalar</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -70,6 +70,7 @@
 				<li><a href="class-Alchemy.dialect.MySQL_Integer.html">MySQL_Integer</a></li>
 				<li><a href="class-Alchemy.dialect.SQLite_Create.html">SQLite_Create</a></li>
 				<li><a href="class-Alchemy.dialect.SQLite_Integer.html">SQLite_Integer</a></li>
+				<li><a href="class-Alchemy.dialect.SQLite_Update.html">SQLite_Update</a></li>
 			</ul>
 
 
@@ -149,7 +150,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.dialect.html">dialect</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.dialect.ANSI_Scalar.html#350-361" title="Go to source code">alchemy/dialect/ANSI.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.dialect.ANSI_Scalar.html#372-393" title="Go to source code">alchemy/dialect/ANSI.php</a><br />
 	</div>
 
 
@@ -167,7 +168,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSI_Scalar.html#355-360" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSI_Scalar.html#377-382" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -189,6 +190,43 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getSelectDeclaration" id="_getSelectDeclaration">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSelectDeclaration">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSI_Scalar.html#385-392" title="Go to source code">getSelectDeclaration</a>( )</code>
+
+		<div class="description short">
+			
+<p>Make it possible to use a scalar as a selected column</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Make it possible to use a scalar as a selected column</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 	<table class="summary inherited">
@@ -196,7 +234,8 @@
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#___construct">__construct()</a>, 
-			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#___get">__get()</a>
+			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#___get">__get()</a>, 
+			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#_settings">settings()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -216,7 +255,8 @@
 	<caption>Properties inherited from <a href="class-Alchemy.dialect.ANSI_DialectBase.html#properties">Alchemy\dialect\ANSI_DialectBase</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#$data"><var>$data</var></a>
+			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#$data"><var>$data</var></a>, 
+			<a href="class-Alchemy.dialect.ANSI_DialectBase.html#$settings"><var>$settings</var></a>
 		</code></td>
 	</tr>
 	</table>

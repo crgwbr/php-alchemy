@@ -6,8 +6,8 @@
 
 	<title>Tree</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -70,6 +70,7 @@
 				<li><a href="class-Alchemy.dialect.MySQL_Integer.html">Alchemy\dialect\MySQL_Integer</a></li>
 				<li><a href="class-Alchemy.dialect.SQLite_Create.html">Alchemy\dialect\SQLite_Create</a></li>
 				<li><a href="class-Alchemy.dialect.SQLite_Integer.html">Alchemy\dialect\SQLite_Integer</a></li>
+				<li><a href="class-Alchemy.dialect.SQLite_Update.html">Alchemy\dialect\SQLite_Update</a></li>
 				<li><a href="class-Alchemy.engine.Engine.html">Alchemy\engine\Engine</a></li>
 				<li><a href="class-Alchemy.engine.ResultSet.html">Alchemy\engine\ResultSet</a></li>
 				<li><a href="class-Alchemy.expression.BinaryExpression.html">Alchemy\expression\BinaryExpression</a></li>
@@ -93,7 +94,6 @@
 				<li><a href="class-Alchemy.expression.Text.html">Alchemy\expression\Text</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Alchemy\expression\Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Alchemy\expression\Update</a></li>
-				<li><a href="class-Alchemy.expression.Value.html">Alchemy\expression\Value</a></li>
 				<li><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></li>
 				<li><a href="class-Alchemy.orm.DDL.html">Alchemy\orm\DDL</a></li>
 				<li><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></li>
@@ -102,6 +102,7 @@
 				<li><a href="class-Alchemy.tests.ANSIInsertTest.html">Alchemy\tests\ANSIInsertTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSISelectTest.html">Alchemy\tests\ANSISelectTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSITest.html">Alchemy\tests\ANSITest</a></li>
+				<li><a href="class-Alchemy.tests.ANSIUpdateTest.html">Alchemy\tests\ANSIUpdateTest</a></li>
 				<li><a href="class-Alchemy.tests.BaseTest.html">Alchemy\tests\BaseTest</a></li>
 				<li><a href="class-Alchemy.tests.BinaryExpressionTest.html">Alchemy\tests\BinaryExpressionTest</a></li>
 				<li><a href="class-Alchemy.tests.BoolTest.html">Alchemy\tests\BoolTest</a></li>
@@ -128,6 +129,8 @@
 				<li><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></li>
 				<li><a href="class-Alchemy.engine.IResultSet.html">Alchemy\engine\IResultSet</a></li>
 				<li><a href="class-Alchemy.expression.IQuery.html">Alchemy\expression\IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">Alchemy\expression\IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">Alchemy\expression\IQueryValue</a></li>
 				<li><a href="class-Iterator.html">Iterator</a></li>
 				<li><a href="class-Traversable.html">Traversable</a></li>
 			</ul>
@@ -306,7 +309,14 @@
 			
 			</div>
 
-				</ul></li>
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-Alchemy.dialect.SQLite_Update.html"><span>Alchemy\dialect\SQLite_Update</span></a>
+			
+			
+			</div>
+
+				</ul></li></ul></li>
 
 			<li><div class="notlast"><a href="class-Alchemy.dialect.ANSI_Scalar.html"><span>Alchemy\dialect\ANSI_Scalar</span></a>
 			
@@ -354,6 +364,50 @@
 
 				</li>
 
+			<li><div class="notlast"><a href="class-Alchemy.expression.Column.html"><span>Alchemy\expression\Column</span></a>
+			 implements 
+				<a href="class-Alchemy.expression.IQueryValue.html"><span>Alchemy\expression\IQueryValue</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li><div class="notlast"><a href="class-Alchemy.expression.Bool.html"><span>Alchemy\expression\Bool</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Alchemy.expression.Integer.html"><span>Alchemy\expression\Integer</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Alchemy.expression.String.html"><span>Alchemy\expression\String</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-Alchemy.expression.Text.html"><span>Alchemy\expression\Text</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li class="last"><div class="last"><a href="class-Alchemy.expression.Timestamp.html"><span>Alchemy\expression\Timestamp</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
 			<li><div class="notlast"><a href="class-Alchemy.expression.DDLQuery.html"><span>Alchemy\expression\DDLQuery</span></a>
 			 implements 
 				<a href="class-Alchemy.expression.IQuery.html"><span>Alchemy\expression\IQuery</span></a>
@@ -378,6 +432,8 @@
 				</ul></li>
 
 			<li><div class="notlast"><a href="class-Alchemy.expression.Expression.html"><span>Alchemy\expression\Expression</span></a>
+			 implements 
+				<a href="class-Alchemy.expression.IQueryFragment.html"><span>Alchemy\expression\IQueryFragment</span></a>
 			
 			
 			</div>
@@ -406,6 +462,8 @@
 				</ul></li>
 
 			<li><div class="notlast"><a href="class-Alchemy.expression.Join.html"><span>Alchemy\expression\Join</span></a>
+			 implements 
+				<a href="class-Alchemy.expression.IQueryFragment.html"><span>Alchemy\expression\IQueryFragment</span></a>
 			
 			
 			</div>
@@ -449,68 +507,21 @@
 
 				</ul></li>
 
+			<li><div class="notlast"><a href="class-Alchemy.expression.Scalar.html"><span>Alchemy\expression\Scalar</span></a>
+			 implements 
+				<a href="class-Alchemy.expression.IQueryValue.html"><span>Alchemy\expression\IQueryValue</span></a>
+			
+			
+			</div>
+
+				</li>
+
 			<li><div class="notlast"><a href="class-Alchemy.expression.Table.html"><span>Alchemy\expression\Table</span></a>
 			
 			
 			</div>
 
 				</li>
-
-			<li><div class="notlast"><a href="class-Alchemy.expression.Value.html"><span>Alchemy\expression\Value</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Alchemy.expression.Column.html"><span>Alchemy\expression\Column</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Alchemy.expression.Bool.html"><span>Alchemy\expression\Bool</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Alchemy.expression.Integer.html"><span>Alchemy\expression\Integer</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Alchemy.expression.String.html"><span>Alchemy\expression\String</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-Alchemy.expression.Text.html"><span>Alchemy\expression\Text</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li class="last"><div class="last"><a href="class-Alchemy.expression.Timestamp.html"><span>Alchemy\expression\Timestamp</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li class="last"><div class="last"><a href="class-Alchemy.expression.Scalar.html"><span>Alchemy\expression\Scalar</span></a>
-			
-			
-			</div>
-
-				</ul></li>
 
 			<li><div class="notlast"><a href="class-Alchemy.orm.DDL.html"><span>Alchemy\orm\DDL</span></a>
 			
@@ -625,6 +636,13 @@
 
 				</li>
 
+			<li><div class="notlast"><a href="class-Alchemy.tests.ANSIUpdateTest.html"><span>Alchemy\tests\ANSIUpdateTest</span></a>
+			
+			
+			</div>
+
+				</li>
+
 			<li><div class="notlast"><a href="class-Alchemy.tests.BinaryExpressionTest.html"><span>Alchemy\tests\BinaryExpressionTest</span></a>
 			
 			
@@ -733,6 +751,22 @@
 				</li>
 
 			<li><div class="notlast"><a href="class-Alchemy.expression.IQuery.html"><span>Alchemy\expression\IQuery</span></a>
+			 implements 
+				<a href="class-Alchemy.expression.IQueryFragment.html"><span>Alchemy\expression\IQueryFragment</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Alchemy.expression.IQueryFragment.html"><span>Alchemy\expression\IQueryFragment</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Alchemy.expression.IQueryValue.html"><span>Alchemy\expression\IQueryValue</span></a>
 			
 			
 			</div>

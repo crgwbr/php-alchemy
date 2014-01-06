@@ -7,8 +7,8 @@
 
 	<title>File tests/expression/BoolTest.php</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -51,6 +51,7 @@
 				<li><a href="class-Alchemy.tests.ANSIInsertTest.html">ANSIInsertTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSISelectTest.html">ANSISelectTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSITest.html">ANSITest</a></li>
+				<li><a href="class-Alchemy.tests.ANSIUpdateTest.html">ANSIUpdateTest</a></li>
 				<li><a href="class-Alchemy.tests.BaseTest.html">BaseTest</a></li>
 				<li><a href="class-Alchemy.tests.BinaryExpressionTest.html">BinaryExpressionTest</a></li>
 				<li class="active"><a href="class-Alchemy.tests.BoolTest.html">BoolTest</a></li>
@@ -122,8 +123,8 @@
 </span><span id="13" class="l"><a class="l" href="#13">13: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">false</span>, <span class="php-var">$col</span>-&gt;decode(<span class="php-quote">'0'</span>));
 </span><span id="14" class="l"><a class="l" href="#14">14: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">true</span>, <span class="php-var">$col</span>-&gt;decode(<span class="php-quote">'1'</span>));
 </span><span id="15" class="l"><a class="l" href="#15">15: </a>
-</span><span id="16" class="l"><a class="l" href="#16">16: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">new</span> Scalar(<span class="php-keyword1">false</span>), <span class="php-var">$col</span>-&gt;encode(<span class="php-keyword1">false</span>));
-</span><span id="17" class="l"><a class="l" href="#17">17: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">new</span> Scalar(<span class="php-keyword1">true</span>), <span class="php-var">$col</span>-&gt;encode(<span class="php-num">1</span>));
+</span><span id="16" class="l"><a class="l" href="#16">16: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">false</span>, <span class="php-var">$col</span>-&gt;encode(<span class="php-keyword1">false</span>)-&gt;getValue());
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">true</span>, <span class="php-var">$col</span>-&gt;encode(<span class="php-num">1</span>)-&gt;getValue());
 </span><span id="18" class="l"><a class="l" href="#18">18: </a>    }
 </span><span id="19" class="l"><a class="l" href="#19">19: </a>}
 </span><span id="20" class="l"><a class="l" href="#20">20: </a></span></code></pre>

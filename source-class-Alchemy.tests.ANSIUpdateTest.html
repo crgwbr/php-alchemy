@@ -5,7 +5,7 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File tests/expression/TimestampTest.php</title>
+	<title>File tests/dialect/ANSIUpdateTest.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
 	<script type="text/javascript" src="elementlist.js?494671956"></script>
@@ -51,7 +51,7 @@
 				<li><a href="class-Alchemy.tests.ANSIInsertTest.html">ANSIInsertTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSISelectTest.html">ANSISelectTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSITest.html">ANSITest</a></li>
-				<li><a href="class-Alchemy.tests.ANSIUpdateTest.html">ANSIUpdateTest</a></li>
+				<li class="active"><a href="class-Alchemy.tests.ANSIUpdateTest.html">ANSIUpdateTest</a></li>
 				<li><a href="class-Alchemy.tests.BaseTest.html">BaseTest</a></li>
 				<li><a href="class-Alchemy.tests.BinaryExpressionTest.html">BinaryExpressionTest</a></li>
 				<li><a href="class-Alchemy.tests.BoolTest.html">BoolTest</a></li>
@@ -65,7 +65,7 @@
 				<li><a href="class-Alchemy.tests.SelectTest.html">SelectTest</a></li>
 				<li><a href="class-Alchemy.tests.SessionIntegrationTest.html">SessionIntegrationTest</a></li>
 				<li><a href="class-Alchemy.tests.StringTest.html">StringTest</a></li>
-				<li class="active"><a href="class-Alchemy.tests.TimestampTest.html">TimestampTest</a></li>
+				<li><a href="class-Alchemy.tests.TimestampTest.html">TimestampTest</a></li>
 			</ul>
 
 
@@ -96,7 +96,7 @@
 				<a href="namespace-Alchemy.tests.html" title="Summary of Alchemy\tests"><span>Namespace</span></a>
 			</li>
 			<li>
-				<a href="class-Alchemy.tests.TimestampTest.html" title="Summary of Alchemy\tests\TimestampTest"><span>Class</span></a>
+				<a href="class-Alchemy.tests.ANSIUpdateTest.html" title="Summary of Alchemy\tests\ANSIUpdateTest"><span>Class</span></a>
 			</li>
 		</ul>
 		<ul>
@@ -111,22 +111,31 @@
 <pre><code><span id="1" class="l"><a class="l" href="#1"> 1: </a><span class="xlang">&lt;?php</span>
 </span><span id="2" class="l"><a class="l" href="#2"> 2: </a>
 </span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-keyword1">namespace</span> Alchemy\tests;
-</span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-keyword1">use</span> Alchemy\expression\Timestamp;
-</span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-keyword1">use</span> Alchemy\expression\Scalar;
-</span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-keyword1">use</span> Datetime;
+</span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-keyword1">use</span> Alchemy\expression\Table;
+</span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-keyword1">use</span> Alchemy\expression\Update;
+</span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-keyword1">use</span> Alchemy\dialect\DialectTranslator;
 </span><span id="7" class="l"><a class="l" href="#7"> 7: </a>
 </span><span id="8" class="l"><a class="l" href="#8"> 8: </a>
-</span><span id="9" class="l"><a class="l" href="#9"> 9: </a>
-</span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-keyword1">class</span> <a id="TimestampTest" href="#TimestampTest">TimestampTest</a> <span class="php-keyword1">extends</span> BaseTest {
-</span><span id="11" class="l"><a class="l" href="#11">11: </a>
-</span><span id="12" class="l"><a class="l" href="#12">12: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_testTimestamp" href="#_testTimestamp">testTimestamp</a>() {
-</span><span id="13" class="l"><a class="l" href="#13">13: </a>        <span class="php-var">$col</span> = <span class="php-keyword1">new</span> Timestamp(<span class="php-quote">'t'</span>, <span class="php-quote">'c'</span>, <span class="php-quote">'a'</span>, <span class="php-keyword1">array</span>(), <span class="php-keyword1">array</span>());
-</span><span id="14" class="l"><a class="l" href="#14">14: </a>
-</span><span id="15" class="l"><a class="l" href="#15">15: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-keyword1">new</span> Datetime(<span class="php-quote">'2008-12-01 00:00:00'</span>), <span class="php-var">$col</span>-&gt;decode(<span class="php-quote">'2008-12-01 00:00:00'</span>));
-</span><span id="16" class="l"><a class="l" href="#16">16: </a>        <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-quote">'2008-12-01 00:00:00'</span>, <span class="php-var">$col</span>-&gt;encode(<span class="php-keyword1">new</span> Datetime(<span class="php-quote">'2008-12-01 00:00:00'</span>))-&gt;getValue());
-</span><span id="17" class="l"><a class="l" href="#17">17: </a>    }
-</span><span id="18" class="l"><a class="l" href="#18">18: </a>}
-</span><span id="19" class="l"><a class="l" href="#19">19: </a></span></code></pre>
+</span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <a id="ANSIUpdateTest" href="#ANSIUpdateTest">ANSIUpdateTest</a> <span class="php-keyword1">extends</span> BaseTest {
+</span><span id="10" class="l"><a class="l" href="#10">10: </a>
+</span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_testSimpleUpdate" href="#_testSimpleUpdate">testSimpleUpdate</a>() {
+</span><span id="12" class="l"><a class="l" href="#12">12: </a>        <span class="php-var">$users</span> = <span class="php-keyword1">new</span> Table(<span class="php-quote">'users'</span>, <span class="php-keyword1">array</span>(
+</span><span id="13" class="l"><a class="l" href="#13">13: </a>            <span class="php-quote">'UserName'</span> =&gt; <span class="php-quote">'String'</span>,
+</span><span id="14" class="l"><a class="l" href="#14">14: </a>            <span class="php-quote">'Email'</span> =&gt; <span class="php-quote">'String'</span>,
+</span><span id="15" class="l"><a class="l" href="#15">15: </a>        ));
+</span><span id="16" class="l"><a class="l" href="#16">16: </a>
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>        <span class="php-var">$query</span> = Update::init()-&gt;table(<span class="php-var">$users</span>)
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>                               -&gt;set(<span class="php-var">$users</span>-&gt;UserName, <span class="php-quote">&quot;user1&quot;</span>)
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>                               -&gt;set(<span class="php-var">$users</span>-&gt;Email, <span class="php-quote">&quot;user1@example.com&quot;</span>)
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>                               -&gt;where(<span class="php-var">$users</span>-&gt;Email-&gt;equal(<span class="php-quote">&quot;user2@example.com&quot;</span>));
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-var">$translator</span> = <span class="php-keyword1">new</span> DialectTranslator(<span class="php-quote">'ANSI'</span>);
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>-&gt;unwrap());
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSIUpdateTest-1.sql'</span>, (string)<span class="php-var">$vern</span>);
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>    }
+</span><span id="27" class="l"><a class="l" href="#27">27: </a>}
+</span><span id="28" class="l"><a class="l" href="#28">28: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -6,8 +6,8 @@
 
 	<title>Class Alchemy\expression\Insert</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -68,12 +68,13 @@
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
-				<li><a href="class-Alchemy.expression.Value.html">Value</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
 			</ul>
 
 
@@ -154,7 +155,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Insert.html#7-59" title="Go to source code">alchemy/expression/Insert.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Insert.html#7-61" title="Go to source code">alchemy/expression/Insert.php</a><br />
 	</div>
 
 
@@ -236,34 +237,34 @@
 
 		<td class="attributes"><code>
 			 public 
-			array(Scalar,
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-Alchemy.expression.Insert.html#46-58" title="Go to source code">getParameters</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Insert.html#46-60" title="Go to source code">getParameters</a>( )</code>
 
 		<div class="description short">
 			
+<p>Recursively get all scalar parameters used by this expression</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Recursively get all scalar parameters used by this expression</p>
+
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array(Scalar,</code><br>Scalar, ...)<br />
+					<code>array</code><br>array(Scalar, Scalar, ...)<br />
 				</div>
 
 
-				<h4>See</h4>
-				<div class="list">
-						Query::getParamters()<br />
-				</div>
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-Alchemy.expression.Query.html#_getParameters">Alchemy\expression\Query::getParameters()</a></code></div>

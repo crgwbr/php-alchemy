@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Alchemy\expression\Create</title>
+	<title>Interface Alchemy\expression\IQueryFragment</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
 	<script type="text/javascript" src="elementlist.js?494671956"></script>
@@ -51,7 +51,7 @@
 				<li><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
 				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
 				<li><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
-				<li class="active"><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
 				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
@@ -73,7 +73,7 @@
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
-				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li class="active"><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
 				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
 			</ul>
 
@@ -116,36 +116,39 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Create</h1>
+	<h1>Interface IQueryFragment</h1>
 
 
 	<div class="description">
 	
-<p>Represent a CREATE statement</p>
+<p>Interface for query fragments</p>
 
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-			<a href="class-Alchemy.expression.DDLQuery.html"><span>Alchemy\expression\DDLQuery</span></a>
-			
-			 implements 
-				<a href="class-Alchemy.expression.IQuery.html"><span>Alchemy\expression\IQuery</span></a>
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>Alchemy\expression\Create</span></b>			
-			
-			
-		</dd>
-	</dl>
 
 
 
 
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a>, 
+			<a href="class-Alchemy.expression.IQuery.html">Alchemy\expression\IQuery</a>, 
+			<a href="class-Alchemy.expression.Join.html">Alchemy\expression\Join</a>
+	</div>
 
+	<div>
+		<h4>Indirect known implementers</h4>
+			<a href="class-Alchemy.expression.BinaryExpression.html">Alchemy\expression\BinaryExpression</a>, 
+			<a href="class-Alchemy.expression.CompoundExpression.html">Alchemy\expression\CompoundExpression</a>, 
+			<a href="class-Alchemy.expression.Create.html">Alchemy\expression\Create</a>, 
+			<a href="class-Alchemy.expression.DDLQuery.html">Alchemy\expression\DDLQuery</a>, 
+			<a href="class-Alchemy.expression.Drop.html">Alchemy\expression\Drop</a>, 
+			<a href="class-Alchemy.expression.InclusiveExpression.html">Alchemy\expression\InclusiveExpression</a>, 
+			<a href="class-Alchemy.expression.Insert.html">Alchemy\expression\Insert</a>, 
+			<a href="class-Alchemy.expression.Query.html">Alchemy\expression\Query</a>, 
+			<a href="class-Alchemy.expression.Select.html">Alchemy\expression\Select</a>, 
+			<a href="class-Alchemy.expression.Update.html">Alchemy\expression\Update</a>
+	</div>
 
 
 
@@ -155,19 +158,49 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Create.html#6-9" title="Go to source code">alchemy/expression/Create.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.IQueryFragment.html#6-17" title="Go to source code">alchemy/expression/IQueryFragment.php</a><br />
 	</div>
 
 
 
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getParameters" id="_getParameters">
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Alchemy.expression.DDLQuery.html#methods">Alchemy\expression\DDLQuery</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Alchemy.expression.DDLQuery.html#___construct">__construct()</a>, 
-			<a href="class-Alchemy.expression.DDLQuery.html#_getParameters">getParameters()</a>
-		</code></td>
+		<td class="attributes"><code>
+			 public 
+			array(Scalar,
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParameters">#</a>
+		<code><a href="source-class-Alchemy.expression.IQueryFragment.html#11-16" title="Go to source code">getParameters</a>( )</code>
+
+		<div class="description short">
+			
+<p>Recursively get all scalar parameters used by this query</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Recursively get all scalar parameters used by this query</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array(Scalar,</code><br>Scalar, ...)<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
 	</tr>
 	</table>
 
@@ -182,14 +215,7 @@
 
 
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Alchemy.expression.DDLQuery.html#properties">Alchemy\expression\DDLQuery</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Alchemy.expression.DDLQuery.html#$table"><var>$table</var></a>
-		</code></td>
-	</tr>
-	</table>
+
 
 
 

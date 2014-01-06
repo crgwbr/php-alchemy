@@ -7,8 +7,8 @@
 
 	<title>File alchemy/expression/Bool.php</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -69,12 +69,13 @@
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
-				<li><a href="class-Alchemy.expression.Value.html">Value</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
 			</ul>
 
 
@@ -127,21 +128,27 @@
 </span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <a id="Bool" href="#Bool">Bool</a> <span class="php-keyword1">extends</span> Column {
 </span><span id="10" class="l"><a class="l" href="#10">10: </a>
 </span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-comment">/**
-</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * @see Column::decode()
-</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     */</span>
-</span><span id="14" class="l"><a class="l" href="#14">14: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_decode" href="#_decode">decode</a>(<span class="php-var">$value</span>) {
-</span><span id="15" class="l"><a class="l" href="#15">15: </a>        <span class="php-keyword1">return</span> (bool)<span class="php-var">$value</span>;
-</span><span id="16" class="l"><a class="l" href="#16">16: </a>    }
-</span><span id="17" class="l"><a class="l" href="#17">17: </a>
-</span><span id="18" class="l"><a class="l" href="#18">18: </a>
-</span><span id="19" class="l"><a class="l" href="#19">19: </a>    <span class="php-comment">/**
-</span></span><span id="20" class="l"><a class="l" href="#20">20: </a><span class="php-comment">     * @see Column::encode()
-</span></span><span id="21" class="l"><a class="l" href="#21">21: </a><span class="php-comment">     */</span>
-</span><span id="22" class="l"><a class="l" href="#22">22: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_encode" href="#_encode">encode</a>(<span class="php-var">$value</span>) {
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> Scalar((bool)<span class="php-var">$value</span>, Scalar::T_BOOL);
-</span><span id="24" class="l"><a class="l" href="#24">24: </a>    }
-</span><span id="25" class="l"><a class="l" href="#25">25: </a>}
-</span><span id="26" class="l"><a class="l" href="#26">26: </a></span></code></pre>
+</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * Decode a value from the RDBMS into a PHP value
+</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     *
+</span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     * @param mixed $value
+</span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     * @return bool
+</span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     */</span>
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_decode" href="#_decode">decode</a>(<span class="php-var">$value</span>) {
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>        <span class="php-keyword1">return</span> (bool)<span class="php-var">$value</span>;
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>    }
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>    <span class="php-comment">/**
+</span></span><span id="23" class="l"><a class="l" href="#23">23: </a><span class="php-comment">     * Encode a PHP value into something usable for the RDBMS.
+</span></span><span id="24" class="l"><a class="l" href="#24">24: </a><span class="php-comment">     *
+</span></span><span id="25" class="l"><a class="l" href="#25">25: </a><span class="php-comment">     * @param mixed $value
+</span></span><span id="26" class="l"><a class="l" href="#26">26: </a><span class="php-comment">     * @return Scalar
+</span></span><span id="27" class="l"><a class="l" href="#27">27: </a><span class="php-comment">     */</span>
+</span><span id="28" class="l"><a class="l" href="#28">28: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_encode" href="#_encode">encode</a>(<span class="php-var">$value</span>) {
+</span><span id="29" class="l"><a class="l" href="#29">29: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">new</span> Scalar((bool)<span class="php-var">$value</span>, Scalar::T_BOOL);
+</span><span id="30" class="l"><a class="l" href="#30">30: </a>    }
+</span><span id="31" class="l"><a class="l" href="#31">31: </a>}
+</span><span id="32" class="l"><a class="l" href="#32">32: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

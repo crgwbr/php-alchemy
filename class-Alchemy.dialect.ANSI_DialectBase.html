@@ -6,8 +6,8 @@
 
 	<title>Class Alchemy\dialect\ANSI_DialectBase</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -70,6 +70,7 @@
 				<li><a href="class-Alchemy.dialect.MySQL_Integer.html">MySQL_Integer</a></li>
 				<li><a href="class-Alchemy.dialect.SQLite_Create.html">SQLite_Create</a></li>
 				<li><a href="class-Alchemy.dialect.SQLite_Integer.html">SQLite_Integer</a></li>
+				<li><a href="class-Alchemy.dialect.SQLite_Update.html">SQLite_Update</a></li>
 			</ul>
 
 
@@ -149,7 +150,8 @@
 			<a href="class-Alchemy.dialect.ANSI_Timestamp.html">Alchemy\dialect\ANSI_Timestamp</a>, 
 			<a href="class-Alchemy.dialect.ANSI_Update.html">Alchemy\dialect\ANSI_Update</a>, 
 			<a href="class-Alchemy.dialect.MySQL_Integer.html">Alchemy\dialect\MySQL_Integer</a>, 
-			<a href="class-Alchemy.dialect.SQLite_Integer.html">Alchemy\dialect\SQLite_Integer</a>
+			<a href="class-Alchemy.dialect.SQLite_Integer.html">Alchemy\dialect\SQLite_Integer</a>, 
+			<a href="class-Alchemy.dialect.SQLite_Update.html">Alchemy\dialect\SQLite_Update</a>
 	</div>
 
 
@@ -162,13 +164,50 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.dialect.html">dialect</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#7-40" title="Go to source code">alchemy/dialect/ANSI.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#7-54" title="Go to source code">alchemy/dialect/ANSI.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="settings" id="_settings">
+
+		<td class="attributes"><code>
+			 public static
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_settings">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#15-24" title="Go to source code">settings</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get an array of dialect specific settings</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an array of dialect specific settings</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
@@ -180,7 +219,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#14-21" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#27-35" title="Go to source code">__construct</a>( <span>array <var>$data</var></span>, <span>mixed <var>$settings</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -198,6 +237,8 @@
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
 					<dd><code>array</code><br>$data</dd>
+					<dt><var>$settings</var></dt>
+					<dd></dd>
 				</dl></div>
 
 
@@ -218,7 +259,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#24-33" title="Go to source code">__get</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#38-47" title="Go to source code">__get</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -251,7 +292,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___toString">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#36-39" title="Go to source code">__toString</a>( )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#50-53" title="Go to source code">__toString</a>( )</code>
 
 		<div class="description short">
 			
@@ -300,6 +341,29 @@
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$data" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="settings" id="$settings">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.dialect.ANSI_DialectBase.html#12" title="Go to source code"><var>$settings</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$settings" class="anchor">#</a>
 
 			<div class="description short">
 				

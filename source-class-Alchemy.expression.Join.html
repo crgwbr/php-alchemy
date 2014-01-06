@@ -7,8 +7,8 @@
 
 	<title>File alchemy/expression/Join.php</title>
 
-	<script type="text/javascript" src="resources/combined.js?380956574"></script>
-	<script type="text/javascript" src="elementlist.js?3884082132"></script>
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?494671956"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -69,12 +69,13 @@
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
-				<li><a href="class-Alchemy.expression.Value.html">Value</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
 				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
 			</ul>
 
 
@@ -124,7 +125,7 @@
 </span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment">/**
 </span></span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment"> * Represent a JOIN clause
 </span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> */</span>
-</span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <span class="php-keyword2">Join</span> {
+</span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <span class="php-keyword2">Join</span> <span class="php-keyword1">implements</span> IQueryFragment {
 </span><span id="10" class="l"><a class="l" href="#10">10: </a>    <span class="php-keyword1">const</span> <a id="LEFT" href="#LEFT">LEFT</a> = <span class="php-quote">'LEFT'</span>;
 </span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-keyword1">const</span> <a id="RIGHT" href="#RIGHT">RIGHT</a> = <span class="php-quote">'RIGHT'</span>;
 </span><span id="12" class="l"><a class="l" href="#12">12: </a>    <span class="php-keyword1">const</span> <a id="FULL" href="#FULL">FULL</a> = <span class="php-quote">'FULL'</span>;
