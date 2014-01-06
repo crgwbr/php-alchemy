@@ -7,7 +7,7 @@
 	<title>Class Alchemy\orm\WorkQueue</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?494671956"></script>
+	<script type="text/javascript" src="elementlist.js?3779243977"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -117,13 +117,57 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.WorkQueue.html#13-109" title="Go to source code">alchemy/orm/WorkQueue.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.WorkQueue.html#14-138" title="Go to source code">alchemy/orm/WorkQueue.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.util.Promise.html">Alchemy\util\Promise</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#22-47" title="Go to source code">delete</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete data based on the given filters</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete data based on the given filters</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cls</var></dt>
+					<dd><code>string</code><br>$cls Class name of DataMapper subclass</dd>
+					<dt><var>$pk</var></dt>
+					<dd><code>array</code><br>$pk array(ColumnName =&gt; IQueryValue) UPDATE Filters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.util.Promise.html">Alchemy\util\Promise</a></code></code><br>resolved when DELETE is actually run<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="flush" id="_flush">
 
 		<td class="attributes"><code>
@@ -135,7 +179,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_flush">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#21-36" title="Go to source code">flush</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#50-65" title="Go to source code">flush</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
 
 		<div class="description short">
 			
@@ -173,7 +217,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_insert">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#39-62" title="Go to source code">insert</a>( <span>string <var>$cls</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#68-91" title="Go to source code">insert</a>( <span>string <var>$cls</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -219,7 +263,7 @@ properties.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_push">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#65-75" title="Go to source code">push</a>( <span><code><a href="class-Alchemy.util.Monad.html">Alchemy\util\Monad</a></code> <var>$query</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#94-104" title="Go to source code">push</a>( <span><code><a href="class-Alchemy.util.Monad.html">Alchemy\util\Monad</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -261,7 +305,7 @@ properties.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#78-108" title="Go to source code">update</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#107-137" title="Go to source code">update</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -289,7 +333,7 @@ update, and an array keys</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Alchemy.util.Promise.html">Alchemy\util\Promise</a></code></code><br>resolved when INSERT is actual run<br />
+					<code><code><a href="class-Alchemy.util.Promise.html">Alchemy\util\Promise</a></code></code><br>resolved when INSERT is actually run<br />
 				</div>
 
 
@@ -320,7 +364,7 @@ update, and an array keys</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.WorkQueue.html#18" title="Go to source code"><var>$queue</var></a>
+				<a href="source-class-Alchemy.orm.WorkQueue.html#19" title="Go to source code"><var>$queue</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
