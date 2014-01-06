@@ -20,7 +20,7 @@ class ANSISelectTest extends BaseTest {
                                ->limit(2);
 
         $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query);
+        $vern = $translator->translate($query->unwrap());
         $this->assertExpectedString('ANSISelectTest-1.sql', (string)$vern);
     }
 
@@ -42,7 +42,7 @@ class ANSISelectTest extends BaseTest {
                                ->join($addrs, $addrs->UserID->equal($users->UserID));
 
         $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query);
+        $vern = $translator->translate($query->unwrap());
         $this->assertExpectedString('ANSISelectTest-2.sql', (string)$vern);
     }
 
@@ -76,7 +76,7 @@ class ANSISelectTest extends BaseTest {
                                ->join($phones, $phoneJoin);
 
         $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query);
+        $vern = $translator->translate($query->unwrap());
         $this->assertExpectedString('ANSISelectTest-3.sql', (string)$vern);
     }
 
@@ -93,7 +93,7 @@ class ANSISelectTest extends BaseTest {
                                ->limit(2, 5);
 
         $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query);
+        $vern = $translator->translate($query->unwrap());
         $this->assertExpectedString('ANSISelectTest-4.sql', (string)$vern);
     }
 }

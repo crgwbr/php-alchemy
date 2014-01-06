@@ -33,7 +33,9 @@ class SQLite_Create extends ANSI_DialectBase {
 class SQLite_Integer extends ANSI_Integer {
 
     /**
-     * @see ANSI_Integer:::definition()
+     * Column Definition for a create table statement
+     *
+     * @return string
      */
     public function definition() {
         $sql = "{$this->name} INTEGER ";
@@ -48,5 +50,24 @@ class SQLite_Integer extends ANSI_Integer {
         }
 
         return $sql;
+    }
+}
+
+
+
+/**
+ * Represent an UPDATE statement
+ */
+class SQLite_Update extends ANSI_Update {
+
+    /**
+     * Get an array of dialect specific settings
+     *
+     * @return array
+     */
+    public static function settings() {
+        $settings = parent::settings();
+        $settings['USE_TABLE_ALIASES'] = false;
+        return $settings;
     }
 }

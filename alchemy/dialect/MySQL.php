@@ -10,7 +10,9 @@ use Exception;
 class MySQL_Integer extends ANSI_Integer {
 
     /**
-     * @see ANSI_Integer::definition()
+     * Column Definition for a create table statement
+     *
+     * @return string
      */
     public function definition() {
         $sql = parent::definition();

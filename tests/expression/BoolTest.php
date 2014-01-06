@@ -13,7 +13,7 @@ class BoolTest extends BaseTest {
         $this->assertEquals(false, $col->decode('0'));
         $this->assertEquals(true, $col->decode('1'));
 
-        $this->assertEquals(new Scalar(false), $col->encode(false));
-        $this->assertEquals(new Scalar(true), $col->encode(1));
+        $this->assertEquals(false, $col->encode(false)->getValue());
+        $this->assertEquals(true, $col->encode(1)->getValue());
     }
 }

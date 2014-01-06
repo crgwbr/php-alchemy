@@ -16,7 +16,7 @@ class BinaryExpressionTest extends BaseTest {
 
         $scalars = $expr->getParameters();
         $this->assertEquals(2, count($scalars));
-        $this->assertEquals(new Scalar(5), $scalars[0]);
-        $this->assertEquals(new Scalar(3), $scalars[1]);
+        $this->assertEquals(5, $scalars[0]->getValue());
+        $this->assertEquals(3, $scalars[1]->getValue());
     }
 }

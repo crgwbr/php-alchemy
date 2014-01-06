@@ -23,6 +23,8 @@ class DDL {
 
     /**
      * CREATE the table for the given DataMapper class
+     *
+     * @param string $cls Class Name of DataMapper child
      */
     public function create($cls) {
         $create = new Create($cls::table());
@@ -31,7 +33,7 @@ class DDL {
 
 
     /**
-     * Find all subclasses of DataMapper and run {DDL::create()} on each
+     * Find all subclasses of DataMapper and run {@see DDL::create()} on each
      * of them.
      */
     public function createAll() {

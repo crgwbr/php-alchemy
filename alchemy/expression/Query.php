@@ -30,9 +30,9 @@ abstract class Query implements IQuery {
     /**
      * Add a column to the query
      *
-     * @param Value $column
+     * @param IQueryValue $column
      */
-    public function column(Value $column) {
+    public function column(IQueryValue $column) {
        $this->columns[] = $column;
     }
 
@@ -52,10 +52,18 @@ abstract class Query implements IQuery {
 
 
     /**
-     * @see IQuery::getParameters()
+     * Recursively get all scalar parameters used by this expression
+     *
+     * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
-        return array();
+        $params = $this->where->getParameters();
+
+        foreach ($this->joins as $expression) {
+            $params = array_merge($params, $expression->getParameters());
+        }
+
+        return $params;
     }
 
 

@@ -35,7 +35,7 @@ class ResultSet implements IResultSet {
 
 
     /**
-     * @see Iterator::current()
+     * See {@see Iterator::current()}
      */
     public function current() {
         return $this->current;
@@ -51,7 +51,9 @@ class ResultSet implements IResultSet {
 
 
     /**
-     * @see IResultSet::lastInsertID()
+     * Return the last inserted ID form the database
+     *
+     * @return integer
      */
     public function lastInsertID() {
         return $this->connector->lastInsertId();
@@ -59,7 +61,7 @@ class ResultSet implements IResultSet {
 
 
     /**
-     * @see Iterator::key()
+     * See {@see Iterator::key()}
      */
     public function key() {
         return $this->index;
@@ -67,7 +69,7 @@ class ResultSet implements IResultSet {
 
 
     /**
-     * @see Iterator::next()
+     * See {@see Iterator::next()}
      */
     public function next() {
         $this->index++;
@@ -76,13 +78,15 @@ class ResultSet implements IResultSet {
 
 
     /**
-     * @see Iterator::rewind()
+     * See {@see Iterator::rewind()}
      */
     public function rewind() {} // this is a forward-only iterator
 
 
     /**
-     * @see IResultSet::rowCount()
+     * Return the row count of the result set
+     *
+     * @return integer
      */
     public function rowCount() {
         return $this->statement->rowCount();
@@ -90,7 +94,7 @@ class ResultSet implements IResultSet {
 
 
     /**
-     * @see Iterator::valid()
+     * See {@see Iterator::valid()}
      */
     public function valid() {
         return !empty($this->current);

@@ -4,8 +4,6 @@ namespace Alchemy\tests;
 use Alchemy\orm\Session;
 use Datetime;
 
-require_once 'resources/Language.php';
-
 
 class MapperTest extends BaseTest {
 
@@ -26,7 +24,7 @@ class MapperTest extends BaseTest {
 
         $engine->expects($this->once())
                ->method('execute')
-               ->with($this->equalTo('INSERT INTO Alchemy_tests_Language (ISO2Code, LatestChangeStamp) VALUES (?, ?)'))
+               ->with($this->equalTo('INSERT INTO Alchemy_tests_Language (ISO2Code, LatestChangeStamp) VALUES (:p0, :p1)'))
                ->will($this->returnValue($result));
 
         $session = new Session($engine);

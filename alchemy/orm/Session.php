@@ -1,6 +1,7 @@
 <?php
 
 namespace Alchemy\orm;
+use Alchemy\util\Promise;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
 use Alchemy\expression\Table;
@@ -102,7 +103,8 @@ class Session {
      * and return a set.
      *
      * @param string $cls Class Name of a DataMapper subclass
-     * @param
+     * @param Query $query Query to execute
+     * @return array Set of Objects
      */
     public function execute($cls, $query) {
         $rows = $this->engine->query($query);
@@ -125,6 +127,10 @@ class Session {
      * Get the primary key for the given class and record. If one
      * doesn't exist yet, it generates a transient key to be used
      * until the database allocates the object a real key.
+     *
+     * @param string $cls Class Name of a DataMapper subclass
+     * @param array $record Data Record
+     * @return array
      */
     protected function getPrimaryKey($cls, $record = array()) {
         $pk = array();
@@ -172,7 +178,7 @@ class Session {
 
     /**
      * Queue an UPDATE query to be run later to update values
-     * set with {@link Session::setProperty()}
+     * set with {@see Session::setProperty()}
      *
      * @param string $cls Class Name
      * @param mixed $id Record ID
@@ -187,7 +193,7 @@ class Session {
         // Filter the UPDATE by primary key
         $pk = array();
         foreach ($cls::table()->listPrimaryKeyComponents() as $name => $column) {
-            $pk[$name] = $this->updated[$cls][$id][$name];
+            $pk[$name] = $this->getProperty($cls, $id, $name);
         }
 
         // Schedule the UPDATE

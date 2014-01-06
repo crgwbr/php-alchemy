@@ -15,7 +15,10 @@ class Integer extends Column {
 
 
     /**
-     * @see Column::decode()
+     * Decode a value from the RDBMS into a PHP value
+     *
+     * @param mixed $value
+     * @return integer
      */
     public function decode($value) {
         return (int)$value;
@@ -23,7 +26,10 @@ class Integer extends Column {
 
 
     /**
-     * @see Column::encode()
+     * Encode a PHP value into something usable for the RDBMS.
+     *
+     * @param mixed $value
+     * @return Scalar
      */
     public function encode($value) {
         return new Scalar((int)$value, Scalar::T_INT);

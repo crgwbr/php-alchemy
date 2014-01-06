@@ -4,12 +4,10 @@ namespace Alchemy\tests;
 use Alchemy\orm\Session;
 use Datetime;
 
-require_once 'resources/Language.php';
-
 
 class SessionIntegrationTest extends BaseTest {
 
-    public function testSQLiteModelRoundTrip() {
+    public function testModelRoundTrip() {
         $engines = array(
             $this->getSQLiteEngine(),
             $this->getMySQLEngine(),
@@ -31,12 +29,15 @@ class SessionIntegrationTest extends BaseTest {
             $objects = $session->objects('Alchemy\tests\Language');
             $this->assertEquals(1, count($all = $objects->all()));
             $this->assertEquals(1, count($one = $objects->one()));
-
             $lang = $all[0];
-
             $this->assertEquals(1, $lang->LanguageID);
             $this->assertEquals('es', $lang->ISO2Code);
             $this->assertEquals('1984-01-01', $lang->LatestChangeStamp->format('Y-m-d'));
+
+            // Update
+            $lang->LatestChangeStamp = new DateTime("1985-06-15");
+            $lang->save();
+            $session->commit();
         }
     }
 

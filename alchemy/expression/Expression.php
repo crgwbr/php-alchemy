@@ -7,7 +7,7 @@ use Exception;
 /**
  * Abstract base class for representing an expression in SQL
  */
-abstract class Expression {
+abstract class Expression implements IQueryFragment {
     protected static $conjoin_types = array('and', 'or');
 
     protected $scalars = array();
@@ -33,9 +33,8 @@ abstract class Expression {
 
     /**
      * Recursively get all scalar parameters used by this expression
-     * in the order which they are used in the expression
      *
-     * @return array(Scalar, Scalar, ...)
+     * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
         return $this->scalars;

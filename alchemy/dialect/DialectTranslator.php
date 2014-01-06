@@ -1,6 +1,7 @@
 <?php
 
 namespace Alchemy\dialect;
+use Alchemy\expression\IQuery;
 use Alchemy\util\Monad;
 use Exception;
 
@@ -15,6 +16,7 @@ class DialectTranslator {
 
     protected $dialect;
     protected $namespace;
+
 
     /**
      * Object constructor.
@@ -67,18 +69,29 @@ class DialectTranslator {
     /**
      * Translate a query into vernacular form
      *
-     * @param Query $sqlexpr Query, optionally wrapped in a Monad
-     * @return ANSI_Query
+     * @param IQuery $sqlexpr Query, optionally wrapped in a Monad
+     * @return ANSI_DialectBase
      */
-    public function translate($sqlexpr) {
-        // Get rid of the monad wrapper
-        if ($sqlexpr instanceof Monad) {
-            $sqlexpr = $sqlexpr->unwrap();
-        }
+    public function translate(IQuery $sqlexpr) {
+        return $this->translateImpl($sqlexpr);
+    }
 
+
+    /**
+     * Recursive implementation function for {@link DialectTranslator::translate()}
+     *
+     * @param mixed $sqlexpr
+     * @param array $settings
+     * @return ANSI_DialectBase
+     */
+    protected function translateImpl($sqlexpr, $settings = null) {
         // Array?
         if (is_array($sqlexpr)) {
-            return array_map(array($this, 'translate'), $sqlexpr);
+            $items = array();
+            foreach ($sqlexpr as $key => $item) {
+                $items[$key] = $this->translateImpl($item, $settings);
+            }
+            return $items;
         }
 
         // Scalar?
@@ -86,21 +99,28 @@ class DialectTranslator {
             return $sqlexpr;
         }
 
+        // Find vernacular class
+        $cls = get_class($sqlexpr);
+        $cls = $this->getVernacularClassName($cls, $this->dialect);
+
+        // Get Settings
+        if (is_null($settings)) {
+            $settings = $cls::settings();
+        }
+
         // Convert object data into an array
         $data = array();
         foreach ((array)$sqlexpr as $key => $value) {
             if (is_object($value) || is_array($value)) {
-                $value = $this->translate($value);
+                $value = $this->translateImpl($value, $settings);
             }
 
             $key = trim($key, "\0* ");
             $data[$key] = $value;
         }
 
-        // Create a vernacular version of the orign object
-        $cls = get_class($sqlexpr);
-        $cls = $this->getVernacularClassName($cls, $this->dialect);
-        $vernacular = new $cls($data);
+        // Create a vernacular version of the origin object
+        $vernacular = new $cls($data, $settings);
 
         return $vernacular;
     }

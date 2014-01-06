@@ -33,14 +33,20 @@ class Update extends Query {
             $value = new Scalar($value);
         }
 
-        $this->values[$column] = $value;
+        $this->values[] = array($column, $value);
     }
 
 
     /**
-     * @see IQuery::getParameters
+     * Recursively get all scalar parameters used by this expression
+     *
+     * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
-        return $this->values;
+        $scalars = parent::getParameters();
+        foreach ($this->values as $value) {
+            $scalars[] = $value[1];
+        }
+        return $scalars;
     }
 }

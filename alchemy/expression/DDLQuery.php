@@ -21,7 +21,9 @@ abstract class DDLQuery implements IQuery {
 
 
     /**
-     * @see IQuery::getParameters()
+     * Recursively get all scalar parameters used by this expression
+     *
+     * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
         return array();

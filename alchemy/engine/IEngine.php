@@ -26,10 +26,10 @@ interface IEngine {
     /**
      * Compile and run a SQL expression on the database
      *
-     * @param Query|Monad Query to compile
+     * @param Query Query to compile
      * @return ResultSet
      */
-    public function query($query);
+    public function query(IQuery $query);
 
 
     /**

@@ -13,7 +13,10 @@ class Timestamp extends Column {
 
 
     /**
-     * @see Column::decode()
+     * Decode a value from the RDBMS into a PHP value
+     *
+     * @param mixed $value
+     * @return Datetime
      */
     public function decode($value) {
         return new Datetime($value);
@@ -21,7 +24,10 @@ class Timestamp extends Column {
 
 
     /**
-     * @see Column::encode()
+     * Encode a PHP value into something usable for the RDBMS.
+     *
+     * @param mixed $value
+     * @return Scalar
      */
     public function encode($value) {
         if (!($value instanceof Datetime)) {

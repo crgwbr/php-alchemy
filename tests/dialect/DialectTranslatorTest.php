@@ -3,19 +3,16 @@
 namespace Alchemy\tests;
 use Alchemy\dialect\DialectTranslator;
 use Alchemy\expression\Scalar;
-use Alchemy\expression\Operator;
-use Alchemy\expression\BinaryExpression;
+use Alchemy\expression\Select;
 
 
 class DialectTranslatorTest extends BaseTest {
 
     public function testTranslate() {
-        $left = new Scalar('hello');
-        $right = new Scalar('world');
-        $expr = new BinaryExpression($left, Operator::equal(), $right);
+        $query = Select::init()->column(new Scalar('hello'));
 
         $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($expr);
-        $this->assertEquals('? = ?', (string)$vern);
+        $vern = $translator->translate($query->unwrap());
+        $this->assertEquals('SELECT :p0', (string)$vern);
     }
 }

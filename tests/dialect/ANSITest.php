@@ -135,9 +135,9 @@ class ANSITest extends BaseTest {
 
 
     public function testScalar() {
-        $scalar = new ANSI_Scalar(array());
+        $scalar = new ANSI_Scalar(array('name' => 'p5'));
 
-        $this->assertEquals("?", (string)$scalar);
+        $this->assertEquals(":p5", (string)$scalar);
     }
 
 

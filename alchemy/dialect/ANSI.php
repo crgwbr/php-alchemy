@@ -9,6 +9,19 @@ use Exception;
  */
 abstract class ANSI_DialectBase {
     protected $data;
+    protected $settings;
+
+
+    /**
+     * Get an array of dialect specific settings
+     *
+     * @return array
+     */
+    public static function settings() {
+        return array(
+            'USE_TABLE_ALIASES' => true,
+        );
+    }
 
 
     /**
@@ -16,8 +29,9 @@ abstract class ANSI_DialectBase {
      *
      * @param array $data
      */
-    public function __construct(array $data) {
+    public function __construct(array $data, $settings = null) {
         $this->data = $data;
+        $this->settings = $settings ?: static::settings();
     }
 
 
@@ -49,7 +63,11 @@ abstract class ANSI_Column extends ANSI_DialectBase {
      * String Cast
      */
     public function __toString() {
-        return "{$this->tableAlias}.{$this->name}";
+        if ($this->settings['USE_TABLE_ALIASES']) {
+            return "{$this->tableAlias}.{$this->name}";
+        }
+
+        return $this->name;
     }
 
 
@@ -157,7 +175,9 @@ class ANSI_BinaryExpression extends ANSI_DialectBase {
 class ANSI_Bool extends ANSI_Column {
 
     /**
-     * @see ANSI_Column::definition()
+     * Column Definition for a create table statement
+     *
+     * @return string
      */
     public function definition() {
         $sql = "{$this->name} BOOL ";
@@ -317,7 +337,9 @@ class ANSI_Insert extends ANSI_Query {
 class ANSI_Integer extends ANSI_Column {
 
     /**
-     * @see ANSI_Column::definition()
+     * Column Definition for a create table statement
+     *
+     * @return string
      */
     public function definition() {
         $sql = "{$this->name} INT({$this->args[0]}) ";
@@ -367,7 +389,17 @@ class ANSI_Scalar extends ANSI_DialectBase {
      * String Cast
      */
     public function __toString() {
-        return '?';
+        return ":{$this->name}";
+    }
+
+
+    /**
+     * Make it possible to use a scalar as a selected column
+     *
+     * @return string
+     */
+    public function getSelectDeclaration() {
+        return (string)$this;
     }
 }
 
@@ -418,7 +450,7 @@ class ANSI_Select extends ANSI_Query {
      * Get SQL for FROM
      */
     protected function getFromSQL() {
-        return "FROM {$this->from}";
+        return $this->from ? "FROM {$this->from}" : "";
     }
 }
 
@@ -430,7 +462,9 @@ class ANSI_Select extends ANSI_Query {
 class ANSI_String extends ANSI_Column {
 
     /**
-     * @see ANSI_Column::definition()
+     * Column Definition for a create table statement
+     *
+     * @return string
      */
     public function definition() {
         $sql = "{$this->name} VARCHAR({$this->args[0]}) ";
@@ -450,7 +484,11 @@ class ANSI_Table extends ANSI_DialectBase {
      * Stirng Cast
      */
     public function __toString() {
-        return "{$this->name} {$this->alias}";
+        if ($this->settings['USE_TABLE_ALIASES']) {
+            return "{$this->name} {$this->alias}";
+        }
+
+        return $this->name;
     }
 
 
@@ -481,7 +519,9 @@ class ANSI_Table extends ANSI_DialectBase {
 class ANSI_Timestamp extends ANSI_Column {
 
     /**
-     * @see ANSI_Column::definition()
+     * Column Definition for a create table statement
+     *
+     * @return string
      */
     public function definition() {
         $sql = "{$this->name} TIMESTAMP ";
@@ -502,8 +542,9 @@ class ANSI_Update extends ANSI_Query {
      */
     public function __toString() {
         $sets = array();
-        foreach ($this->values as $column => $value) {
-            $sets = "{$column} = {$value}";
+        foreach ($this->values as $value) {
+            list($column, $scalar) = $value;
+            $sets[] = "{$column} = {$scalar}";
         }
 
         $sets = implode(", ", $sets);

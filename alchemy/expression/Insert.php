@@ -44,7 +44,9 @@ class Insert extends Query {
 
 
     /**
-     * @see Query::getParamters()
+     * Recursively get all scalar parameters used by this expression
+     *
+     * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
         $params = array();

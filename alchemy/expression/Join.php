@@ -6,7 +6,7 @@ namespace Alchemy\expression;
 /**
  * Represent a JOIN clause
  */
-class Join {
+class Join implements IQueryFragment {
     const LEFT = 'LEFT';
     const RIGHT = 'RIGHT';
     const FULL = 'FULL';

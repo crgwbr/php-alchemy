@@ -13,8 +13,12 @@ require_once "util/DataTypeLexer.php";
 require_once "util/Monad.php";
 require_once "util/Promise.php";
 
+// Interfaces
+require_once "expression/IQueryFragment.php";
+require_once "expression/IQueryValue.php";
+require_once "expression/IQuery.php";
+
 // Basic expressions
-require_once "expression/Value.php";
 require_once "expression/Scalar.php";
 require_once "expression/Operator.php";
 
@@ -38,7 +42,6 @@ require_once "expression/Bool.php";
 require_once "expression/Join.php";
 
 // Queries
-require_once "expression/IQuery.php";
 require_once "expression/Query.php";
 require_once "expression/Select.php";
 require_once "expression/Insert.php";

@@ -1,1 +1,1 @@
-INSERT INTO users (UserName, Email) VALUES (?, ?)
+INSERT INTO users (UserName, Email) VALUES (:p0, :p1)

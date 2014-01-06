@@ -39,10 +39,12 @@ class CompoundExpression extends Expression {
 
 
     /**
-     * @see Expression::getParameters()
+     * Recursively get all scalar parameters used by this expression
+     *
+     * @return array array(Scalar, Scalar, ...)
      */
     public function getParameters() {
-        $params = array();
+        $params = parent::getParameters();
 
         foreach ($this->components as $expr) {
             if (is_callable(array($expr, 'getParameters'))) {

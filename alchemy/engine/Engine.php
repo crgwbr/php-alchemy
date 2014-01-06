@@ -37,17 +37,20 @@ class Engine implements IEngine {
 
 
     /**
-     * @see IEngine::beginTransaction()
+     * Start an atomic transaction on the database. These should
+     * generally not be held open very long in order to prevent
+     * deadlocks
      */
     public function beginTransaction() {
         if (!$this->pendingTransaction) {
             $this->connector->beginTransaction();
+            $this->pendingTransaction = true;
         }
     }
 
 
     /**
-     * @see IEngine::commitTransaction()
+     * Commit a transaction as complete
      */
     public function commitTransaction() {
         if ($this->pendingTransaction) {
@@ -76,9 +79,12 @@ class Engine implements IEngine {
 
 
     /**
-     * @see IEngine::query()
+     * Compile and run a SQL expression on the database
+     *
+     * @param IQuery Query to compile
+     * @return ResultSet
      */
-    public function query($query) {
+    public function query(IQuery $query) {
         $sql = (string)$this->dialect->translate($query);
         $params = $query->getParameters();
         return $this->execute($sql, $params);
@@ -86,14 +92,18 @@ class Engine implements IEngine {
 
 
     /**
-     * @see IEngine::execute()
+     * Execute raw SQL on the database connection
+     *
+     * @param string $sql Statement string
+     * @param array $params Params to bind to statement
+     * @return ResultSet
      */
     public function execute($sql, $params = array()) {
         $this->echoQuery($sql);
         $statement = $this->connector->prepare($sql);
 
-        foreach ($params as $i => $param) {
-            $statement->bindValue($i + 1, $param->getValue(), $param->getDataType());
+        foreach ($params as $param) {
+            $statement->bindValue($param->getName(), $param->getValue(), $param->getDataType());
         }
 
         $statement->execute();
@@ -102,7 +112,7 @@ class Engine implements IEngine {
 
 
     /**
-     * @see IEngine::rollbackTransaction()
+     * Revert a pending transaction on the database
      */
     public function rollbackTransaction() {
         if ($this->pendingTransaction) {

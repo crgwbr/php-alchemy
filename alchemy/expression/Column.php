@@ -6,7 +6,7 @@ namespace Alchemy\expression;
 /**
  * Abstract base class for representing a column in SQL
  */
-abstract class Column extends Value {
+abstract class Column implements IQueryValue {
     protected static $default_args = array();
     protected static $default_kwargs = array(
         'default' => null,
@@ -62,14 +62,14 @@ abstract class Column extends Value {
 
     /**
      * Build and return a BinaryExpression by comparing this
-     * column to another Value
+     * column to another IQueryValue
      *
      * @param $name Operator Name: and, or
-     * @param $args array([0] => Value, ...) Value to compare to
+     * @param $args array([0] => IQueryValue, ...) IQueryValue to compare to
      */
     public function __call($name, $args) {
         $value = $args[0];
-        if (!$value instanceof Value) {
+        if (!$value instanceof IQueryValue) {
             $value = new Scalar($value);
         }
 

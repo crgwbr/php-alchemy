@@ -4,8 +4,10 @@ namespace Alchemy\orm;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
 use Alchemy\expression\Insert;
+use Alchemy\expression\Update;
 use Alchemy\expression\CompoundExpression;
 use Alchemy\util\Promise;
+use Alchemy\util\Monad;
 
 
 /**
@@ -24,7 +26,11 @@ class WorkQueue {
     public function flush(IEngine $engine) {
         while ($item = array_shift($this->queue)) {
             list($query, $promise) = $item;
-            $r = $engine->query($query);
+            try {
+                $r = $engine->query($query);
+            } catch (\Exception $e) {
+                throw $e;
+            }
             $promise->resolve($r);
         }
     }
@@ -59,12 +65,12 @@ class WorkQueue {
     /**
      * Push a query onto the end of the queue
      *
-     * @param Query|Monad Query to push
+     * @param Monad Query to push
      * @return Promise resolved when query is actual run
      */
-    protected function push($query) {
+    protected function push(Monad $query) {
         $promise = new Promise();
-        $this->queue[] = array($query, $promise);
+        $this->queue[] = array($query->unwrap(), $promise);
         return $promise;
     }
 
@@ -74,7 +80,7 @@ class WorkQueue {
      * record of properties to update, and an array keys
      *
      * @param string $cls Class name of DataMapper subclass
-     * @param array $pk array(ColumnName => Value) UPDATE Filters
+     * @param array $pk array(ColumnName => IQueryValue) UPDATE Filters
      * @param array $data Array of properties to send in the INSERT
      * @return Promise resolved when INSERT is actual run
      */

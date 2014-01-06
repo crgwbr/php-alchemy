@@ -9,7 +9,10 @@ namespace Alchemy\expression;
 class Bool extends Column {
 
     /**
-     * @see Column::decode()
+     * Decode a value from the RDBMS into a PHP value
+     *
+     * @param mixed $value
+     * @return bool
      */
     public function decode($value) {
         return (bool)$value;
@@ -17,7 +20,10 @@ class Bool extends Column {
 
 
     /**
-     * @see Column::encode()
+     * Encode a PHP value into something usable for the RDBMS.
+     *
+     * @param mixed $value
+     * @return Scalar
      */
     public function encode($value) {
         return new Scalar((bool)$value, Scalar::T_BOOL);

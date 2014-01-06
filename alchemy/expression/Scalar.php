@@ -7,14 +7,17 @@ use PDO;
 /**
  * Represent a Scalar value in SQL
  */
-class Scalar extends Value {
+class Scalar implements IQueryValue {
     const T_BOOL = PDO::PARAM_BOOL;
     const T_NULL = PDO::PARAM_NULL;
     const T_INT = PDO::PARAM_INT;
     const T_STR = PDO::PARAM_STR;
 
+    protected static $scalarCounter = 0;
+
     protected $dataType;
     protected $value;
+    protected $name;
 
 
     /**
@@ -24,6 +27,7 @@ class Scalar extends Value {
      * @param mixed $dataType Optional. Type will be inferred if not provided
      */
     public function __construct($value, $dataType = null) {
+        $this->name = "p" . self::$scalarCounter++;
         $this->value = $value;
         $this->dataType = $dataType ?: $this->inferDataType($value);
     }
@@ -36,6 +40,16 @@ class Scalar extends Value {
      */
     public function getDataType() {
         return $this->dataType;
+    }
+
+
+    /**
+     * Return the name of this parameter
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
     }
 
 

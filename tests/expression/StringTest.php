@@ -13,6 +13,6 @@ class StringTest extends BaseTest {
 
         $this->assertEquals('42', $col->decode(42));
         $this->assertEquals('hello', $col->decode('hello'));
-        $this->assertEquals(new Scalar('hello'), $col->encode('hello'));
+        $this->assertEquals('hello', $col->encode('hello')->getValue());
     }
 }

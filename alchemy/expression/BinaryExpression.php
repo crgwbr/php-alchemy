@@ -15,11 +15,11 @@ class BinaryExpression extends Expression {
     /**
      * Object Constructor.
      *
-     * @param Value $left
+     * @param IQueryValue $left
      * @param Operator $operator
-     * @param Value $right
+     * @param IQueryValue $right
      */
-    public function __construct(Value $left, Operator $operator, Value $right) {
+    public function __construct(IQueryValue $left, Operator $operator, IQueryValue $right) {
         $this->left = &$left;
         $this->operator = &$operator;
         $this->right = &$right;

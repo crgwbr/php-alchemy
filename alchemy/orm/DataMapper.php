@@ -155,7 +155,7 @@ abstract class DataMapper {
      * Set the Session and Session pointer for this object
      *
      * @param Session $session Session which owns this object
-     * @param integer|string $sessionID Pointer to data record in $session
+     * @param string $sessionID Pointer to data record in $session
      */
     public function setSession(Session $session, $sessionID) {
         $this->session = $session;

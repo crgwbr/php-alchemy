@@ -15,19 +15,22 @@ class InclusiveExpression extends Expression {
     /**
      * Object constructor. Tests if $left is in $in
      *
-     * @param Value $left
+     * @param IQueryValue $left
      * @param array $in
      */
-    public function __construct(Value $left, array $in) {
+    public function __construct(IQueryValue $left, array $in) {
         $this->left = &$left;
 
-        foreach ($in as &$scalar) {
-            if (!($scalar instanceof Scalar)) {
-                throw new Exception("InclusiveExpression arguments must be instance of Scalar");
+        foreach ($in as &$value) {
+            if (!($value instanceof IQueryValue)) {
+                throw new Exception("InclusiveExpression arguments must implement IQueryValue");
             }
 
-            $this->in[] = &$scalar;
-            $this->scalars[] = &$scalar;
+            if ($value instanceof Scalar) {
+                $this->scalars[] = &$value;
+            }
+
+            $this->in[] = &$value;
         }
     }
 }

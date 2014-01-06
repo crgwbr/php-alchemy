@@ -19,7 +19,7 @@ class ANSIInsertTest extends BaseTest {
                                ->row("user1", "user1@example.com");
 
         $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query);
+        $vern = $translator->translate($query->unwrap());
 
         $this->assertExpectedString('ANSIInsertTest-1.sql', (string)$vern);
     }

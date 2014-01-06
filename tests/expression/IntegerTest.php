@@ -13,7 +13,7 @@ class IntegerTest extends BaseTest {
         $this->assertEquals(53, $col->decode('53'));
         $this->assertEquals(101, $col->decode('101'));
 
-        $this->assertEquals(new Scalar(56), $col->encode(56));
-        $this->assertEquals(new Scalar(200), $col->encode(200));
+        $this->assertEquals(56, $col->encode(56)->getValue());
+        $this->assertEquals(200, $col->encode(200)->getValue());
     }
 }
