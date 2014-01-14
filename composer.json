@@ -1,0 +1,6 @@
+{
+    "name": "crgwbr/php-alchemy",
+    "autoload": {
+        "classmap": ["alchemy"]
+    }
+}
