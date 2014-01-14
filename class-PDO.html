@@ -7,7 +7,7 @@
 	<title>Class PDO</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,9 +33,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li class="active"><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -58,6 +60,10 @@
 			</ul>
 
 
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Exception.html">Exception</a></li>
+			</ul>
 
 
 		</div>
@@ -161,7 +167,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_prepare">#</a>
-		<code><a href="http://php.net/manual/pdo.prepare.php" title="Go to PHP documentation">prepare</a>( <span>mixed <var>$statment</var></span>, <span>mixed <var>$options</var></span> )</code>
+		<code><a href="http://php.net/manual/pdo.prepare.php" title="Go to PHP documentation">prepare</a>( <span>mixed <var>$statement</var></span>, <span>mixed <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -2254,126 +2260,6 @@
 		<td class="value"><code><span class="php-num">1011</span></code></td>
 		<td class="description"><div>
 			<a href="#MYSQL_ATTR_SSL_CIPHER" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT" id="PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name"><code>
-				<a href="http://php.net/manual/class.pdo.php#pdo.constants.pgsql-attr-disable-native-prepared-statement" title="Go to PHP documentation"><b>PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-num">1000</span></code></td>
-		<td class="description"><div>
-			<a href="#PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="PGSQL_TRANSACTION_IDLE" id="PGSQL_TRANSACTION_IDLE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name"><code>
-				<a href="http://php.net/manual/class.pdo.php#pdo.constants.pgsql-transaction-idle" title="Go to PHP documentation"><b>PGSQL_TRANSACTION_IDLE</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-num">0</span></code></td>
-		<td class="description"><div>
-			<a href="#PGSQL_TRANSACTION_IDLE" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="PGSQL_TRANSACTION_ACTIVE" id="PGSQL_TRANSACTION_ACTIVE">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name"><code>
-				<a href="http://php.net/manual/class.pdo.php#pdo.constants.pgsql-transaction-active" title="Go to PHP documentation"><b>PGSQL_TRANSACTION_ACTIVE</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-num">1</span></code></td>
-		<td class="description"><div>
-			<a href="#PGSQL_TRANSACTION_ACTIVE" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="PGSQL_TRANSACTION_INTRANS" id="PGSQL_TRANSACTION_INTRANS">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name"><code>
-				<a href="http://php.net/manual/class.pdo.php#pdo.constants.pgsql-transaction-intrans" title="Go to PHP documentation"><b>PGSQL_TRANSACTION_INTRANS</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-num">2</span></code></td>
-		<td class="description"><div>
-			<a href="#PGSQL_TRANSACTION_INTRANS" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="PGSQL_TRANSACTION_INERROR" id="PGSQL_TRANSACTION_INERROR">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name"><code>
-				<a href="http://php.net/manual/class.pdo.php#pdo.constants.pgsql-transaction-inerror" title="Go to PHP documentation"><b>PGSQL_TRANSACTION_INERROR</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-num">3</span></code></td>
-		<td class="description"><div>
-			<a href="#PGSQL_TRANSACTION_INERROR" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="PGSQL_TRANSACTION_UNKNOWN" id="PGSQL_TRANSACTION_UNKNOWN">
-
-		<td class="attributes"><code>integer</code></td>
-		<td class="name"><code>
-				<a href="http://php.net/manual/class.pdo.php#pdo.constants.pgsql-transaction-unknown" title="Go to PHP documentation"><b>PGSQL_TRANSACTION_UNKNOWN</b></a>
-		</code></td>
-		<td class="value"><code><span class="php-num">4</span></code></td>
-		<td class="description"><div>
-			<a href="#PGSQL_TRANSACTION_UNKNOWN" class="anchor">#</a>
 
 			<div class="description short">
 				

@@ -8,7 +8,7 @@
 	<title>File tests/dialect/ANSIDeleteTest.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -34,9 +34,11 @@
 						</li>
 				<li class="active"><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -48,25 +50,29 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Alchemy.tests.ANSICompilerTest.html">ANSICompilerTest</a></li>
 				<li class="active"><a href="class-Alchemy.tests.ANSIDeleteTest.html">ANSIDeleteTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSIInsertTest.html">ANSIInsertTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSISelectTest.html">ANSISelectTest</a></li>
-				<li><a href="class-Alchemy.tests.ANSITest.html">ANSITest</a></li>
 				<li><a href="class-Alchemy.tests.ANSIUpdateTest.html">ANSIUpdateTest</a></li>
 				<li><a href="class-Alchemy.tests.BaseTest.html">BaseTest</a></li>
 				<li><a href="class-Alchemy.tests.BinaryExpressionTest.html">BinaryExpressionTest</a></li>
 				<li><a href="class-Alchemy.tests.BoolTest.html">BoolTest</a></li>
 				<li><a href="class-Alchemy.tests.DataTypeLexerTest.html">DataTypeLexerTest</a></li>
-				<li><a href="class-Alchemy.tests.DialectTranslatorTest.html">DialectTranslatorTest</a></li>
+				<li><a href="class-Alchemy.tests.DecimalTest.html">DecimalTest</a></li>
 				<li><a href="class-Alchemy.tests.InsertTest.html">InsertTest</a></li>
 				<li><a href="class-Alchemy.tests.IntegerTest.html">IntegerTest</a></li>
 				<li><a href="class-Alchemy.tests.Language.html">Language</a></li>
 				<li><a href="class-Alchemy.tests.MapperTest.html">MapperTest</a></li>
+				<li><a href="class-Alchemy.tests.PromiseTest.html">PromiseTest</a></li>
 				<li><a href="class-Alchemy.tests.ScalarTest.html">ScalarTest</a></li>
 				<li><a href="class-Alchemy.tests.SelectTest.html">SelectTest</a></li>
 				<li><a href="class-Alchemy.tests.SessionIntegrationTest.html">SessionIntegrationTest</a></li>
+				<li><a href="class-Alchemy.tests.SignalTest.html">SignalTest</a></li>
 				<li><a href="class-Alchemy.tests.StringTest.html">StringTest</a></li>
 				<li><a href="class-Alchemy.tests.TimestampTest.html">TimestampTest</a></li>
+				<li><a href="class-Alchemy.tests.UploadedFile.html">UploadedFile</a></li>
+				<li><a href="class-Alchemy.tests.WaitableTest.html">WaitableTest</a></li>
 			</ul>
 
 
@@ -114,7 +120,7 @@
 </span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-keyword1">namespace</span> Alchemy\tests;
 </span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-keyword1">use</span> Alchemy\expression\Table;
 </span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-keyword1">use</span> Alchemy\expression\<span class="php-keyword2">Delete</span>;
-</span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-keyword1">use</span> Alchemy\dialect\DialectTranslator;
+</span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-keyword1">use</span> Alchemy\dialect\ANSICompiler;
 </span><span id="7" class="l"><a class="l" href="#7"> 7: </a>
 </span><span id="8" class="l"><a class="l" href="#8"> 8: </a>
 </span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <a id="ANSIDeleteTest" href="#ANSIDeleteTest">ANSIDeleteTest</a> <span class="php-keyword1">extends</span> BaseTest {
@@ -128,10 +134,10 @@
 </span><span id="17" class="l"><a class="l" href="#17">17: </a>        <span class="php-var">$query</span> = <span class="php-keyword2">Delete</span>::init()-&gt;from(<span class="php-var">$users</span>)
 </span><span id="18" class="l"><a class="l" href="#18">18: </a>                               -&gt;where(<span class="php-var">$users</span>-&gt;Email-&gt;equal(<span class="php-quote">&quot;user@example.com&quot;</span>));
 </span><span id="19" class="l"><a class="l" href="#19">19: </a>
-</span><span id="20" class="l"><a class="l" href="#20">20: </a>        <span class="php-var">$translator</span> = <span class="php-keyword1">new</span> DialectTranslator(<span class="php-quote">'ANSI'</span>);
-</span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-var">$vern</span> = <span class="php-var">$translator</span>-&gt;translate(<span class="php-var">$query</span>-&gt;unwrap());
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>        <span class="php-var">$ansi</span> = <span class="php-keyword1">new</span> ANSICompiler();
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-var">$vern</span> = <span class="php-var">$ansi</span>-&gt;compile(<span class="php-var">$query</span>-&gt;unwrap(), <span class="php-keyword1">array</span>(<span class="php-quote">'alias_tables'</span> =&gt; <span class="php-keyword1">true</span>));
 </span><span id="22" class="l"><a class="l" href="#22">22: </a>
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSIDeleteTest-1.sql'</span>, (string)<span class="php-var">$vern</span>);
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-var">$this</span>-&gt;assertExpectedString(<span class="php-quote">'ANSIDeleteTest-1.sql'</span>, <span class="php-var">$vern</span>);
 </span><span id="24" class="l"><a class="l" href="#24">24: </a>    }
 </span><span id="25" class="l"><a class="l" href="#25">25: </a>}
 </span><span id="26" class="l"><a class="l" href="#26">26: </a></span></code></pre>

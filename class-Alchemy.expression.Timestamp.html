@@ -7,7 +7,7 @@
 	<title>Class Alchemy\expression\Timestamp</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,9 +33,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -47,27 +49,42 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Alchemy.expression.BigInt.html">BigInt</a></li>
+				<li><a href="class-Alchemy.expression.Binary.html">Binary</a></li>
 				<li><a href="class-Alchemy.expression.BinaryExpression.html">BinaryExpression</a></li>
+				<li><a href="class-Alchemy.expression.Blob.html">Blob</a></li>
 				<li><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
+				<li><a href="class-Alchemy.expression.Char.html">Char</a></li>
 				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
 				<li><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
 				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Date.html">Date</a></li>
+				<li><a href="class-Alchemy.expression.Datetime.html">Datetime</a></li>
 				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
+				<li><a href="class-Alchemy.expression.Decimal.html">Decimal</a></li>
 				<li><a href="class-Alchemy.expression.Delete.html">Delete</a></li>
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
+				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
+				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
 				<li><a href="class-Alchemy.expression.Integer.html">Integer</a></li>
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
+				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
+				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
+				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
+				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li class="active"><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
+				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
+				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -137,6 +154,13 @@
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Alchemy.expression.Datetime.html"><span>Alchemy\expression\Datetime</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Alchemy\expression\Timestamp</span></b>			
 			
 			
@@ -156,107 +180,34 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Timestamp.html#7-40" title="Go to source code">alchemy/expression/Timestamp.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Timestamp.html#6-9" title="Go to source code">alchemy/expression/Timestamp.php</a><br />
 	</div>
 
 
 
-	<table class="summary" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="decode" id="_decode">
 
-		<td class="attributes"><code>
-			 public 
-			Datetime
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_decode">#</a>
-		<code><a href="source-class-Alchemy.expression.Timestamp.html#15-23" title="Go to source code">decode</a>( <span>mixed <var>$value</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Decode a value from the RDBMS into a PHP value</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Decode a value from the RDBMS into a PHP value</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>Datetime</code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="encode" id="_encode">
-
-		<td class="attributes"><code>
-			 public 
-			<code><a href="class-Alchemy.expression.Scalar.html">Alchemy\expression\Scalar</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_encode">#</a>
-		<code><a href="source-class-Alchemy.expression.Timestamp.html#26-39" title="Go to source code">encode</a>( <span>mixed <var>$value</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Encode a PHP value into something usable for the RDBMS.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Encode a PHP value into something usable for the RDBMS.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$value</var></dt>
-					<dd><code>mixed</code><br>$value</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><code><a href="class-Alchemy.expression.Scalar.html">Alchemy\expression\Scalar</a></code></code><br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.expression.Datetime.html#methods">Alchemy\expression\Datetime</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.expression.Datetime.html#_decode">decode()</a>, 
+			<a href="class-Alchemy.expression.Datetime.html#_encode">encode()</a>
+		</code></td>
 	</tr>
 	</table>
-
 	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-Alchemy.expression.Column.html#methods">Alchemy\expression\Column</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.expression.Column.html#___call">__call()</a>, 
 			<a href="class-Alchemy.expression.Column.html#___construct">__construct()</a>, 
-			<a href="class-Alchemy.expression.Column.html#_get_default_kwargs">get_default_kwargs()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_assign">assign()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_getAlias">getAlias()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_getName">getName()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_getTable">getTable()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_get_default_args">get_default_args()</a>, 
 			<a href="class-Alchemy.expression.Column.html#_hasIndex">hasIndex()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_isNotNull">isNotNull()</a>, 
 			<a href="class-Alchemy.expression.Column.html#_isPrimaryKey">isPrimaryKey()</a>, 
 			<a href="class-Alchemy.expression.Column.html#_isUnique">isUnique()</a>
 		</code></td>
@@ -273,65 +224,23 @@
 
 
 
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="default_args" id="$default_args">
-		<td class="attributes"><code>
-			protected static 
-			array
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.expression.Datetime.html#properties">Alchemy\expression\Datetime</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.expression.Datetime.html#$default_args"><var>$default_args</var></a>
 		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.expression.Timestamp.html#11" title="Go to source code"><var>$default_args</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$default_args" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="default_kwargs" id="$default_kwargs">
-		<td class="attributes"><code>
-			protected static 
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.expression.Timestamp.html#12" title="Go to source code"><var>$default_kwargs</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$default_kwargs" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
 	</tr>
 	</table>
-
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-Alchemy.expression.Column.html#properties">Alchemy\expression\Column</a></caption>
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.expression.Column.html#$alias"><var>$alias</var></a>, 
 			<a href="class-Alchemy.expression.Column.html#$args"><var>$args</var></a>, 
-			<a href="class-Alchemy.expression.Column.html#$kwargs"><var>$kwargs</var></a>, 
 			<a href="class-Alchemy.expression.Column.html#$name"><var>$name</var></a>, 
-			<a href="class-Alchemy.expression.Column.html#$tableAlias"><var>$tableAlias</var></a>
+			<a href="class-Alchemy.expression.Column.html#$table"><var>$table</var></a>
 		</code></td>
 	</tr>
 	</table>

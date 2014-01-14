@@ -7,7 +7,7 @@
 	<title>Class Alchemy\expression\Join</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,9 +33,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -47,27 +49,42 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Alchemy.expression.BigInt.html">BigInt</a></li>
+				<li><a href="class-Alchemy.expression.Binary.html">Binary</a></li>
 				<li><a href="class-Alchemy.expression.BinaryExpression.html">BinaryExpression</a></li>
+				<li><a href="class-Alchemy.expression.Blob.html">Blob</a></li>
 				<li><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
+				<li><a href="class-Alchemy.expression.Char.html">Char</a></li>
 				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
 				<li><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
 				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Date.html">Date</a></li>
+				<li><a href="class-Alchemy.expression.Datetime.html">Datetime</a></li>
 				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
+				<li><a href="class-Alchemy.expression.Decimal.html">Decimal</a></li>
 				<li><a href="class-Alchemy.expression.Delete.html">Delete</a></li>
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
+				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
+				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
 				<li><a href="class-Alchemy.expression.Integer.html">Integer</a></li>
 				<li class="active"><a href="class-Alchemy.expression.Join.html">Join</a></li>
+				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
+				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
+				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
+				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
+				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
+				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -149,7 +166,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Join.html#6-47" title="Go to source code">alchemy/expression/Join.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Join.html#6-79" title="Go to source code">alchemy/expression/Join.php</a><br />
 	</div>
 
 
@@ -200,6 +217,72 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getDirection" id="_getDirection">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDirection">#</a>
+		<code><a href="source-class-Alchemy.expression.Join.html#38-43" title="Go to source code">getDirection</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getOn" id="_getOn">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getOn">#</a>
+		<code><a href="source-class-Alchemy.expression.Join.html#46-51" title="Go to source code">getOn</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getParameters" id="_getParameters">
 
 		<td class="attributes"><code>
@@ -211,7 +294,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-Alchemy.expression.Join.html#38-46" title="Go to source code">getParameters</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Join.html#54-62" title="Go to source code">getParameters</a>( )</code>
 
 		<div class="description short">
 			
@@ -238,6 +321,72 @@ they are used in the expression</p>
 
 				<h4>Implementation of</h4>
 				<div class="list"><code><a href="class-Alchemy.expression.IQueryFragment.html#_getParameters">Alchemy\expression\IQueryFragment::getParameters()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTable" id="_getTable">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTable">#</a>
+		<code><a href="source-class-Alchemy.expression.Join.html#65-70" title="Go to source code">getTable</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getType" id="_getType">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getType">#</a>
+		<code><a href="source-class-Alchemy.expression.Join.html#73-78" title="Go to source code">getType</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
 		</div>
 		</div></td>
 	</tr>

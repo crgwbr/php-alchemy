@@ -8,7 +8,7 @@
 	<title>File alchemy/expression/CompoundExpression.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -34,9 +34,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -48,27 +50,42 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Alchemy.expression.BigInt.html">BigInt</a></li>
+				<li><a href="class-Alchemy.expression.Binary.html">Binary</a></li>
 				<li><a href="class-Alchemy.expression.BinaryExpression.html">BinaryExpression</a></li>
+				<li><a href="class-Alchemy.expression.Blob.html">Blob</a></li>
 				<li><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
+				<li><a href="class-Alchemy.expression.Char.html">Char</a></li>
 				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
 				<li class="active"><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
 				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Date.html">Date</a></li>
+				<li><a href="class-Alchemy.expression.Datetime.html">Datetime</a></li>
 				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
+				<li><a href="class-Alchemy.expression.Decimal.html">Decimal</a></li>
 				<li><a href="class-Alchemy.expression.Delete.html">Delete</a></li>
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
+				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
+				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
 				<li><a href="class-Alchemy.expression.Integer.html">Integer</a></li>
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
+				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
+				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
+				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
+				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
+				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
+				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -128,54 +145,52 @@
 </span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> * Represent a SQL compound expression
 </span></span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-comment"> */</span>
 </span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-keyword1">class</span> <a id="CompoundExpression" href="#CompoundExpression">CompoundExpression</a> <span class="php-keyword1">extends</span> Expression {
-</span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$components" href="#$components">$components</a></span> = <span class="php-keyword1">array</span>();
-</span><span id="12" class="l"><a class="l" href="#12">12: </a>
-</span><span id="13" class="l"><a class="l" href="#13">13: </a>
-</span><span id="14" class="l"><a class="l" href="#14">14: </a>    <span class="php-comment">/**
-</span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     * Object constructor
-</span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     *
-</span></span><span id="17" class="l"><a class="l" href="#17">17: </a><span class="php-comment">     * @param Expression $expr Base child expression
-</span></span><span id="18" class="l"><a class="l" href="#18">18: </a><span class="php-comment">     */</span>
-</span><span id="19" class="l"><a class="l" href="#19">19: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(Expression <span class="php-var">$expr</span>) {
-</span><span id="20" class="l"><a class="l" href="#20">20: </a>        <span class="php-var">$this</span>-&gt;components[] = <span class="php-var">$expr</span>;
-</span><span id="21" class="l"><a class="l" href="#21">21: </a>    }
-</span><span id="22" class="l"><a class="l" href="#22">22: </a>
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>
-</span><span id="24" class="l"><a class="l" href="#24">24: </a>    <span class="php-comment">/**
-</span></span><span id="25" class="l"><a class="l" href="#25">25: </a><span class="php-comment">     * Add to the expression using either AND or OR conjoiners
-</span></span><span id="26" class="l"><a class="l" href="#26">26: </a><span class="php-comment">     *
-</span></span><span id="27" class="l"><a class="l" href="#27">27: </a><span class="php-comment">     * @param string $name &quot;and&quot; or &quot;or&quot;
-</span></span><span id="28" class="l"><a class="l" href="#28">28: </a><span class="php-comment">     * @param array $args array([0] =&gt; Expression)
-</span></span><span id="29" class="l"><a class="l" href="#29">29: </a><span class="php-comment">     */</span>
-</span><span id="30" class="l"><a class="l" href="#30">30: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___call" href="#___call">__call</a>(<span class="php-var">$name</span>, <span class="php-var">$args</span>) {
-</span><span id="31" class="l"><a class="l" href="#31">31: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">in_array</span>(<span class="php-var">$name</span>, self::<span class="php-var">$conjoin_types</span>)) {
-</span><span id="32" class="l"><a class="l" href="#32">32: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Exception(<span class="php-quote">&quot;Bad method called&quot;</span>);
-</span><span id="33" class="l"><a class="l" href="#33">33: </a>        }
-</span><span id="34" class="l"><a class="l" href="#34">34: </a>
-</span><span id="35" class="l"><a class="l" href="#35">35: </a>        <span class="php-var">$this</span>-&gt;components[] = Operator::<span class="php-var">$name</span>();
-</span><span id="36" class="l"><a class="l" href="#36">36: </a>        <span class="php-var">$this</span>-&gt;components[] = <span class="php-var">$args</span>[<span class="php-num">0</span>];
-</span><span id="37" class="l"><a class="l" href="#37">37: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>    }
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>    <span class="php-comment">/**
-</span></span><span id="42" class="l"><a class="l" href="#42">42: </a><span class="php-comment">     * Recursively get all scalar parameters used by this expression
-</span></span><span id="43" class="l"><a class="l" href="#43">43: </a><span class="php-comment">     *
-</span></span><span id="44" class="l"><a class="l" href="#44">44: </a><span class="php-comment">     * @return array array(Scalar, Scalar, ...)
-</span></span><span id="45" class="l"><a class="l" href="#45">45: </a><span class="php-comment">     */</span>
-</span><span id="46" class="l"><a class="l" href="#46">46: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getParameters" href="#_getParameters">getParameters</a>() {
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-var">$params</span> = parent::getParameters();
-</span><span id="48" class="l"><a class="l" href="#48">48: </a>
-</span><span id="49" class="l"><a class="l" href="#49">49: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;components <span class="php-keyword1">as</span> <span class="php-var">$expr</span>) {
-</span><span id="50" class="l"><a class="l" href="#50">50: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">is_callable</span>(<span class="php-keyword1">array</span>(<span class="php-var">$expr</span>, <span class="php-quote">'getParameters'</span>))) {
-</span><span id="51" class="l"><a class="l" href="#51">51: </a>                <span class="php-var">$params</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$params</span>, <span class="php-var">$expr</span>-&gt;getParameters());
-</span><span id="52" class="l"><a class="l" href="#52">52: </a>            }
-</span><span id="53" class="l"><a class="l" href="#53">53: </a>        }
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>
-</span><span id="55" class="l"><a class="l" href="#55">55: </a>        <span class="php-keyword1">return</span> <span class="php-var">$params</span>;
-</span><span id="56" class="l"><a class="l" href="#56">56: </a>    }
-</span><span id="57" class="l"><a class="l" href="#57">57: </a>}
-</span><span id="58" class="l"><a class="l" href="#58">58: </a></span></code></pre>
+</span><span id="11" class="l"><a class="l" href="#11">11: </a>
+</span><span id="12" class="l"><a class="l" href="#12">12: </a>    <span class="php-comment">/**
+</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     * Object constructor
+</span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     *
+</span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     * @param Expression $expr Base child expression
+</span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     */</span>
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(Expression <span class="php-var">$expr</span>) {
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>        <span class="php-var">$this</span>-&gt;elements[] = <span class="php-var">$expr</span>;
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>    }
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>    <span class="php-comment">/**
+</span></span><span id="23" class="l"><a class="l" href="#23">23: </a><span class="php-comment">     * Add to the expression using either AND or OR conjoiners
+</span></span><span id="24" class="l"><a class="l" href="#24">24: </a><span class="php-comment">     *
+</span></span><span id="25" class="l"><a class="l" href="#25">25: </a><span class="php-comment">     * @param string $name &quot;and&quot; or &quot;or&quot;
+</span></span><span id="26" class="l"><a class="l" href="#26">26: </a><span class="php-comment">     * @param array $args array([0] =&gt; Expression)
+</span></span><span id="27" class="l"><a class="l" href="#27">27: </a><span class="php-comment">     */</span>
+</span><span id="28" class="l"><a class="l" href="#28">28: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___call" href="#___call">__call</a>(<span class="php-var">$name</span>, <span class="php-var">$args</span>) {
+</span><span id="29" class="l"><a class="l" href="#29">29: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword2">in_array</span>(<span class="php-var">$name</span>, self::<span class="php-var">$conjoin_types</span>)) {
+</span><span id="30" class="l"><a class="l" href="#30">30: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Exception(<span class="php-quote">&quot;Bad method called&quot;</span>);
+</span><span id="31" class="l"><a class="l" href="#31">31: </a>        }
+</span><span id="32" class="l"><a class="l" href="#32">32: </a>
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>        <span class="php-var">$this</span>-&gt;elements[] = Operator::<span class="php-var">$name</span>();
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>        <span class="php-var">$this</span>-&gt;elements[] = <span class="php-var">$args</span>[<span class="php-num">0</span>];
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>    }
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>    <span class="php-comment">/**
+</span></span><span id="40" class="l"><a class="l" href="#40">40: </a><span class="php-comment">     * Recursively get all scalar parameters used by this expression
+</span></span><span id="41" class="l"><a class="l" href="#41">41: </a><span class="php-comment">     *
+</span></span><span id="42" class="l"><a class="l" href="#42">42: </a><span class="php-comment">     * @return array array(Scalar, Scalar, ...)
+</span></span><span id="43" class="l"><a class="l" href="#43">43: </a><span class="php-comment">     */</span>
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getParameters" href="#_getParameters">getParameters</a>() {
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>        <span class="php-var">$params</span> = parent::getParameters();
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$this</span>-&gt;elements <span class="php-keyword1">as</span> <span class="php-var">$expr</span>) {
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">is_callable</span>(<span class="php-keyword1">array</span>(<span class="php-var">$expr</span>, <span class="php-quote">'getParameters'</span>))) {
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>                <span class="php-var">$params</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$params</span>, <span class="php-var">$expr</span>-&gt;getParameters());
+</span><span id="50" class="l"><a class="l" href="#50">50: </a>            }
+</span><span id="51" class="l"><a class="l" href="#51">51: </a>        }
+</span><span id="52" class="l"><a class="l" href="#52">52: </a>
+</span><span id="53" class="l"><a class="l" href="#53">53: </a>        <span class="php-keyword1">return</span> <span class="php-var">$params</span>;
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>    }
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>}
+</span><span id="56" class="l"><a class="l" href="#56">56: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

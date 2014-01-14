@@ -7,7 +7,7 @@
 	<title>Class Alchemy\expression\InclusiveExpression</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,9 +33,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -47,27 +49,42 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Alchemy.expression.BigInt.html">BigInt</a></li>
+				<li><a href="class-Alchemy.expression.Binary.html">Binary</a></li>
 				<li><a href="class-Alchemy.expression.BinaryExpression.html">BinaryExpression</a></li>
+				<li><a href="class-Alchemy.expression.Blob.html">Blob</a></li>
 				<li><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
+				<li><a href="class-Alchemy.expression.Char.html">Char</a></li>
 				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
 				<li><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
 				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Date.html">Date</a></li>
+				<li><a href="class-Alchemy.expression.Datetime.html">Datetime</a></li>
 				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
+				<li><a href="class-Alchemy.expression.Decimal.html">Decimal</a></li>
 				<li><a href="class-Alchemy.expression.Delete.html">Delete</a></li>
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
+				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
 				<li class="active"><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
+				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
 				<li><a href="class-Alchemy.expression.Integer.html">Integer</a></li>
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
+				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
+				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
+				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
+				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
+				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
+				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -156,7 +173,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.InclusiveExpression.html#7-36" title="Go to source code">alchemy/expression/InclusiveExpression.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.InclusiveExpression.html#7-45" title="Go to source code">alchemy/expression/InclusiveExpression.php</a><br />
 	</div>
 
 
@@ -174,7 +191,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.expression.InclusiveExpression.html#15-35" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.expression.IQueryValue.html">Alchemy\expression\IQueryValue</a></code> <var>$left</var></span>, <span>array <var>$in</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.InclusiveExpression.html#14-34" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.expression.IQueryValue.html">Alchemy\expression\IQueryValue</a></code> <var>$left</var></span>, <span>array <var>$in</var></span> )</code>
 
 		<div class="description short">
 			
@@ -203,6 +220,43 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getLeft" id="_getLeft">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.expression.IQueryValue.html">Alchemy\expression\IQueryValue</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLeft">#</a>
+		<code><a href="source-class-Alchemy.expression.InclusiveExpression.html#37-44" title="Go to source code">getLeft</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the IQueryValue to compare to</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the IQueryValue to compare to</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.expression.IQueryValue.html">Alchemy\expression\IQueryValue</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 	<table class="summary inherited">
@@ -210,7 +264,8 @@
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.expression.Expression.html#___call">__call()</a>, 
-			<a href="class-Alchemy.expression.Expression.html#_getParameters">getParameters()</a>
+			<a href="class-Alchemy.expression.Expression.html#_getParameters">getParameters()</a>, 
+			<a href="class-Alchemy.expression.Expression.html#_listElements">listElements()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -250,29 +305,6 @@
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="in" id="$in">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.expression.InclusiveExpression.html#12" title="Go to source code"><var>$in</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$in" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
 	</table>
 
 	<table class="summary inherited">
@@ -280,6 +312,7 @@
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.expression.Expression.html#$conjoin_types"><var>$conjoin_types</var></a>, 
+			<a href="class-Alchemy.expression.Expression.html#$elements"><var>$elements</var></a>, 
 			<a href="class-Alchemy.expression.Expression.html#$scalars"><var>$scalars</var></a>
 		</code></td>
 	</tr>

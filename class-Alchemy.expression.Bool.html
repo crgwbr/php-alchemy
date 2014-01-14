@@ -7,7 +7,7 @@
 	<title>Class Alchemy\expression\Bool</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,9 +33,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -47,27 +49,42 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Alchemy.expression.BigInt.html">BigInt</a></li>
+				<li><a href="class-Alchemy.expression.Binary.html">Binary</a></li>
 				<li><a href="class-Alchemy.expression.BinaryExpression.html">BinaryExpression</a></li>
+				<li><a href="class-Alchemy.expression.Blob.html">Blob</a></li>
 				<li class="active"><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
+				<li><a href="class-Alchemy.expression.Char.html">Char</a></li>
 				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
 				<li><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
 				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Date.html">Date</a></li>
+				<li><a href="class-Alchemy.expression.Datetime.html">Datetime</a></li>
 				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
+				<li><a href="class-Alchemy.expression.Decimal.html">Decimal</a></li>
 				<li><a href="class-Alchemy.expression.Delete.html">Delete</a></li>
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
+				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
+				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
 				<li><a href="class-Alchemy.expression.Integer.html">Integer</a></li>
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
+				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
+				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
+				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
+				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
+				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
+				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -201,6 +218,8 @@
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.expression.Column.html#_decode">Alchemy\expression\Column::decode()</a></code></div>
 
 		</div>
 		</div></td>
@@ -243,6 +262,8 @@
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.expression.Column.html#_encode">Alchemy\expression\Column::encode()</a></code></div>
 
 		</div>
 		</div></td>
@@ -255,8 +276,13 @@
 		<td><code>
 			<a href="class-Alchemy.expression.Column.html#___call">__call()</a>, 
 			<a href="class-Alchemy.expression.Column.html#___construct">__construct()</a>, 
-			<a href="class-Alchemy.expression.Column.html#_get_default_kwargs">get_default_kwargs()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_assign">assign()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_getAlias">getAlias()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_getName">getName()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_getTable">getTable()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_get_default_args">get_default_args()</a>, 
 			<a href="class-Alchemy.expression.Column.html#_hasIndex">hasIndex()</a>, 
+			<a href="class-Alchemy.expression.Column.html#_isNotNull">isNotNull()</a>, 
 			<a href="class-Alchemy.expression.Column.html#_isPrimaryKey">isPrimaryKey()</a>, 
 			<a href="class-Alchemy.expression.Column.html#_isUnique">isUnique()</a>
 		</code></td>
@@ -281,10 +307,8 @@
 			<a href="class-Alchemy.expression.Column.html#$alias"><var>$alias</var></a>, 
 			<a href="class-Alchemy.expression.Column.html#$args"><var>$args</var></a>, 
 			<a href="class-Alchemy.expression.Column.html#$default_args"><var>$default_args</var></a>, 
-			<a href="class-Alchemy.expression.Column.html#$default_kwargs"><var>$default_kwargs</var></a>, 
-			<a href="class-Alchemy.expression.Column.html#$kwargs"><var>$kwargs</var></a>, 
 			<a href="class-Alchemy.expression.Column.html#$name"><var>$name</var></a>, 
-			<a href="class-Alchemy.expression.Column.html#$tableAlias"><var>$tableAlias</var></a>
+			<a href="class-Alchemy.expression.Column.html#$table"><var>$table</var></a>
 		</code></td>
 	</tr>
 	</table>

@@ -7,7 +7,7 @@
 	<title>Class Alchemy\orm\DataMapper</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3779243977"></script>
+	<script type="text/javascript" src="elementlist.js?715527796"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -33,9 +33,11 @@
 						</li>
 				<li><a href="namespace-Alchemy.tests.html">tests</a>
 						</li>
-				<li><a href="namespace-Alchemy.util.html">util</a>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
 						</li>
-							</ul></li>
+							</ul></li></ul></li>
 				<li><a href="namespace-PHP.html">PHP</a>
 						</li>
 			</ul>
@@ -109,7 +111,8 @@ any data, it merely acts as an interface between Domain objects and the Session
 
 	<div>
 		<h4>Direct known subclasses</h4>
-			<a href="class-Alchemy.tests.Language.html">Alchemy\tests\Language</a>
+			<a href="class-Alchemy.tests.Language.html">Alchemy\tests\Language</a>, 
+			<a href="class-Alchemy.tests.UploadedFile.html">Alchemy\tests\UploadedFile</a>
 	</div>
 
 
@@ -123,7 +126,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.DataMapper.html#8-174" title="Go to source code">alchemy/orm/DataMapper.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.DataMapper.html#8-176" title="Go to source code">alchemy/orm/DataMapper.php</a><br />
 	</div>
 
 
@@ -141,7 +144,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 
 		<td class="name"><div>
 		<a class="anchor" href="#_from_session">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#28-39" title="Go to source code">from_session</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#30-41" title="Go to source code">from_session</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
 
 		<div class="description short">
 			
@@ -181,7 +184,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 
 		<td class="name"><div>
 		<a class="anchor" href="#_table">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#42-56" title="Go to source code">table</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#44-58" title="Go to source code">table</a>( )</code>
 
 		<div class="description short">
 			
@@ -220,7 +223,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_table_name">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#59-68" title="Go to source code">table_name</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#61-70" title="Go to source code">table_name</a>( )</code>
 
 		<div class="description short">
 			
@@ -257,7 +260,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#71-93" title="Go to source code">__get</a>( <span>string <var>$prop</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#73-95" title="Go to source code">__get</a>( <span>string <var>$prop</var></span> )</code>
 
 		<div class="description short">
 			
@@ -299,7 +302,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#96-110" title="Go to source code">__set</a>( <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#98-112" title="Go to source code">__set</a>( <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -341,7 +344,7 @@ the session until {@DataMapper::save()} is called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#113-126" title="Go to source code">getPrimaryKey</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#115-128" title="Go to source code">getPrimaryKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -378,7 +381,7 @@ the session until {@DataMapper::save()} is called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSessionID">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#129-136" title="Go to source code">getSessionID</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#131-138" title="Go to source code">getSessionID</a>( )</code>
 
 		<div class="description short">
 			
@@ -415,7 +418,7 @@ the session until {@DataMapper::save()} is called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#139-161" title="Go to source code">save</a>( <span>boolean <var>$queueUpdate</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#141-163" title="Go to source code">save</a>( <span>boolean <var>$queueUpdate</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -457,7 +460,7 @@ called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSession">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#164-173" title="Go to source code">setSession</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$sessionID</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#166-175" title="Go to source code">setSession</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$sessionID</var></span> )</code>
 
 		<div class="description short">
 			
@@ -526,6 +529,52 @@ used</p>
 <p>Optional: Define the table name here. If left null, the class name will be
 used</p>
 
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="props" id="$props">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.DataMapper.html#21" title="Go to source code"><var>$props</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$props" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="indexes" id="$indexes">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.DataMapper.html#22" title="Go to source code"><var>$indexes</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$indexes" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
 
 			</div>
 		</div></td>
