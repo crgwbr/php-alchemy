@@ -41,17 +41,7 @@ class DataTypeLexer {
      * @return array
      */
     public function getArgs() {
-        return $this->args;
-    }
-
-
-    /**
-     * Get the keyword arguments in the definition
-     *
-     * @return array
-     */
-    public function getKeywordArgs() {
-        return $this->kwargs;
+        return $this->args + $this->kwargs;
     }
 
 

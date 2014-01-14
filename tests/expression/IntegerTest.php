@@ -8,7 +8,7 @@ use Alchemy\expression\Scalar;
 class IntegerTest extends BaseTest {
 
     public function testInteger() {
-        $col = new Integer('t', 'c', 'a', array(), array());
+        $col = new Integer();
 
         $this->assertEquals(53, $col->decode('53'));
         $this->assertEquals(101, $col->decode('101'));

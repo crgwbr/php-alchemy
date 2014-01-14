@@ -7,8 +7,7 @@ namespace Alchemy\expression;
  * Represent a VARCHAR column in SQL
  */
 class String extends Column {
-    protected static $default_args = array(255);
-    protected static $default_kwargs = array(
+    protected static $default_args = array(255,
         'collation' => null,
     );
 

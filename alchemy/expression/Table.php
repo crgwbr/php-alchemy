@@ -25,20 +25,17 @@ class Table {
      */
     public function __construct($tableName, $columns, $namespace = "Alchemy\\expression") {
         $this->name = $tableName;
-        $this->alias = strtolower(substr($tableName, 0, 2)) . (++static::$tableCounter);
+        $this->id = ++static::$tableCounter;
 
-        foreach ($columns as $columnName => $column) {
+        foreach ($columns as $name => $column) {
             if (is_string($column)) {
                $type = new DataTypeLexer($column);
                $class = $namespace . '\\' . $type->getType();
-
-               $args = $type->getArgs();
-               $kwargs = $type->getKeywordArgs();
-
-               $column = new $class($this->alias, $columnName, $columnName, $args, $kwargs);
+               $column = new $class($type->getArgs());
             }
 
-            $this->columns[$columnName] = $column;
+            $column->assign($this, $name, $name);
+            $this->columns[$name] = $column;
         }
     }
 
@@ -58,12 +55,12 @@ class Table {
 
 
     /**
-     * Get the table alias
+     * Get the table id
      *
      * @return string
      */
-    public function getAlias() {
-        return $this->alias;
+    public function getID() {
+        return $this->id;
     }
 
 

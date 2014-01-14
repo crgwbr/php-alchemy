@@ -11,8 +11,8 @@ use PDO;
  * Basic Engine implementation using PDO as it's DBAPI layer
  */
 class Engine implements IEngine {
+    protected $compiler;
     protected $connector;
-    protected $dialect;
     protected $echoQueries = false;
     protected $pendingTransaction = false;
 
@@ -24,12 +24,12 @@ class Engine implements IEngine {
      * @param string $username
      * @param string $password
      */
-    public function __construct(Compiler $dialect, $dsn, $username = '', $password = '') {
+    public function __construct(Compiler $compiler, $dsn, $username = '', $password = '') {
         // Get connection
         $this->connector = new PDO($dsn, $username, $password);
         $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->dialect = $dialect;
+        $this->compiler = $compiler;
     }
 
 
@@ -82,7 +82,7 @@ class Engine implements IEngine {
      * @return ResultSet
      */
     public function query(IQuery $query) {
-        $sql = $this->dialect->compile($query);
+        $sql = $this->compiler->compile($query);
         $params = $query->getParameters();
         return $this->execute($sql, $params);
     }
@@ -100,7 +100,7 @@ class Engine implements IEngine {
         $statement = $this->connector->prepare($sql);
 
         foreach ($params as $param) {
-            $statement->bindValue($param->getName(), $param->getValue(), $param->getDataType());
+            $statement->bindValue($this->compiler->alias($param), $param->getValue(), $param->getDataType());
         }
 
         $statement->execute();

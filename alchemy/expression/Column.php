@@ -7,8 +7,7 @@ namespace Alchemy\expression;
  * Abstract base class for representing a column in SQL
  */
 abstract class Column implements IQueryValue {
-    protected static $default_args = array();
-    protected static $default_kwargs = array(
+    protected static $default_args = array(
         'default' => null,
         'index' => false,
         'null' => false,
@@ -16,11 +15,10 @@ abstract class Column implements IQueryValue {
         'unique' => false,
     );
 
-    protected $tableAlias;
+    protected $table;
     protected $name;
     protected $alias;
     protected $args;
-    protected $kwargs;
 
 
     /**
@@ -29,34 +27,30 @@ abstract class Column implements IQueryValue {
      *
      * @return array
      */
-    public static function get_default_kwargs() {
+    public static function get_default_args() {
         $cls = get_called_class();
-        $kwargs = $cls::$default_kwargs;
+        $args = $cls::$default_args;
 
         $parent = get_parent_class($cls);
-        if ($parent && is_callable(array($parent, 'get_default_kwargs'))) {
-            return array_merge($parent::get_default_kwargs(), $kwargs);
+        if ($parent && is_callable(array($parent, 'get_default_args'))) {
+            return array_merge($parent::get_default_args(), $args);
         }
 
-        return $kwargs;
+        return $args;
     }
 
 
     /**
      * Object Constructor
      *
-     * @param string $tableAlias
+     * @param Table $table
      * @param string $name
      * @param string $alias
      * @param array $args
      * @param array $kwargs
      */
-    public function __construct($tableAlias, $name, $alias, array $args, array $kwargs) {
-        $this->tableAlias = $tableAlias;
-        $this->name = $name;
-        $this->alias = $alias;
-        $this->args = $args + static::$default_args;
-        $this->kwargs = array_merge(static::get_default_kwargs(), $kwargs);
+    public function __construct(array $args = array()) {
+        $this->args = $args + static::get_default_args();
     }
 
 
@@ -74,6 +68,12 @@ abstract class Column implements IQueryValue {
         }
 
         return new BinaryExpression($this, Operator::$name(), $value);
+    }
+
+    public function assign(Table $table = null, $name = '', $alias = '') {
+        $this->table = $table;
+        $this->name = $name;
+        $this->alias = $alias;
     }
 
 
@@ -103,8 +103,8 @@ abstract class Column implements IQueryValue {
         return $this->name ?: "";
     }
 
-    public function getTableAlias() {
-        return $this->tableAlias ?: "";
+    public function getTable() {
+        return $this->table;
     }
 
 
@@ -115,11 +115,11 @@ abstract class Column implements IQueryValue {
      * @return bool
      */
     public function hasIndex() {
-        return $this->kwargs['index'];
+        return $this->args['index'];
     }
 
     public function isNotNull() {
-        return !$this->kwargs['null'];
+        return !$this->args['null'];
     }
 
 
@@ -129,7 +129,7 @@ abstract class Column implements IQueryValue {
      * @return bool
      */
     public function isPrimaryKey() {
-        return $this->kwargs['primary_key'];
+        return $this->args['primary_key'];
     }
 
 
@@ -140,6 +140,6 @@ abstract class Column implements IQueryValue {
      * @return bool
      */
     public function isUnique() {
-        return $this->kwargs['unique'];
+        return $this->args['unique'];
     }
 }

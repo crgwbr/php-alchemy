@@ -5,6 +5,22 @@ use Alchemy\expression as expr;
 
 class ANSICompiler extends Compiler {
 
+    /**
+     * Always returns the same auto-generated string for a given object
+     *
+     * @param  Scalar|Table $obj key
+     * @return string            alias
+     */
+    public function alias($obj) {
+        if ($obj instanceof expr\Scalar) {
+            return "p" . $obj->getID();
+        } elseif ($obj instanceof expr\Table) {
+            return strtolower(substr($obj->getName(), 0, 2)) . $obj->getID();
+        }
+
+        throw new Expection("Can't alias type " . get_class($obj));
+    }
+
     public function BinaryExpression(expr\BinaryExpression $obj) {
         $elements = $this->compile($obj->listElements());
         return implode(' ', $elements);
@@ -15,7 +31,7 @@ class ANSICompiler extends Compiler {
         $column = $obj->getName();
 
         if ($this->getConfig('alias_tables')) {
-            $column = "{$obj->getTableAlias()}.$column";
+            $column = "{$this->alias($obj->getTable())}.$column";
         }
 
         if ($this->getConfig('alias_columns')) {
@@ -77,7 +93,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Delete(expr\Delete $obj) {
-        $alias = $this->getConfig('alias_tables') ? $obj->from()->getAlias() : '';
+        $alias = $this->getConfig('alias_tables') ? $this->alias($obj->from()) : '';
 
         $parts = array(
             "DELETE", $alias,
@@ -131,7 +147,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Scalar(expr\Scalar $obj) {
-        return ":{$obj->getName()}";
+        return ":{$this->alias($obj)}";
     }
 
 
@@ -155,7 +171,7 @@ class ANSICompiler extends Compiler {
 
     public function Table(expr\Table $obj) {
         if ($this->getConfig('alias_tables')) {
-            return "{$obj->getName()} {$obj->getAlias()}";
+            return "{$obj->getName()} {$this->alias($obj)}";
         }
 
         return $obj->getName();

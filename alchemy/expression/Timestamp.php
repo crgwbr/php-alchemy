@@ -9,7 +9,6 @@ use Datetime;
  */
 class Timestamp extends Column {
     protected static $default_args = array();
-    protected static $default_kwargs = array();
 
 
     /**

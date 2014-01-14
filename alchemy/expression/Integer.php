@@ -7,8 +7,7 @@ namespace Alchemy\expression;
  * Represent an Integer in SQL
  */
 class Integer extends Column {
-    protected static $default_args = array(11);
-    protected static $default_kwargs = array(
+    protected static $default_args = array(11,
         'auto_increment' => false,
         'unsigned' => false,
     );
@@ -40,6 +39,6 @@ class Integer extends Column {
     }
 
     public function isAutoIncremented() {
-        return $this->kwargs['auto_increment'];
+        return $this->args['auto_increment'];
     }
 }

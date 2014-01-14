@@ -18,10 +18,11 @@ class ANSICompilerTest extends BaseTest {
 
     public function testBool() {
         $ansi = new ANSICompiler();
-        $col = new expr\Bool('Ta', 'Col', 'Alias', array(11), array('null' => false));
+        $col = new expr\Bool(array(11, 'null' => false));
+        $col->assign(new expr\Table('Tbl', array()), 'Col', 'Alias');
 
         $this->assertEquals("Col", $ansi->compile($col));
-        $this->assertEquals("Ta.Col",
+        $this->assertEquals("tb1.Col",
             $ansi->compile($col, array('alias_tables' => true)));
         $this->assertEquals("Col as Alias",
             $ansi->compile($col, array('alias_columns' => true)));
@@ -34,7 +35,7 @@ class ANSICompilerTest extends BaseTest {
         $ansi = new ANSICompiler();
         $expr = new expr\Create(
             new expr\Table('Tbl', array(
-                'Col' => new expr\Integer('t', 'Col', 'a', array(11), array('null' => false, 'auto_increment' => false)) )));
+                'Col' => new expr\Integer(array(11, 'null' => false, 'auto_increment' => false)) )));
 
         $this->assertEquals(
             "CREATE TABLE IF NOT EXISTS Tbl (Col INT(11) NOT NULL)",
@@ -71,8 +72,8 @@ class ANSICompilerTest extends BaseTest {
 
     public function testInteger() {
         $ansi = new ANSICompiler();
-        $col = new expr\Integer('Ta', 'Col', 'Alias', array(11),
-            array('null' => false, 'auto_increment' => false));
+        $col = new expr\Integer(array(11, 'null' => false, 'auto_increment' => false));
+        $col->assign(null, 'Col');
 
         $this->assertEquals("Col INT(11) NOT NULL",
             $ansi->Create_Column($col));
@@ -82,7 +83,7 @@ class ANSICompilerTest extends BaseTest {
     public function testJoin() {
         $ansi = new ANSICompiler();
         $table = new expr\Table('Tbl', array(
-            'Col' => new expr\Bool('t', 'Col', 'a', array(), array()) ));
+            'Col' => new expr\Bool() ));
         $expr = new expr\BinaryExpression($table->Col, expr\Operator::lt(), $table->Col);
         $join = new expr\Join(expr\Join::LEFT, expr\Join::INNER, $table, $expr);
 
@@ -108,7 +109,8 @@ class ANSICompilerTest extends BaseTest {
 
     public function testString() {
         $ansi = new ANSICompiler();
-        $col = new expr\String('Ta', 'Col', 'Alias', array(200), array('null' => false));
+        $col = new expr\String(array(200, 'null' => false));
+        $col->assign(null, 'Col');
 
         $this->assertEquals("Col VARCHAR(200) NOT NULL", $ansi->Create_Column($col));
     }
@@ -119,14 +121,14 @@ class ANSICompilerTest extends BaseTest {
         $table = new expr\Table('Tbl', array());
 
         $this->assertEquals("Tbl", $table->getName());
-        $this->assertEquals("tb1", $table->getAlias());
         $this->assertEquals("Tbl tb1", $ansi->compile($table, array('alias_tables' => true)));
     }
 
 
     public function testTimestamp() {
         $ansi = new ANSICompiler();
-        $col = new expr\Timestamp('Ta', 'Col', 'Alias', array(), array('null' => true));
+        $col = new expr\Timestamp(array('null' => true));
+        $col->assign(null, 'Col');
 
         $this->assertEquals("Col TIMESTAMP NULL", $ansi->Create_Column($col));
     }

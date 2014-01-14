@@ -17,7 +17,7 @@ class Scalar implements IQueryValue {
 
     protected $dataType;
     protected $value;
-    protected $name;
+    protected $id;
 
 
     /**
@@ -27,7 +27,7 @@ class Scalar implements IQueryValue {
      * @param mixed $dataType Optional. Type will be inferred if not provided
      */
     public function __construct($value, $dataType = null) {
-        $this->name = "p" . self::$scalarCounter++;
+        $this->id = self::$scalarCounter++;
         $this->value = $value;
         $this->dataType = $dataType ?: $this->inferDataType($value);
     }
@@ -44,12 +44,12 @@ class Scalar implements IQueryValue {
 
 
     /**
-     * Return the name of this parameter
+     * Return the id of this parameter
      *
      * @return string
      */
-    public function getName() {
-        return $this->name;
+    public function getID() {
+        return $this->id;
     }
 
 
