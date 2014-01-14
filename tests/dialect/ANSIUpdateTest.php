@@ -3,7 +3,7 @@
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Update;
-use Alchemy\dialect\DialectTranslator;
+use Alchemy\dialect\ANSICompiler;
 
 
 class ANSIUpdateTest extends BaseTest {
@@ -19,9 +19,9 @@ class ANSIUpdateTest extends BaseTest {
                                ->set($users->Email, "user1@example.com")
                                ->where($users->Email->equal("user2@example.com"));
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
 
-        $this->assertExpectedString('ANSIUpdateTest-1.sql', (string)$vern);
+        $this->assertExpectedString('ANSIUpdateTest-1.sql', $vern);
     }
 }

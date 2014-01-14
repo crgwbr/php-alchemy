@@ -17,7 +17,11 @@ class Update extends Query {
      *
      * @param Table $table
      */
-    public function table(Table $table) {
+    public function table(Table $table = null) {
+        if (is_null($table)) {
+            return $this->table;
+        }
+
         $this->table = $table;
     }
 
@@ -34,6 +38,11 @@ class Update extends Query {
         }
 
         $this->values[] = array($column, $value);
+    }
+
+
+    public function sets() {
+        return $this->values;
     }
 
 

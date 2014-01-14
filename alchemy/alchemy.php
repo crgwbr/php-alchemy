@@ -56,10 +56,10 @@ require_once "expression/Create.php";
 require_once "expression/Drop.php";
 
 // Dialects
-require_once "dialect/DialectTranslator.php";
-require_once "dialect/ANSI.php";
-require_once "dialect/SQLite.php";
-require_once "dialect/MySQL.php";
+require_once "dialect/Compiler.php";
+require_once "dialect/ANSICompiler.php";
+require_once "dialect/SQLiteCompiler.php";
+require_once "dialect/MySQLCompiler.php";
 
 // Engines
 require_once "engine/IResultSet.php";

@@ -3,7 +3,7 @@
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Insert;
-use Alchemy\dialect\DialectTranslator;
+use Alchemy\dialect\ANSICompiler;
 
 
 class ANSIInsertTest extends BaseTest {
@@ -18,9 +18,9 @@ class ANSIInsertTest extends BaseTest {
                                ->into($users)
                                ->row("user1", "user1@example.com");
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap());
 
-        $this->assertExpectedString('ANSIInsertTest-1.sql', (string)$vern);
+        $this->assertExpectedString('ANSIInsertTest-1.sql', $vern);
     }
 }

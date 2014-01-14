@@ -3,7 +3,7 @@
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Select;
-use Alchemy\dialect\DialectTranslator;
+use Alchemy\dialect\ANSICompiler;
 
 
 class ANSISelectTest extends BaseTest {
@@ -19,9 +19,10 @@ class ANSISelectTest extends BaseTest {
                                ->from($users)
                                ->limit(2);
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
-        $this->assertExpectedString('ANSISelectTest-1.sql', (string)$vern);
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
+
+        $this->assertExpectedString('ANSISelectTest-1.sql', $vern);
     }
 
 
@@ -41,9 +42,10 @@ class ANSISelectTest extends BaseTest {
                                ->from($users)
                                ->join($addrs, $addrs->UserID->equal($users->UserID));
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
-        $this->assertExpectedString('ANSISelectTest-2.sql', (string)$vern);
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
+
+        $this->assertExpectedString('ANSISelectTest-2.sql', $vern);
     }
 
 
@@ -75,9 +77,10 @@ class ANSISelectTest extends BaseTest {
                                ->join($addrs, $addrJoin)
                                ->join($phones, $phoneJoin);
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
-        $this->assertExpectedString('ANSISelectTest-3.sql', (string)$vern);
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
+
+        $this->assertExpectedString('ANSISelectTest-3.sql', $vern);
     }
 
 
@@ -92,8 +95,9 @@ class ANSISelectTest extends BaseTest {
                                ->where($users->UserName->equal('user1@example.com'))
                                ->limit(2, 5);
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
-        $this->assertExpectedString('ANSISelectTest-4.sql', (string)$vern);
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
+
+        $this->assertExpectedString('ANSISelectTest-4.sql', $vern);
     }
 }

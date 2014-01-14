@@ -17,7 +17,11 @@ class Insert extends Query {
      *
      * @param Table $table
      */
-    public function into(Table $table) {
+    public function into(Table $table = null) {
+        if (is_null($table)) {
+            return $this->into;
+        }
+
         $this->into = $table;
     }
 
@@ -40,6 +44,11 @@ class Insert extends Query {
         }
 
         $this->rows[] = $row;
+    }
+
+
+    public function rows() {
+        return $this->rows;
     }
 
 

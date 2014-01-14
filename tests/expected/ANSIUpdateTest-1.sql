@@ -1,1 +1,1 @@
-UPDATE users us1 SET us1.UserName = :p0, us1.Email = :p1  WHERE us1.Email = :p2
+UPDATE users us1 SET us1.UserName = :p0, us1.Email = :p1 WHERE us1.Email = :p2

@@ -11,6 +11,7 @@ abstract class Expression implements IQueryFragment {
     protected static $conjoin_types = array('and', 'or');
 
     protected $scalars = array();
+    protected $elements = array();
 
 
     /**
@@ -28,6 +29,10 @@ abstract class Expression implements IQueryFragment {
         $compound = new CompoundExpression($this);
         $compound->$name($args[0]);
         return $compound;
+    }
+
+    public function listElements() {
+        return $this->elements;
     }
 
 

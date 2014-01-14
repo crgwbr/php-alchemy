@@ -2,6 +2,7 @@
 
 namespace Alchemy\tests;
 use Alchemy\orm\Session;
+use Alchemy\dialect\SQLiteCompiler;
 use Datetime;
 
 
@@ -18,7 +19,7 @@ class MapperTest extends BaseTest {
                ->will($this->returnValue(1234));
 
         $engine = $this->getMockBuilder('Alchemy\engine\Engine')
-                       ->setConstructorArgs(array('sqlite::memory:'))
+                       ->setConstructorArgs(array(new SQLiteCompiler(), 'sqlite::memory:'))
                        ->setMethods(array('execute'))
                        ->getMock();
 
@@ -39,8 +40,9 @@ class MapperTest extends BaseTest {
 
 
     public function testSelect() {
+        $compiler = new SQLiteCompiler(array('alias_tables' => true));
         $engine = $this->getMockBuilder('Alchemy\engine\Engine')
-                       ->setConstructorArgs(array('sqlite::memory:'))
+                       ->setConstructorArgs(array($compiler, 'sqlite::memory:'))
                        ->setMethods(array('execute'))
                        ->getMock();
 

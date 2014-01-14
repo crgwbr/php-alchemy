@@ -16,7 +16,11 @@ class Delete extends Query {
      *
      * @param Table $table
      */
-    public function from(Table $table) {
+    public function from(Table $table = null) {
+        if (is_null($table)) {
+            return $this->from;
+        }
+
         $this->from = $table;
     }
 }

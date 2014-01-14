@@ -7,10 +7,6 @@ namespace Alchemy\expression;
  * Represent a binary SQL expression
  */
 class BinaryExpression extends Expression {
-    protected $left;
-    protected $right;
-    protected $operator;
-
 
     /**
      * Object Constructor.
@@ -20,9 +16,7 @@ class BinaryExpression extends Expression {
      * @param IQueryValue $right
      */
     public function __construct(IQueryValue $left, Operator $operator, IQueryValue $right) {
-        $this->left = &$left;
-        $this->operator = &$operator;
-        $this->right = &$right;
+        $this->elements = array(&$left, &$operator, &$right);
 
         if ($left instanceof Scalar) {
             $this->scalars[] = &$left;

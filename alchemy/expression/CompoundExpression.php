@@ -8,8 +8,6 @@ use BadMethodCallException;
  * Represent a SQL compound expression
  */
 class CompoundExpression extends Expression {
-    protected $components = array();
-
 
     /**
      * Object constructor
@@ -17,7 +15,7 @@ class CompoundExpression extends Expression {
      * @param Expression $expr Base child expression
      */
     public function __construct(Expression $expr) {
-        $this->components[] = $expr;
+        $this->elements[] = $expr;
     }
 
 
@@ -32,8 +30,8 @@ class CompoundExpression extends Expression {
             throw new Exception("Bad method called");
         }
 
-        $this->components[] = Operator::$name();
-        $this->components[] = $args[0];
+        $this->elements[] = Operator::$name();
+        $this->elements[] = $args[0];
         return $this;
     }
 
@@ -46,7 +44,7 @@ class CompoundExpression extends Expression {
     public function getParameters() {
         $params = parent::getParameters();
 
-        foreach ($this->components as $expr) {
+        foreach ($this->elements as $expr) {
             if (is_callable(array($expr, 'getParameters'))) {
                 $params = array_merge($params, $expr->getParameters());
             }

@@ -27,14 +27,17 @@ class Table {
         $this->name = $tableName;
         $this->alias = strtolower(substr($tableName, 0, 2)) . (++static::$tableCounter);
 
-        foreach ($columns as $columnName => $definition) {
-            $type = new DataTypeLexer($definition);
-            $columnClass = $namespace . '\\' . $type->getType();
+        foreach ($columns as $columnName => $column) {
+            if (is_string($column)) {
+               $type = new DataTypeLexer($column);
+               $class = $namespace . '\\' . $type->getType();
 
-            $args = $type->getArgs();
-            $kwargs = $type->getKeywordArgs();
+               $args = $type->getArgs();
+               $kwargs = $type->getKeywordArgs();
 
-            $column = new $columnClass($this->alias, $columnName, $columnName, $args, $kwargs);
+               $column = new $class($this->alias, $columnName, $columnName, $args, $kwargs);
+            }
+
             $this->columns[$columnName] = $column;
         }
     }
@@ -51,6 +54,16 @@ class Table {
         }
 
         return $this->columns[$name];
+    }
+
+
+    /**
+     * Get the table alias
+     *
+     * @return string
+     */
+    public function getAlias() {
+        return $this->alias;
     }
 
 
@@ -82,6 +95,16 @@ class Table {
      */
     public function listColumns() {
         return $this->columns;
+    }
+
+
+    /**
+     * List all additional column indexes
+     *
+     * @return array array(Index, ...)
+     */
+    public function listIndexes() {
+        return array();
     }
 
 

@@ -3,7 +3,7 @@
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Delete;
-use Alchemy\dialect\DialectTranslator;
+use Alchemy\dialect\ANSICompiler;
 
 
 class ANSIDeleteTest extends BaseTest {
@@ -17,9 +17,9 @@ class ANSIDeleteTest extends BaseTest {
         $query = Delete::init()->from($users)
                                ->where($users->Email->equal("user@example.com"));
 
-        $translator = new DialectTranslator('ANSI');
-        $vern = $translator->translate($query->unwrap());
+        $ansi = new ANSICompiler();
+        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
 
-        $this->assertExpectedString('ANSIDeleteTest-1.sql', (string)$vern);
+        $this->assertExpectedString('ANSIDeleteTest-1.sql', $vern);
     }
 }

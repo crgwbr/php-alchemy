@@ -36,6 +36,22 @@ class Join implements IQueryFragment {
 
 
     /**
+     * @return string
+     */
+    public function getDirection() {
+        return $this->direction;
+    }
+
+
+    /**
+     * @return Expression
+     */
+    public function getOn() {
+        return $this->on;
+    }
+
+
+    /**
      * Recursively get all scalar parameters used by this clause
      * in the order which they are used in the expression
      *
@@ -43,5 +59,21 @@ class Join implements IQueryFragment {
      */
     public function getParameters() {
         return $this->on->getParameters();
+    }
+
+
+    /**
+     * @return Table
+     */
+    public function getTable() {
+        return $this->table;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getType() {
+        return $this->type;
     }
 }

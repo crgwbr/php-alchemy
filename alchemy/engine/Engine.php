@@ -2,7 +2,7 @@
 
 namespace Alchemy\engine;
 use Alchemy\expression\IQuery;
-use Alchemy\dialect\DialectTranslator;
+use Alchemy\dialect\Compiler;
 use Alchemy\util\Monad;
 use PDO;
 
@@ -24,15 +24,12 @@ class Engine implements IEngine {
      * @param string $username
      * @param string $password
      */
-    public function __construct($dsn, $username = '', $password = '') {
+    public function __construct(Compiler $dialect, $dsn, $username = '', $password = '') {
         // Get connection
         $this->connector = new PDO($dsn, $username, $password);
         $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Set dialect
-        $dialect = explode(":", $dsn);
-        $dialect = reset($dialect);
-        $this->dialect = new DialectTranslator($dialect);
+        $this->dialect = $dialect;
     }
 
 
@@ -85,7 +82,7 @@ class Engine implements IEngine {
      * @return ResultSet
      */
     public function query(IQuery $query) {
-        $sql = (string)$this->dialect->translate($query);
+        $sql = $this->dialect->compile($query);
         $params = $query->getParameters();
         return $this->execute($sql, $params);
     }

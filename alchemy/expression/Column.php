@@ -55,7 +55,7 @@ abstract class Column implements IQueryValue {
         $this->tableAlias = $tableAlias;
         $this->name = $name;
         $this->alias = $alias;
-        $this->args = array_merge(static::$default_args, $args);
+        $this->args = $args + static::$default_args;
         $this->kwargs = array_merge(static::get_default_kwargs(), $kwargs);
     }
 
@@ -95,6 +95,19 @@ abstract class Column implements IQueryValue {
     abstract public function encode($value);
 
 
+    public function getAlias() {
+        return $this->alias ?: "";
+    }
+
+    public function getName() {
+        return $this->name ?: "";
+    }
+
+    public function getTableAlias() {
+        return $this->tableAlias ?: "";
+    }
+
+
     /**
      * Return true if this column has an index on it. This doesn't
      * apply to multi-column indexes, only single column indexes.
@@ -103,6 +116,10 @@ abstract class Column implements IQueryValue {
      */
     public function hasIndex() {
         return $this->kwargs['index'];
+    }
+
+    public function isNotNull() {
+        return !$this->kwargs['null'];
     }
 
 

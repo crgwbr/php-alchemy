@@ -9,7 +9,6 @@ use Exception;
  */
 class InclusiveExpression extends Expression {
     protected $left;
-    protected $in = array();
 
 
     /**
@@ -30,7 +29,11 @@ class InclusiveExpression extends Expression {
                 $this->scalars[] = &$value;
             }
 
-            $this->in[] = &$value;
+            $this->elements[] = &$value;
         }
+    }
+
+    public function getLeft() {
+        return $this->left;
     }
 }

@@ -4,6 +4,8 @@ namespace Alchemy\tests;
 require_once "alchemy/alchemy.php";
 
 use Alchemy\engine\Engine;
+use Alchemy\dialect\SQLiteCompiler;
+use Alchemy\dialect\MySQLCompiler;
 
 
 date_default_timezone_set('UTC');
@@ -31,12 +33,12 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase {
 
 
     protected function getMySQLEngine() {
-        return new Engine("mysql:dbname=myapp_test;host=127.0.0.1", 'travis');
+        return new Engine(new MySQLCompiler(), "mysql:dbname=myapp_test;host=127.0.0.1", 'travis');
     }
 
 
     protected function getSQLiteEngine() {
-        return new Engine('sqlite::memory:');
+        return new Engine(new SQLiteCompiler(), 'sqlite::memory:');
     }
 
 

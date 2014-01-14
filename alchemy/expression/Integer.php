@@ -34,4 +34,12 @@ class Integer extends Column {
     public function encode($value) {
         return new Scalar((int)$value, Scalar::T_INT);
     }
+
+    public function getSize() {
+        return $this->args[0];
+    }
+
+    public function isAutoIncremented() {
+        return $this->kwargs['auto_increment'];
+    }
 }

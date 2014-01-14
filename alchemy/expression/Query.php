@@ -42,6 +42,10 @@ abstract class Query implements IQuery {
      * multiple arguments. See {@link Query::column()}
      */
     public function columns() {
+        if (func_num_args() == 0) {
+            return $this->columns;
+        }
+
         $columns = func_get_args();
         $columns = is_array($columns[0]) ? $columns[0] : $columns;
 
@@ -96,6 +100,11 @@ abstract class Query implements IQuery {
     }
 
 
+    public function joins() {
+        return $this->joins;
+    }
+
+
     /**
      * Shortcut for doing an OUTER JOIN
      *
@@ -115,7 +124,11 @@ abstract class Query implements IQuery {
      *
      * @param Expression $expr
      */
-    public function where(Expression $expr) {
+    public function where(Expression $expr = null) {
+        if (is_null($expr)) {
+            return $this->where;
+        }
+
         $this->where = $expr;
     }
 
@@ -128,6 +141,10 @@ abstract class Query implements IQuery {
      * @param integer $b Query limit.
      */
     public function limit($a = null, $b = null) {
+        if (is_null($a) && is_null($b)) {
+            return array($this->offset, $this->limit);
+        }
+
         $a = is_null($a) ? null : new Scalar($a);
         $b = is_null($b) ? null : new Scalar($b);
 

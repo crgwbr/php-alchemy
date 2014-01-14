@@ -33,4 +33,8 @@ class String extends Column {
     public function encode($value) {
         return new Scalar((string)$value, Scalar::T_STR);
     }
+
+    public function getSize() {
+        return $this->args[0];
+    }
 }
