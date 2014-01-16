@@ -66,6 +66,11 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_Binary(expr\Binary $obj) {
+        return "BINARY({$obj->getSize()})";
+    }
+
+
     public function Create_Blob(expr\Blob $obj) {
         return "BLOB";
     }
@@ -91,17 +96,22 @@ class ANSICompiler extends Compiler {
 
 
     public function Create_Date(expr\Date $obj) {
-        return "Date";
+        return "DATE";
     }
 
 
     public function Create_Datetime(expr\Datetime $obj) {
-        return "Datetime";
+        return "DATETIME";
     }
 
 
     public function Create_Decimal(expr\Decimal $obj) {
-        return "Decimal({$obj->getPrecision()}, {$obj->getScale()})";
+        return "DECIMAL({$obj->getPrecision()}, {$obj->getScale()})";
+    }
+
+
+    public function Create_Float(expr\Float $obj) {
+        return "FLOAT({$obj->getPrecision()})";
     }
 
 
@@ -136,7 +146,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Create_Time(expr\Time $obj) {
-        return "Time";
+        return "TIME";
     }
 
 

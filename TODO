@@ -4,9 +4,6 @@
 
 Expression:
     - INSERT...SELECT statements
-    - Basic Data Types
-        - float
-        - binary
     - Indexes, uniques
     - String Collations
     - Improve Expression building interface to be more understandable

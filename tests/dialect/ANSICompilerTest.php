@@ -18,6 +18,15 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
+    public function testBinary() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Binary(array(100, 'null' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col BINARY(100) NOT NULL", $ansi->Create_Column($col));
+    }
+
+
     public function testBinaryExpression() {
         $ansi = new ANSICompiler();
         $expr = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
@@ -86,7 +95,7 @@ class ANSICompilerTest extends BaseTest {
         $col = new expr\Date(array('null' => false));
         $col->assign(null, 'Col');
 
-        $this->assertEquals("Col Date NOT NULL", $ansi->Create_Column($col));
+        $this->assertEquals("Col DATE NOT NULL", $ansi->Create_Column($col));
     }
 
 
@@ -95,7 +104,7 @@ class ANSICompilerTest extends BaseTest {
         $col = new expr\Datetime(array('null' => true));
         $col->assign(null, 'Col');
 
-        $this->assertEquals("Col Datetime NULL", $ansi->Create_Column($col));
+        $this->assertEquals("Col DATETIME NULL", $ansi->Create_Column($col));
     }
 
 
@@ -104,7 +113,7 @@ class ANSICompilerTest extends BaseTest {
         $col = new expr\Decimal(array(5, 3));
         $col->assign(null, 'Col');
 
-        $this->assertEquals("Col Decimal(5, 3) NOT NULL",
+        $this->assertEquals("Col DECIMAL(5, 3) NOT NULL",
             $ansi->Create_Column($col));
     }
 
@@ -114,6 +123,16 @@ class ANSICompilerTest extends BaseTest {
         $expr = new expr\Drop(new expr\Table('Tbl', array()));
 
         $this->assertEquals("DROP TABLE IF EXISTS Tbl", $ansi->compile($expr));
+    }
+
+
+    public function testFloat() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Float(array(23, 'null' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col FLOAT(23) NOT NULL",
+            $ansi->Create_Column($col));
     }
 
 
@@ -206,7 +225,7 @@ class ANSICompilerTest extends BaseTest {
         $col = new expr\Time(array('null' => false));
         $col->assign(null, 'Col');
 
-        $this->assertEquals("Col Time NOT NULL", $ansi->Create_Column($col));
+        $this->assertEquals("Col TIME NOT NULL", $ansi->Create_Column($col));
     }
 
 
