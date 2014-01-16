@@ -33,6 +33,10 @@ class String extends Column {
         return new Scalar((string)$value, Scalar::T_STR);
     }
 
+
+    /**
+     * Get max length of the string
+     */
     public function getSize() {
         return $this->args[0];
     }

@@ -71,6 +71,11 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_Char(expr\Char $obj) {
+        return "CHAR({$obj->getSize()})";
+    }
+
+
     public function Create_Column(expr\Column $obj) {
         $fn = $this->getFunction($obj, 'Create_', true);
         $type = call_user_func($fn, $obj);

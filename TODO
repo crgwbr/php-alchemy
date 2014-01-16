@@ -5,7 +5,6 @@
 Expression:
     - INSERT...SELECT statements
     - Basic Data Types
-        - char
         - blob
         - datetime
         - time

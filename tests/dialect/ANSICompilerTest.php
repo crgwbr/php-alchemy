@@ -41,6 +41,15 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
+    public function testChar() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Char(array(200, 'null' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col CHAR(200) NOT NULL", $ansi->Create_Column($col));
+    }
+
+
     public function testCompoundExpression() {
         $ansi = new ANSICompiler();
         $bnxp = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
