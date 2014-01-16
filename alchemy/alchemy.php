@@ -45,6 +45,7 @@ require_once "expression/SmallInt.php";
 require_once "expression/MediumInt.php";
 require_once "expression/BigInt.php";
 require_once "expression/Char.php";
+require_once "expression/Blob.php";
 
 // Query Structure
 require_once "expression/Join.php";

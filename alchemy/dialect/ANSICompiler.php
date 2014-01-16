@@ -66,6 +66,11 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_Blob(expr\Blob $obj) {
+        return "BLOB";
+    }
+
+
     public function Create_Bool(expr\Bool $obj) {
         return "BOOL";
     }

@@ -26,6 +26,15 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
+    public function testBlob() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Blob();
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col BLOB NOT NULL", $ansi->Create_Column($col));
+    }
+
+
     public function testBool() {
         $ansi = new ANSICompiler();
         $col = new expr\Bool(array(11, 'null' => false));

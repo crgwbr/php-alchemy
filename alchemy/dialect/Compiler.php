@@ -58,7 +58,7 @@ class Compiler {
             $cls = get_parent_class($cls);
         } while ($cls && !$strict);
 
-        return array($this, 'NotFound');
+        throw new \Exception("Compiler method not found for " . get_class($obj));
     }
 
 
