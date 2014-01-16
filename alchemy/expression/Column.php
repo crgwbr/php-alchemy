@@ -70,6 +70,7 @@ abstract class Column implements IQueryValue {
         return new BinaryExpression($this, Operator::$name(), $value);
     }
 
+
     public function assign(Table $table = null, $name = '', $alias = '') {
         $this->table = $table;
         $this->name = $name;
@@ -81,9 +82,11 @@ abstract class Column implements IQueryValue {
      * Decode a value from the RDBMS into a PHP value
      *
      * @param mixed $value
-     * @return mixed
+     * @return string
      */
-    abstract public function decode($value);
+    public function decode($value) {
+        return (string)$value;
+    }
 
 
     /**
@@ -92,16 +95,20 @@ abstract class Column implements IQueryValue {
      * @param mixed $value
      * @return Scalar
      */
-    abstract public function encode($value);
+    public function encode($value) {
+        return new Scalar((string)$value, Scalar::T_STR);
+    }
 
 
     public function getAlias() {
         return $this->alias ?: "";
     }
 
+
     public function getName() {
         return $this->name ?: "";
     }
+
 
     public function getTable() {
         return $this->table;
@@ -117,6 +124,7 @@ abstract class Column implements IQueryValue {
     public function hasIndex() {
         return $this->args['index'];
     }
+
 
     public function isNotNull() {
         return !$this->args['null'];

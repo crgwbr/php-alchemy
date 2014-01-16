@@ -90,6 +90,16 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_Date(expr\Date $obj) {
+        return "Date";
+    }
+
+
+    public function Create_Datetime(expr\Datetime $obj) {
+        return "Datetime";
+    }
+
+
     public function Create_Decimal(expr\Decimal $obj) {
         return "Decimal({$obj->getPrecision()}, {$obj->getScale()})";
     }
@@ -122,6 +132,11 @@ class ANSICompiler extends Compiler {
 
     public function Create_String(expr\String $obj) {
         return "VARCHAR({$obj->getSize()})";
+    }
+
+
+    public function Create_Time(expr\Time $obj) {
+        return "Time";
     }
 
 

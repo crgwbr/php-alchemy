@@ -34,9 +34,11 @@ class Integer extends Column {
         return new Scalar((int)$value, Scalar::T_INT);
     }
 
+
     public function getSize() {
         return $this->args[0];
     }
+
 
     public function isAutoIncremented() {
         return $this->args['auto_increment'];

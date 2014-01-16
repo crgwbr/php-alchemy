@@ -81,6 +81,24 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
+    public function testDate() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Date(array('null' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col Date NOT NULL", $ansi->Create_Column($col));
+    }
+
+
+    public function testDatetime() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Datetime(array('null' => true));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col Datetime NULL", $ansi->Create_Column($col));
+    }
+
+
     public function testDecimal() {
         $ansi = new ANSICompiler();
         $col = new expr\Decimal(array(5, 3));
@@ -180,6 +198,15 @@ class ANSICompilerTest extends BaseTest {
 
         $this->assertEquals("Tbl", $table->getName());
         $this->assertEquals("Tbl tb1", $ansi->compile($table, array('alias_tables' => true)));
+    }
+
+
+    public function testTime() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Time(array('null' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col Time NOT NULL", $ansi->Create_Column($col));
     }
 
 

@@ -13,28 +13,6 @@ class String extends Column {
 
 
     /**
-     * Decode a value from the RDBMS into a PHP value
-     *
-     * @param mixed $value
-     * @return string
-     */
-    public function decode($value) {
-        return (string)$value;
-    }
-
-
-    /**
-     * Encode a PHP value into something usable for the RDBMS.
-     *
-     * @param mixed $value
-     * @return Scalar
-     */
-    public function encode($value) {
-        return new Scalar((string)$value, Scalar::T_STR);
-    }
-
-
-    /**
      * Get max length of the string
      */
     public function getSize() {

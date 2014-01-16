@@ -37,7 +37,10 @@ require_once "expression/CompoundExpression.php";
 // Data types
 require_once "expression/String.php";
 require_once "expression/Integer.php";
+require_once "expression/Datetime.php";
 require_once "expression/Timestamp.php";
+require_once "expression/Date.php";
+require_once "expression/Time.php";
 require_once "expression/Bool.php";
 require_once "expression/Decimal.php";
 require_once "expression/TinyInt.php";
