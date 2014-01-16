@@ -33,6 +33,12 @@ class InclusiveExpression extends Expression {
         }
     }
 
+
+    /**
+     * Get the IQueryValue to compare to
+     *
+     * @return IQueryValue
+     */
     public function getLeft() {
         return $this->left;
     }

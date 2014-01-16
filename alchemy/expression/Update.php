@@ -41,6 +41,11 @@ class Update extends Query {
     }
 
 
+    /**
+     * Return an array of set operations to perform
+     *
+     * @return array
+     */
     public function sets() {
         return $this->values;
     }

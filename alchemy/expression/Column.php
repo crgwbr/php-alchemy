@@ -43,11 +43,7 @@ abstract class Column implements IQueryValue {
     /**
      * Object Constructor
      *
-     * @param Table $table
-     * @param string $name
-     * @param string $alias
      * @param array $args
-     * @param array $kwargs
      */
     public function __construct(array $args = array()) {
         $this->args = $args + static::get_default_args();
@@ -126,6 +122,11 @@ abstract class Column implements IQueryValue {
     }
 
 
+    /**
+     * Return true if this column can not be null
+     *
+     * @return bool
+     */
     public function isNotNull() {
         return !$this->args['null'];
     }

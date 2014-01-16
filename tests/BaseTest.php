@@ -16,6 +16,7 @@ error_reporting(E_ALL | E_STRICT);
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
 
 require_once 'resources/Language.php';
+require_once 'resources/UploadedFile.php';
 
 
 abstract class BaseTest extends \PHPUnit_Framework_TestCase {

@@ -35,11 +35,21 @@ class Integer extends Column {
     }
 
 
+    /**
+     * Get the display width of the integer
+     *
+     * @return integer
+     */
     public function getSize() {
         return $this->args[0];
     }
 
 
+    /**
+     * Is this columns auto incrementing?
+     *
+     * @return bool
+     */
     public function isAutoIncremented() {
         return $this->args['auto_increment'];
     }

@@ -26,6 +26,9 @@ require_once "expression/Operator.php";
 
 // Schema definition
 require_once "expression/Column.php";
+require_once "expression/Index.php";
+require_once "expression/Unique.php";
+require_once "expression/Primary.php";
 require_once "expression/Table.php";
 
 // Expressions

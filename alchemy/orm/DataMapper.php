@@ -18,6 +18,8 @@ abstract class DataMapper {
      * class name will be used
      */
     protected static $table_name = null;
+    protected static $props = array();
+    protected static $indexes = array();
 
     private static $schema_cache = array();
     private $deltas = array();
@@ -48,7 +50,7 @@ abstract class DataMapper {
     public static function table() {
         $cls = get_called_class();
         if (!array_key_exists($cls, self::$schema_cache)) {
-            $table = new Table($cls::table_name(), $cls::$props);
+            $table = new Table($cls::table_name(), $cls::$props, $cls::$indexes);
             self::$schema_cache[$cls] = $table;
         }
 

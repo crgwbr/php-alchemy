@@ -83,8 +83,22 @@ class Engine implements IEngine {
      */
     public function query(IQuery $query) {
         $sql = $this->compiler->compile($query);
+        $sql = is_array($sql) ? $sql : array($sql);
         $params = $query->getParameters();
-        return $this->execute($sql, $params);
+
+        // Because of the limitations of some RDBMS' (*cough*SQLite)
+        // some operations can not be performed in a single query.
+        // When this is the case, the SQL compiler returns an array
+        // of queries. Execute each of them and return the result set
+        // of the last one. This behavior is fine because it only currently
+        // applies to DDL operations, which don't have a useful return value
+        // anyway
+        $result = null;
+        foreach ($sql as $q) {
+            $result = $this->execute($q, $params);
+        }
+
+        return $result;
     }
 
 

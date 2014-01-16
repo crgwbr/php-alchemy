@@ -28,7 +28,7 @@ class Insert extends Query {
 
     /**
      * Add a row to insert. Each parameter corresponds to
-     * a column set with {@link Query::columns()}. Optionally
+     * a column set with {@see Query::columns()}. Optionally
      * Send all columns as a single array.
      */
     public function row() {
@@ -47,6 +47,11 @@ class Insert extends Query {
     }
 
 
+    /**
+     * Get the rows to insert
+     *
+     * @return array
+     */
     public function rows() {
         return $this->rows;
     }

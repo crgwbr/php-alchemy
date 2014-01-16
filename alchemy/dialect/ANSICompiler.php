@@ -54,7 +54,11 @@ class ANSICompiler extends Compiler {
         $table = $obj->getTable();
 
         $columns = $this->map('Create_Column', $table->listColumns());
-        $indexes = $this->map('Create_Index',  $table->listIndexes());
+        $columns = array_values($columns);
+
+        $indexes = $this->map('Create_Key', $table->listIndexes());
+        $indexes = array_values($indexes);
+
         $parts = implode(', ', array_merge($columns, $indexes));
 
         return "CREATE TABLE IF NOT EXISTS {$table->getName()} ({$parts})";
@@ -115,8 +119,8 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Index() {
-        return "";
+    public function Create_Index($table, $name, $columns) {
+        return "KEY {$name} ({$columns})";
     }
 
 
@@ -125,13 +129,30 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_Key(expr\Index $obj) {
+        $fn = $this->getFunction($obj, 'Create_', true);
+
+        $columns = $obj->listColumns();
+        $column = reset($columns);
+        $table = $column->getTable();
+
+        $columns = array_map(function($column) {
+            return $column->getName();
+        }, $columns);
+
+        $columns = implode(", ", $columns);
+
+        return call_user_func($fn, $table->getName(), $obj->getName(), $columns);
+    }
+
+
     public function Create_MediumInt(expr\MediumInt $obj) {
         return "MEDIUMINT({$obj->getSize()})";
     }
 
 
-    public function Create_PrimaryKey() {
-        return "";
+    public function Create_Primary($table, $name, $columns) {
+        return "PRIMARY KEY ({$columns})";
     }
 
 
@@ -157,6 +178,11 @@ class ANSICompiler extends Compiler {
 
     public function Create_TinyInt(expr\TinyInt $obj) {
         return "TINYINT({$obj->getSize()})";
+    }
+
+
+    public function Create_Unique($table, $name, $columns) {
+        return "UNIQUE KEY {$name} ({$columns})";
     }
 
 

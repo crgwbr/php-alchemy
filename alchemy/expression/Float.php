@@ -12,6 +12,11 @@ class Float extends Column {
     );
 
 
+    /**
+     * Get the floating point precision
+     *
+     * @return integer
+     */
     public function getPrecision() {
         return $this->args[0];
     }
