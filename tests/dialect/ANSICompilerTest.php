@@ -8,6 +8,16 @@ use Alchemy\expression as expr;
 
 class ANSICompilerTest extends BaseTest {
 
+    public function testBigInt() {
+        $ansi = new ANSICompiler();
+        $col = new expr\BigInt(array(20, 'null' => false, 'auto_increment' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col BIGINT(20) NOT NULL",
+            $ansi->Create_Column($col));
+    }
+
+
     public function testBinaryExpression() {
         $ansi = new ANSICompiler();
         $expr = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
@@ -28,6 +38,16 @@ class ANSICompilerTest extends BaseTest {
             $ansi->compile($col, array('alias_columns' => true)));
         $this->assertEquals("Col BOOL NOT NULL",
             $ansi->Create_Column($col));
+    }
+
+
+    public function testCompoundExpression() {
+        $ansi = new ANSICompiler();
+        $bnxp = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
+        $expr = new expr\CompoundExpression($bnxp);
+        $expr->and($bnxp);
+
+        $this->assertEquals("(:p0 < :p1 AND :p0 < :p1)", $ansi->compile($expr));
     }
 
 
@@ -61,16 +81,6 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
-    public function testCompoundExpression() {
-        $ansi = new ANSICompiler();
-        $bnxp = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
-        $expr = new expr\CompoundExpression($bnxp);
-        $expr->and($bnxp);
-
-        $this->assertEquals("(:p0 < :p1 AND :p0 < :p1)", $ansi->compile($expr));
-    }
-
-
     public function testInclusiveExpression() {
         $ansi = new ANSICompiler();
         $expr = new expr\InclusiveExpression(new expr\Scalar(3),
@@ -101,6 +111,16 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
+    public function testMediumInt() {
+        $ansi = new ANSICompiler();
+        $col = new expr\MediumInt(array(8, 'null' => false, 'auto_increment' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col MEDIUMINT(8) NOT NULL",
+            $ansi->Create_Column($col));
+    }
+
+
     public function testOperator() {
         $ansi = new ANSICompiler();
         $oper = expr\Operator::lt();
@@ -114,6 +134,16 @@ class ANSICompilerTest extends BaseTest {
         $scalar = new expr\Scalar(3);
 
         $this->assertEquals(":p0", $ansi->compile($scalar));
+    }
+
+
+    public function testSmallInt() {
+        $ansi = new ANSICompiler();
+        $col = new expr\SmallInt(array(6, 'null' => false, 'auto_increment' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col SMALLINT(6) NOT NULL",
+            $ansi->Create_Column($col));
     }
 
 
@@ -141,5 +171,15 @@ class ANSICompilerTest extends BaseTest {
         $col->assign(null, 'Col');
 
         $this->assertEquals("Col TIMESTAMP NULL", $ansi->Create_Column($col));
+    }
+
+
+    public function testTinyInt() {
+        $ansi = new ANSICompiler();
+        $col = new expr\TinyInt(array(4, 'null' => false, 'auto_increment' => false));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col TINYINT(4) NOT NULL",
+            $ansi->Create_Column($col));
     }
 }

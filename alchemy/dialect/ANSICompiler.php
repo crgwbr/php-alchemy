@@ -61,6 +61,16 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_BigInt(expr\BigInt $obj) {
+        return "BIGINT({$obj->getSize()})";
+    }
+
+
+    public function Create_Bool(expr\Bool $obj) {
+        return "BOOL";
+    }
+
+
     public function Create_Column(expr\Column $obj) {
         $fn = $this->getFunction($obj, 'Create_', true);
         $type = call_user_func($fn, $obj);
@@ -75,11 +85,6 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Bool(expr\Bool $obj) {
-        return "BOOL";
-    }
-
-
     public function Create_Index() {
         return "";
     }
@@ -90,8 +95,18 @@ class ANSICompiler extends Compiler {
     }
 
 
+    public function Create_MediumInt(expr\MediumInt $obj) {
+        return "MEDIUMINT({$obj->getSize()})";
+    }
+
+
     public function Create_PrimaryKey() {
         return "";
+    }
+
+
+    public function Create_SmallInt(expr\SmallInt $obj) {
+        return "SMALLINT({$obj->getSize()})";
     }
 
 
@@ -102,6 +117,11 @@ class ANSICompiler extends Compiler {
 
     public function Create_Timestamp(expr\Timestamp $obj) {
         return "TIMESTAMP";
+    }
+
+
+    public function Create_TinyInt(expr\TinyInt $obj) {
+        return "TINYINT({$obj->getSize()})";
     }
 
 

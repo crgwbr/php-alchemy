@@ -5,8 +5,6 @@
 Expression:
     - INSERT...SELECT statements
     - Basic Data Types
-        - tinyint
-        - smallint
         - char
         - blob
         - datetime

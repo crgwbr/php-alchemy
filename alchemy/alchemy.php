@@ -40,6 +40,10 @@ require_once "expression/Integer.php";
 require_once "expression/Timestamp.php";
 require_once "expression/Bool.php";
 require_once "expression/Decimal.php";
+require_once "expression/TinyInt.php";
+require_once "expression/SmallInt.php";
+require_once "expression/MediumInt.php";
+require_once "expression/BigInt.php";
 
 // Query Structure
 require_once "expression/Join.php";
