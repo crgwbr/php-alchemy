@@ -21,6 +21,7 @@ class ANSICompiler extends Compiler {
         throw new Expection("Can't alias type " . get_class($obj));
     }
 
+
     public function BinaryExpression(expr\BinaryExpression $obj) {
         $elements = $this->compile($obj->listElements());
         return implode(' ', $elements);
@@ -59,6 +60,7 @@ class ANSICompiler extends Compiler {
         return "CREATE TABLE IF NOT EXISTS {$table->getName()} ({$parts})";
     }
 
+
     public function Create_Column(expr\Column $obj) {
         $fn = $this->getFunction($obj, 'Create_', true);
         $type = call_user_func($fn, $obj);
@@ -67,25 +69,36 @@ class ANSICompiler extends Compiler {
         return "{$obj->getName()} {$type} {$null}";
     }
 
+
+    public function Create_Decimal(expr\Decimal $obj) {
+        return "Decimal({$obj->getPrecision()}, {$obj->getScale()})";
+    }
+
+
     public function Create_Bool(expr\Bool $obj) {
         return "BOOL";
     }
+
 
     public function Create_Index() {
         return "";
     }
 
+
     public function Create_Integer(expr\Integer $obj) {
         return "INT({$obj->getSize()})";
     }
+
 
     public function Create_PrimaryKey() {
         return "";
     }
 
+
     public function Create_String(expr\String $obj) {
         return "VARCHAR({$obj->getSize()})";
     }
+
 
     public function Create_Timestamp(expr\Timestamp $obj) {
         return "TIMESTAMP";

@@ -39,6 +39,7 @@ require_once "expression/String.php";
 require_once "expression/Integer.php";
 require_once "expression/Timestamp.php";
 require_once "expression/Bool.php";
+require_once "expression/Decimal.php";
 
 // Query Structure
 require_once "expression/Join.php";

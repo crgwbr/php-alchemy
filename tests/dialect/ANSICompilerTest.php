@@ -43,6 +43,16 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
+    public function testDecimal() {
+        $ansi = new ANSICompiler();
+        $col = new expr\Decimal(array(5, 3));
+        $col->assign(null, 'Col');
+
+        $this->assertEquals("Col Decimal(5, 3) NOT NULL",
+            $ansi->Create_Column($col));
+    }
+
+
     public function testDrop() {
         $ansi = new ANSICompiler();
         $expr = new expr\Drop(new expr\Table('Tbl', array()));
