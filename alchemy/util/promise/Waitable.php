@@ -23,6 +23,8 @@ class Waitable {
 
     /**
      * Immediately return the value of the Waitable, resolved or not
+     *
+     * @return  mixed current value
      */
     public function __invoke() {
         $this->check();
@@ -32,6 +34,8 @@ class Waitable {
 
     /**
      * Returns whether or not the Waitable is resolved.
+     *
+     * @return  boolean resolved or not
      */
     public function check() {
         $this->precheck();
@@ -40,9 +44,18 @@ class Waitable {
     }
 
 
+    /**
+     * Subclasses override this to do something during check()
+     */
     protected function precheck() {}
 
 
+    /**
+     * Resolve the Waitable to a value, Exception, or NULL to leave it unresolved.
+     *
+     * @param  mixed $result
+     * @return this
+     */
     public function resolve($result) {
         if ($result === null
             || $result instanceof \Exception
@@ -62,9 +75,9 @@ class Waitable {
      * Sets the timeout for this Waitable.
      * $obj->timeout() will cause the Waitable to not wait at all.
      *
-     * @param  integer $ms      in milliseconds. 0 = immediately, null = never
-     * @param  integer $spin delay between spinlock checks
-     * @param  boolean $reset    whether or not to reset the timer
+     * @param  integer $ms     in milliseconds. 0 = immediately, null = never
+     * @param  integer $spin   delay between spinlock checks
+     * @param  boolean $reset  whether or not to reset the timer
      */
     public function timeout($ms = 0, $spin = 10, $reset = false) {
         if ($reset || $this->started === null) {
@@ -77,6 +90,12 @@ class Waitable {
         return $this;
     }
 
+
+    /**
+     * Get the expected result type, if any, of this Waitable.
+     *
+     * @return string|null
+     */
     public function type() {
         return $this->resultType;
     }
@@ -85,7 +104,7 @@ class Waitable {
     /**
      * Blocks until either the Waitable resolves or times out.
      *
-     * @return $result resolved value, Exception, or TimeoutException if timed out
+     * @return $result resolved value or an Exception
      */
     public function wait() {
         while(!$this->check() && ($this->timeout && (microtime(true) < $this->timeout))) {

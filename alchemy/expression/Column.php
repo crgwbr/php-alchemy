@@ -1,12 +1,13 @@
 <?php
 
 namespace Alchemy\expression;
+use Alchemy\util\promise\IPromisable;
 
 
 /**
  * Abstract base class for representing a column in SQL
  */
-abstract class Column implements IQueryValue {
+abstract class Column extends QueryElement implements IQueryValue, IPromisable {
     protected static $default_args = array(
         'default' => null,
         'index' => false,
@@ -40,6 +41,14 @@ abstract class Column implements IQueryValue {
     }
 
 
+    public static function list_promisable_methods() {
+        $NS = __NAMESPACE__;
+        return array(
+            'copy'     => "$NS\Column",
+            'getTable' => "$NS\Table");
+    }
+
+
     /**
      * Object Constructor
      *
@@ -67,10 +76,19 @@ abstract class Column implements IQueryValue {
     }
 
 
-    public function assign(Table $table = null, $name = '', $alias = '') {
+    public function attach(Table $table = null, $name = '', $alias = '') {
+        if ($this->table && $this->table !== $table) {
+            throw new \Exception("Cannot reattach Column to a different Table.");
+        }
+
         $this->table = $table;
         $this->name = $name;
         $this->alias = $alias;
+    }
+
+
+    public function copy() {
+        return new static($this->getArgs());
     }
 
 
@@ -98,6 +116,11 @@ abstract class Column implements IQueryValue {
 
     public function getAlias() {
         return $this->alias ?: "";
+    }
+
+
+    public function getArgs() {
+        return $this->args;
     }
 
 

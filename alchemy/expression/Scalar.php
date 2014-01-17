@@ -7,7 +7,7 @@ use PDO;
 /**
  * Represent a Scalar value in SQL
  */
-class Scalar implements IQueryValue {
+class Scalar extends QueryElement implements IQueryValue {
     const T_BOOL = PDO::PARAM_BOOL;
     const T_NULL = PDO::PARAM_NULL;
     const T_INT = PDO::PARAM_INT;

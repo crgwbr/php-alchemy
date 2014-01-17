@@ -2,19 +2,29 @@
 
 namespace Alchemy\expression;
 use Alchemy\util\DataTypeLexer;
+use Alchemy\util\promise\IPromisable;
+use Alchemy\dialect\ICompilable;
 use Exception;
 
 
 /**
  * Represent a table in SQL
  */
-class Table {
+class Table  extends QueryElement implements IPromisable {
     protected static $tableCounter = 0;
 
     protected $name;
     protected $alias;
     protected $columns = array();
     protected $indexes = array();
+
+
+    public static function list_promisable_methods() {
+        $NS = __NAMESPACE__;
+        return array(
+            '__get' => "$NS\Column",
+            'copy'  => "$NS\Table");
+    }
 
 
     /**
@@ -43,6 +53,16 @@ class Table {
         }
 
         return $this->columns[$name];
+    }
+
+
+    public function copy() {
+        $columns = array();
+        foreach ($this->columns as $name => $column) {
+            $columns[$name] = $column->copy();
+        }
+
+        return new static($this->name, $columns);
     }
 
 
@@ -126,7 +146,7 @@ class Table {
                 $column = new $class($type->getArgs());
             }
 
-            $column->assign($this, $name, $name);
+            $column->attach($this, $name, $name);
             $this->columns[$name] = $column;
         }
     }

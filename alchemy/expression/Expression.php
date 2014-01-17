@@ -7,7 +7,7 @@ use Exception;
 /**
  * Abstract base class for representing an expression in SQL
  */
-abstract class Expression implements IQueryFragment {
+abstract class Expression extends QueryElement implements IQueryFragment {
     protected static $conjoin_types = array('and', 'or');
 
     protected $scalars = array();

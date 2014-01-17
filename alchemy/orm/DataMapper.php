@@ -1,6 +1,7 @@
 <?php
 
 namespace  Alchemy\orm;
+use Alchemy\util\promise\Promise;
 use Alchemy\expression\Table;
 use Exception;
 
@@ -50,8 +51,14 @@ abstract class DataMapper {
     public static function table() {
         $cls = get_called_class();
         if (!array_key_exists($cls, self::$schema_cache)) {
-            $table = new Table($cls::table_name(), $cls::$props, $cls::$indexes);
-            self::$schema_cache[$cls] = $table;
+            $name    = $cls::table_name();
+            $props   = $cls::$props;
+            $indexes = $cls::$indexes;
+            $tablefn = function() use ($name, $props, $indexes) {
+                return new Table($name, $props, $indexes);
+            };
+
+            self::$schema_cache[$cls] = new Promise($tablefn);
         }
 
         return self::$schema_cache[$cls];

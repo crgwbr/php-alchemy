@@ -14,11 +14,20 @@ require_once "util/Monad.php";
 require_once "util/promise/Waitable.php";
 require_once "util/promise/Signal.php";
 require_once "util/promise/Promise.php";
+require_once "util/promise/IPromisable.php";
+
+// Dialects
+require_once "dialect/Compiler.php";
+require_once "dialect/ANSICompiler.php";
+require_once "dialect/ICompilable.php";
+require_once "dialect/SQLiteCompiler.php";
+require_once "dialect/MySQLCompiler.php";
 
 // Interfaces
 require_once "expression/IQueryFragment.php";
 require_once "expression/IQueryValue.php";
 require_once "expression/IQuery.php";
+require_once "expression/QueryElement.php";
 
 // Basic expressions
 require_once "expression/Scalar.php";
@@ -69,12 +78,6 @@ require_once "expression/Delete.php";
 require_once "expression/DDLQuery.php";
 require_once "expression/Create.php";
 require_once "expression/Drop.php";
-
-// Dialects
-require_once "dialect/Compiler.php";
-require_once "dialect/ANSICompiler.php";
-require_once "dialect/SQLiteCompiler.php";
-require_once "dialect/MySQLCompiler.php";
 
 // Engines
 require_once "engine/IResultSet.php";

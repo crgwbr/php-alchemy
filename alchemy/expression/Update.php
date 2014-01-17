@@ -17,7 +17,7 @@ class Update extends Query {
      *
      * @param Table $table
      */
-    public function table(Table $table = null) {
+    public function table($table = null) {
         if (is_null($table)) {
             return $this->table;
         }

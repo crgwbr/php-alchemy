@@ -12,23 +12,25 @@ class ANSICompiler extends Compiler {
      * @return string            alias
      */
     public function alias($obj) {
-        if ($obj instanceof expr\Scalar) {
+        $roles = $obj->listRoles();
+        if (in_array('Scalar', $roles)) {
             return "p" . $obj->getID();
-        } elseif ($obj instanceof expr\Table) {
+        } elseif (in_array('Table', $roles)) {
             return strtolower(substr($obj->getName(), 0, 2)) . $obj->getID();
         }
 
-        throw new Expection("Can't alias type " . get_class($obj));
+        $roles = implode(',', $roles);
+        throw new \Exception("Can't alias roles [$roles]");
     }
 
 
-    public function BinaryExpression(expr\BinaryExpression $obj) {
+    public function BinaryExpression($obj) {
         $elements = $this->compile($obj->listElements());
         return implode(' ', $elements);
     }
 
 
-    public function Column(expr\Column $obj) {
+    public function Column($obj) {
         $column = $obj->getName();
 
         if ($this->getConfig('alias_tables')) {
@@ -43,14 +45,14 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function CompoundExpression(expr\CompoundExpression $obj) {
+    public function CompoundExpression($obj) {
         $elements = $this->compile($obj->listElements());
         $elements = implode(' ', $elements);
         return "({$elements})";
     }
 
 
-    public function Create(expr\Create $obj) {
+    public function Create($obj) {
         $table = $obj->getTable();
 
         $columns = $this->map('Create_Column', $table->listColumns());
@@ -65,32 +67,32 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_BigInt(expr\BigInt $obj) {
+    public function Create_BigInt($obj) {
         return "BIGINT({$obj->getSize()})";
     }
 
 
-    public function Create_Binary(expr\Binary $obj) {
+    public function Create_Binary($obj) {
         return "BINARY({$obj->getSize()})";
     }
 
 
-    public function Create_Blob(expr\Blob $obj) {
+    public function Create_Blob($obj) {
         return "BLOB";
     }
 
 
-    public function Create_Bool(expr\Bool $obj) {
+    public function Create_Bool($obj) {
         return "BOOL";
     }
 
 
-    public function Create_Char(expr\Char $obj) {
+    public function Create_Char($obj) {
         return "CHAR({$obj->getSize()})";
     }
 
 
-    public function Create_Column(expr\Column $obj) {
+    public function Create_Column($obj) {
         $fn = $this->getFunction($obj, 'Create_', true);
         $type = call_user_func($fn, $obj);
         $null = $obj->isNotNull() ? "NOT NULL" : "NULL";
@@ -99,22 +101,22 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Date(expr\Date $obj) {
+    public function Create_Date($obj) {
         return "DATE";
     }
 
 
-    public function Create_Datetime(expr\Datetime $obj) {
+    public function Create_Datetime($obj) {
         return "DATETIME";
     }
 
 
-    public function Create_Decimal(expr\Decimal $obj) {
+    public function Create_Decimal($obj) {
         return "DECIMAL({$obj->getPrecision()}, {$obj->getScale()})";
     }
 
 
-    public function Create_Float(expr\Float $obj) {
+    public function Create_Float($obj) {
         return "FLOAT({$obj->getPrecision()})";
     }
 
@@ -124,12 +126,12 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Integer(expr\Integer $obj) {
+    public function Create_Integer($obj) {
         return "INT({$obj->getSize()})";
     }
 
 
-    public function Create_Key(expr\Index $obj) {
+    public function Create_Key($obj) {
         $fn = $this->getFunction($obj, 'Create_', true);
 
         $columns = $obj->listColumns();
@@ -146,7 +148,7 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_MediumInt(expr\MediumInt $obj) {
+    public function Create_MediumInt($obj) {
         return "MEDIUMINT({$obj->getSize()})";
     }
 
@@ -156,27 +158,27 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_SmallInt(expr\SmallInt $obj) {
+    public function Create_SmallInt($obj) {
         return "SMALLINT({$obj->getSize()})";
     }
 
 
-    public function Create_String(expr\String $obj) {
+    public function Create_String($obj) {
         return "VARCHAR({$obj->getSize()})";
     }
 
 
-    public function Create_Time(expr\Time $obj) {
+    public function Create_Time($obj) {
         return "TIME";
     }
 
 
-    public function Create_Timestamp(expr\Timestamp $obj) {
+    public function Create_Timestamp($obj) {
         return "TIMESTAMP";
     }
 
 
-    public function Create_TinyInt(expr\TinyInt $obj) {
+    public function Create_TinyInt($obj) {
         return "TINYINT({$obj->getSize()})";
     }
 
@@ -186,7 +188,7 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Delete(expr\Delete $obj) {
+    public function Delete($obj) {
         $alias = $this->getConfig('alias_tables') ? $this->alias($obj->from()) : '';
 
         $parts = array(
@@ -200,12 +202,12 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Drop(expr\Drop $obj) {
+    public function Drop($obj) {
         return "DROP TABLE IF EXISTS {$obj->getTable()->getName()}";
     }
 
 
-    public function InclusiveExpression(expr\InclusiveExpression $obj) {
+    public function InclusiveExpression($obj) {
         $left  = $this->compile($obj->getLeft());
         $elements = $this->compile($obj->listElements());
         $elements = implode(', ', $elements);
@@ -213,7 +215,7 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Insert(expr\Insert $obj) {
+    public function Insert($obj) {
         $columns = $this->compile($obj->columns());
         $rows    = $this->compile($obj->rows());
 
@@ -228,24 +230,24 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Join(expr\Join $obj) {
-        $table = $this->Table($obj->getTable());
-        $on = $this->compile($obj->getOn());
+    public function Join($obj) {
+        $table = $this->compile($obj->getTable());
+        $on    = $this->compile($obj->getOn());
         return "{$obj->getDirection()} {$obj->getType()} JOIN {$table} ON {$on}";
     }
 
 
-    public function Operator(expr\Operator $obj) {
+    public function Operator($obj) {
         return "{$obj->getType()}";
     }
 
 
-    public function Scalar(expr\Scalar $obj) {
+    public function Scalar($obj) {
         return ":{$this->alias($obj)}";
     }
 
 
-    public function Select(expr\Select $obj) {
+    public function Select($obj) {
         $columns = $this->compile($obj->columns(),
             array('alias_columns' => true));
         $columns = implode(", ", $columns);
@@ -263,7 +265,7 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Table(expr\Table $obj) {
+    public function Table($obj) {
         if ($this->getConfig('alias_tables')) {
             return "{$obj->getName()} {$this->alias($obj)}";
         }
@@ -272,7 +274,7 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Update(expr\Update $obj) {
+    public function Update($obj) {
         $fn = function($value) {
             list($column, $scalar) = $value;
             return "{$column} = {$scalar}";
@@ -292,12 +294,12 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Query_Join(expr\Query $obj) {
-        return implode(' ', $this->map('Join', $obj->joins()));
+    public function Query_Join($obj) {
+        return implode(' ', $this->compile($obj->joins()));
     }
 
 
-    public function Query_Limit(expr\Query $obj) {
+    public function Query_Limit($obj) {
         list($offset, $limit) = $this->compile($obj->limit());
 
         if (!$limit && !$offset) {
@@ -310,7 +312,7 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Query_Where(expr\Query $obj) {
+    public function Query_Where($obj) {
         $where = $this->compile($obj->where());
         return $where ? "WHERE {$where}" : "";
     }

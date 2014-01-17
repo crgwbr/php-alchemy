@@ -7,7 +7,7 @@ use BadMethodCallException;
 /**
  * Represent a logical operator
  */
-class Operator {
+class Operator extends QueryElement {
     const O_EQUAL = "=";
     const O_NOT = "!=";
     const O_GT = ">";

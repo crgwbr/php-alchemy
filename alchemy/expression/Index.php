@@ -6,7 +6,7 @@ namespace Alchemy\expression;
 /**
  * Class for representing an index in SQL
  */
-class Index {
+class Index extends QueryElement {
     protected $name = "";
     protected $columns = array();
 

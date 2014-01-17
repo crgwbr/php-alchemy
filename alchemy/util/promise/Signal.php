@@ -12,7 +12,7 @@ class Signal extends Waitable {
     protected $fnSource = null;
 
 
-    public function __construct($source, $type = null) {
+    public function __construct($source = null, $type = null) {
         parent::__construct($type);
 
         if (is_callable($source)) {
@@ -29,8 +29,7 @@ class Signal extends Waitable {
      */
     protected function precheck() {
         if ($this->fnSource !== null) {
-            $fnSource = $this->fnSource;
-            $this->resolve($fnSource());
+            $this->resolve(call_user_func($this->fnSource));
         }
 
         if ($this->result instanceof Waitable) {

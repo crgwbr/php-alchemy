@@ -2,6 +2,7 @@
 
 namespace Alchemy\tests;
 use Alchemy\util\promise\Promise;
+use Alchemy\util\promise\IPromisable;
 
 
 class PromiseTest extends BaseTest {
@@ -31,21 +32,41 @@ class PromiseTest extends BaseTest {
     }
 
 
-    public function testGetSetCallPassing() {
-        $promise = new Promise(null);
-        $promise->timeout();
-
-        // expects()s it to resolve so it can call_user_func() on result
-        $this->assertThrows("Exception", array($promise, 'func'), 4);
-
+    public function testMagicPassing() {
         $obj = new \stdClass();
         $promise = new Promise(null);
         $promise->resolve($obj);
 
         // magic-mapped to resolved object
-        $promise->key = "value";
+        $obj->key = "value";
         $this->assertEquals("value", $promise->key);
-        $this->assertEquals("value", $obj->key);
+    }
+
+
+    public function testPromisableCallChain() {
+        $cls = 'Alchemy\tests\MockPromisable';
+        $this->assertEquals($cls, Promise::get_return_type($cls, "promisableMethod"));
+        $this->assertEquals(false, Promise::get_return_type($cls, "normalMethod"));
+
+        // promisable methods can be called on an unresolved typed promise
+        $promiseA = new Promise(null, $cls);
+        $promiseB = $promiseA
+            ->promisableMethod(3, 'q')
+            ->promisableMethod(3, 'q');
+
+        // B is a Promise of calling ->promisableMethod(3, 'q') on A's result
+        $this->assertInstanceOf("Alchemy\util\promise\Promise", $promiseB);
+
+        $mock = $this->getMock($cls, array('promisableMethod'));
+        $mock->expects($this->exactly(2))
+            ->method('promisableMethod')
+            ->with(3, 'q')
+            ->will($this->returnValue($mock));
+
+        $promiseA->resolve($mock);
+
+        // this call will force the Promise to resolve
+        $this->assertEquals("value", $promiseB->normalMethod());
     }
 
 
@@ -105,5 +126,21 @@ class PromiseTest extends BaseTest {
 
         $this->assertEquals(null, $promise());
         $this->assertEquals(4,    $promise());
+    }
+}
+
+
+class MockPromisable implements IPromisable {
+
+    public static function list_promisable_methods() {
+        return array('promisableMethod' => 'Alchemy\tests\MockPromisable');
+    }
+
+    public function promisableMethod() {
+        return new self();
+    }
+
+    public function normalMethod() {
+        return "value";
     }
 }

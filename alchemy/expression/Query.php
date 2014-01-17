@@ -7,7 +7,7 @@ use Alchemy\util\Monad;
 /**
  * Abstract base class for representing a query
  */
-abstract class Query implements IQuery {
+abstract class Query extends QueryElement implements IQuery {
     protected $columns = array();
     protected $joins = array();
     protected $where;
@@ -32,7 +32,7 @@ abstract class Query implements IQuery {
      *
      * @param IQueryValue $column
      */
-    public function column(IQueryValue $column) {
+    public function column($column) {
        $this->columns[] = $column;
     }
 
@@ -93,7 +93,7 @@ abstract class Query implements IQuery {
      * @param $direction Optional join direction
      * @param $type Optional join type
      */
-    public function join(Table $table, Expression $on, $direction = null, $type = null) {
+    public function join($table, Expression $on, $direction = null, $type = null) {
         $direction = $direction ?: Join::LEFT;
         $type = $type ?: Join::INNER;
         $this->joins[] = new Join($direction, $type, $table, $on);
@@ -112,7 +112,7 @@ abstract class Query implements IQuery {
      * @param Expression $on
      * @param $direction Optional join direction
      */
-    public function outerJoin(Table $table, Expression $on, $direction = null) {
+    public function outerJoin($table, Expression $on, $direction = null) {
         return $this->join($table, $on, $direction, Join::OUTER);
     }
 

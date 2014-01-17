@@ -48,17 +48,17 @@ class Compiler {
 
 
     protected function getFunction($obj, $prefix = '', $strict = false) {
-        $cls = get_class($obj);
-
-        do {
-            $short = substr(strrchr($cls, '\\'), 1);
-            if (method_exists($this, "{$prefix}{$short}")) {
-                return array($this, "{$prefix}{$short}");
+        foreach($obj->listRoles() as $role) {
+            if (method_exists($this, "{$prefix}{$role}")) {
+                return array($this, "{$prefix}{$role}");
             }
-            $cls = get_parent_class($cls);
-        } while ($cls && !$strict);
 
-        throw new \Exception("Compiler method not found for " . get_class($obj));
+            if ($strict) break;
+        }
+
+        $roles = array_slice($obj->listRoles(), 0, $strict ? 1 : -1);
+        $roles = implode(', ', $roles);
+        throw new \Exception("Compiler method not found with prefix '$prefix' for roles [$roles]");
     }
 
 

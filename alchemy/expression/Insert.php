@@ -17,7 +17,7 @@ class Insert extends Query {
      *
      * @param Table $table
      */
-    public function into(Table $table = null) {
+    public function into($table = null) {
         if (is_null($table)) {
             return $this->into;
         }

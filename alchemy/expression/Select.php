@@ -16,7 +16,7 @@ class Select extends Query {
      *
      * @param Table $table
      */
-    public function from(Table $table = null) {
+    public function from($table = null) {
         if (is_null($table)) {
             return $this->from;
         }
