@@ -27,6 +27,15 @@ class Table  extends QueryElement implements IPromisable {
     }
 
 
+    public static function find($name) {
+        if (isset(self::$registered_tables[$name])) {
+            return self::$registered_tables[$name];
+        }
+
+        throw new \Exception("Unknown table '$table'.");
+    }
+
+
     /**
      * Object constructor
      *
@@ -57,12 +66,7 @@ class Table  extends QueryElement implements IPromisable {
 
 
     public function copy() {
-        $columns = array();
-        foreach ($this->columns as $name => $column) {
-            $columns[$name] = $column->copy();
-        }
-
-        return new static($this->name, $columns);
+        return new static($this->name, $this->columns);
     }
 
 
@@ -146,8 +150,7 @@ class Table  extends QueryElement implements IPromisable {
                 $column = new $class($type->getArgs());
             }
 
-            $column->attach($this, $name, $name);
-            $this->columns[$name] = $column;
+            $this->columns[$name] = $column->copy($this, $name);
         }
     }
 

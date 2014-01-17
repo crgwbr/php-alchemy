@@ -12,15 +12,23 @@ class ANSICompiler extends Compiler {
      * @return string            alias
      */
     public function alias($obj) {
-        $roles = $obj->listRoles();
-        if (in_array('Scalar', $roles)) {
-            return "p" . $obj->getID();
-        } elseif (in_array('Table', $roles)) {
-            return strtolower(substr($obj->getName(), 0, 2)) . $obj->getID();
-        }
+        $fn = $this->getFunction($obj, 'Alias_');
+        return call_user_func($fn, $obj);
+    }
 
-        $roles = implode(',', $roles);
-        throw new \Exception("Can't alias roles [$roles]");
+
+    public function Alias_Column($obj) {
+        return $obj->getName();
+    }
+
+
+    public function Alias_Scalar($obj) {
+        return "p" . $obj->getID();
+    }
+
+
+    public function Alias_Table($obj) {
+        return strtolower(substr($obj->getName(), 0, 2)) . $obj->getID();
     }
 
 
@@ -38,7 +46,7 @@ class ANSICompiler extends Compiler {
         }
 
         if ($this->getConfig('alias_columns')) {
-            $column = "$column as {$obj->getAlias()}";
+            $column = "$column as {$this->alias($obj)}";
         }
 
         return $column;
@@ -123,6 +131,11 @@ class ANSICompiler extends Compiler {
 
     public function Create_Index($table, $name, $columns) {
         return "KEY {$name} ({$columns})";
+    }
+
+
+    public function Create_Foreign($table, $name, $columns) {
+        return "FOREIGN KEY ({$columns}) REFERENCES {$name} ({$columns})";
     }
 
 

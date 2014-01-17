@@ -18,7 +18,6 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
 
     protected $table;
     protected $name;
-    protected $alias;
     protected $args;
 
 
@@ -54,8 +53,10 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
      *
      * @param array $args
      */
-    public function __construct(array $args = array()) {
-        $this->args = $args + static::get_default_args();
+    public function __construct($args = array(), $table = null, $name = '') {
+        $this->args = (array) $args + static::get_default_args();
+        $this->table = $table;
+        $this->name = $name;
     }
 
 
@@ -76,19 +77,8 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
     }
 
 
-    public function attach(Table $table = null, $name = '', $alias = '') {
-        if ($this->table && $this->table !== $table) {
-            throw new \Exception("Cannot reattach Column to a different Table.");
-        }
-
-        $this->table = $table;
-        $this->name = $name;
-        $this->alias = $alias;
-    }
-
-
-    public function copy() {
-        return new static($this->getArgs());
+    public function copy($table = null, $name = '') {
+        return new static($this->getArgs(), $table, $name ?: $this->name);
     }
 
 
@@ -111,11 +101,6 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
      */
     public function encode($value) {
         return new Scalar((string)$value, Scalar::T_STR);
-    }
-
-
-    public function getAlias() {
-        return $this->alias ?: "";
     }
 
 
