@@ -140,11 +140,12 @@ class Table extends QueryElement implements IPromisable {
      * Register this Table as canonical for its name
      */
     public function register() {
-        if (!isset(self::$registered[$this->name])) {
-            self::$registered[$this->name] = $this;
+        if (isset(self::$registered[$this->name])
+            && self::$registered[$this->name] !== $this) {
+            throw new \Exception("A table is already registered for name '{$this->name}'.");
         }
 
-        throw new \Exception("A table is already registered for name '{$this->name}'.");
+        self::$registered[$this->name] = $this;
     }
 
 
@@ -163,7 +164,7 @@ class Table extends QueryElement implements IPromisable {
                 $column = new $class($type->getArgs());
             }
 
-            $this->properties[$name] = $column->copy($this, $name);
+            $this->properties[$name] = $column->copy(array(), $this, $name);
         } else {
             throw new Exception("Column or relationship {$name} does not exist");
         }

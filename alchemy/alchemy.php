@@ -63,6 +63,7 @@ require_once "expression/Char.php";
 require_once "expression/Blob.php";
 require_once "expression/Float.php";
 require_once "expression/Binary.php";
+require_once "expression/ForeignKey.php";
 
 // Query Structure
 require_once "expression/Join.php";

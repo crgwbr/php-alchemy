@@ -55,20 +55,19 @@ class Promise extends Signal {
     public static function get_return_type($cls, $method) {
         static $return_types = array();
 
-        if (!$cls || !$method) {
+        if (isset($return_types[$cls][$method])) {
+            return $return_types[$cls][$method];
+        }
+
+        if (isset($return_types[$cls]) || !$cls || !$method) {
             return false;
         }
 
-        if (!isset($return_types[$cls])) {
-            $interfaces = class_implements($cls);
-            $return_types[$cls] = in_array(__NAMESPACE__.'\IPromisable', $interfaces)
-                ? $cls::list_promisable_methods()
-                : false;
-        }
-
-        return (isset($return_types[$cls][$method]))
-            ? $return_types[$cls][$method]
+        $return_types[$cls] = method_exists($cls, "list_promisable_methods")
+            ? $cls::list_promisable_methods()
             : false;
+
+        return isset($return_types[$cls][$method]) ? $return_types[$cls][$method] : false;
     }
 
 

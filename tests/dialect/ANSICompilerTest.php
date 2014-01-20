@@ -78,10 +78,11 @@ class ANSICompilerTest extends BaseTest {
         $ansi = new ANSICompiler();
         $expr = new expr\Create(
             new expr\Table('Tbl', array(
-                'Col' => new expr\Integer(array(11, 'null' => false, 'auto_increment' => false)) )));
+                'Col' => new expr\Integer(array(11, 'null' => false, 'auto_increment' => false)),
+                'Key' => new expr\ForeignKey(array('self.Col', 'null' => true)) )));
 
         $this->assertEquals(
-            "CREATE TABLE IF NOT EXISTS Tbl (Col INT(11) NOT NULL)",
+            "CREATE TABLE IF NOT EXISTS Tbl (Col INT(11) NOT NULL, Key INT(11) NULL)",
             $ansi->compile($expr));
     }
 

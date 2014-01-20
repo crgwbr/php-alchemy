@@ -50,15 +50,17 @@ abstract class DataMapper {
      */
     public static function table() {
         $cls = get_called_class();
+
         if (!array_key_exists($cls, self::$schema_cache)) {
             $name    = $cls::table_name();
             $props   = $cls::$props;
             $indexes = $cls::$indexes;
+
             $tablefn = function() use ($name, $props, $indexes) {
                 return new Table($name, $props, $indexes);
             };
 
-            self::$schema_cache[$cls] = new Promise($tablefn);
+            self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\expression\Table");
         }
 
         return self::$schema_cache[$cls];

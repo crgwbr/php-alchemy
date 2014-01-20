@@ -48,7 +48,7 @@ class MapperTest extends BaseTest {
 
         $engine->expects($this->once())
                ->method('execute')
-               ->with($this->equalTo('SELECT al1.LanguageID as LanguageID, al1.ISO2Code as ISO2Code, al1.LatestChangeStamp as LatestChangeStamp FROM Alchemy_tests_Language al1'));
+               ->with($this->equalTo('SELECT al1.LanguageID as LanguageID, al1.ISO2Code as ISO2Code, al1.FallbackLanguageID as FallbackLanguageID, al1.LatestChangeStamp as LatestChangeStamp FROM Alchemy_tests_Language al1'));
 
         $session = new Session($engine);
         $all = $session->objects('Alchemy\tests\Language')->all();

@@ -53,8 +53,9 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
      *
      * @param array $args
      */
-    public function __construct($args = array(), $table = null, $name = '') {
-        $this->args = (array) $args + static::get_default_args();
+    public function __construct($args = array(), $table = null, $name = '?') {
+        $args = is_array($args) ? $args : array($args);
+        $this->args = $args + static::get_default_args();
         $this->table = $table;
         $this->name = $name;
     }
@@ -69,7 +70,7 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
      */
     public function __call($name, $args) {
         $value = $args[0];
-        if (!$value instanceof IQueryValue) {
+        if (!($value instanceof IQueryValue)) {
             $value = new Scalar($value);
         }
 
@@ -77,8 +78,8 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
     }
 
 
-    public function copy($table = null, $name = '') {
-        return new static($this->getArgs(), $table, $name ?: $this->name);
+    public function copy(array $args = array(), $table = null, $name = '?') {
+        return new static($args + $this->args, $table, $name);
     }
 
 
@@ -101,6 +102,11 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
      */
     public function encode($value) {
         return new Scalar((string)$value, Scalar::T_STR);
+    }
+
+
+    public function getArg($name) {
+        return isset($this->args[$name]) ? $this->args[$name] : null;
     }
 
 

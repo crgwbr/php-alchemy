@@ -67,6 +67,9 @@ class PromiseTest extends BaseTest {
 
         // this call will force the Promise to resolve
         $this->assertEquals("value", $promiseB->normalMethod());
+
+        // cache simple promisable methods
+        $this->assertEquals($promiseA->promisableMethod(), $promiseA->promisableMethod());
     }
 
 

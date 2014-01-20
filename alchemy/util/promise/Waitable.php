@@ -62,7 +62,8 @@ class Waitable {
             || $result instanceof Waitable) {
             $this->result = $result;
         } elseif ($this->resultType && !($result instanceof $this->resultType)) {
-            $this->result = new TypeException("Expected {$this->resultType}, got " . get_class($result));
+            $type = is_object($result) ? get_class($result) : gettype($result);
+            $this->result = new TypeException("Expected {$this->resultType}, got {$type}");
         } else {
             $this->result = $result;
         }
