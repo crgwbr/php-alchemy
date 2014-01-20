@@ -23,7 +23,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Alias_Scalar($obj) {
-        return "p" . $obj->getID();
+        return "p" . $this->aliasID('scalar', $obj->getID());
     }
 
 

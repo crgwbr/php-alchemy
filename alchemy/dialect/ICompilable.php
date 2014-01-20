@@ -9,6 +9,14 @@ namespace Alchemy\dialect;
 interface ICompilable {
 
     /**
+     * Get the locally-unique element id
+     *
+     * @return string
+     */
+    public function getID();
+
+
+    /**
      * List of compilation roles that this object can play
      *
      * @return array in order of specificity, preference

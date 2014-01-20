@@ -13,11 +13,8 @@ class Scalar extends QueryElement implements IQueryValue {
     const T_INT = PDO::PARAM_INT;
     const T_STR = PDO::PARAM_STR;
 
-    protected static $scalarCounter = 0;
-
     protected $dataType;
     protected $value;
-    protected $id;
 
 
     /**
@@ -27,7 +24,6 @@ class Scalar extends QueryElement implements IQueryValue {
      * @param mixed $dataType Optional. Type will be inferred if not provided
      */
     public function __construct($value, $dataType = null) {
-        $this->id = self::$scalarCounter++;
         $this->value = $value;
         $this->dataType = $dataType ?: $this->inferDataType($value);
     }
@@ -40,16 +36,6 @@ class Scalar extends QueryElement implements IQueryValue {
      */
     public function getDataType() {
         return $this->dataType;
-    }
-
-
-    /**
-     * Return the id of this parameter
-     *
-     * @return string
-     */
-    public function getID() {
-        return $this->id;
     }
 
 

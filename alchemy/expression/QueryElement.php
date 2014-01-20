@@ -9,6 +9,25 @@ use Alchemy\dialect\ICompilable;
  */
 abstract class QueryElement implements ICompilable {
 
+    protected static $idCounter = 0;
+
+    protected $id;
+
+
+    /**
+     * Get the locally-unique element id
+     *
+     * @return string
+     */
+    public function getID() {
+        if (!$this->id) {
+            $this->id = ++self::$idCounter;
+        }
+
+        return $this->id;
+    }
+
+
     /**
      * List of compilation roles that this object can play
      *

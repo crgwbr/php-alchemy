@@ -10,7 +10,6 @@ use Exception;
  * Represent a table in SQL
  */
 class Table extends QueryElement implements IPromisable {
-    protected static $tableCounter = 0;
     protected static $registered = array();
 
     protected $name;
@@ -55,7 +54,6 @@ class Table extends QueryElement implements IPromisable {
      */
     public function __construct($name, $propdefs, $indexdefs = array(), $namespace = "Alchemy\\expression") {
         $this->name = $name;
-        $this->id = ++static::$tableCounter;
         $this->propdefs  = $propdefs;
         $this->indexdefs = $indexdefs;
     }
@@ -77,16 +75,6 @@ class Table extends QueryElement implements IPromisable {
 
     public function copy() {
         return new static($this->name, $this->propdefs, $this->indexdefs);
-    }
-
-
-    /**
-     * Get the table id
-     *
-     * @return string
-     */
-    public function getID() {
-        return $this->id;
     }
 
 
