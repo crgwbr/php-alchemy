@@ -10,9 +10,7 @@ namespace  Alchemy\util;
  *     >>> $type->getType();
  *     "Integer"
  *     >>> $type->getArgs();
- *     array(11)
- *     >>> $type->getKeywordArgs();
- *     array("primary_key" => true)
+ *     array(11, "primary_key" => true)
  */
 class DataTypeLexer {
     const T_EQUALS = '=';
@@ -21,7 +19,6 @@ class DataTypeLexer {
     private $definition;
     private $type;
     private $args;
-    private $kwargs;
 
 
     /**
@@ -41,7 +38,7 @@ class DataTypeLexer {
      * @return array
      */
     public function getArgs() {
-        return $this->args + $this->kwargs;
+        return $this->args;
     }
 
 
@@ -83,7 +80,7 @@ class DataTypeLexer {
             }
 
             // Push value onto buffer
-            if ($inString || preg_match("/[a-zA-Z0-9_\-]/", $char)) {
+            if ($inString || preg_match("/[a-zA-Z0-9_\-.]/", $char)) {
                 $buffer .= $char;
                 continue;
             }
@@ -148,8 +145,7 @@ class DataTypeLexer {
     protected function parse($def) {
         $tokens = $this->lexString($def);
         $this->type = array_shift($tokens);
-        $this->args = array();
-        $this->kwargs = array();
+        $stack = array(array());
 
         while ($token = array_shift($tokens)) {
             // Ignore controls
@@ -157,13 +153,29 @@ class DataTypeLexer {
                 continue;
             }
 
+            // array stack control
+            if ($token == '[') {
+                array_unshift($stack, array());
+                continue;
+            } elseif ($token == ']') {
+                $top = array_shift($stack);
+                $stack[0][] = $top;
+                continue;
+            }
+
             if (reset($tokens) == static::T_EQUALS) {
                 array_shift($tokens); // Swallow the assignment
                 $value = array_shift($tokens);
-                $this->kwargs[$token] = $value;
+                $stack[0][$token] = $value;
             } else {
-                $this->args[] = $token;
+                $stack[0][] = $token;
             }
         }
+
+        if (count($stack) != 1) {
+            throw new \Exception("Definition '$def' contains unmatched [ brackets ].");
+        }
+
+        $this->args = array_shift($stack);
     }
 }

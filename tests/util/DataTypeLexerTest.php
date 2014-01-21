@@ -26,5 +26,9 @@ class DataTypeLexerTest extends BaseTest {
         $type = new DataTypeLexer("Integer(10, foreign_key='Table.ColumnID')");
         $this->assertEquals("Integer", $type->getType());
         $this->assertEquals(array(10, 'foreign_key' => 'Table.ColumnID'), $type->getArgs());
+
+        $type = new DataTypeLexer("ForeignKey([.Key1, .Key2], [Foreign.PK1, Foreign.PK2], ondelete = cascade)");
+        $this->assertEquals("ForeignKey", $type->getType());
+        $this->assertEquals(array(array('.Key1', '.Key2'), array('Foreign.PK1', 'Foreign.PK2'), 'ondelete' => 'cascade'), $type->getArgs());
     }
 }
