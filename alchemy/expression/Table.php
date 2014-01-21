@@ -106,7 +106,7 @@ class Table extends QueryElement implements IPromisable {
      * @return array array(Name => Column, ...)
      */
     public function listColumns() {
-        $this->resolveTable();
+        $this->resolve();
         return $this->columns;
     }
 
@@ -117,7 +117,7 @@ class Table extends QueryElement implements IPromisable {
      * @return array array(Name => Index, ...)
      */
     public function listIndexes() {
-        $this->resolveTable();
+        $this->resolve();
         return $this->indexes;
     }
 
@@ -129,7 +129,7 @@ class Table extends QueryElement implements IPromisable {
      */
     public function listPrimaryKeyComponents() {
         foreach ($this->listIndexes() as $name => $index) {
-            if ($index instanceof Primary) {
+            if ($index instanceof PrimaryKey) {
                 return $index->listColumns();
             }
         }
@@ -174,8 +174,9 @@ class Table extends QueryElement implements IPromisable {
     /**
      * Lazy-resolve the whole Table
      */
-    protected function resolveTable($namespace="Alchemy\\expression") {
+    protected function resolve($namespace="Alchemy\\expression") {
         if ($this->columns) return;
+        $primary = array();
 
         foreach ($this->propdefs as $name => $prop) {
             $column = $this->{$name};
@@ -184,20 +185,16 @@ class Table extends QueryElement implements IPromisable {
             }
 
             $this->columns[$name] = $column;
-            $type = null;
+            $this->indexes[$name] = $column->getIndex();
+            $this->indexes[] = $column->getForeignKey();
 
-            if ($column->isPrimaryKey()) {
-                $type = 'Primary';
-            } elseif ($column->isUnique()) {
-                $type = 'Unique';
-            } elseif ($column->hasIndex()) {
-                $type = 'Index';
+            if ($column->isPrimaryKeyPart()) {
+                $primary[] = $column;
             }
+        }
 
-            if ($type) {
-                $type = __NAMESPACE__ . "\\{$type}";
-                $this->indexes[$name] = new $type($name, array($name => $column));
-            }
+        if ($primary) {
+            $this->indexes['PRIMARY'] = new PrimaryKey(array($primary), $this, 'PRIMARY');
         }
 
         // Set multi-column indexes
@@ -205,14 +202,12 @@ class Table extends QueryElement implements IPromisable {
             if (is_string($index)) {
                 $type = new DataTypeLexer($index);
                 $class = $namespace . '\\' . $type->getType();
-
-                $columns = array_fill_keys($type->getArgs(), true);
-                $columns = array_intersect_key($this->columns, $columns);
-
-                $index = new $class($name, $columns);
+                $index = new $class($type->getArgs(), $this, $name);
             }
 
             $this->indexes[$name] = $index;
         }
+
+        $this->indexes = array_filter($this->indexes);
     }
 }

@@ -7,36 +7,34 @@ use Alchemy\util\promise\IPromisable;
 /**
  * Abstract base class for representing a column in SQL
  */
-abstract class Column extends QueryElement implements IQueryValue, IPromisable {
+abstract class Column extends TableElement implements IQueryValue, IPromisable {
     protected static $default_args = array(
         'default' => null,
+        'foreign_key' => null,
         'index' => false,
         'null' => false,
         'primary_key' => false,
         'unique' => false,
     );
 
-    protected $table;
-    protected $name;
-    protected $args;
-
 
     /**
-     * Get the combined list of self::$default_kwargs form the
-     * inheritance tree
+     * Retrieve the column for a reference like 'Table.Column',
+     * or 'self.Column' if a $self table is provided.
      *
-     * @return array
+     * @param  string $column column reference
+     * @param  Table  $self   table to use for relative references (optional)
+     * @return Column
      */
-    public static function get_default_args() {
-        $cls = get_called_class();
-        $args = $cls::$default_args;
+    public static function find($column, $self = null) {
+        list($ref, $col) = explode('.', $column) + array('', '');
 
-        $parent = get_parent_class($cls);
-        if ($parent && is_callable(array($parent, 'get_default_args'))) {
-            return array_merge($parent::get_default_args(), $args);
+        $reftable = ($ref == 'self' || $ref == '') ? $self : Table::find($ref);
+        if (!($reftable instanceof Table)) {
+            throw new \Exception("Cannot find Table '{$ref}'.");
         }
 
-        return $args;
+        return $reftable->{$col};
     }
 
 
@@ -45,19 +43,6 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
         return array(
             'copy'     => "$NS\Column",
             'getTable' => "$NS\Table");
-    }
-
-
-    /**
-     * Object Constructor
-     *
-     * @param array $args
-     */
-    public function __construct($args = array(), $table = null, $name = '?') {
-        $args = is_array($args) ? $args : array($args);
-        $this->args = $args + static::get_default_args();
-        $this->table = $table;
-        $this->name = $name;
     }
 
 
@@ -75,11 +60,6 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
         }
 
         return new BinaryExpression($this, Operator::$name(), $value);
-    }
-
-
-    public function copy(array $args = array(), $table = null, $name = '?') {
-        return new static($args + $this->args, $table, $name);
     }
 
 
@@ -105,34 +85,29 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
     }
 
 
-    public function getArg($name) {
-        return isset($this->args[$name]) ? $this->args[$name] : null;
-    }
-
-
-    public function getArgs() {
-        return $this->args;
-    }
-
-
-    public function getName() {
-        return $this->name ?: "";
-    }
-
-
-    public function getTable() {
-        return $this->table;
+    /**
+     * Get the ForeignKey constraint, if applicable, on this Column.
+     *
+     * @return ForeignKey
+     */
+    public function getForeignKey() {
+        if ($this->args['foreign_key']) {
+            return new ForeignKey(array(array($this), array($this->args['foreign_key'])), $this->table, $this->name);
+        }
     }
 
 
     /**
-     * Return true if this column has an index on it. This doesn't
-     * apply to multi-column indexes, only single column indexes.
+     * Get the Index, if applicable, on this Column.
      *
-     * @return bool
+     * @return Index
      */
-    public function hasIndex() {
-        return $this->args['index'];
+    public function getIndex() {
+        if ($this->args['unique']) {
+            return new UniqueKey($this, $this->table, $this->name);
+        } elseif ($this->args['index']) {
+            return new Index($this, $this->table, $this->name);
+        }
     }
 
 
@@ -151,18 +126,7 @@ abstract class Column extends QueryElement implements IQueryValue, IPromisable {
      *
      * @return bool
      */
-    public function isPrimaryKey() {
+    public function isPrimaryKeyPart() {
         return $this->args['primary_key'];
-    }
-
-
-    /**
-     * Return true if this column has a unique index on it. This doesn't
-     * apply to multi-column indexes, only single column indexes.
-     *
-     * @return bool
-     */
-    public function isUnique() {
-        return $this->args['unique'];
     }
 }

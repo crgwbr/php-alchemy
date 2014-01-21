@@ -6,20 +6,10 @@ namespace Alchemy\expression;
 /**
  * Class for representing an index in SQL
  */
-class Index extends QueryElement {
-    protected $name = "";
-    protected $columns = array();
+class Index extends TableElement {
+    protected static $default_args = array(array());
 
-
-    /**
-     * Object Constructor
-     *
-     * @param array $args
-     */
-    public function __construct($name, array $columns = array()) {
-        $this->name = $name;
-        $this->columns = $columns;
-    }
+    protected $columns;
 
 
     /**
@@ -28,7 +18,18 @@ class Index extends QueryElement {
      * @return string
      */
     public function getName() {
-        return $this->name;
+        if ($this->name) {
+            return $this->name;
+        }
+
+        $this->resolve();
+
+        $names = array();
+        foreach ($this->columns as $column) {
+            $names[] = $column->getName();
+        }
+
+        return implode('_', $names);
     }
 
 
@@ -38,6 +39,22 @@ class Index extends QueryElement {
      * @return array
      */
     public function listColumns() {
+        $this->resolve();
         return $this->columns;
+    }
+
+
+    protected function resolve() {
+        if ($this->columns) return;
+
+        if (!isset($this->args[0]) || count($this->args[0]) == 0) {
+            throw new \Exception("Index did not receive any columns.");
+        }
+
+        foreach ($this->args[0] as $column) {
+            $this->columns[] = is_string($column)
+                ? Column::find($column, $this->table)
+                : $column;
+        }
     }
 }

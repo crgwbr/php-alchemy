@@ -1,30 +1,55 @@
 <?php
 
 namespace Alchemy\expression;
-use Alchemy\expression\Column;
 
 
 /**
- * Represent a column in SQL with a foreign key constraint to another column
+ * Class for representing a foreign key constraint in SQL
  */
-class ForeignKey extends Column {
-    public function copy(array $args = array(), $table = null, $name = '?') {
-        $source = $this->args[0];
+class ForeignKey extends Index {
+    protected static $default_args = array(
+        array(), array(),
+        'ondelete' => 'restrict',
+        'onupdate' => 'restrict');
 
-        if (is_string($source)) {
-            list($ref, $col) = explode('.', $source);
+    protected $sources;
 
-            $reftable = ($ref == 'self') ? $table : Table::find($ref);
-            if (!($reftable instanceof Table)) {
-                throw new \Exception("Cannot find Table '{$ref}'.");
-            }
 
-            $source = $reftable->{$col};
+    /**
+     * Get the table the key references
+     *
+     * @return Table
+     */
+    public function getSourceTable() {
+        $this->resolve();
+        return $this->sources[0]->getTable();
+    }
+
+
+    /**
+     * Get the columns the key references
+     *
+     * @return array
+     */
+    public function listSources() {
+        $this->resolve();
+        return $this->sources;
+    }
+
+
+    protected function resolve() {
+        if ($this->columns) return;
+
+        parent::resolve();
+
+        if (!isset($this->args[1]) || count($this->args[0]) != count($this->args[1])) {
+            throw new \Exception("ForeignKey received the wrong number of sources.");
         }
 
-        // use source positional args, but our keyword args
-        $args += array($source->getArg(0), 'foreign_key' => $source) + $this->args;
-
-        return $source->copy($args, $table, $name);
+        foreach($this->args[1] as $source) {
+            $this->sources[] = is_string($source)
+                ? Column::find($source, $this->table)
+                : $source;
+        }
     }
 }

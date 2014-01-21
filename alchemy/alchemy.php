@@ -28,6 +28,7 @@ require_once "expression/IQueryFragment.php";
 require_once "expression/IQueryValue.php";
 require_once "expression/IQuery.php";
 require_once "expression/QueryElement.php";
+require_once "expression/TableElement.php";
 
 // Basic expressions
 require_once "expression/Scalar.php";
@@ -36,8 +37,9 @@ require_once "expression/Operator.php";
 // Schema definition
 require_once "expression/Column.php";
 require_once "expression/Index.php";
-require_once "expression/Unique.php";
-require_once "expression/Primary.php";
+require_once "expression/ForeignKey.php";
+require_once "expression/UniqueKey.php";
+require_once "expression/PrimaryKey.php";
 require_once "expression/Table.php";
 
 // Expressions
@@ -63,7 +65,7 @@ require_once "expression/Char.php";
 require_once "expression/Blob.php";
 require_once "expression/Float.php";
 require_once "expression/Binary.php";
-require_once "expression/ForeignKey.php";
+require_once "expression/Foreign.php";
 
 // Query Structure
 require_once "expression/Join.php";

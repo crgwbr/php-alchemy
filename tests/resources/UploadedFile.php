@@ -13,6 +13,6 @@ class UploadedFile extends DataMapper {
     );
 
     protected static $indexes = array(
-        'Folder_Filename' => 'Unique(Folder, Filename)',
+        'Folder_Filename' => 'UniqueKey([.Folder, .Filename])',
     );
 }

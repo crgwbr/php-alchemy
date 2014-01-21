@@ -129,13 +129,24 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Index($table, $name, $columns) {
-        return "KEY {$name} ({$columns})";
+    public function Create_Index($obj) {
+        $columns = $this->compile($obj->listColumns());
+        $columns = implode(', ', $columns);
+
+        return "KEY {$obj->getName()} ({$columns})";
     }
 
 
-    public function Create_Foreign($table, $name, $columns) {
-        return "FOREIGN KEY ({$columns}) REFERENCES {$name} ({$columns})";
+    public function Create_ForeignKey($obj) {
+        $columns = $this->compile($obj->listColumns());
+        $columns = implode(', ', $columns);
+
+        $sources = $this->compile($obj->listSources());
+        $sources = implode(', ', $sources);
+
+        $table = $obj->getSourceTable()->getName();
+
+        return "FOREIGN KEY ({$columns}) REFERENCES {$table} ({$sources})";
     }
 
 
@@ -146,18 +157,7 @@ class ANSICompiler extends Compiler {
 
     public function Create_Key($obj) {
         $fn = $this->getFunction($obj, 'Create_', true);
-
-        $columns = $obj->listColumns();
-        $column = reset($columns);
-        $table = $column->getTable();
-
-        $columns = array_map(function($column) {
-            return $column->getName();
-        }, $columns);
-
-        $columns = implode(", ", $columns);
-
-        return call_user_func($fn, $table->getName(), $obj->getName(), $columns);
+        return call_user_func($fn, $obj);
     }
 
 
@@ -166,7 +166,10 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Primary($table, $name, $columns) {
+    public function Create_PrimaryKey($obj) {
+        $columns = $this->compile($obj->listColumns());
+        $columns = implode(', ', $columns);
+
         return "PRIMARY KEY ({$columns})";
     }
 
@@ -196,8 +199,11 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Unique($table, $name, $columns) {
-        return "UNIQUE KEY {$name} ({$columns})";
+    public function Create_UniqueKey($obj) {
+        $columns = $this->compile($obj->listColumns());
+        $columns = implode(', ', $columns);
+
+        return "UNIQUE KEY {$obj->getName()} ({$columns})";
     }
 
 

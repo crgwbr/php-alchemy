@@ -13,7 +13,8 @@ class SQLiteCompiler extends ANSICompiler {
 
         foreach ($table->listIndexes() as $name => $index) {
             $sql = $this->Create_Key($index);
-            if ($index instanceof expr\Primary) {
+            if ($index instanceof expr\PrimaryKey ||
+                $index instanceof expr\ForeignKey) {
                 $columns[] = $sql;
             } else {
                 $queries[] = $sql;
@@ -28,8 +29,13 @@ class SQLiteCompiler extends ANSICompiler {
     }
 
 
-    public function Create_Index($table, $name, $columns) {
-        return "CREATE INDEX {$name} ON {$table} ({$columns})";
+    public function Create_Index($obj) {
+        $columns = $this->compile($obj->listColumns());
+        $columns = implode(', ', $columns);
+
+        $table = $obj->getTable()->getName();
+
+        return "CREATE INDEX {$obj->getName()} ON {$table} ({$columns})";
     }
 
 
@@ -38,8 +44,13 @@ class SQLiteCompiler extends ANSICompiler {
     }
 
 
-    public function Create_Unique($table, $name, $columns) {
-        return "CREATE UNIQUE INDEX {$name} ON {$table} ({$columns})";
+    public function Create_UniqueKey($obj) {
+        $columns = $this->compile($obj->listColumns());
+        $columns = implode(', ', $columns);
+
+        $table = $obj->getTable()->getName();
+
+        return "CREATE UNIQUE INDEX {$obj->getName()} ON {$table} ({$columns})";
     }
 
 
