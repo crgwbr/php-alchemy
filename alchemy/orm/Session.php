@@ -134,7 +134,8 @@ class Session {
      */
     protected function getPrimaryKey($cls, $record = array()) {
         $pk = array();
-        foreach ($cls::table()->listPrimaryKeyComponents() as $name => $column) {
+        foreach ($cls::table()->listPrimaryKeyComponents() as $column) {
+            $name = $column->getName();
             if (isset($record[$name])) {
                 $pk[] = $record[$name];
             }
@@ -185,7 +186,8 @@ class Session {
         $cls = get_class($obj);
 
         $keys = array();
-        foreach ($cls::table()->listPrimaryKeyComponents() as $name => $column) {
+        foreach ($cls::table()->listPrimaryKeyComponents() as $column) {
+            $name = $column->getName();
             $keys[$name] = $obj->$name;
         }
 
@@ -218,7 +220,8 @@ class Session {
 
         // Filter the UPDATE by primary key
         $pk = array();
-        foreach ($cls::table()->listPrimaryKeyComponents() as $name => $column) {
+        foreach ($cls::table()->listPrimaryKeyComponents() as $column) {
+            $name = $column->getName();
             $pk[$name] = $this->getProperty($cls, $id, $name);
         }
 
@@ -265,7 +268,8 @@ class Session {
         $cls = get_class($obj);
 
         // Update the auto increment column in our rocred to match the new value
-        foreach ($cls::table()->listPrimaryKeyComponents() as $name => $column) {
+        foreach ($cls::table()->listPrimaryKeyComponents() as $column) {
+            $name = $column->getName();
             if (!isset($this->records[$cls][$oldID][$name])) {
                 $this->records[$cls][$oldID][$name] = $newID;
             }
