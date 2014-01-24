@@ -15,6 +15,7 @@ class Foreign extends Column {
 
         // only override keyword args
         $args['foreign_key'] = $source;
+        $args['auto_increment'] = false;
         $args += array_slice($this->args, 1, NULL);
 
         return $source->copy($args, $table, $name);
