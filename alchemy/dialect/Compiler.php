@@ -4,6 +4,7 @@ namespace Alchemy\dialect;
 
 class Compiler {
 
+    protected static $default_tag = 'sql.compile';
     private $aliases = array();
     private $config = array();
 
@@ -64,33 +65,68 @@ class Compiler {
     }
 
 
-    protected function getConfig($key) {
+    /**
+     * Apply the special Compiler-format to an array of strings (recursive).
+     * Variardic formatting is done with %../<subformat>/<delimiter>/,
+     * which applies a format & implode to the remainder of the elements,
+     * if any (you may use any punctuation mark in place of '/').
+     * <subformat> may contain recursive tokens. It is your responsibility
+     * to make sure $format and $subject make sense to use together.
+     *
+     * Ex: "%s %s (%../+%s/, /)" * [A, B, C, D, E] = "A B (C, D, E)"
+     *
+     * @param  string $format
+     * @param  array  $subject
+     * @return string
+     */
+    public function format($format = '', $subject = '') {
+        if (!is_array($subject)) {
+            $subject = array($subject);
+        }
+
+        if (preg_match("/%\.\.(\p{P})([^\g1]*)\g1([^\g1]*)\g1/", $format, $matches)) {
+            list($token, , $subfmt, $delim) = $matches;
+            $pos  = strpos($format, $token);
+            $skip = $pos ? substr_count($format, '%s', 0, $pos) : 0;
+            $tail = array_splice($subject, $skip);
+
+            if ($subfmt) {
+                foreach($tail as &$item) {
+                    $item = $this->format($subfmt ?: '%s', $item);
+                }
+            }
+
+            $subject[] = implode($delim, array_filter($tail));
+            $format = str_replace($token, '%s', $format);
+        }
+
+        return vsprintf($format, $subject);
+    }
+
+
+    public function getConfig($key) {
         $end = end($this->config);
         return isset($end[$key]) ? $end[$key] : null;
     }
 
 
-    protected function getFunction($obj, $prefix = '', $strict = false) {
-        foreach($obj->listRoles() as $role) {
-            if (method_exists($this, "{$prefix}{$role}")) {
-                return array($this, "{$prefix}{$role}");
-            }
+    protected function getFunction($obj, $tag = '', $prefix = '') {
+        $type = $obj->getTag($tag ?: static::$default_tag);
 
-            if ($strict) break;
+        if (method_exists($this, "{$prefix}{$type}")) {
+            return array($this, "{$prefix}{$type}");
         }
 
-        $roles = array_slice($obj->listRoles(), 0, $strict ? 1 : -1);
-        $roles = implode(', ', $roles);
-        throw new \Exception("Compiler method not found with prefix '$prefix' for roles [$roles]");
+        throw new \Exception("Compiler method not found with prefix '$prefix' for tag '$type' ('$tag')");
     }
 
 
-    protected function popConfig() {
+    public function popConfig() {
         array_pop($this->config);
     }
 
 
-    protected function pushConfig($config) {
+    public function pushConfig($config) {
         $end = end($this->config) ?: array();
         array_push($this->config, array_merge($end, $config));
     }

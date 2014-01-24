@@ -19,20 +19,22 @@ require_once "util/promise/IPromisable.php";
 // Dialects
 require_once "dialect/Compiler.php";
 require_once "dialect/ANSICompiler.php";
-require_once "dialect/ICompilable.php";
 require_once "dialect/SQLiteCompiler.php";
 require_once "dialect/MySQLCompiler.php";
 
 // Interfaces
+require_once "expression/IElement.php";
 require_once "expression/IQueryFragment.php";
 require_once "expression/IQueryValue.php";
 require_once "expression/IQuery.php";
-require_once "expression/QueryElement.php";
+require_once "expression/Element.php";
 require_once "expression/TableElement.php";
 
 // Basic expressions
 require_once "expression/Scalar.php";
-require_once "expression/Operator.php";
+require_once "expression/Expression.php";
+require_once "expression/Operation.php";
+require_once "expression/Predicate.php";
 
 // Schema definition
 require_once "expression/Column.php";
@@ -41,12 +43,6 @@ require_once "expression/ForeignKey.php";
 require_once "expression/UniqueKey.php";
 require_once "expression/PrimaryKey.php";
 require_once "expression/Table.php";
-
-// Expressions
-require_once "expression/Expression.php";
-require_once "expression/BinaryExpression.php";
-require_once "expression/InclusiveExpression.php";
-require_once "expression/CompoundExpression.php";
 
 // Data types
 require_once "expression/String.php";

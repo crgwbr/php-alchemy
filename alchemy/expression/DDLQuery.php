@@ -6,7 +6,7 @@ namespace Alchemy\expression;
 /**
  * Abstract class for representing a DDL transformation query
  */
-abstract class DDLQuery extends QueryElement implements IQuery {
+abstract class DDLQuery extends Element implements IQuery {
     protected $table;
 
 
@@ -17,6 +17,10 @@ abstract class DDLQuery extends QueryElement implements IQuery {
      */
     public function __construct($table) {
         $this->table = $table;
+
+        $parts = explode('\\', get_called_class());
+        $cls = array_pop($parts);
+        $this->addTag("sql.compile", $cls);
     }
 
 

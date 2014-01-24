@@ -25,11 +25,21 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
-    public function testBinaryExpression() {
+    public function testPredicate() {
         $ansi = new ANSICompiler();
-        $expr = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
 
-        $this->assertEquals(":p0 < :p1", $ansi->compile($expr));
+        $exprA = new expr\Predicate('lt', array(new expr\Scalar(3), new expr\Scalar(5)));
+        $this->assertEquals(":p0 < :p1", $ansi->compile($exprA));
+
+        $col = new expr\Integer(null, null, 'Col');
+        $exprB = new expr\Predicate('isNull', array($col));
+        $this->assertEquals("NOT (Col IS NULL)", $ansi->compile($exprB->not()));
+
+        $exprC = new expr\Predicate('in', array($col, new expr\Scalar(3), new expr\Scalar(5)));
+        $this->assertEquals("Col IN (:p2, :p3)", $ansi->compile($exprC));
+
+        $exprD = new expr\CompoundPredicate('and', array($exprA->not(), $exprB, $exprC));
+        $this->assertEquals("NOT ((NOT (:p0 < :p1) AND Col IS NULL AND Col IN (:p2, :p3)))", $ansi->compile($exprD->not()));
     }
 
 
@@ -63,7 +73,7 @@ class ANSICompilerTest extends BaseTest {
         $this->assertEquals("Col CHAR(200) NOT NULL", $ansi->Create_Column($col));
     }
 
-
+/*
     public function testCompoundExpression() {
         $ansi = new ANSICompiler();
         $bnxp = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
@@ -71,7 +81,7 @@ class ANSICompilerTest extends BaseTest {
         $expr->and($bnxp);
 
         $this->assertEquals("(:p0 < :p1 AND :p0 < :p1)", $ansi->compile($expr));
-    }
+    }*/
 
 
     public function testCreate() {
@@ -128,14 +138,14 @@ class ANSICompilerTest extends BaseTest {
             $ansi->Create_Column($col));
     }
 
-
+/*
     public function testInclusiveExpression() {
         $ansi = new ANSICompiler();
         $expr = new expr\InclusiveExpression(new expr\Scalar(3),
             array(new expr\Scalar(4), new expr\Scalar(5)));
 
         $this->assertEquals(":p0 IN (:p1, :p2)", $ansi->compile($expr));
-    }
+    }*/
 
 
     public function testInteger() {
@@ -151,7 +161,7 @@ class ANSICompilerTest extends BaseTest {
         $ansi = new ANSICompiler();
         $table = new expr\Table('Tbl', array(
             'Col' => new expr\Bool() ));
-        $expr = new expr\BinaryExpression($table->Col, expr\Operator::lt(), $table->Col);
+        $expr = new expr\Predicate('lt', array($table->Col, $table->Col));
         $join = new expr\Join(expr\Join::LEFT, expr\Join::INNER, $table, $expr);
 
         $this->assertEquals("LEFT INNER JOIN Tbl ON Col < Col", $ansi->compile($join));
@@ -167,12 +177,12 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
-    public function testOperator() {
+    /*public function testOperator() {
         $ansi = new ANSICompiler();
         $oper = expr\Operator::lt();
 
         $this->assertEquals("<", $ansi->compile($oper));
-    }
+    }*/
 
 
     public function testScalar() {

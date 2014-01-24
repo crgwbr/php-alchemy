@@ -28,6 +28,6 @@ class Blob extends Column {
      * @return Scalar
      */
     public function encode($value) {
-        return new Scalar((string)$value, Scalar::T_STR);
+        return new Scalar((string)$value, 'string');
     }
 }

@@ -31,7 +31,7 @@ class Integer extends Column {
      * @return Scalar
      */
     public function encode($value) {
-        return new Scalar((int)$value, Scalar::T_INT);
+        return new Scalar((int)$value, 'integer');
     }
 
 

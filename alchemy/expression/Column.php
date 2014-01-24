@@ -47,19 +47,30 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
 
 
     /**
-     * Build and return a BinaryExpression by comparing this
+     * Build and return a Predicate by comparing this
      * column to another IQueryValue
      *
      * @param $name Operator Name: and, or
      * @param $args array([0] => IQueryValue, ...) IQueryValue to compare to
      */
     public function __call($name, $args) {
-        $value = $args[0];
-        if (!($value instanceof IQueryValue)) {
-            $value = new Scalar($value);
+        foreach ($args as &$value) {
+            if (!($value instanceof IQueryValue)) {
+                $value = new Scalar($value);
+            }
         }
 
-        return new BinaryExpression($this, Operator::$name(), $value);
+        array_unshift($args, $this);
+
+        return new Predicate($name, $args);
+    }
+
+
+    public function __construct($args = array(), $table = null, $name = '') {
+        parent::__construct($args, $table, $name);
+
+        $this->addTag("sql.compile", "Column");
+        $this->addTag("expr.value");
     }
 
 
@@ -81,7 +92,7 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      * @return Scalar
      */
     public function encode($value) {
-        return new Scalar((string)$value, Scalar::T_STR);
+        return new Scalar((string)$value, 'string');
     }
 
 

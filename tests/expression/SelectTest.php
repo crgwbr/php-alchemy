@@ -4,6 +4,7 @@ namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Select;
 use Alchemy\expression\Scalar;
+use Alchemy\expression\Expression as E;
 
 
 class SelectTest extends BaseTest {
@@ -25,9 +26,8 @@ class SelectTest extends BaseTest {
             'PhoneNum' => 'String'
         ));
 
-        $addrJoin = $addrs->UserID
-                          ->equal($users->UserID)
-                          ->and($addrs->AddressType->equal(5));
+        $addrJoin = E::AND_($addrs->UserID->equal($users->UserID),
+                            $addrs->AddressType->equal(5));
 
         $phoneJoin = $phones->UserID->equal($users->UserID);
 

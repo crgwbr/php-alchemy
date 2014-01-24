@@ -7,7 +7,7 @@ use Alchemy\util\Monad;
 /**
  * Abstract base class for representing a query
  */
-abstract class Query extends QueryElement implements IQuery {
+abstract class Query extends Element implements IQuery {
     protected $columns = array();
     protected $joins = array();
     protected $where;
@@ -24,6 +24,13 @@ abstract class Query extends QueryElement implements IQuery {
     public static function init() {
         $cls = get_called_class();
         return new Monad(new $cls());
+    }
+
+
+    public function __construct() {
+        $parts = explode('\\', get_called_class());
+        $cls = array_pop($parts);
+        $this->addTag("sql.compile", $cls);
     }
 
 

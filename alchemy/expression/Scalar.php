@@ -1,41 +1,31 @@
 <?php
 
 namespace Alchemy\expression;
-use PDO;
 
 
 /**
  * Represent a Scalar value in SQL
  */
-class Scalar extends QueryElement implements IQueryValue {
-    const T_BOOL = PDO::PARAM_BOOL;
-    const T_NULL = PDO::PARAM_NULL;
-    const T_INT = PDO::PARAM_INT;
-    const T_STR = PDO::PARAM_STR;
+class Scalar extends Element implements IQueryValue {
 
-    protected $dataType;
     protected $value;
 
 
     /**
      * Object constructor
      *
-     * @param mixed Primitive Value
-     * @param mixed $dataType Optional. Type will be inferred if not provided
+     * @param mixed $value Value
+     * @param mixed $tag   Optional. Tags will be inferred if not provided
      */
-    public function __construct($value, $dataType = null) {
+    public function __construct($value, $tag = null) {
         $this->value = $value;
-        $this->dataType = $dataType ?: $this->inferDataType($value);
+        $this->addTag("expr.value", $tag ?: self::infer_type($value));
+        $this->addTag("sql.compile", "Scalar");
     }
 
 
-    /**
-     * Get the data type
-     *
-     * @param integer Scalar::T_BOOL, etc
-     */
-    public function getDataType() {
-        return $this->dataType;
+    public function getParameters() {
+        return array($this);
     }
 
 
@@ -50,24 +40,15 @@ class Scalar extends QueryElement implements IQueryValue {
 
 
     /**
-     * Guess the data type for the given value
+     * Infer the type of a given value
      *
-     * @param mixed $value
-     * @return integer
+     * @param  mixed $value
+     * @return string
      */
-    protected function inferDataType($value) {
-        if (is_bool($value)) {
-            return self::T_BOOL;
-        }
+    protected static function infer_type($value) {
+        static $types = array('boolean', 'integer', 'null', 'string');
 
-        if (is_null($value)) {
-            return self::T_NULL;
-        }
-
-        if (is_numeric($value)) {
-            return self::T_INT;
-        }
-
-        return self::T_STR;
+        $type = strtolower(gettype($value));
+        return in_array($type, $types) ? $type : 'string';
     }
 }

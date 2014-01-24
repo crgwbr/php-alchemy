@@ -33,6 +33,6 @@ class Datetime extends Column {
         }
 
         $value = $value->format('Y-m-d H:i:s');
-        return new Scalar($value, Scalar::T_STR);
+        return new Scalar($value, 'string');
     }
 }

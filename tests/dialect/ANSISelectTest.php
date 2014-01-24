@@ -3,6 +3,7 @@
 namespace Alchemy\tests;
 use Alchemy\expression\Table;
 use Alchemy\expression\Select;
+use Alchemy\expression\Expression as E;
 use Alchemy\dialect\ANSICompiler;
 
 
@@ -66,9 +67,8 @@ class ANSISelectTest extends BaseTest {
             'PhoneNum' => 'String'
         ));
 
-        $addrJoin = $addrs->UserID
-                          ->equal($users->UserID)
-                          ->and($addrs->AddressType->equal(5));
+        $addrJoin = E::AND_($addrs->UserID->equal($users->UserID),
+                            $addrs->AddressType->equal(5));
 
         $phoneJoin = $phones->UserID->equal($users->UserID);
 

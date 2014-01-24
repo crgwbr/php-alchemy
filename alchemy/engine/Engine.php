@@ -58,6 +58,23 @@ class Engine implements IEngine {
 
 
     /**
+     * Get the PDO bind-parameter type (default PARAM_STR) for an object
+     *
+     * @param  object $obj
+     * @return integer
+     */
+    protected function getBindParamType($obj) {
+        static $map = array(
+            'boolean' => PDO::PARAM_BOOL,
+            'integer' => PDO::PARAM_INT,
+            'null'    => PDO::PARAM_NULL);
+
+        $type = $obj->getTag('expr.value');
+        return array_key_exists($type, $map) ? $map[$type] : PDO::PARAM_STR;
+    }
+
+
+    /**
      * Log a SQL statement if echo is enabled
      *
      * @param string $sql
@@ -114,7 +131,8 @@ class Engine implements IEngine {
         $statement = $this->connector->prepare($sql);
 
         foreach ($params as $param) {
-            $statement->bindValue($this->compiler->alias($param), $param->getValue(), $param->getDataType());
+            $type = $this->getBindParamType($param);
+            $statement->bindValue($this->compiler->alias($param), $param->getValue(), $type);
         }
 
         $statement->execute();

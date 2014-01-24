@@ -26,6 +26,6 @@ class Bool extends Column {
      * @return Scalar
      */
     public function encode($value) {
-        return new Scalar((bool)$value, Scalar::T_BOOL);
+        return new Scalar((bool)$value, 'boolean');
     }
 }

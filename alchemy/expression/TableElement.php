@@ -6,7 +6,7 @@ namespace Alchemy\expression;
 /**
  * Class for representing an index in SQL
  */
-abstract class TableElement extends QueryElement {
+abstract class TableElement extends Element {
     protected static $default_args = array();
 
     protected $args;
@@ -63,6 +63,10 @@ abstract class TableElement extends QueryElement {
         $this->name = $name;
         $this->table = $table;
         $this->args = self::normalize_arg($args, static::get_default_args());
+
+        $parts = explode('\\', get_called_class());
+        $cls = array_pop($parts);
+        $this->addTag("sql.create", $cls);
     }
 
 

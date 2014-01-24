@@ -9,7 +9,7 @@ use Exception;
 /**
  * Represent a table in SQL
  */
-class Table extends QueryElement implements IPromisable {
+class Table extends Element implements IPromisable {
     protected static $registered = array();
 
     protected $name;
@@ -58,6 +58,8 @@ class Table extends QueryElement implements IPromisable {
         $this->name = $name;
         $this->propdefs  = $propdefs;
         $this->indexdefs = $indexdefs;
+        $this->addTag('sql.compile', 'Table');
+        $this->addTag('sql.create', 'Table');
     }
 
 

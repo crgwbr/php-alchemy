@@ -4,15 +4,52 @@ namespace Alchemy\dialect;
 use Alchemy\expression as expr;
 
 class ANSICompiler extends Compiler {
+    protected static $expr_formats = array(
+        // operators
+        'add'       => '%s + %s',
+        'sub'       => '%s - %s',
+        'mult'      => '%s * %s',
+        'div'       => '%s / %s',
+        'mod'       => 'MOD(%s, %s)',
+        'abs'       => 'ABS(%s)',
+        'ceil'      => 'CEIL(%s)',
+        'exp'       => 'EXP(%s)',
+        'floor'     => 'FLOOR(%s)',
+        'ln'        => 'LN(%s)',
+        'sqrt'      => 'SQRT(%s)',
+        'extract'   => 'EXTRACT(%s FROM %s)',
+        'interval'  => 'INTERVAL %s %s',
+        'now'       => 'NOW()',
+        'lower'     => 'LOWER(%s)',
+        'upper'     => 'UPPER(%s)',
+        'convert'   => 'CONVERT(%s USING %s)',
+        'translate' => 'TRANSLATE(%s USING %s)',
+        'concat'    => '%s || %s',
+        'coalesce'  => 'COALESCE(%..//, /)',
+
+        // predicates
+        'equal'     => '%s = %s',
+        'lt'        => '%s < %s',
+        'gt'        => '%s > %s',
+        'ne'        => '%s != %s',
+        'le'        => '%s <= %s',
+        'ge'        => '%s >= %s',
+        'between'   => '%s BETWEEN %s AND %s',
+        'isNull'    => '%s IS NULL',
+        'like'      => '%s LIKE %s',
+        'in'        => '%s IN (%..//, /)',
+        'and'       => '(%..// AND /)',
+        'or'        => '(%..// OR /)',
+        'not'       => 'NOT (%s)');
 
     /**
      * Always returns the same auto-generated string for a given object
      *
-     * @param  Scalar|Table $obj key
+     * @param  Element $obj key
      * @return string            alias
      */
     public function alias($obj) {
-        $fn = $this->getFunction($obj, 'Alias_');
+        $fn = $this->getFunction($obj, 'sql.compile', 'Alias_');
         return call_user_func($fn, $obj);
     }
 
@@ -32,12 +69,6 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function BinaryExpression($obj) {
-        $elements = $this->compile($obj->listElements());
-        return implode(' ', $elements);
-    }
-
-
     public function Column($obj) {
         $column = $obj->getName();
 
@@ -50,13 +81,6 @@ class ANSICompiler extends Compiler {
         }
 
         return $column;
-    }
-
-
-    public function CompoundExpression($obj) {
-        $elements = $this->compile($obj->listElements());
-        $elements = implode(' ', $elements);
-        return "({$elements})";
     }
 
 
@@ -101,7 +125,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Create_Column($obj) {
-        $fn = $this->getFunction($obj, 'Create_', true);
+        $fn = $this->getFunction($obj, 'sql.create', 'Create_');
         $type = call_user_func($fn, $obj);
         $null = $obj->isNotNull() ? "NOT NULL" : "NULL";
 
@@ -156,7 +180,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Create_Key($obj) {
-        $fn = $this->getFunction($obj, 'Create_', true);
+        $fn = $this->getFunction($obj, 'sql.create', 'Create_');
         return call_user_func($fn, $obj);
     }
 
@@ -226,14 +250,6 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function InclusiveExpression($obj) {
-        $left  = $this->compile($obj->getLeft());
-        $elements = $this->compile($obj->listElements());
-        $elements = implode(', ', $elements);
-        return "{$left} IN ({$elements})";
-    }
-
-
     public function Insert($obj) {
         $columns = $this->compile($obj->columns());
         $rows    = $this->compile($obj->rows());
@@ -256,8 +272,11 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Operator($obj) {
-        return "{$obj->getType()}";
+    public function Expression($obj) {
+        $format = static::$expr_formats[$obj->getType()];
+        $elements = $this->compile($obj->getElements());
+
+        return $this->format($format, $elements);
     }
 
 

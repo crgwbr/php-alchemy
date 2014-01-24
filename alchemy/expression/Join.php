@@ -6,7 +6,7 @@ namespace Alchemy\expression;
 /**
  * Represent a JOIN clause
  */
-class Join extends QueryElement implements IQueryFragment {
+class Join extends Element implements IQueryFragment {
     const LEFT = 'LEFT';
     const RIGHT = 'RIGHT';
     const FULL = 'FULL';
@@ -32,6 +32,7 @@ class Join extends QueryElement implements IQueryFragment {
         $this->type = $type;
         $this->table = &$table;
         $this->on = &$on;
+        $this->addTag("sql.compile", "Join");
     }
 
 
