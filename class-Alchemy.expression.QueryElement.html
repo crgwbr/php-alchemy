@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Alchemy\expression\QueryElement</title>
+
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
+						</li>
+				<li><a href="namespace-Alchemy.engine.html">engine</a>
+						</li>
+				<li class="active"><a href="namespace-Alchemy.expression.html">expression</a>
+						</li>
+				<li><a href="namespace-Alchemy.orm.html">orm</a>
+						</li>
+				<li><a href="namespace-Alchemy.tests.html">tests</a>
+						</li>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Alchemy.expression.BigInt.html">BigInt</a></li>
+				<li><a href="class-Alchemy.expression.Binary.html">Binary</a></li>
+				<li><a href="class-Alchemy.expression.BinaryExpression.html">BinaryExpression</a></li>
+				<li><a href="class-Alchemy.expression.Blob.html">Blob</a></li>
+				<li><a href="class-Alchemy.expression.Bool.html">Bool</a></li>
+				<li><a href="class-Alchemy.expression.Char.html">Char</a></li>
+				<li><a href="class-Alchemy.expression.Column.html">Column</a></li>
+				<li><a href="class-Alchemy.expression.CompoundExpression.html">CompoundExpression</a></li>
+				<li><a href="class-Alchemy.expression.Create.html">Create</a></li>
+				<li><a href="class-Alchemy.expression.Date.html">Date</a></li>
+				<li><a href="class-Alchemy.expression.Datetime.html">Datetime</a></li>
+				<li><a href="class-Alchemy.expression.DDLQuery.html">DDLQuery</a></li>
+				<li><a href="class-Alchemy.expression.Decimal.html">Decimal</a></li>
+				<li><a href="class-Alchemy.expression.Delete.html">Delete</a></li>
+				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
+				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
+				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
+				<li><a href="class-Alchemy.expression.Foreign.html">Foreign</a></li>
+				<li><a href="class-Alchemy.expression.ForeignKey.html">ForeignKey</a></li>
+				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
+				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
+				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
+				<li><a href="class-Alchemy.expression.Integer.html">Integer</a></li>
+				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
+				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
+				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
+				<li><a href="class-Alchemy.expression.PrimaryKey.html">PrimaryKey</a></li>
+				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
+				<li class="active"><a href="class-Alchemy.expression.QueryElement.html">QueryElement</a></li>
+				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
+				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
+				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
+				<li><a href="class-Alchemy.expression.String.html">String</a></li>
+				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
+				<li><a href="class-Alchemy.expression.TableElement.html">TableElement</a></li>
+				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
+				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
+				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
+				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
+				<li><a href="class-Alchemy.expression.UniqueKey.html">UniqueKey</a></li>
+				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Alchemy.expression.IQuery.html">IQuery</a></li>
+				<li><a href="class-Alchemy.expression.IQueryFragment.html">IQueryFragment</a></li>
+				<li><a href="class-Alchemy.expression.IQueryValue.html">IQueryValue</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Alchemy.expression.html" title="Summary of Alchemy\expression"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class QueryElement</h1>
+
+
+	<div class="description">
+	
+<p>Abstract class for query fragments</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Alchemy\expression\QueryElement</span></b>			
+			 implements 
+				<a href="class-Alchemy.dialect.ICompilable.html"><span>Alchemy\dialect\ICompilable</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Alchemy.expression.DDLQuery.html">Alchemy\expression\DDLQuery</a>, 
+			<a href="class-Alchemy.expression.Expression.html">Alchemy\expression\Expression</a>, 
+			<a href="class-Alchemy.expression.Join.html">Alchemy\expression\Join</a>, 
+			<a href="class-Alchemy.expression.Operator.html">Alchemy\expression\Operator</a>, 
+			<a href="class-Alchemy.expression.Query.html">Alchemy\expression\Query</a>, 
+			<a href="class-Alchemy.expression.Scalar.html">Alchemy\expression\Scalar</a>, 
+			<a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a>, 
+			<a href="class-Alchemy.expression.TableElement.html">Alchemy\expression\TableElement</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Alchemy.expression.BigInt.html">Alchemy\expression\BigInt</a>, 
+			<a href="class-Alchemy.expression.Binary.html">Alchemy\expression\Binary</a>, 
+			<a href="class-Alchemy.expression.Datetime.html">Alchemy\expression\Datetime</a>, 
+			<a href="class-Alchemy.expression.Decimal.html">Alchemy\expression\Decimal</a>, 
+			<a href="class-Alchemy.expression.Delete.html">Alchemy\expression\Delete</a>, 
+			<a href="class-Alchemy.expression.Drop.html">Alchemy\expression\Drop</a>, 
+			<a href="class-Alchemy.expression.Float.html">Alchemy\expression\Float</a>, 
+			<a href="class-Alchemy.expression.Foreign.html">Alchemy\expression\Foreign</a>, 
+			<a href="class-Alchemy.expression.ForeignKey.html">Alchemy\expression\ForeignKey</a>, 
+			<a href="class-Alchemy.expression.InclusiveExpression.html">Alchemy\expression\InclusiveExpression</a>, 
+			<a href="class-Alchemy.expression.Index.html">Alchemy\expression\Index</a>, 
+			<a href="class-Alchemy.expression.Insert.html">Alchemy\expression\Insert</a>, 
+			<a href="class-Alchemy.expression.BinaryExpression.html">Alchemy\expression\BinaryExpression</a>, 
+			<a href="class-Alchemy.expression.Integer.html">Alchemy\expression\Integer</a>, 
+			<a href="class-Alchemy.expression.MediumInt.html">Alchemy\expression\MediumInt</a>, 
+			<a href="class-Alchemy.expression.PrimaryKey.html">Alchemy\expression\PrimaryKey</a>, 
+			<a href="class-Alchemy.expression.Select.html">Alchemy\expression\Select</a>, 
+			<a href="class-Alchemy.expression.SmallInt.html">Alchemy\expression\SmallInt</a>, 
+			<a href="class-Alchemy.expression.String.html">Alchemy\expression\String</a>, 
+			<a href="class-Alchemy.expression.Text.html">Alchemy\expression\Text</a>, 
+			<a href="class-Alchemy.expression.Time.html">Alchemy\expression\Time</a>, 
+			<a href="class-Alchemy.expression.Timestamp.html">Alchemy\expression\Timestamp</a>, 
+			<a href="class-Alchemy.expression.TinyInt.html">Alchemy\expression\TinyInt</a>, 
+			<a href="class-Alchemy.expression.Blob.html">Alchemy\expression\Blob</a>, 
+			<a href="class-Alchemy.expression.UniqueKey.html">Alchemy\expression\UniqueKey</a>, 
+			<a href="class-Alchemy.expression.Update.html">Alchemy\expression\Update</a>, 
+			<a href="class-Alchemy.expression.Bool.html">Alchemy\expression\Bool</a>, 
+			<a href="class-Alchemy.expression.Char.html">Alchemy\expression\Char</a>, 
+			<a href="class-Alchemy.expression.Column.html">Alchemy\expression\Column</a>, 
+			<a href="class-Alchemy.expression.CompoundExpression.html">Alchemy\expression\CompoundExpression</a>, 
+			<a href="class-Alchemy.expression.Create.html">Alchemy\expression\Create</a>, 
+			<a href="class-Alchemy.expression.Date.html">Alchemy\expression\Date</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br />
+		
+		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Alchemy.expression.QueryElement.html#7-48" title="Go to source code">alchemy/expression/QueryElement.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getID" id="_getID">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getID">#</a>
+		<code><a href="source-class-Alchemy.expression.QueryElement.html#17-28" title="Go to source code">getID</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the locally-unique element id</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the locally-unique element id</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.dialect.ICompilable.html#_getID">Alchemy\dialect\ICompilable::getID()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listRoles" id="_listRoles">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listRoles">#</a>
+		<code><a href="source-class-Alchemy.expression.QueryElement.html#31-47" title="Go to source code">listRoles</a>( )</code>
+
+		<div class="description short">
+			
+<p>List of compilation roles that this object can play</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>List of compilation roles that this object can play</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>in order of specificity, preference<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.dialect.ICompilable.html#_listRoles">Alchemy\dialect\ICompilable::listRoles()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="idCounter" id="$idCounter">
+		<td class="attributes"><code>
+			protected static 
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.expression.QueryElement.html#12" title="Go to source code"><var>$idCounter</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#$idCounter" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="id" id="$id">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.expression.QueryElement.html#14" title="Go to source code"><var>$id</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$id" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

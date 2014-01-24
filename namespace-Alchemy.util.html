@@ -7,7 +7,7 @@
 	<title>Namespace Alchemy\util</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -109,8 +109,7 @@
 	<td>Parse a data type definition into it's various components. For example:
 &gt;&gt;&gt; $type = new DataTypeLexer("Integer(11, primary_key = true)");
 &gt;&gt;&gt; $type-&gt;getType(); "Integer" &gt;&gt;&gt; $type-&gt;getArgs();
-array(11) &gt;&gt;&gt; $type-&gt;getKeywordArgs(); array("primary_key" =&gt;
-true)</td>
+array(11, "primary_key" =&gt; true)</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.util.Monad.html">Monad</a></td>

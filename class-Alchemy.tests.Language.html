@@ -7,7 +7,7 @@
 	<title>Class Alchemy\tests\Language</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -59,10 +59,12 @@
 				<li><a href="class-Alchemy.tests.BoolTest.html">BoolTest</a></li>
 				<li><a href="class-Alchemy.tests.DataTypeLexerTest.html">DataTypeLexerTest</a></li>
 				<li><a href="class-Alchemy.tests.DecimalTest.html">DecimalTest</a></li>
+				<li><a href="class-Alchemy.tests.ForeignTest.html">ForeignTest</a></li>
 				<li><a href="class-Alchemy.tests.InsertTest.html">InsertTest</a></li>
 				<li><a href="class-Alchemy.tests.IntegerTest.html">IntegerTest</a></li>
 				<li class="active"><a href="class-Alchemy.tests.Language.html">Language</a></li>
 				<li><a href="class-Alchemy.tests.MapperTest.html">MapperTest</a></li>
+				<li><a href="class-Alchemy.tests.MockPromisable.html">MockPromisable</a></li>
 				<li><a href="class-Alchemy.tests.PromiseTest.html">PromiseTest</a></li>
 				<li><a href="class-Alchemy.tests.ScalarTest.html">ScalarTest</a></li>
 				<li><a href="class-Alchemy.tests.SelectTest.html">SelectTest</a></li>
@@ -153,7 +155,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.tests.html">tests</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.tests.Language.html#7-13" title="Go to source code">tests/resources/Language.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.tests.Language.html#7-20" title="Go to source code">tests/resources/Language.php</a><br />
 	</div>
 
 
@@ -168,6 +170,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 			<a href="class-Alchemy.orm.DataMapper.html#_from_session">from_session()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_getPrimaryKey">getPrimaryKey()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_getSessionID">getSessionID()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_list_mappers">list_mappers()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_save">save()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_setSession">setSession()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_table">table()</a>, 
@@ -188,6 +191,35 @@ any data, it merely acts as an interface between Domain objects and the Session
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
+	<tr data-order="table_name" id="$table_name">
+		<td class="attributes"><code>
+			protected static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.tests.Language.html#8" title="Go to source code"><var>$table_name</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">&quot;Language&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#$table_name" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Optional: Define the table name here. If left null, the class name will be
+used</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Optional: Define the table name here. If left null, the class name will be
+used</p>
+
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="props" id="$props">
 		<td class="attributes"><code>
 			protected static 
@@ -195,15 +227,42 @@ any data, it merely acts as an interface between Domain objects and the Session
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.tests.Language.html#8-12" title="Go to source code"><var>$props</var></a>
+				<a href="source-class-Alchemy.tests.Language.html#9-14" title="Go to source code"><var>$props</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
     <span class="php-quote">'LanguageID'</span> =&gt; <span class="php-quote">'Integer(primary_key = true, auto_increment = true)'</span>,
     <span class="php-quote">'ISO2Code'</span> =&gt; <span class="php-quote">'String(2, unique = true)'</span>,
+    <span class="php-quote">'ParentLanguageID'</span> =&gt; <span class="php-quote">'Foreign(self.LanguageID, null = true)'</span>,
     <span class="php-quote">'LatestChangeStamp'</span> =&gt; <span class="php-quote">'Timestamp'</span>,
 )</code></td>
 		<td class="description"><div>
 			<a href="#$props" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="relationships" id="$relationships">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.tests.Language.html#16-19" title="Go to source code"><var>$relationships</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Files'</span> =&gt; <span class="php-quote">'OneToMany(UploadedFile, backref = Language)'</span>,
+    <span class="php-quote">'Parent'</span> =&gt; <span class="php-quote">'ManyToOne(Language, backref = Children)'</span>,
+)</code></td>
+		<td class="description"><div>
+			<a href="#$relationships" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -221,8 +280,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 	<caption>Properties inherited from <a href="class-Alchemy.orm.DataMapper.html#properties">Alchemy\orm\DataMapper</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Alchemy.orm.DataMapper.html#$indexes"><var>$indexes</var></a>, 
-			<a href="class-Alchemy.orm.DataMapper.html#$table_name"><var>$table_name</var></a>
+			<a href="class-Alchemy.orm.DataMapper.html#$indexes"><var>$indexes</var></a>
 		</code></td>
 	</tr>
 	</table>

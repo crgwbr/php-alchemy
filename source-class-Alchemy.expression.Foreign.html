@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File alchemy/expression/Unique.php</title>
+	<title>File alchemy/expression/Foreign.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -67,6 +67,8 @@
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
 				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
+				<li class="active"><a href="class-Alchemy.expression.Foreign.html">Foreign</a></li>
+				<li><a href="class-Alchemy.expression.ForeignKey.html">ForeignKey</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
 				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
@@ -74,18 +76,20 @@
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
 				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
-				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
+				<li><a href="class-Alchemy.expression.PrimaryKey.html">PrimaryKey</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
+				<li><a href="class-Alchemy.expression.QueryElement.html">QueryElement</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
 				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
+				<li><a href="class-Alchemy.expression.TableElement.html">TableElement</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
-				<li class="active"><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
+				<li><a href="class-Alchemy.expression.UniqueKey.html">UniqueKey</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -123,7 +127,7 @@
 				<a href="namespace-Alchemy.expression.html" title="Summary of Alchemy\expression"><span>Namespace</span></a>
 			</li>
 			<li>
-				<a href="class-Alchemy.expression.Unique.html" title="Summary of Alchemy\expression\Unique"><span>Class</span></a>
+				<a href="class-Alchemy.expression.Foreign.html" title="Summary of Alchemy\expression\Foreign"><span>Class</span></a>
 			</li>
 		</ul>
 		<ul>
@@ -138,13 +142,26 @@
 <pre><code><span id="1" class="l"><a class="l" href="#1"> 1: </a><span class="xlang">&lt;?php</span>
 </span><span id="2" class="l"><a class="l" href="#2"> 2: </a>
 </span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-keyword1">namespace</span> Alchemy\expression;
-</span><span id="4" class="l"><a class="l" href="#4"> 4: </a>
+</span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-keyword1">use</span> Alchemy\expression\Column;
 </span><span id="5" class="l"><a class="l" href="#5"> 5: </a>
-</span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment">/**
-</span></span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment"> * Class for representing a unique index in SQL
-</span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> */</span>
-</span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-keyword1">class</span> <a id="Unique" href="#Unique">Unique</a> <span class="php-keyword1">extends</span> Index {}
-</span><span id="10" class="l"><a class="l" href="#10">10: </a></span></code></pre>
+</span><span id="6" class="l"><a class="l" href="#6"> 6: </a>
+</span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment">/**
+</span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> * Represent a column in SQL with a foreign key constraint to another column
+</span></span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-comment"> */</span>
+</span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-keyword1">class</span> <a id="Foreign" href="#Foreign">Foreign</a> <span class="php-keyword1">extends</span> Column {
+</span><span id="11" class="l"><a class="l" href="#11">11: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <span class="php-keyword2">copy</span>(<span class="php-keyword1">array</span> <span class="php-var">$args</span> = <span class="php-keyword1">array</span>(), <span class="php-var">$table</span> = <span class="php-keyword1">null</span>, <span class="php-var">$name</span> = <span class="php-quote">'?'</span>) {
+</span><span id="12" class="l"><a class="l" href="#12">12: </a>        <span class="php-var">$source</span> = <span class="php-keyword2">is_string</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">0</span>])
+</span><span id="13" class="l"><a class="l" href="#13">13: </a>            ? Column::find(<span class="php-var">$this</span>-&gt;args[<span class="php-num">0</span>], <span class="php-var">$table</span>)
+</span><span id="14" class="l"><a class="l" href="#14">14: </a>            : <span class="php-var">$this</span>-&gt;args[<span class="php-num">0</span>];
+</span><span id="15" class="l"><a class="l" href="#15">15: </a>
+</span><span id="16" class="l"><a class="l" href="#16">16: </a>        <span class="php-comment">// only override keyword args</span>
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>        <span class="php-var">$args</span>[<span class="php-quote">'foreign_key'</span>] = <span class="php-var">$source</span>;
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>        <span class="php-var">$args</span>[<span class="php-quote">'auto_increment'</span>] = <span class="php-keyword1">false</span>;
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>        <span class="php-var">$args</span> += <span class="php-keyword2">array_slice</span>(<span class="php-var">$this</span>-&gt;args, <span class="php-num">1</span>, <span class="php-keyword1">NULL</span>);
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-keyword1">return</span> <span class="php-var">$source</span>-&gt;<span class="php-keyword2">copy</span>(<span class="php-var">$args</span>, <span class="php-var">$table</span>, <span class="php-var">$name</span>);
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>    }
+</span><span id="23" class="l"><a class="l" href="#23">23: </a></span>}</code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

@@ -7,7 +7,7 @@
 	<title>Class Alchemy\expression\Table</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -66,6 +66,8 @@
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
 				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
+				<li><a href="class-Alchemy.expression.Foreign.html">Foreign</a></li>
+				<li><a href="class-Alchemy.expression.ForeignKey.html">ForeignKey</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
 				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
@@ -73,18 +75,20 @@
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
 				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
-				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
+				<li><a href="class-Alchemy.expression.PrimaryKey.html">PrimaryKey</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
+				<li><a href="class-Alchemy.expression.QueryElement.html">QueryElement</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
 				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li class="active"><a href="class-Alchemy.expression.Table.html">Table</a></li>
+				<li><a href="class-Alchemy.expression.TableElement.html">TableElement</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
-				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
+				<li><a href="class-Alchemy.expression.UniqueKey.html">UniqueKey</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -143,6 +147,24 @@
 
 	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Alchemy.expression.QueryElement.html"><span>Alchemy\expression\QueryElement</span></a>
+			
+			 implements 
+				<a href="class-Alchemy.dialect.ICompilable.html"><span>Alchemy\dialect\ICompilable</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Alchemy\expression\Table</span></b>			
+			 implements 
+				<a href="class-Alchemy.util.promise.IPromisable.html"><span>Alchemy\util\promise\IPromisable</span></a>
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -157,13 +179,98 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.expression.html">expression</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.expression.Table.html#8-176" title="Go to source code">alchemy/expression/Table.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.expression.Table.html#9-248" title="Go to source code">alchemy/expression/Table.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="list_promisable_methods" id="_list_promisable_methods">
+
+		<td class="attributes"><code>
+			 public static
+			array(method_name
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_list_promisable_methods">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#27-32" title="Go to source code">list_promisable_methods</a>( )</code>
+
+		<div class="description short">
+			
+<p>Returns an array mapping promisable methods to return types. A promisable
+method is one that is dependent only on immutable inputs and is guaranteed to
+return an instance of a certain type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns an array mapping promisable methods to return types. A promisable
+method is one that is dependent only on immutable inputs and is guaranteed to
+return an instance of a certain type.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array(method_name</code><br>=&gt; class_name, ...)<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.util.promise.IPromisable.html#_list_promisable_methods">Alchemy\util\promise\IPromisable::list_promisable_methods()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find" id="_find">
+
+		<td class="attributes"><code>
+			 public static
+			<code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#35-47" title="Go to source code">find</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve the table registered for a given name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve the table registered for a given name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.expression.Table.html">Alchemy\expression\Table</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
@@ -175,7 +282,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#20-32" title="Go to source code">__construct</a>( <span>string <var>$tableName</var></span>, <span>array <var>$columns</var></span>, <span>string <var>$indexes</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\expression&quot;</span></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#50-61" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span>array <var>$propdefs</var></span>, <span>string <var>$indexdefs</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -191,14 +298,12 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$tableName</var></dt>
+					<dt><var>$name</var></dt>
 					<dd><code>string</code><br>$tableName</dd>
-					<dt><var>$columns</var></dt>
+					<dt><var>$propdefs</var></dt>
 					<dd><code>array</code><br>$columns array("name" =&gt; Column, "name" =&gt; Column, ...)</dd>
-					<dt><var>$indexes</var></dt>
+					<dt><var>$indexdefs</var></dt>
 					<dd><code>string</code><br>$namespace Namespace of Column classes</dd>
-					<dt><var>$namespace</var></dt>
-					<dd></dd>
 				</dl></div>
 
 
@@ -219,7 +324,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#35-46" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#64-75" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -246,36 +351,28 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getID" id="_getID">
+	<tr data-order="copy" id="_copy">
 
 		<td class="attributes"><code>
 			 public 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getID">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#49-56" title="Go to source code">getID</a>( )</code>
+		<a class="anchor" href="#_copy">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#78-80" title="Go to source code">copy</a>( )</code>
 
 		<div class="description short">
 			
-<p>Get the table id</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Get the table id</p>
 
 
 
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br />
-				</div>
 
 
 
@@ -294,7 +391,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getName">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#59-66" title="Go to source code">getName</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#83-90" title="Go to source code">getName</a>( )</code>
 
 		<div class="description short">
 			
@@ -331,7 +428,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isColumn">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#69-77" title="Go to source code">isColumn</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#93-102" title="Go to source code">isColumn</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -373,7 +470,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listColumns">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#80-87" title="Go to source code">listColumns</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#105-113" title="Go to source code">listColumns</a>( )</code>
 
 		<div class="description short">
 			
@@ -399,6 +496,80 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="listDependancies" id="_listDependancies">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listDependancies">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#116-124" title="Go to source code">listDependancies</a>( )</code>
+
+		<div class="description short">
+			
+<p>List names of table I depend on</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>List names of table I depend on</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listDependants" id="_listDependants">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listDependants">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#127-135" title="Go to source code">listDependants</a>( )</code>
+
+		<div class="description short">
+			
+<p>List names of tables that depend on me</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>List names of tables that depend on me</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="listIndexes" id="_listIndexes">
 
 		<td class="attributes"><code>
@@ -410,7 +581,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listIndexes">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#90-97" title="Go to source code">listIndexes</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#138-146" title="Go to source code">listIndexes</a>( )</code>
 
 		<div class="description short">
 			
@@ -427,7 +598,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>array</code><br>array(Index, ...)<br />
+					<code>array</code><br>array(Name =&gt; Index, ...)<br />
 				</div>
 
 
@@ -447,7 +618,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listPrimaryKeyComponents">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#100-111" title="Go to source code">listPrimaryKeyComponents</a>( )</code>
+		<code><a href="source-class-Alchemy.expression.Table.html#149-160" title="Go to source code">listPrimaryKeyComponents</a>( )</code>
 
 		<div class="description short">
 			
@@ -473,7 +644,40 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setColumns" id="_setColumns">
+	<tr data-order="register" id="_register">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_register">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#163-173" title="Go to source code">register</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register this Table as canonical for its name</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register this Table as canonical for its name</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolveProperty" id="_resolveProperty">
 
 		<td class="attributes"><code>
 			 protected 
@@ -483,25 +687,25 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setColumns">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#114-132" title="Go to source code">setColumns</a>( <span>array <var>$columns</var></span>, <span>mixed <var>$namespace</var></span> )</code>
+		<a class="anchor" href="#_resolveProperty">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#176-195" title="Go to source code">resolveProperty</a>( <span>string <var>$name</var></span>, <span>mixed <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\expression&quot;</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Set columns for this Table</p>
+<p>Lazy-resolve a named property of this Table</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set columns for this Table</p>
+<p>Lazy-resolve a named property of this Table</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$columns</var></dt>
-					<dd><code>array</code><br>$columns Should be an associated array of name =&gt; column definitions</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name name of property</dd>
 					<dt><var>$namespace</var></dt>
 					<dd></dd>
 				</dl></div>
@@ -513,7 +717,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setIndexes" id="_setIndexes">
+	<tr data-order="resolve" id="_resolve">
 
 		<td class="attributes"><code>
 			 protected 
@@ -523,28 +727,21 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setIndexes">#</a>
-		<code><a href="source-class-Alchemy.expression.Table.html#135-175" title="Go to source code">setIndexes</a>( <span>array <var>$indexes</var></span>, <span>mixed <var>$namespace</var></span> )</code>
+		<a class="anchor" href="#_resolve">#</a>
+		<code><a href="source-class-Alchemy.expression.Table.html#198-247" title="Go to source code">resolve</a>( <span>mixed <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\expression&quot;</span></span> )</code>
 
 		<div class="description short">
 			
-<p>Set indexes for this Table</p>
+<p>Lazy-resolve the whole Table</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Set indexes for this Table</p>
+<p>Lazy-resolve the whole Table</p>
 
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$indexes</var></dt>
-					<dd><code>array</code><br>$indexes Should be an associated array of name =&gt; index definitions</dd>
-					<dt><var>$namespace</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 
@@ -552,6 +749,16 @@
 
 		</div>
 		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.expression.QueryElement.html#methods">Alchemy\expression\QueryElement</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.expression.QueryElement.html#_getID">getID()</a>, 
+			<a href="class-Alchemy.expression.QueryElement.html#_listRoles">listRoles()</a>
+		</code></td>
 	</tr>
 	</table>
 
@@ -565,21 +772,20 @@
 
 
 
-
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="tableCounter" id="$tableCounter">
+	<tr data-order="registered" id="$registered">
 		<td class="attributes"><code>
 			protected static 
-			integer
+			array
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Table.html#12" title="Go to source code"><var>$tableCounter</var></a>
+				<a href="source-class-Alchemy.expression.Table.html#13" title="Go to source code"><var>$registered</var></a>
 		</td>
-		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
-			<a href="#$tableCounter" class="anchor">#</a>
+			<a href="#$registered" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -598,7 +804,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.expression.Table.html#14" title="Go to source code"><var>$name</var></a>
+				<a href="source-class-Alchemy.expression.Table.html#15" title="Go to source code"><var>$name</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -614,77 +820,17 @@
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="alias" id="$alias">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.expression.Table.html#15" title="Go to source code"><var>$alias</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$alias" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="columns" id="$columns">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.expression.Table.html#16" title="Go to source code"><var>$columns</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$columns" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="indexes" id="$indexes">
-		<td class="attributes"><code>
-			protected  
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.expression.Table.html#17" title="Go to source code"><var>$indexes</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
-		<td class="description"><div>
-			<a href="#$indexes" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.expression.QueryElement.html#properties">Alchemy\expression\QueryElement</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.expression.QueryElement.html#$id"><var>$id</var></a>, 
+			<a href="class-Alchemy.expression.QueryElement.html#$idCounter"><var>$idCounter</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

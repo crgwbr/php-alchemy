@@ -7,7 +7,7 @@
 	<title>Class Alchemy\util\promise\Waitable</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -55,6 +55,10 @@
 				<li class="active"><a href="class-Alchemy.util.promise.Waitable.html">Waitable</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Alchemy.util.promise.IPromisable.html">IPromisable</a></li>
+			</ul>
 
 
 			<h3>Exceptions</h3>
@@ -133,7 +137,7 @@ resolve (blocking, with optional timeout).</p>
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.util.html">util</a>\<a href="namespace-Alchemy.util.promise.html">promise</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.util.promise.Waitable.html#6-119" title="Go to source code">alchemy/util/promise/Waitable.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.util.promise.Waitable.html#6-139" title="Go to source code">alchemy/util/promise/Waitable.php</a><br />
 	</div>
 
 
@@ -173,14 +177,14 @@ resolve (blocking, with optional timeout).</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___invoke">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#24-30" title="Go to source code">__invoke</a>( )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#24-32" title="Go to source code">__invoke</a>( )</code>
 
 		<div class="description short">
 			
@@ -195,6 +199,10 @@ resolve (blocking, with optional timeout).</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>current value<br />
+				</div>
 
 
 
@@ -206,14 +214,14 @@ resolve (blocking, with optional timeout).</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_check">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#33-40" title="Go to source code">check</a>( )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#35-44" title="Go to source code">check</a>( )</code>
 
 		<div class="description short">
 			
@@ -228,6 +236,10 @@ resolve (blocking, with optional timeout).</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>resolved or not<br />
+				</div>
 
 
 
@@ -246,14 +258,18 @@ resolve (blocking, with optional timeout).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_precheck">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#43" title="Go to source code">precheck</a>( )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#47-50" title="Go to source code">precheck</a>( )</code>
 
 		<div class="description short">
 			
+<p>Subclasses override this to do something during check()</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Subclasses override this to do something during check()</p>
+
 
 
 
@@ -268,24 +284,39 @@ resolve (blocking, with optional timeout).</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			this
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resolve">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#46-58" title="Go to source code">resolve</a>( <span>mixed <var>$result</var></span> )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#53-72" title="Go to source code">resolve</a>( <span>mixed <var>$result</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Resolve the Waitable to a value, Exception, or NULL to leave it
+unresolved.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Resolve the Waitable to a value, Exception, or NULL to leave it
+unresolved.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$result</var></dt>
+					<dd><code>mixed</code><br>$result</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>this</code><br />
+				</div>
 
 
 
@@ -304,7 +335,7 @@ resolve (blocking, with optional timeout).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_timeout">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#61-78" title="Go to source code">timeout</a>( <span>integer <var>$ms</var> = <span class="php-num">0</span></span>, <span>integer <var>$spin</var> = <span class="php-num">10</span></span>, <span>boolean <var>$reset</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#75-92" title="Go to source code">timeout</a>( <span>integer <var>$ms</var> = <span class="php-num">0</span></span>, <span>integer <var>$spin</var> = <span class="php-num">10</span></span>, <span>boolean <var>$reset</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -341,24 +372,32 @@ Waitable to not wait at all.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_type">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#80-82" title="Go to source code">type</a>( )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#95-102" title="Go to source code">type</a>( )</code>
 
 		<div class="description short">
 			
+<p>Get the expected result type, if any, of this Waitable.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Get the expected result type, if any, of this Waitable.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
 
 
 
@@ -377,7 +416,7 @@ Waitable to not wait at all.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wait">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#85-100" title="Go to source code">wait</a>( )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#105-120" title="Go to source code">wait</a>( )</code>
 
 		<div class="description short">
 			
@@ -394,7 +433,7 @@ Waitable to not wait at all.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>mixed</code><br>$result resolved value, Exception, or TimeoutException if timed out<br />
+					<code>mixed</code><br>$result resolved value or an Exception<br />
 				</div>
 
 
@@ -414,7 +453,7 @@ Waitable to not wait at all.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_expect">#</a>
-		<code><a href="source-class-Alchemy.util.promise.Waitable.html#103-118" title="Go to source code">expect</a>( )</code>
+		<code><a href="source-class-Alchemy.util.promise.Waitable.html#123-138" title="Go to source code">expect</a>( )</code>
 
 		<div class="description short">
 			

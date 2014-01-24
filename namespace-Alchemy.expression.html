@@ -7,7 +7,7 @@
 	<title>Namespace Alchemy\expression</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -66,6 +66,8 @@
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
 				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
+				<li><a href="class-Alchemy.expression.Foreign.html">Foreign</a></li>
+				<li><a href="class-Alchemy.expression.ForeignKey.html">ForeignKey</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
 				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
@@ -73,18 +75,20 @@
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
 				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
-				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
+				<li><a href="class-Alchemy.expression.PrimaryKey.html">PrimaryKey</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
+				<li><a href="class-Alchemy.expression.QueryElement.html">QueryElement</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
 				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
+				<li><a href="class-Alchemy.expression.TableElement.html">TableElement</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
-				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
+				<li><a href="class-Alchemy.expression.UniqueKey.html">UniqueKey</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -208,6 +212,14 @@
 	<td>Represent an Integer in SQL</td>
 </tr>
 <tr>
+	<td class="name"><a href="class-Alchemy.expression.Foreign.html">Foreign</a></td>
+	<td>Represent a column in SQL with a foreign key constraint to another column</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-Alchemy.expression.ForeignKey.html">ForeignKey</a></td>
+	<td>Class for representing a foreign key constraint in SQL</td>
+</tr>
+<tr>
 	<td class="name"><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></td>
 	<td>Represent an inclusive expression in SQL</td>
 </tr>
@@ -236,12 +248,16 @@
 	<td>Represent a logical operator</td>
 </tr>
 <tr>
-	<td class="name"><a href="class-Alchemy.expression.Primary.html">Primary</a></td>
+	<td class="name"><a href="class-Alchemy.expression.PrimaryKey.html">PrimaryKey</a></td>
 	<td>Class for representing a primary key index in SQL</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.expression.Query.html">Query</a></td>
 	<td>Abstract base class for representing a query</td>
+</tr>
+<tr>
+	<td class="name"><a href="class-Alchemy.expression.QueryElement.html">QueryElement</a></td>
+	<td>Abstract class for query fragments</td>
 </tr>
 <tr>
 	<td class="name"><a href="class-Alchemy.expression.Scalar.html">Scalar</a></td>
@@ -264,6 +280,10 @@
 	<td>Represent a table in SQL</td>
 </tr>
 <tr>
+	<td class="name"><a href="class-Alchemy.expression.TableElement.html">TableElement</a></td>
+	<td>Class for representing an index in SQL</td>
+</tr>
+<tr>
 	<td class="name"><a href="class-Alchemy.expression.Text.html">Text</a></td>
 	<td>Represent a Text column in SQL</td>
 </tr>
@@ -280,7 +300,7 @@
 	<td>Represent an TinyInt in SQL</td>
 </tr>
 <tr>
-	<td class="name"><a href="class-Alchemy.expression.Unique.html">Unique</a></td>
+	<td class="name"><a href="class-Alchemy.expression.UniqueKey.html">UniqueKey</a></td>
 	<td>Class for representing a unique index in SQL</td>
 </tr>
 <tr>

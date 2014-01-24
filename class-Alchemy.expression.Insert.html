@@ -7,7 +7,7 @@
 	<title>Class Alchemy\expression\Insert</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?715527796"></script>
+	<script type="text/javascript" src="elementlist.js?3038140800"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -66,6 +66,8 @@
 				<li><a href="class-Alchemy.expression.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.expression.Expression.html">Expression</a></li>
 				<li><a href="class-Alchemy.expression.Float.html">Float</a></li>
+				<li><a href="class-Alchemy.expression.Foreign.html">Foreign</a></li>
+				<li><a href="class-Alchemy.expression.ForeignKey.html">ForeignKey</a></li>
 				<li><a href="class-Alchemy.expression.InclusiveExpression.html">InclusiveExpression</a></li>
 				<li><a href="class-Alchemy.expression.Index.html">Index</a></li>
 				<li class="active"><a href="class-Alchemy.expression.Insert.html">Insert</a></li>
@@ -73,18 +75,20 @@
 				<li><a href="class-Alchemy.expression.Join.html">Join</a></li>
 				<li><a href="class-Alchemy.expression.MediumInt.html">MediumInt</a></li>
 				<li><a href="class-Alchemy.expression.Operator.html">Operator</a></li>
-				<li><a href="class-Alchemy.expression.Primary.html">Primary</a></li>
+				<li><a href="class-Alchemy.expression.PrimaryKey.html">PrimaryKey</a></li>
 				<li><a href="class-Alchemy.expression.Query.html">Query</a></li>
+				<li><a href="class-Alchemy.expression.QueryElement.html">QueryElement</a></li>
 				<li><a href="class-Alchemy.expression.Scalar.html">Scalar</a></li>
 				<li><a href="class-Alchemy.expression.Select.html">Select</a></li>
 				<li><a href="class-Alchemy.expression.SmallInt.html">SmallInt</a></li>
 				<li><a href="class-Alchemy.expression.String.html">String</a></li>
 				<li><a href="class-Alchemy.expression.Table.html">Table</a></li>
+				<li><a href="class-Alchemy.expression.TableElement.html">TableElement</a></li>
 				<li><a href="class-Alchemy.expression.Text.html">Text</a></li>
 				<li><a href="class-Alchemy.expression.Time.html">Time</a></li>
 				<li><a href="class-Alchemy.expression.Timestamp.html">Timestamp</a></li>
 				<li><a href="class-Alchemy.expression.TinyInt.html">TinyInt</a></li>
-				<li><a href="class-Alchemy.expression.Unique.html">Unique</a></li>
+				<li><a href="class-Alchemy.expression.UniqueKey.html">UniqueKey</a></li>
 				<li><a href="class-Alchemy.expression.Update.html">Update</a></li>
 			</ul>
 
@@ -145,6 +149,15 @@
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
+			<a href="class-Alchemy.expression.QueryElement.html"><span>Alchemy\expression\QueryElement</span></a>
+			
+			 implements 
+				<a href="class-Alchemy.dialect.ICompilable.html"><span>Alchemy\dialect\ICompilable</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
 			<a href="class-Alchemy.expression.Query.html"><span>Alchemy\expression\Query</span></a>
 			
 			 implements 
@@ -152,7 +165,7 @@
 			
 			
 		</dd>
-		<dd style="padding-left:30px">
+		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Alchemy\expression\Insert</span></b>			
 			
@@ -344,6 +357,15 @@
 		</code></td>
 	</tr>
 	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.expression.QueryElement.html#methods">Alchemy\expression\QueryElement</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.expression.QueryElement.html#_getID">getID()</a>, 
+			<a href="class-Alchemy.expression.QueryElement.html#_listRoles">listRoles()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -414,6 +436,15 @@
 			<a href="class-Alchemy.expression.Query.html#$limit"><var>$limit</var></a>, 
 			<a href="class-Alchemy.expression.Query.html#$offset"><var>$offset</var></a>, 
 			<a href="class-Alchemy.expression.Query.html#$where"><var>$where</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.expression.QueryElement.html#properties">Alchemy\expression\QueryElement</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.expression.QueryElement.html#$id"><var>$id</var></a>, 
+			<a href="class-Alchemy.expression.QueryElement.html#$idCounter"><var>$idCounter</var></a>
 		</code></td>
 	</tr>
 	</table>
