@@ -46,11 +46,11 @@ abstract class TableElement extends QueryElement {
             }
 
             foreach ($default as $k => $v) {
-                $arg[$k] = self::normalize_arg(isset($arg[$k]) ? $arg[$k] : null, $v);
+                $arg[$k] = self::normalize_arg(array_key_exists($k, $arg) ? $arg[$k] : null, $v);
             }
         }
 
-        return $arg;
+        return $arg ?: $default;
     }
 
 
