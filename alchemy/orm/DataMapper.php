@@ -43,6 +43,25 @@ abstract class DataMapper {
 
 
     /**
+     * List all subclasses of DataMapper. Only works for
+     * classes already loaded by PHP.
+     *
+     * @return array
+     */
+    public static function list_mappers() {
+        $result = array();
+        foreach (get_declared_classes() as $cls) {
+            if (is_subclass_of($cls, __CLASS__)) {
+                $cls::table(); // Force table register
+                $result[] = $cls;
+            }
+        }
+
+        return $result;
+    }
+
+
+    /**
      * Gen an instance of Table that represents the schema of this
      * domain object.
      *
@@ -61,6 +80,7 @@ abstract class DataMapper {
             };
 
             self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\expression\Table");
+            self::$schema_cache[$cls]->register();
         }
 
         return self::$schema_cache[$cls];

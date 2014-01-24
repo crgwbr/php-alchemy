@@ -25,7 +25,7 @@ class MapperTest extends BaseTest {
 
         $engine->expects($this->once())
                ->method('execute')
-               ->with($this->equalTo('INSERT INTO Alchemy_tests_Language (ISO2Code, LatestChangeStamp) VALUES (:p0, :p1)'))
+               ->with($this->equalTo('INSERT INTO Language (ISO2Code, LatestChangeStamp) VALUES (:p0, :p1)'))
                ->will($this->returnValue($result));
 
         $session = new Session($engine);
@@ -48,7 +48,7 @@ class MapperTest extends BaseTest {
 
         $engine->expects($this->once())
                ->method('execute')
-               ->with($this->equalTo('SELECT al1.LanguageID as LanguageID, al1.ISO2Code as ISO2Code, al1.FallbackLanguageID as FallbackLanguageID, al1.LatestChangeStamp as LatestChangeStamp FROM Alchemy_tests_Language al1'));
+               ->with($this->equalTo('SELECT la1.LanguageID as LanguageID, la1.ISO2Code as ISO2Code, la1.ParentLanguageID as ParentLanguageID, la1.LatestChangeStamp as LatestChangeStamp FROM Language la1'));
 
         $session = new Session($engine);
         $all = $session->objects('Alchemy\tests\Language')->all();

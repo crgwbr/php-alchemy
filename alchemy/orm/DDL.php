@@ -37,8 +37,21 @@ class DDL {
      * of them.
      */
     public function createAll() {
-        foreach ($this->listMappers() as $cls) {
-            $this->create($cls);
+        $mappers = DataMapper::list_mappers();
+        $created = array();
+
+        while (count($mappers) > 0) {
+            $mapper = array_pop($mappers);
+            $table = $mapper::table();
+            $dependancies = $table->listDependancies();
+            $dependancies = array_diff($dependancies, $created);
+
+            if (count($dependancies) > 0) {
+                array_unshift($mappers, $mapper);
+            } else {
+                $this->create($mapper);
+                $created[] = $table->getName();
+            }
         }
     }
 
@@ -57,25 +70,21 @@ class DDL {
      * of them.
      */
     public function dropAll() {
-        foreach ($this->listMappers() as $cls) {
-            $this->drop($cls);
+        $mappers = DataMapper::list_mappers();
+        $dropped = array();
+
+        while (count($mappers) > 0) {
+            $mapper = array_pop($mappers);
+            $table = $mapper::table();
+            $dependants = $table->listDependants();
+            $dependants = array_diff($dependants, $dropped);
+
+            if (count($dependants) > 0) {
+                array_unshift($mappers, $mapper);
+            } else {
+                $this->drop($mapper);
+                $dropped[] = $table->getName();
+            }
         }
-    }
-
-
-    /**
-     * List all subclasses of DataMapper. Only works for
-     * classes already loaded by PHP.
-     *
-     * @return array
-     */
-    protected function listMappers() {
-        $result = array();
-        foreach (get_declared_classes() as $cls) {
-            if (is_subclass_of($cls, '\Alchemy\orm\DataMapper'))
-                $result[] = $cls;
-        }
-
-        return $result;
     }
 }

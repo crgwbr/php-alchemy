@@ -20,6 +20,8 @@ class Table extends QueryElement implements IPromisable {
     private $columns    = array();
     private $indexes    = array();
     private $properties = array();
+    private $dependancies = array();
+    private $dependants = array();
 
 
     public static function list_promisable_methods() {
@@ -41,7 +43,7 @@ class Table extends QueryElement implements IPromisable {
             return self::$registered[$name];
         }
 
-        throw new \Exception("No table registered for name '{$table}'.");
+        throw new \Exception("No table registered for name '{$name}'.");
     }
 
 
@@ -52,7 +54,7 @@ class Table extends QueryElement implements IPromisable {
      * @param array $columns array("name" => Column, "name" => Column, ...)
      * @param string $namespace Namespace of Column classes
      */
-    public function __construct($name, $propdefs, $indexdefs = array(), $namespace = "Alchemy\\expression") {
+    public function __construct($name, $propdefs, $indexdefs = array()) {
         $this->name = $name;
         $this->propdefs  = $propdefs;
         $this->indexdefs = $indexdefs;
@@ -108,6 +110,28 @@ class Table extends QueryElement implements IPromisable {
     public function listColumns() {
         $this->resolve();
         return $this->columns;
+    }
+
+
+    /**
+     * List names of table I depend on
+     *
+     * @return array
+     */
+    public function listDependancies() {
+        $this->resolve();
+        return $this->dependancies;
+    }
+
+
+    /**
+     * List names of tables that depend on me
+     *
+     * @return array
+     */
+    public function listDependants() {
+        $this->resolve();
+        return $this->dependants;
     }
 
 
@@ -186,7 +210,18 @@ class Table extends QueryElement implements IPromisable {
 
             $this->columns[$name] = $column;
             $this->indexes[$name] = $column->getIndex();
-            $this->indexes[] = $column->getForeignKey();
+
+            $fk = $column->getForeignKey();
+            if ($fk) {
+                $this->indexes[] = $fk;
+
+                $source = $fk->getSourceTable();
+                $name = $source->getName();
+                if ($name != $this->getName()) {
+                    $this->dependancies[] = $name;
+                    $source->dependants[] = $this->getName();
+                }
+            }
 
             if ($column->isPrimaryKeyPart()) {
                 $primary[] = $column;
