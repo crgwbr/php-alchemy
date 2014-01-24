@@ -32,7 +32,7 @@ class Update extends Query {
      * @param Column $column
      * @param mixed $value
      */
-    public function set(Column $column, $value) {
+    public function set($column, $value) {
         if (!$value instanceof Scalar) {
             $value = new Scalar($value);
         }
