@@ -8,10 +8,58 @@ namespace Alchemy\expression;
  */
 class Element implements IElement {
 
-    protected static $id_counter = 0;
+    private static $id_counter = 0;
+    private static $typedefs = array();
 
     protected $id;
+    protected $type;
     protected $tags = array();
+
+
+    public static function define($type = null, $base = null, $def = array()) {
+        $parts = explode('\\', get_called_class());
+        $class = array_pop($parts);
+
+        $type = $type ?: $class;
+        $base = $base ?: $class;
+
+        // get base definition
+        $basedef = ($base != $type)
+            ? self::get_definition($base)
+            : array();
+        $basedef['tags']["element.type"] = $type;
+        $basedef['tags']["element.class"] = $class;
+
+        // merge with new defition (non-recursive)
+        foreach ($basedef as $k => $v) {
+            $def[$k] = array_key_exists($k, $def)
+                ? (is_array($v) ? $def[$k] + $v : $def[$k])
+                : $v;
+        }
+
+        self::$typedefs["{$class}.{$type}"] = $def;
+    }
+
+
+    public static function get_definition($type) {
+        $parts = explode('\\', get_called_class());
+        $class = array_pop($parts);
+
+        if (!array_key_exists("{$class}.{$type}", self::$typedefs)) {
+            throw new \Exception("No Element definition for {$class}.{$type}");
+        }
+
+        return self::$typedefs["{$class}.{$type}"];
+    }
+
+
+    public function __construct($type = null) {
+        if ($type) {
+            $def = self::get_definition($type);
+            $this->addTags($def['tags']);
+        }
+        $this->type = $type;
+    }
 
 
     /**
@@ -31,6 +79,13 @@ class Element implements IElement {
         }
 
         $this->tags[$tag] = $value;
+    }
+
+
+    public function addTags($tags) {
+        foreach ($tags as $tag => $value) {
+            $this->addTag($tag, $value);
+        }
     }
 
 
@@ -61,6 +116,11 @@ class Element implements IElement {
         }
 
         return false;
+    }
+
+
+    public function getType() {
+        return $this->type;
     }
 
 

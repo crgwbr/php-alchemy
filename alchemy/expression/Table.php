@@ -155,7 +155,7 @@ class Table extends Element implements IPromisable {
      */
     public function listPrimaryKeyComponents() {
         foreach ($this->listIndexes() as $name => $index) {
-            if ($index instanceof PrimaryKey) {
+            if ($index->getType() == 'PrimaryKey') {
                 return $index->listColumns();
             }
         }
@@ -231,7 +231,7 @@ class Table extends Element implements IPromisable {
         }
 
         if ($primary) {
-            $this->indexes['PRIMARY'] = new PrimaryKey(array($primary), $this, 'PRIMARY');
+            $this->indexes['PRIMARY'] = new Index(array($primary), $this, 'PRIMARY', 'PrimaryKey');
         }
 
         // Set multi-column indexes
@@ -239,7 +239,10 @@ class Table extends Element implements IPromisable {
             if (is_string($index)) {
                 $type = new DataTypeLexer($index);
                 $class = $namespace . '\\' . $type->getType();
-                $index = new $class($type->getArgs(), $this, $name);
+                if (!class_exists($class)) {
+                    $class = $namespace . '\\Index';
+                }
+                $index = new $class($type->getArgs(), $this, $name, $type->getType());
             }
 
             $this->indexes[$name] = $index;

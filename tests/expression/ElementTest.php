@@ -20,13 +20,53 @@ class ElementTest extends BaseTest {
         $obj = new Element();
         $obj->addTag("a.b");
         $obj->addTag("a.b.c", 'value');
-        $obj->addTag("a.b.c");
+        $obj->addTags(array(
+            "a.b.c" => true,
+            "b.c"   => "value2"));
 
-        $this->assertEquals(array("a.b", "a.b.c"), $obj->listTags());
+        $this->assertEquals(array("a.b", "a.b.c", "b.c"), $obj->listTags());
 
         $this->assertEquals(true, $obj->getTag('a.b'));
         $this->assertEquals("value", $obj->getTag('a.b.c'));
+        $this->assertEquals("value2", $obj->getTag('b.c'));
 
         $this->assertThrows('Exception', array($obj, 'addTag'), 'a.b.c', 'value2');
+    }
+
+    public function testDefinitionInheritance() {
+
+        // doesn't know what to inherit from yet
+        $this->assertThrows('Exception', array("Element", "define"), "Type", null);
+        $this->assertThrows('Exception', array("Element", "define"), "Type", "Unknown");
+
+        // defaults to 'Element' type
+        Element::define(null, null, array('key' => 'element'));
+
+        $expected = array('key' => 'element',
+            'tags' => array(
+                'element.type' => 'Element',
+                'element.class' => 'Element'));
+        $this->assertEquals($expected, Element::get_definition('Element'));
+
+        // inherits from default 'Element' type
+        Element::define('Type', null, array('key' => 'type', 'a' => array(1, 'k' => 'v')));
+        Element::define('Subtype', 'Type', array('a' => array(2)));
+
+        $expected = array('key' => 'type',
+            'a' => array(1, 'k' => 'v'),
+            'tags' => array(
+                'element.type' => 'Type',
+                'element.class' => 'Element'));
+        $this->assertEquals($expected, Element::get_definition('Type'));
+
+        $expected = array('key' => 'type',
+            'a' => array(2, 'k' => 'v'),
+            'tags' => array(
+                'element.type' => 'Subtype',
+                'element.class' => 'Element'));
+        $this->assertEquals($expected, Element::get_definition('Subtype'));
+
+        // doesn't exist
+        $this->assertThrows('Exception', array("Element", "get_definition"), "Unknown");
     }
 }

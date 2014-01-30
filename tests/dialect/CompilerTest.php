@@ -25,18 +25,23 @@ class CompilerTest extends BaseTest {
 
     public function testFormatRecursion() {
         $sub = array('A', 'B', 'C', 'D');
-        $elements = array('X', 'Y', $sub, $sub, $sub);
+        $elements = array('X', 'Y', 'Z', $sub, $sub, $sub);
 
-        // applies ../// to tail elements of array, and ..!!! to their sub-elements
-        $format = "%s and %s recurse (%../%s into %..!!!/, /)";
-        $result = "X and Y recurse (A into BCD, A into BCD, A into BCD)";
+        // applies /// to tail elements of array, and !!! to their sub-elements
+        $format = "%s and %s recurse (%4/%s into %1!!!/, /)";
+        $result = "X and Y recurse (A into ABCD, A into ABCD, A into ABCD)";
 
         $comp = new Compiler();
         $this->assertEquals($result, $comp->format($format, $elements));
 
         $elements = array('A', array('', 'B', ''), array('', ''));
-        $format = "%s (%../%..!!+!/, /)";
+        $format = "%s (%2/%!!+!/, /)";
 
         $this->assertEquals("A (B)", $comp->format($format, $elements));
+
+        $elements = array('@', $sub, $sub);
+        $format = "{%2$3//, /} %1\$s (%3$2// + /)";
+
+        $this->assertEquals("{C, D} @ (B + C + D)", $comp->format($format, $elements));
     }
 }

@@ -103,7 +103,7 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      */
     public function getForeignKey() {
         if ($this->args['foreign_key']) {
-            return new ForeignKey(array(array($this), array($this->args['foreign_key'])), $this->table, $this->name);
+            return new ForeignKey(array(array($this), array($this->args['foreign_key'])), $this->table, $this->name, 'ForeignKey');
         }
     }
 
@@ -115,9 +115,9 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      */
     public function getIndex() {
         if ($this->args['unique']) {
-            return new UniqueKey($this, $this->table, $this->name);
+            return new Index($this, $this->table, $this->name, 'UniqueKey');
         } elseif ($this->args['index']) {
-            return new Index($this, $this->table, $this->name);
+            return new Index($this, $this->table, $this->name, 'Index');
         }
     }
 

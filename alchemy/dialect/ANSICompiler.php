@@ -25,7 +25,7 @@ class ANSICompiler extends Compiler {
         'convert'   => 'CONVERT(%s USING %s)',
         'translate' => 'TRANSLATE(%s USING %s)',
         'concat'    => '%s || %s',
-        'coalesce'  => 'COALESCE(%..//, /)',
+        'coalesce'  => 'COALESCE(%1//, /)',
 
         // predicates
         'equal'     => '%s = %s',
@@ -37,10 +37,15 @@ class ANSICompiler extends Compiler {
         'between'   => '%s BETWEEN %s AND %s',
         'isNull'    => '%s IS NULL',
         'like'      => '%s LIKE %s',
-        'in'        => '%s IN (%..//, /)',
-        'and'       => '(%..// AND /)',
-        'or'        => '(%..// OR /)',
+        'in'        => '%s IN (%2//, /)',
+        'and'       => '(%// AND /)',
+        'or'        => '(%// OR /)',
         'not'       => 'NOT (%s)');
+
+    protected static $index_formats = array(
+        'Index'      => "KEY %s (%3$//, /)",
+        'UniqueKey'  => "UNIQUE KEY %s (%3$//, /)",
+        'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
 
     /**
      * Always returns the same auto-generated string for a given object
@@ -154,10 +159,11 @@ class ANSICompiler extends Compiler {
 
 
     public function Create_Index($obj) {
-        $columns = $this->compile($obj->listColumns());
-        $columns = implode(', ', $columns);
+        $format = static::$index_formats[$obj->getType()];
+        $elements = array($obj->getName(), $obj->getTable()->getName(),
+            $this->compile($obj->listColumns()));
 
-        return "KEY {$obj->getName()} ({$columns})";
+        return $this->format($format, $elements);
     }
 
 
@@ -190,14 +196,6 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_PrimaryKey($obj) {
-        $columns = $this->compile($obj->listColumns());
-        $columns = implode(', ', $columns);
-
-        return "PRIMARY KEY ({$columns})";
-    }
-
-
     public function Create_SmallInt($obj) {
         return "SMALLINT({$obj->getSize()})";
     }
@@ -220,14 +218,6 @@ class ANSICompiler extends Compiler {
 
     public function Create_TinyInt($obj) {
         return "TINYINT({$obj->getSize()})";
-    }
-
-
-    public function Create_UniqueKey($obj) {
-        $columns = $this->compile($obj->listColumns());
-        $columns = implode(', ', $columns);
-
-        return "UNIQUE KEY {$obj->getName()} ({$columns})";
     }
 
 

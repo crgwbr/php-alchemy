@@ -9,7 +9,8 @@ namespace Alchemy\expression;
 interface IElement {
 
     /**
-     * Apply a tag to this element
+     * Apply a tag to this element. The same tag cannot be applied
+     * with two different values.
      *
      * @param string $tag
      * @param string $value optional value to give tag

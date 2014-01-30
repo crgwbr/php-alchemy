@@ -59,7 +59,11 @@ abstract class TableElement extends Element {
      *
      * @param array $args
      */
-    public function __construct($args = array(), $table = null, $name = '') {
+    public function __construct($args = array(), $table = null, $name = '', $type = null) {
+        if ($type) {
+            parent::__construct($type);
+        }
+
         $this->name = $name;
         $this->table = $table;
         $this->args = self::normalize_arg($args, static::get_default_args());

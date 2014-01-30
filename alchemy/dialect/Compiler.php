@@ -73,7 +73,8 @@ class Compiler {
      * <subformat> may contain recursive tokens. It is your responsibility
      * to make sure $format and $subject make sense to use together.
      *
-     * Ex: "%s %s (%../+%s/, /)" * [A, B, C, D, E] = "A B (C, D, E)"
+     * Ex: "%s %s (%4../+%s/, /)" * [A, B, C, D, E] = "A B (D, E)"
+     * Ex: "%2$s (%2$1../+%s/, /)" * [[A, B, C], D] = "D (A, B, C)"
      *
      * @param  string $format
      * @param  array  $subject
@@ -84,11 +85,11 @@ class Compiler {
             $subject = array($subject);
         }
 
-        if (preg_match("/%\.\.(\p{P})([^\g1]*)\g1([^\g1]*)\g1/", $format, $matches)) {
-            list($token, , $subfmt, $delim) = $matches;
-            $pos  = strpos($format, $token);
-            $skip = $pos ? substr_count($format, '%s', 0, $pos) : 0;
-            $tail = array_splice($subject, $skip);
+        while (preg_match("/.*?(%(?:(\d+).)?(\d+)?(\p{P})([^\g4]*?)\g4([^\g4]*?)\g4)/", $format, $matches)) {
+            list(,$token, $pos, $start, $p, $subfmt, $delim) = $matches;
+            $start = ((int) $start ?: 1) - 1;
+            $pos   = ((int) $pos   ?: 1) - 1;
+            $tail = array_slice($pos ? $subject[$pos] : $subject, $start);
 
             if ($subfmt) {
                 foreach($tail as &$item) {
@@ -97,7 +98,7 @@ class Compiler {
             }
 
             $subject[] = implode($delim, array_filter($tail));
-            $format = str_replace($token, '%s', $format);
+            $format = str_replace($token, '%'.count($subject).'$s', $format);
         }
 
         return vsprintf($format, $subject);

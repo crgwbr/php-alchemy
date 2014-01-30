@@ -40,9 +40,8 @@ require_once "expression/Predicate.php";
 require_once "expression/Column.php";
 require_once "expression/Index.php";
 require_once "expression/ForeignKey.php";
-require_once "expression/UniqueKey.php";
-require_once "expression/PrimaryKey.php";
 require_once "expression/Table.php";
+require_once "expression/schema-elements.php";
 
 // Data types
 require_once "expression/String.php";

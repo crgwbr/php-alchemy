@@ -5,6 +5,11 @@ use Alchemy\expression as expr;
 
 class SQLiteCompiler extends ANSICompiler {
 
+    protected static $index_formats = array(
+        'Index'      => "CREATE INDEX %s ON %s (%3$//, /)",
+        'UniqueKey'  => "CREATE UNIQUE INDEX %s ON %s (%3$//, /)",
+        'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
+
     public function Create(expr\Create $obj) {
         $table = $obj->getTable();
 
@@ -13,8 +18,8 @@ class SQLiteCompiler extends ANSICompiler {
 
         foreach ($table->listIndexes() as $name => $index) {
             $sql = $this->Create_Key($index);
-            if ($index instanceof expr\PrimaryKey ||
-                $index instanceof expr\ForeignKey) {
+            if ($index->getType() == 'PrimaryKey' ||
+                $index->getType() == 'ForeignKey') {
                 $columns[] = $sql;
             } else {
                 $queries[] = $sql;
@@ -29,28 +34,8 @@ class SQLiteCompiler extends ANSICompiler {
     }
 
 
-    public function Create_Index($obj) {
-        $columns = $this->compile($obj->listColumns());
-        $columns = implode(', ', $columns);
-
-        $table = $obj->getTable()->getName();
-
-        return "CREATE INDEX {$obj->getName()} ON {$table} ({$columns})";
-    }
-
-
     public function Create_Integer(expr\Integer $obj) {
         return "INTEGER";
-    }
-
-
-    public function Create_UniqueKey($obj) {
-        $columns = $this->compile($obj->listColumns());
-        $columns = implode(', ', $columns);
-
-        $table = $obj->getTable()->getName();
-
-        return "CREATE UNIQUE INDEX {$obj->getName()} ON {$table} ({$columns})";
     }
 
 
