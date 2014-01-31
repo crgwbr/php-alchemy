@@ -16,6 +16,24 @@ class Element implements IElement {
     protected $tags = array();
 
 
+    /**
+     * Return a new instance of an Element type. If the type is an alias,
+     * may return an instance of a different subclass.
+     */
+    public static function __callStatic($name, $args) {
+        $def = self::get_definition($name);
+        return new $def['tags']['element.class']($def['tags']['element.type']);
+    }
+
+
+    /**
+     * Define a new type for this Element class. Create an object of
+     * this type by calling Element::Type()
+     *
+     * @param  string $type new type identifier (defaults to class name)
+     * @param  string $base type to inherit from (defaults to class name)
+     * @param  array  $def  [description]
+     */
     public static function define($type = null, $base = null, $def = array()) {
         $parts = explode('\\', get_called_class());
         $class = array_pop($parts);
@@ -28,28 +46,53 @@ class Element implements IElement {
             ? self::get_definition($base)
             : array();
         $basedef['tags']["element.type"] = $type;
-        $basedef['tags']["element.class"] = $class;
+        $basedef['tags']["element.class"] = get_called_class();
 
-        // merge with new defition (non-recursive)
+        // merge with new definition (non-recursive)
         foreach ($basedef as $k => $v) {
             $def[$k] = array_key_exists($k, $def)
                 ? (is_array($v) ? $def[$k] + $v : $def[$k])
                 : $v;
         }
 
-        self::$typedefs["{$class}.{$type}"] = $def;
+        self::$typedefs["{$class}::{$type}"] = $def;
     }
 
 
-    public static function get_definition($type) {
+    /**
+     * Define a new type as an alias to another type, possibly of a
+     * different class.
+     *
+     * @param  string $type new type identifier
+     * @param  string $base type to alias
+     */
+    public static function define_alias($type, $base) {
         $parts = explode('\\', get_called_class());
         $class = array_pop($parts);
 
-        if (!array_key_exists("{$class}.{$type}", self::$typedefs)) {
-            throw new \Exception("No Element definition for {$class}.{$type}");
+        // copy type definition
+        self::$typedefs["{$class}::{$type}"] = self::get_definition($base);
+    }
+
+
+    /**
+     * Get the definition array for "Type" or "Class::Type"
+     *
+     * @param  string $type type identifier
+     * @return array        type definition
+     */
+    public static function get_definition($type) {
+        if (!strpos($type, '::')) {
+            $parts = explode('\\', get_called_class());
+            $class = array_pop($parts);
+            $type = "{$class}::{$type}";
         }
 
-        return self::$typedefs["{$class}.{$type}"];
+        if (!array_key_exists($type, self::$typedefs)) {
+            throw new \Exception("No Element definition for {$type}");
+        }
+
+        return self::$typedefs[$type];
     }
 
 

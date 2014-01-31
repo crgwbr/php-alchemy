@@ -38,29 +38,11 @@ require_once "expression/Predicate.php";
 
 // Schema definition
 require_once "expression/Column.php";
+require_once "expression/Foreign.php";
 require_once "expression/Index.php";
 require_once "expression/ForeignKey.php";
 require_once "expression/Table.php";
 require_once "expression/schema-elements.php";
-
-// Data types
-require_once "expression/String.php";
-require_once "expression/Integer.php";
-require_once "expression/Datetime.php";
-require_once "expression/Timestamp.php";
-require_once "expression/Date.php";
-require_once "expression/Time.php";
-require_once "expression/Bool.php";
-require_once "expression/Decimal.php";
-require_once "expression/TinyInt.php";
-require_once "expression/SmallInt.php";
-require_once "expression/MediumInt.php";
-require_once "expression/BigInt.php";
-require_once "expression/Char.php";
-require_once "expression/Blob.php";
-require_once "expression/Float.php";
-require_once "expression/Binary.php";
-require_once "expression/Foreign.php";
 
 // Query Structure
 require_once "expression/Join.php";

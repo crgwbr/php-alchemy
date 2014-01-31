@@ -5,19 +5,21 @@ use Alchemy\expression as expr;
 
 class SQLiteCompiler extends ANSICompiler {
 
-    protected static $index_formats = array(
+    protected static $schema_formats = array(
+        'Integer'    => "INTEGER",
         'Index'      => "CREATE INDEX %s ON %s (%3$//, /)",
         'UniqueKey'  => "CREATE UNIQUE INDEX %s ON %s (%3$//, /)",
         'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
 
+
     public function Create(expr\Create $obj) {
         $table = $obj->getTable();
 
-        $columns = $this->map('Create_Column', $table->listColumns());
+        $columns = $this->map('Create_Element', $table->listColumns());
         $queries = array();
 
         foreach ($table->listIndexes() as $name => $index) {
-            $sql = $this->Create_Key($index);
+            $sql = $this->Create_Element($index);
             if ($index->getType() == 'PrimaryKey' ||
                 $index->getType() == 'ForeignKey') {
                 $columns[] = $sql;
@@ -31,11 +33,6 @@ class SQLiteCompiler extends ANSICompiler {
             "CREATE TABLE IF NOT EXISTS {$table->getName()} ({$columns})");
 
         return $queries;
-    }
-
-
-    public function Create_Integer(expr\Integer $obj) {
-        return "INTEGER";
     }
 
 

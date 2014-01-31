@@ -67,14 +67,14 @@ class Compiler {
 
     /**
      * Apply the special Compiler-format to an array of strings (recursive).
-     * Variardic formatting is done with %../<subformat>/<delimiter>/,
+     * Variardic formatting is done with %/<subformat>/<delimiter>/,
      * which applies a format & implode to the remainder of the elements,
      * if any (you may use any punctuation mark in place of '/').
      * <subformat> may contain recursive tokens. It is your responsibility
      * to make sure $format and $subject make sense to use together.
      *
-     * Ex: "%s %s (%4../+%s/, /)" * [A, B, C, D, E] = "A B (D, E)"
-     * Ex: "%2$s (%2$1../+%s/, /)" * [[A, B, C], D] = "D (A, B, C)"
+     * Ex: "%s %s (%4/+%s/, /)" * [A, B, C, D, E] = "A B (D, E)"
+     * Ex: "%2$s (%2$1/+%s/, /)" * [[A, B, C], D] = "D (A, B, C)"
      *
      * @param  string $format
      * @param  array  $subject
@@ -111,14 +111,16 @@ class Compiler {
     }
 
 
-    protected function getFunction($obj, $tag = '', $prefix = '') {
+    protected function getFunction($obj, $tag = '', $prefix = '', $strict = false) {
         $type = $obj->getTag($tag ?: static::$default_tag);
 
         if (method_exists($this, "{$prefix}{$type}")) {
             return array($this, "{$prefix}{$type}");
         }
 
-        throw new \Exception("Compiler method not found with prefix '$prefix' for tag '$type' ('$tag')");
+        if ($strict) {
+            throw new \Exception("Compiler method not found with prefix '$prefix' for '$tag' = '$type'");
+        }
     }
 
 

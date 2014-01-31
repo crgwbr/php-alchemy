@@ -187,7 +187,10 @@ class Table extends Element implements IPromisable {
             if (is_string($column)) {
                 $type = new DataTypeLexer($column);
                 $class = $namespace . '\\' . $type->getType();
-                $column = new $class($type->getArgs());
+                if (!class_exists($class)) {
+                    $class = $namespace . '\\Column';
+                }
+                $column = new $class($type->getArgs(), null, '', $type->getType());
             }
 
             $this->properties[$name] = $column->copy(array(), $this, $name);
@@ -231,7 +234,7 @@ class Table extends Element implements IPromisable {
         }
 
         if ($primary) {
-            $this->indexes['PRIMARY'] = new Index(array($primary), $this, 'PRIMARY', 'PrimaryKey');
+            $this->indexes['PRIMARY'] = Index::PrimaryKey(array($primary), $this, 'PRIMARY');
         }
 
         // Set multi-column indexes

@@ -7,7 +7,6 @@ namespace Alchemy\expression;
  * Class for representing an index in SQL
  */
 class Index extends TableElement {
-    protected static $default_args = array(array());
 
     protected $columns;
 

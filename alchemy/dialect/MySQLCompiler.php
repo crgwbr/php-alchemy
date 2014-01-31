@@ -5,9 +5,9 @@ use Alchemy\expression as expr;
 
 class MySQLCompiler extends ANSICompiler {
 
-    public function Create_Integer(expr\Integer $obj) {
-        $sql = parent::Create_Integer($obj);
-        $sql .= $obj->isAutoIncremented() ? " AUTO_INCREMENT" : "";
+    public function Create_Integer($obj) {
+        $sql = $this->Create_Column($obj, true);
+        $sql .= $obj->getArg('auto_increment') ? " AUTO_INCREMENT" : "";
 
         return $sql;
     }

@@ -34,7 +34,6 @@ class ElementTest extends BaseTest {
     }
 
     public function testDefinitionInheritance() {
-
         // doesn't know what to inherit from yet
         $this->assertThrows('Exception', array("Element", "define"), "Type", null);
         $this->assertThrows('Exception', array("Element", "define"), "Type", "Unknown");
@@ -45,7 +44,7 @@ class ElementTest extends BaseTest {
         $expected = array('key' => 'element',
             'tags' => array(
                 'element.type' => 'Element',
-                'element.class' => 'Element'));
+                'element.class' => 'Alchemy\expression\Element'));
         $this->assertEquals($expected, Element::get_definition('Element'));
 
         // inherits from default 'Element' type
@@ -53,20 +52,38 @@ class ElementTest extends BaseTest {
         Element::define('Subtype', 'Type', array('a' => array(2)));
 
         $expected = array('key' => 'type',
-            'a' => array(1, 'k' => 'v'),
-            'tags' => array(
-                'element.type' => 'Type',
-                'element.class' => 'Element'));
-        $this->assertEquals($expected, Element::get_definition('Type'));
-
-        $expected = array('key' => 'type',
             'a' => array(2, 'k' => 'v'),
             'tags' => array(
                 'element.type' => 'Subtype',
-                'element.class' => 'Element'));
+                'element.class' => 'Alchemy\expression\Element'));
         $this->assertEquals($expected, Element::get_definition('Subtype'));
 
         // doesn't exist
         $this->assertThrows('Exception', array("Element", "get_definition"), "Unknown");
+
+        $obj = Element::Subtype();
+        $this->assertInstanceOf('Alchemy\expression\Element', $obj);
+        $this->assertEquals('Subtype', $obj->getType());
+    }
+
+    public function testDefinitionAliases() {
+        // aliases Element::Mock to MockElement::Mock
+        Element::define('Type', 'Type', array('key' => 'type'));
+        MockElement::define('Mock', 'Element::Type', array('key2' => 'mock'));
+        Element::define_alias('Mock', 'MockElement::Mock');
+
+        $expected = array('key' => 'type',
+            'key2' => 'mock',
+            'tags' => array(
+                'element.type' => 'Mock',
+                'element.class' => 'Alchemy\tests\MockElement'));
+        $this->assertEquals($expected, Element::get_definition('Mock'));
+
+        $obj = Element::Mock();
+        $this->assertInstanceOf('Alchemy\tests\MockElement', $obj);
+        $this->assertEquals('Mock', $obj->getType());
     }
 }
+
+
+class MockElement extends Element {}

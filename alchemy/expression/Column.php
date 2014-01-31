@@ -7,16 +7,7 @@ use Alchemy\util\promise\IPromisable;
 /**
  * Abstract base class for representing a column in SQL
  */
-abstract class Column extends TableElement implements IQueryValue, IPromisable {
-    protected static $default_args = array(
-        'default' => null,
-        'foreign_key' => null,
-        'index' => false,
-        'null' => false,
-        'primary_key' => false,
-        'unique' => false,
-    );
-
+class Column extends TableElement implements IQueryValue, IPromisable {
 
     /**
      * Retrieve the column for a reference like 'Table.Column',
@@ -66,8 +57,8 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
     }
 
 
-    public function __construct($args = array(), $table = null, $name = '') {
-        parent::__construct($args, $table, $name);
+    public function __construct($args = array(), $table = null, $name = '', $type = '') {
+        parent::__construct($args, $table, $name, $type);
 
         $this->addTag("sql.compile", "Column");
         $this->addTag("expr.value");
@@ -81,7 +72,8 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      * @return string
      */
     public function decode($value) {
-        return (string)$value;
+        $def = self::get_definition($this->type);
+        return $def['decode']($this, $value);
     }
 
 
@@ -92,7 +84,8 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      * @return Scalar
      */
     public function encode($value) {
-        return new Scalar((string)$value, 'string');
+        $def = self::get_definition($this->type);
+        return $def['encode']($this, $value);
     }
 
 
@@ -103,7 +96,7 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      */
     public function getForeignKey() {
         if ($this->args['foreign_key']) {
-            return new ForeignKey(array(array($this), array($this->args['foreign_key'])), $this->table, $this->name, 'ForeignKey');
+            return Index::ForeignKey(array(array($this), array($this->args['foreign_key'])), $this->table, $this->name);
         }
     }
 
@@ -115,10 +108,15 @@ abstract class Column extends TableElement implements IQueryValue, IPromisable {
      */
     public function getIndex() {
         if ($this->args['unique']) {
-            return new Index($this, $this->table, $this->name, 'UniqueKey');
+            return Index::UniqueKey($this, $this->table, $this->name);
         } elseif ($this->args['index']) {
-            return new Index($this, $this->table, $this->name, 'Index');
+            return Index::Index($this, $this->table, $this->name);
         }
+    }
+
+
+    public function getArg($arg) {
+        return array_key_exists($arg, $this->args) ? $this->args[$arg] : null;
     }
 
 

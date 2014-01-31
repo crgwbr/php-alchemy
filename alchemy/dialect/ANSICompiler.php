@@ -42,10 +42,46 @@ class ANSICompiler extends Compiler {
         'or'        => '(%// OR /)',
         'not'       => 'NOT (%s)');
 
-    protected static $index_formats = array(
+    protected static $schema_formats = array(
+        // numerics
+        'Bool'       => "BOOL",
+        'Integer'    => "INT(%s)",
+        'TinyInt'    => "TINYINT(%s)",
+        'SmallInt'   => "SMALLINT(%s)",
+        'MediumInt'  => "MEDIUMINT(%s)",
+        'BigInt'     => "BIGINT(%s)",
+        'Float'      => "FLOAT(%s)",
+        'Decimal'    => "DECIMAL(%s, %s)",
+
+        //strings
+        'Blob'       => "BLOB",
+        'Binary'     => "BINARY(%s)",
+        'String'     => "VARCHAR(%s)",
+        'Char'       => "CHAR(%s)",
+        'Text'       => "TEXT(%s)",
+
+        // datetimes
+        'Date'       => "DATE",
+        'Time'       => "TIME",
+        'Datetime'   => "DATETIME",
+        'Timestamp'  => "TIMESTAMP",
+
+        // indexes
         'Index'      => "KEY %s (%3$//, /)",
         'UniqueKey'  => "UNIQUE KEY %s (%3$//, /)",
         'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
+
+
+    public static function get_schema_format($type) {
+        if (array_key_exists($type, static::$schema_formats)) {
+            return static::$schema_formats[$type];
+        }
+
+        $parent = get_parent_class(get_called_class());
+        if ($parent && method_exists($parent, 'get_schema_format')) {
+            return $parent::get_schema_format($type);
+        }
+    }
 
     /**
      * Always returns the same auto-generated string for a given object
@@ -92,74 +128,33 @@ class ANSICompiler extends Compiler {
     public function Create($obj) {
         $table = $obj->getTable();
 
-        $columns = $this->map('Create_Column', $table->listColumns());
-        $columns = array_values($columns);
+        $parts = array_merge(
+            array_values($table->listColumns()),
+            array_values($table->listIndexes()));
 
-        $indexes = $this->map('Create_Key', $table->listIndexes());
-        $indexes = array_values($indexes);
-
-        $parts = implode(', ', array_merge($columns, $indexes));
+        $parts = implode(', ', $this->map('Create_Element', $parts));
 
         return "CREATE TABLE IF NOT EXISTS {$table->getName()} ({$parts})";
     }
 
 
-    public function Create_BigInt($obj) {
-        return "BIGINT({$obj->getSize()})";
-    }
-
-
-    public function Create_Binary($obj) {
-        return "BINARY({$obj->getSize()})";
-    }
-
-
-    public function Create_Blob($obj) {
-        return "BLOB";
-    }
-
-
-    public function Create_Bool($obj) {
-        return "BOOL";
-    }
-
-
-    public function Create_Char($obj) {
-        return "CHAR({$obj->getSize()})";
-    }
-
-
-    public function Create_Column($obj) {
-        $fn = $this->getFunction($obj, 'sql.create', 'Create_');
-        $type = call_user_func($fn, $obj);
+    public function Create_Column($obj, $skipfn = false) {
         $null = $obj->isNotNull() ? "NOT NULL" : "NULL";
+
+        if (!$skipfn && $fn = $this->getFunction($obj, 'element.type', 'Create_')) {
+            $type = call_user_func($fn, $obj);
+        } else {
+            $format = static::get_schema_format($obj->getType());
+            $type = $this->format($format,
+                array($obj->getArg(0), $obj->getArg(1)));
+        }
 
         return "{$obj->getName()} {$type} {$null}";
     }
 
 
-    public function Create_Date($obj) {
-        return "DATE";
-    }
-
-
-    public function Create_Datetime($obj) {
-        return "DATETIME";
-    }
-
-
-    public function Create_Decimal($obj) {
-        return "DECIMAL({$obj->getPrecision()}, {$obj->getScale()})";
-    }
-
-
-    public function Create_Float($obj) {
-        return "FLOAT({$obj->getPrecision()})";
-    }
-
-
     public function Create_Index($obj) {
-        $format = static::$index_formats[$obj->getType()];
+        $format = static::get_schema_format($obj->getType());
         $elements = array($obj->getName(), $obj->getTable()->getName(),
             $this->compile($obj->listColumns()));
 
@@ -180,44 +175,9 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Integer($obj) {
-        return "INT({$obj->getSize()})";
-    }
-
-
-    public function Create_Key($obj) {
+    public function Create_Element($obj) {
         $fn = $this->getFunction($obj, 'sql.create', 'Create_');
         return call_user_func($fn, $obj);
-    }
-
-
-    public function Create_MediumInt($obj) {
-        return "MEDIUMINT({$obj->getSize()})";
-    }
-
-
-    public function Create_SmallInt($obj) {
-        return "SMALLINT({$obj->getSize()})";
-    }
-
-
-    public function Create_String($obj) {
-        return "VARCHAR({$obj->getSize()})";
-    }
-
-
-    public function Create_Time($obj) {
-        return "TIME";
-    }
-
-
-    public function Create_Timestamp($obj) {
-        return "TIMESTAMP";
-    }
-
-
-    public function Create_TinyInt($obj) {
-        return "TINYINT({$obj->getSize()})";
     }
 
 

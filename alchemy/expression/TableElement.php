@@ -7,29 +7,18 @@ namespace Alchemy\expression;
  * Class for representing an index in SQL
  */
 abstract class TableElement extends Element {
-    protected static $default_args = array();
 
     protected $args;
     protected $table;
     protected $name;
 
 
-    /**
-     * Get the combined list of self::$default_args form the
-     * inheritance tree
-     *
-     * @return array
-     */
-    protected static function get_default_args() {
-        $cls = get_called_class();
-        $args = $cls::$default_args;
+    public static function __callStatic($name, $args) {
+        $def = self::get_definition($name);
+        $args += array(array(), null, '', $def['tags']['element.type']);
 
-        $parent = get_parent_class($cls);
-        if ($parent && is_callable(array($parent, 'get_default_args'))) {
-            return array_merge($parent::get_default_args(), $args);
-        }
-
-        return $args;
+        $cls = new \ReflectionClass($def['tags']['element.class']);
+        return $cls->newInstanceArgs($args);
     }
 
 
@@ -60,13 +49,12 @@ abstract class TableElement extends Element {
      * @param array $args
      */
     public function __construct($args = array(), $table = null, $name = '', $type = null) {
-        if ($type) {
-            parent::__construct($type);
-        }
+        parent::__construct($type);
 
         $this->name = $name;
         $this->table = $table;
-        $this->args = self::normalize_arg($args, static::get_default_args());
+        $def = static::get_definition($this->type);
+        $this->args = self::normalize_arg($args, $def['defaults']);
 
         $parts = explode('\\', get_called_class());
         $cls = array_pop($parts);
@@ -80,7 +68,7 @@ abstract class TableElement extends Element {
      * @return TableElement
      */
     public function copy(array $args = array(), $table = null, $name = '') {
-        return new static($args + $this->args, $table, $name);
+        return new static($args + $this->args, $table, $name, $this->type);
     }
 
 

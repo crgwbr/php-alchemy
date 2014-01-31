@@ -4,13 +4,14 @@ namespace Alchemy\tests;
 
 use Alchemy\dialect\ANSICompiler;
 use Alchemy\expression as expr;
+use Alchemy\expression\Column;
 
 
 class ANSICompilerTest extends BaseTest {
 
     public function testBigInt() {
         $ansi = new ANSICompiler();
-        $col = new expr\BigInt(array(20, 'null' => false, 'auto_increment' => false), null, 'Col');
+        $col = Column::BigInt(array(20, 'null' => false, 'auto_increment' => false), null, 'Col');
 
         $this->assertEquals("Col BIGINT(20) NOT NULL",
             $ansi->Create_Column($col));
@@ -19,7 +20,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testBinary() {
         $ansi = new ANSICompiler();
-        $col = new expr\Binary(array(100, 'null' => false), null, 'Col');
+        $col = Column::Binary(array(100, 'null' => false), null, 'Col');
 
         $this->assertEquals("Col BINARY(100) NOT NULL", $ansi->Create_Column($col));
     }
@@ -31,7 +32,7 @@ class ANSICompilerTest extends BaseTest {
         $exprA = new expr\Predicate('lt', array(new expr\Scalar(3), new expr\Scalar(5)));
         $this->assertEquals(":p0 < :p1", $ansi->compile($exprA));
 
-        $col = new expr\Integer(null, null, 'Col');
+        $col = Column::Integer(null, null, 'Col');
         $exprB = new expr\Predicate('isNull', array($col));
         $this->assertEquals("NOT (Col IS NULL)", $ansi->compile($exprB->not()));
 
@@ -45,7 +46,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testBlob() {
         $ansi = new ANSICompiler();
-        $col = new expr\Blob(null, null, 'Col');
+        $col = Column::Blob(null, null, 'Col');
 
         $this->assertEquals("Col BLOB NOT NULL", $ansi->Create_Column($col));
     }
@@ -53,7 +54,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testBool() {
         $ansi = new ANSICompiler();
-        $col = new expr\Bool(array(11, 'null' => false),
+        $col = Column::Bool(array(11, 'null' => false),
             new expr\Table('Tbl', array()), 'Col');
 
         $this->assertEquals("Col", $ansi->compile($col));
@@ -68,28 +69,18 @@ class ANSICompilerTest extends BaseTest {
 
     public function testChar() {
         $ansi = new ANSICompiler();
-        $col = new expr\Char(array(200, 'null' => false), null, 'Col');
+        $col = Column::Char(array(200, 'null' => false), null, 'Col');
 
         $this->assertEquals("Col CHAR(200) NOT NULL", $ansi->Create_Column($col));
     }
-
-/*
-    public function testCompoundExpression() {
-        $ansi = new ANSICompiler();
-        $bnxp = new expr\BinaryExpression(new expr\Scalar(3), expr\Operator::lt(), new expr\Scalar(5));
-        $expr = new expr\CompoundExpression($bnxp);
-        $expr->and($bnxp);
-
-        $this->assertEquals("(:p0 < :p1 AND :p0 < :p1)", $ansi->compile($expr));
-    }*/
 
 
     public function testCreate() {
         $ansi = new ANSICompiler();
         $expr = new expr\Create(
             new expr\Table('Tbl', array(
-                'Col' => new expr\Integer(array(11, 'null' => false, 'auto_increment' => false)),
-                'Key' => new expr\Foreign(array('self.Col', 'null' => true)) )));
+                'Col' => Column::Integer(array(11, 'null' => false, 'auto_increment' => false)),
+                'Key' => Column::Foreign(array('self.Col', 'null' => true)) )));
 
         $this->assertEquals(
             "CREATE TABLE IF NOT EXISTS Tbl (Col INT(11) NOT NULL, Key INT(11) NULL, FOREIGN KEY (Key) REFERENCES Tbl (Col))",
@@ -99,7 +90,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testDate() {
         $ansi = new ANSICompiler();
-        $col = new expr\Date(array('null' => false), null, 'Col');
+        $col = Column::Date(array('null' => false), null, 'Col');
 
         $this->assertEquals("Col DATE NOT NULL", $ansi->Create_Column($col));
     }
@@ -107,7 +98,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testDatetime() {
         $ansi = new ANSICompiler();
-        $col = new expr\Datetime(array('null' => true), null, 'Col');
+        $col = Column::Datetime(array('null' => true), null, 'Col');
 
         $this->assertEquals("Col DATETIME NULL", $ansi->Create_Column($col));
     }
@@ -115,7 +106,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testDecimal() {
         $ansi = new ANSICompiler();
-        $col = new expr\Decimal(array(5, 3), null, 'Col');
+        $col = Column::Decimal(array(5, 3), null, 'Col');
 
         $this->assertEquals("Col DECIMAL(5, 3) NOT NULL",
             $ansi->Create_Column($col));
@@ -132,25 +123,16 @@ class ANSICompilerTest extends BaseTest {
 
     public function testFloat() {
         $ansi = new ANSICompiler();
-        $col = new expr\Float(array(23, 'null' => false), null, 'Col');
+        $col = Column::Float(array(23, 'null' => false), null, 'Col');
 
         $this->assertEquals("Col FLOAT(23) NOT NULL",
             $ansi->Create_Column($col));
     }
 
-/*
-    public function testInclusiveExpression() {
-        $ansi = new ANSICompiler();
-        $expr = new expr\InclusiveExpression(new expr\Scalar(3),
-            array(new expr\Scalar(4), new expr\Scalar(5)));
-
-        $this->assertEquals(":p0 IN (:p1, :p2)", $ansi->compile($expr));
-    }*/
-
 
     public function testInteger() {
         $ansi = new ANSICompiler();
-        $col = new expr\Integer(array(11, 'null' => false, 'auto_increment' => false), null, 'Col');
+        $col = Column::Integer(array(11, 'null' => false, 'auto_increment' => false), null, 'Col');
 
         $this->assertEquals("Col INT(11) NOT NULL",
             $ansi->Create_Column($col));
@@ -160,7 +142,7 @@ class ANSICompilerTest extends BaseTest {
     public function testJoin() {
         $ansi = new ANSICompiler();
         $table = new expr\Table('Tbl', array(
-            'Col' => new expr\Bool() ));
+            'Col' => Column::Bool() ));
         $expr = new expr\Predicate('lt', array($table->Col, $table->Col));
         $join = new expr\Join(expr\Join::LEFT, expr\Join::INNER, $table, $expr);
 
@@ -170,19 +152,11 @@ class ANSICompilerTest extends BaseTest {
 
     public function testMediumInt() {
         $ansi = new ANSICompiler();
-        $col = new expr\MediumInt(array(8, 'null' => false, 'auto_increment' => false), null, 'Col');
+        $col = Column::MediumInt(array(8, 'null' => false, 'auto_increment' => false), null, 'Col');
 
         $this->assertEquals("Col MEDIUMINT(8) NOT NULL",
             $ansi->Create_Column($col));
     }
-
-
-    /*public function testOperator() {
-        $ansi = new ANSICompiler();
-        $oper = expr\Operator::lt();
-
-        $this->assertEquals("<", $ansi->compile($oper));
-    }*/
 
 
     public function testScalar() {
@@ -195,7 +169,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testSmallInt() {
         $ansi = new ANSICompiler();
-        $col = new expr\SmallInt(array(6, 'null' => false, 'auto_increment' => false), null, 'Col');
+        $col = Column::SmallInt(array(6, 'null' => false, 'auto_increment' => false), null, 'Col');
 
         $this->assertEquals("Col SMALLINT(6) NOT NULL",
             $ansi->Create_Column($col));
@@ -204,7 +178,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testString() {
         $ansi = new ANSICompiler();
-        $col = new expr\String(array(200, 'null' => false), null, 'Col');
+        $col = Column::String(array(200, 'null' => false), null, 'Col');
 
         $this->assertEquals("Col VARCHAR(200) NOT NULL", $ansi->Create_Column($col));
     }
@@ -221,7 +195,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testTime() {
         $ansi = new ANSICompiler();
-        $col = new expr\Time(array('null' => false), null, 'Col');
+        $col = Column::Time(array('null' => false), null, 'Col');
 
         $this->assertEquals("Col TIME NOT NULL", $ansi->Create_Column($col));
     }
@@ -229,7 +203,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testTimestamp() {
         $ansi = new ANSICompiler();
-        $col = new expr\Timestamp(array('null' => true), null, 'Col');
+        $col = Column::Timestamp(array('null' => true), null, 'Col');
 
         $this->assertEquals("Col TIMESTAMP NULL", $ansi->Create_Column($col));
     }
@@ -237,7 +211,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testTinyInt() {
         $ansi = new ANSICompiler();
-        $col = new expr\TinyInt(array(4, 'null' => false, 'auto_increment' => false), null, 'Col');
+        $col = Column::TinyInt(array(4, 'null' => false, 'auto_increment' => false), null, 'Col');
 
         $this->assertEquals("Col TINYINT(4) NOT NULL",
             $ansi->Create_Column($col));
