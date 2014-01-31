@@ -71,6 +71,9 @@ class ANSICompiler extends Compiler {
         'UniqueKey'  => "UNIQUE KEY %s (%3$//, /)",
         'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
 
+    private $counters = array();
+    private $aliases = array();
+
 
     public static function get_schema_format($type) {
         if (array_key_exists($type, static::$schema_formats)) {
@@ -90,23 +93,35 @@ class ANSICompiler extends Compiler {
      * @return string            alias
      */
     public function alias($obj) {
-        $fn = $this->getFunction($obj, 'sql.compile', 'Alias_');
-        return call_user_func($fn, $obj);
+        $tag = $obj->getTag('sql.compile');
+        $key = "{$tag}.{$obj->getID()}";
+
+        if (!array_key_exists($key, $this->aliases)) {
+            if (!array_key_exists($tag, $this->counters)) {
+                $this->counters[$tag] = 0;
+            }
+
+            $id = $this->counters[$tag]++;
+            $fn = $this->getFunction($obj, 'sql.compile', 'Alias_');
+            $this->aliases[$key] = call_user_func($fn, $obj, $id);
+        }
+
+        return $this->aliases[$key];
     }
 
 
-    public function Alias_Column($obj) {
+    public function Alias_Column($obj, $id) {
         return $obj->getName();
     }
 
 
-    public function Alias_Scalar($obj) {
-        return "p" . $this->aliasID('scalar', $obj->getID());
+    public function Alias_Scalar($obj, $id) {
+        return "p{$id}";
     }
 
 
-    public function Alias_Table($obj) {
-        return strtolower(substr($obj->getName(), 0, 2)) . $obj->getID();
+    public function Alias_Table($obj, $id) {
+        return strtolower(substr($obj->getName(), 0, 2)) . ($id + 1);
     }
 
 

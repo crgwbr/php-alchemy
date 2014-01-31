@@ -1,6 +1,6 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         backupGlobals="true"
-         backupStaticAttributes="true"
+         backupGlobals="false"
+         backupStaticAttributes="false"
          bootstrap="tests/BaseTest.php"
          strict="true"
          verbose="false"

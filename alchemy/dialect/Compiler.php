@@ -5,34 +5,11 @@ namespace Alchemy\dialect;
 class Compiler {
 
     protected static $default_tag = 'sql.compile';
-    private $aliases = array();
     private $config = array();
 
 
     public function __construct($config = array()) {
         $this->pushConfig($config);
-    }
-
-
-    /**
-     * Alias global IDs to query-level IDs within a namespace
-     *
-     * @param  string  $ns namespace
-     * @param  string  $id global ID
-     * @return integer     query-level alias
-     */
-    protected function aliasID($ns, $id) {
-        if (!isset($this->aliases[$ns])) {
-            $this->aliases[$ns] = array('c' => 0);
-        }
-
-        $aliases =& $this->aliases[$ns];
-
-        if (!isset($aliases[$id])) {
-            $aliases[$id] = $aliases['c']++;
-        }
-
-        return $aliases[$id];
     }
 
 
