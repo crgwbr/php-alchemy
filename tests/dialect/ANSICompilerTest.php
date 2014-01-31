@@ -5,6 +5,7 @@ namespace Alchemy\tests;
 use Alchemy\dialect\ANSICompiler;
 use Alchemy\expression as expr;
 use Alchemy\expression\Column;
+use Alchemy\expression\Predicate;
 
 
 class ANSICompilerTest extends BaseTest {
@@ -29,17 +30,17 @@ class ANSICompilerTest extends BaseTest {
     public function testPredicate() {
         $ansi = new ANSICompiler();
 
-        $exprA = new expr\Predicate('lt', array(new expr\Scalar(3), new expr\Scalar(5)));
+        $exprA = Predicate::lt(new expr\Scalar(3), new expr\Scalar(5));
         $this->assertEquals(":p0 < :p1", $ansi->compile($exprA));
 
         $col = Column::Integer(null, null, 'Col');
-        $exprB = new expr\Predicate('isNull', array($col));
+        $exprB = Predicate::isNull($col);
         $this->assertEquals("NOT (Col IS NULL)", $ansi->compile($exprB->not()));
 
-        $exprC = new expr\Predicate('in', array($col, new expr\Scalar(3), new expr\Scalar(5)));
+        $exprC = Predicate::in($col, new expr\Scalar(3), new expr\Scalar(5));
         $this->assertEquals("Col IN (:p2, :p3)", $ansi->compile($exprC));
 
-        $exprD = new expr\CompoundPredicate('and', array($exprA->not(), $exprB, $exprC));
+        $exprD = Predicate::and_($exprA->not(), $exprB, $exprC);
         $this->assertEquals("NOT ((NOT (:p0 < :p1) AND Col IS NULL AND Col IN (:p2, :p3)))", $ansi->compile($exprD->not()));
     }
 
@@ -143,7 +144,7 @@ class ANSICompilerTest extends BaseTest {
         $ansi = new ANSICompiler();
         $table = new expr\Table('Tbl', array(
             'Col' => Column::Bool() ));
-        $expr = new expr\Predicate('lt', array($table->Col, $table->Col));
+        $expr = Predicate::lt($table->Col, $table->Col);
         $join = new expr\Join(expr\Join::LEFT, expr\Join::INNER, $table, $expr);
 
         $this->assertEquals("LEFT INNER JOIN Tbl ON Col < Col", $ansi->compile($join));

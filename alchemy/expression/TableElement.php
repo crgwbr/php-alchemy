@@ -15,7 +15,7 @@ abstract class TableElement extends Element {
 
     public static function __callStatic($name, $args) {
         $def = self::get_definition($name);
-        $args += array(array(), null, '', $def['tags']['element.type']);
+        array_unshift($args, $def['tags']['element.type']);
 
         $cls = new \ReflectionClass($def['tags']['element.class']);
         return $cls->newInstanceArgs($args);
@@ -48,7 +48,7 @@ abstract class TableElement extends Element {
      *
      * @param array $args
      */
-    public function __construct($args = array(), $table = null, $name = '', $type = null) {
+    public function __construct($type, $args = array(), $table = null, $name = '') {
         parent::__construct($type);
 
         $this->name = $name;
@@ -68,7 +68,7 @@ abstract class TableElement extends Element {
      * @return TableElement
      */
     public function copy(array $args = array(), $table = null, $name = '') {
-        return new static($args + $this->args, $table, $name, $this->type);
+        return new static($this->type, $args + $this->args, $table, $name);
     }
 
 

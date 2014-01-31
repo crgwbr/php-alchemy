@@ -186,11 +186,8 @@ class Table extends Element implements IPromisable {
 
             if (is_string($column)) {
                 $type = new DataTypeLexer($column);
-                $class = $namespace . '\\' . $type->getType();
-                if (!class_exists($class)) {
-                    $class = $namespace . '\\Column';
-                }
-                $column = new $class($type->getArgs(), null, '', $type->getType());
+                $t = $type->getType();
+                $column = Column::$t($type->getArgs());
             }
 
             $this->properties[$name] = $column->copy(array(), $this, $name);
@@ -241,11 +238,8 @@ class Table extends Element implements IPromisable {
         foreach ($this->indexdefs as $name => $index) {
             if (is_string($index)) {
                 $type = new DataTypeLexer($index);
-                $class = $namespace . '\\' . $type->getType();
-                if (!class_exists($class)) {
-                    $class = $namespace . '\\Index';
-                }
-                $index = new $class($type->getArgs(), $this, $name, $type->getType());
+                $t = $type->getType();
+                $index = Index::$t($type->getArgs(), $this, $name);
             }
 
             $this->indexes[$name] = $index;

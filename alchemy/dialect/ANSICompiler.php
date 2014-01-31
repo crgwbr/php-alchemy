@@ -35,7 +35,7 @@ class ANSICompiler extends Compiler {
         'le'        => '%s <= %s',
         'ge'        => '%s >= %s',
         'between'   => '%s BETWEEN %s AND %s',
-        'isNull'    => '%s IS NULL',
+        'isnull'    => '%s IS NULL',
         'like'      => '%s LIKE %s',
         'in'        => '%s IN (%2//, /)',
         'and'       => '(%// AND /)',

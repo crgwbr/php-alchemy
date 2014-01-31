@@ -33,8 +33,8 @@ require_once "expression/TableElement.php";
 // Basic expressions
 require_once "expression/Scalar.php";
 require_once "expression/Expression.php";
-require_once "expression/Operation.php";
 require_once "expression/Predicate.php";
+require_once "expression/query-elements.php";
 
 // Schema definition
 require_once "expression/Column.php";

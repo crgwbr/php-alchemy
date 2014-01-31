@@ -9,11 +9,13 @@ use Alchemy\expression\Predicate;
 class ExpressionTest extends BaseTest {
 
     public function testGetParameters() {
-        $expr = new MockExpression('many', array(
+        Expression::define('many', null, array('arity' => -1));
+
+        $expr = Expression::many(
             new Scalar(5),
-            new MockExpression('many', array(
+            Expression::many(
                 new Scalar(9),
-                new Scalar(3))) ));
+                new Scalar(3)) );
 
         $scalars = $expr->getParameters();
         $this->assertEquals(3, count($scalars));
@@ -29,36 +31,30 @@ class ExpressionTest extends BaseTest {
 
     public function testRoleChecks() {
         $int  = new Scalar(3);
-        $prd  = new Predicate("isNull", array($int));
+        $prd  = Predicate::isNull($int);
 
-        $expr = new MockExpression('zero', array());
-        $expr = new MockExpression('one', array($int));
-        $expr = new MockExpression('many', array());
-        $expr = new MockExpression('many', array($int, $int, $int));
+        Expression::define('zero', null, array('arity' => 0));
+        Expression::define('one',  null, array('arity' => 1));
+        Expression::define('many', null, array('arity' => -1));
+
+        $expr = Expression::zero();
+        $expr = Expression::one ($int);
+        $expr = Expression::many();
+        $expr = Expression::many($int, $int, $int);
         $this->assertEquals(true, $expr->getTag('expr.value'));
 
         // tag check fail
         $this->assertThrows('Exception', function() use ($prd) {
-            $expr = new MockExpression('many', array($prd));
+            $expr = Expression::many($prd);
         });
 
         // arity fail
         $this->assertThrows('Exception', function() use ($int) {
-            $expr = new MockExpression('one', array());
+            $expr = Expression::one();
         });
 
         $this->assertThrows('Exception', function() use ($int) {
-            $expr = new MockExpression('zero', array($int));
+            $expr = Expression::zero($int);
         });
     }
-}
-
-
-class MockExpression extends Expression {
-    protected static $element_tag = 'expr.value';
-    protected static $result_tag = 'expr.value';
-    protected static $types = array(
-        'zero'   => 0,
-        'one'    => 1,
-        'many'   => -1);
 }
