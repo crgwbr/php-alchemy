@@ -22,44 +22,42 @@ require_once "dialect/ANSICompiler.php";
 require_once "dialect/SQLiteCompiler.php";
 require_once "dialect/MySQLCompiler.php";
 
-// Interfaces
-require_once "expression/IElement.php";
-require_once "expression/IQueryFragment.php";
-require_once "expression/IQueryValue.php";
-require_once "expression/IQuery.php";
-require_once "expression/Element.php";
-require_once "expression/TableElement.php";
+// Core
+require_once "core/IElement.php";
+require_once "core/Element.php";
 
-// Basic expressions
-require_once "query/ColumnRef.php";
-require_once "query/TableRef.php";
-require_once "expression/Scalar.php";
-require_once "expression/Expression.php";
-require_once "expression/Predicate.php";
-require_once "expression/query-elements.php";
-
-// Schema definition
-require_once "expression/Column.php";
-require_once "expression/Foreign.php";
-require_once "expression/Index.php";
-require_once "expression/ForeignKey.php";
-require_once "expression/Table.php";
-require_once "expression/schema-elements.php";
-
-// Query Structure
-require_once "expression/Join.php";
+// Query Elements
+require_once "core/query/IQueryFragment.php";
+require_once "core/query/IQueryValue.php";
+require_once "core/query/IQuery.php";
+require_once "core/query/ColumnRef.php";
+require_once "core/query/TableRef.php";
+require_once "core/query/Scalar.php";
+require_once "core/query/Expression.php";
+require_once "core/query/Predicate.php";
+require_once "core/query/query-elements.php";
 
 // Queries
-require_once "expression/Query.php";
-require_once "expression/Select.php";
-require_once "expression/Insert.php";
-require_once "expression/Update.php";
-require_once "expression/Delete.php";
+require_once "core/query/Query.php";
+require_once "core/query/Select.php";
+require_once "core/query/Insert.php";
+require_once "core/query/Update.php";
+require_once "core/query/Delete.php";
+require_once "core/query/Join.php";
 
-// DDL
-require_once "expression/DDLQuery.php";
-require_once "expression/Create.php";
-require_once "expression/Drop.php";
+// DDL Queries
+require_once "core/query/DDLQuery.php";
+require_once "core/query/Create.php";
+require_once "core/query/Drop.php";
+
+// Schema
+require_once "core/schema/Table.php";
+require_once "core/schema/TableElement.php";
+require_once "core/schema/Column.php";
+require_once "core/schema/Index.php";
+require_once "core/schema/Foreign.php";
+require_once "core/schema/ForeignKey.php";
+require_once "core/schema/schema-elements.php";
 
 // Engines
 require_once "engine/IResultSet.php";
