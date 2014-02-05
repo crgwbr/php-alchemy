@@ -80,7 +80,7 @@ class WorkQueue {
         $columns = array();
         foreach ($data as $name => $value) {
             $columns[] = $table->$name;
-            $scalars[] = $table->$name->encode($value);
+            $scalars[] = $table->{$name}->schema()->encode($value);
         }
 
         $query = Insert::init()->columns($columns)
@@ -119,7 +119,7 @@ class WorkQueue {
         // Build UPDATE SETs
         $query = Update::init()->table($table);
         foreach ($data as $name => $value) {
-            $query = $query->set($table->$name, $table->$name->encode($value));
+            $query = $query->set($table->{$name}, $table->{$name}->schema()->encode($value));
         }
 
         // Filter the update by building a complex CompoundExpression

@@ -27,7 +27,7 @@ class DDL {
      * @param string $cls Class Name of DataMapper child
      */
     public function create($cls) {
-        $create = new Create($cls::table());
+        $create = new Create($cls::schema());
         $this->session->engine()->query($create);
     }
 
@@ -42,7 +42,7 @@ class DDL {
 
         while (count($mappers) > 0) {
             $mapper = array_pop($mappers);
-            $table = $mapper::table();
+            $table = $mapper::schema();
             $dependancies = $table->listDependancies();
             $dependancies = array_diff($dependancies, $created);
 
@@ -60,7 +60,7 @@ class DDL {
      * DROP the table for the given DataMapper class
      */
     public function drop($cls) {
-        $drop = new Drop($cls::table());
+        $drop = new Drop($cls::schema());
         $this->session->engine()->query($drop);
     }
 
@@ -75,7 +75,7 @@ class DDL {
 
         while (count($mappers) > 0) {
             $mapper = array_pop($mappers);
-            $table = $mapper::table();
+            $table = $mapper::schema();
             $dependants = $table->listDependants();
             $dependants = array_diff($dependants, $dropped);
 

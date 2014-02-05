@@ -110,8 +110,8 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Alias_Column($obj, $id) {
-        return $obj->getName();
+    public function Alias_ColumnRef($obj, $id) {
+        return $obj->name();
     }
 
 
@@ -120,16 +120,21 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Alias_Table($obj, $id) {
-        return strtolower(substr($obj->getName(), 0, 2)) . ($id + 1);
+    public function Alias_TableRef($obj, $id) {
+        return strtolower(substr($obj->name(), 0, 2)) . ($id + 1);
     }
 
 
     public function Column($obj) {
-        $column = $obj->getName();
+        return $obj->getName();
+    }
+
+
+    public function ColumnRef($obj) {
+        $column = $obj->name();
 
         if ($this->getConfig('alias_tables')) {
-            $column = "{$this->alias($obj->getTable())}.$column";
+            $column = "{$this->alias($obj->table())}.$column";
         }
 
         if ($this->getConfig('alias_columns')) {
@@ -153,10 +158,10 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Create_Column($obj, $skipfn = false) {
-        $null = $obj->isNotNull() ? "NOT NULL" : "NULL";
+    public function Create_Column($obj) {
+        $null = $obj->isNullable() ? "NULL" : "NOT NULL";
 
-        if (!$skipfn && $fn = $this->getFunction($obj, 'element.type', 'Create_')) {
+        if ($fn = $this->getFunction($obj, 'element.type', 'Create_')) {
             $type = call_user_func($fn, $obj);
         } else {
             $format = static::get_schema_format($obj->getType());
@@ -226,7 +231,7 @@ class ANSICompiler extends Compiler {
         $columns = implode(", ", $columns);
         $rows    = implode(", ", $rows);
 
-        return "INSERT INTO {$obj->into()->getName()} ({$columns}) VALUES {$rows}";
+        return "INSERT INTO {$obj->into()->name()} ({$columns}) VALUES {$rows}";
     }
 
 
@@ -268,12 +273,12 @@ class ANSICompiler extends Compiler {
     }
 
 
-    public function Table($obj) {
+    public function TableRef($obj) {
         if ($this->getConfig('alias_tables')) {
-            return "{$obj->getName()} {$this->alias($obj)}";
+            return "{$obj->name()} {$this->alias($obj)}";
         }
 
-        return $obj->getName();
+        return $obj->name();
     }
 
 

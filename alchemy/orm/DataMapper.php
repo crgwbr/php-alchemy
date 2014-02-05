@@ -3,6 +3,7 @@
 namespace  Alchemy\orm;
 use Alchemy\util\promise\Promise;
 use Alchemy\expression\Table;
+use Alchemy\query;
 use Exception;
 
 
@@ -52,7 +53,7 @@ abstract class DataMapper {
         $result = array();
         foreach (get_declared_classes() as $cls) {
             if (is_subclass_of($cls, __CLASS__)) {
-                $cls::table(); // Force table register
+                $cls::schema(); // Force table register
                 $result[] = $cls;
             }
         }
@@ -67,7 +68,7 @@ abstract class DataMapper {
      *
      * @return Table
      */
-    public static function table() {
+    public static function schema() {
         $cls = get_called_class();
 
         if (!array_key_exists($cls, self::$schema_cache)) {
@@ -84,6 +85,11 @@ abstract class DataMapper {
         }
 
         return self::$schema_cache[$cls];
+    }
+
+
+    public static function table() {
+        return new query\TableRef(static::schema());
     }
 
 
@@ -106,7 +112,7 @@ abstract class DataMapper {
      * @return mixed
      */
     public function __get($prop) {
-        $table = static::table();
+        $table = static::schema();
         if (!$table->isColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
         }
@@ -132,7 +138,7 @@ abstract class DataMapper {
      * @param mixed $value
      */
     public function __set($prop, $value) {
-        $table = static::table();
+        $table = static::schema();
         if (!$table->isColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
         }
@@ -149,8 +155,8 @@ abstract class DataMapper {
      */
     public function getPrimaryKey() {
         $pk = array();
-        foreach (static::table()->listPrimaryKeyComponents() as $name => $column) {
-            $pk[] = $this->$name;
+        foreach (static::schema()->getPrimaryKey()->listColumns() as $column) {
+            $pk[] = $this->{$column->getName()};
         }
 
         return $pk;

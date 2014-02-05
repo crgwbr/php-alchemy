@@ -14,6 +14,8 @@ class ANSIInsertTest extends BaseTest {
             'Email' => 'String',
         ));
 
+        $users = $users->getRef();
+
         $query = Insert::init()->columns($users->UserName, $users->Email)
                                ->into($users)
                                ->row("user1", "user1@example.com");

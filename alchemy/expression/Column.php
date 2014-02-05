@@ -7,7 +7,7 @@ use Alchemy\util\promise\IPromisable;
 /**
  * Abstract base class for representing a column in SQL
  */
-class Column extends TableElement implements IQueryValue, IPromisable {
+class Column extends TableElement implements IPromisable {
 
     /**
      * Retrieve the column for a reference like 'Table.Column',
@@ -20,48 +20,19 @@ class Column extends TableElement implements IQueryValue, IPromisable {
     public static function find($column, $self = null) {
         list($ref, $col) = explode('.', $column) + array('', '');
 
-        $reftable = ($ref == 'self' || $ref == '') ? $self : Table::find($ref);
-        if (!($reftable instanceof Table)) {
+        $table = ($ref == 'self' || $ref == '') ? $self : Table::find($ref);
+        if (!($table instanceof Table)) {
             throw new \Exception("Cannot find Table '{$ref}'.");
         }
 
-        return $reftable->{$col};
+        return $table->getColumn($col);
     }
 
 
     public static function list_promisable_methods() {
-        $NS = __NAMESPACE__;
         return array(
-            'copy'     => "$NS\Column",
-            'getTable' => "$NS\Table");
-    }
-
-
-    /**
-     * Build and return a Predicate by comparing this
-     * column to another IQueryValue
-     *
-     * @param $name Operator Name: and, or
-     * @param $args array([0] => IQueryValue, ...) IQueryValue to compare to
-     */
-    public function __call($name, $args) {
-        foreach ($args as &$value) {
-            if (!($value instanceof IQueryValue)) {
-                $value = new Scalar($value);
-            }
-        }
-
-        array_unshift($args, $this);
-
-        return new Predicate($name, $args);
-    }
-
-
-    public function __construct($args = array(), $table = null, $name = '', $type = '') {
-        parent::__construct($args, $table, $name, $type);
-
-        $this->addTag("sql.compile", "Column");
-        $this->addTag("expr.value");
+            'copy'     => "Alchemy\expression\Column",
+            'getTable' => "Alchemy\expression\Table");
     }
 
 
@@ -121,12 +92,12 @@ class Column extends TableElement implements IQueryValue, IPromisable {
 
 
     /**
-     * Return true if this column can not be null
+     * Return true if this column can be null
      *
      * @return bool
      */
-    public function isNotNull() {
-        return !$this->args['null'];
+    public function isNullable() {
+        return $this->args['null'];
     }
 
 

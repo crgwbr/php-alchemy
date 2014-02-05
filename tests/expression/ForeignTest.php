@@ -25,11 +25,11 @@ class ForeignTest extends BaseTest {
         $this->assertEquals(53, $col->decode('53'));
 
         // but not meta details like NOT NULL
-        $this->assertFalse($table->Int->isNotNull());
-        $this->assertTrue($col->isNotNull());
+        $this->assertTrue($table->getColumn('Int')->isNullable());
+        $this->assertFalse($col->isNullable());
 
         // new column should have an FK constraint to the right column
-        $this->assertEquals(array($table->Int), $col->getForeignKey()->listSources());
+        $this->assertEquals(array($table->getColumn('Int')), $col->getForeignKey()->listSources());
 
         // created column can be used in another foreign key
         $fk = Column::Foreign(array($col, 'null' => true));
@@ -37,7 +37,7 @@ class ForeignTest extends BaseTest {
         $this->assertEquals("Integer", $colB->getType());
         $this->assertEquals(array($col), $colB->getForeignKey()->listSources());
         $this->assertEquals(11, $colB->getArg(0));
-        $this->assertFalse($colB->isNotNull());
+        $this->assertTrue($colB->isNullable());
     }
 
 
@@ -50,7 +50,7 @@ class ForeignTest extends BaseTest {
         $table->register();
 
         $col = $fk->copy();
-        $this->assertEquals(array($table->Int), $col->getForeignKey()->listSources());
+        $this->assertEquals(array($table->getColumn('Int')), $col->getForeignKey()->listSources());
     }
 
 
@@ -59,9 +59,10 @@ class ForeignTest extends BaseTest {
             'Int' => Column::Integer(11),
             'FK'  => Column::Foreign(array('self.Int', 'null' => true)) ));
 
-        $this->assertEquals("Integer", $table->FK->getType());
-        $this->assertEquals($table, $table->FK->getTable());
-        $this->assertEquals(11, $table->FK->getArg(0));
+        $col = $table->getColumn('FK');
+        $this->assertEquals("Integer", $col->getType());
+        $this->assertEquals($table, $col->getTable());
+        $this->assertEquals(11, $col->getArg(0));
 
         // invalid because key is not attached to a table
         $col = Column::Foreign('self.Int');
@@ -74,14 +75,14 @@ class ForeignTest extends BaseTest {
         $table = new Promise(function() use (&$table) {
             return new Table('Table', array(
                 'PK' => Column::Integer(11),
-                'FK' => Column::Foreign($table->PK) ));
+                'FK' => Column::Foreign($table->getColumn('PK')) ));
         }, "Alchemy\expression\Table");
 
-        $this->assertInstanceOf("Alchemy\util\promise\Promise", $table->FK);
-        $this->assertEquals(11, $table->FK->getArg(0));
+        $this->assertInstanceOf("Alchemy\util\promise\Promise", $table->getColumn('FK'));
+        $this->assertEquals(11, $table->getColumn('FK')->getArg(0));
 
         // foreign key promise
-        $sources = $table->FK->getForeignKey()->listSources();
+        $sources = $table->getColumn('FK')->getForeignKey()->listSources();
         $this->assertInstanceOf("Alchemy\util\promise\Promise", $sources[0]);
     }
 }

@@ -55,16 +55,23 @@ class ANSICompilerTest extends BaseTest {
 
     public function testBool() {
         $ansi = new ANSICompiler();
-        $col = Column::Bool(array(11, 'null' => false),
-            new expr\Table('Tbl', array()), 'Col');
+        $col = Column::Bool(array(11, 'null' => false), null, 'Col');
 
         $this->assertEquals("Col", $ansi->compile($col));
-        $this->assertEquals("tb1.Col",
-            $ansi->compile($col, array('alias_tables' => true)));
-        $this->assertEquals("Col as Col",
-            $ansi->compile($col, array('alias_columns' => true)));
         $this->assertEquals("Col BOOL NOT NULL",
             $ansi->Create_Column($col));
+    }
+
+
+    public function testColumnRef() {
+        $ansi = new ANSICompiler();
+        $table = new expr\Table('Tbl', array('Col' => Column::Bool()));
+        $table = $table->getRef();
+
+        $this->assertEquals("tb1.Col",
+            $ansi->compile($table->Col, array('alias_tables' => true)));
+        $this->assertEquals("Col as Col",
+            $ansi->compile($table->Col, array('alias_columns' => true)));
     }
 
 
@@ -144,6 +151,8 @@ class ANSICompilerTest extends BaseTest {
         $ansi = new ANSICompiler();
         $table = new expr\Table('Tbl', array(
             'Col' => Column::Bool() ));
+        $table = $table->getRef();
+
         $expr = Predicate::lt($table->Col, $table->Col);
         $join = new expr\Join(expr\Join::LEFT, expr\Join::INNER, $table, $expr);
 
@@ -185,11 +194,12 @@ class ANSICompilerTest extends BaseTest {
     }
 
 
-    public function testTable() {
+    public function testTableRef() {
         $ansi = new ANSICompiler();
         $table = new expr\Table('Tbl', array());
+        $table = $table->getRef();
 
-        $this->assertEquals("Tbl", $table->getName());
+        $this->assertEquals("Tbl", $table->name());
         $this->assertEquals("Tbl tb1", $ansi->compile($table, array('alias_tables' => true)));
     }
 

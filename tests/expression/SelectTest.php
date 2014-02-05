@@ -26,6 +26,10 @@ class SelectTest extends BaseTest {
             'PhoneNum' => 'String'
         ));
 
+        $addrs = $addrs->getRef();
+        $users = $users->getRef();
+        $phones = $phones->getRef();
+
         $addrJoin = E::AND_($addrs->UserID->equal($users->UserID),
                             $addrs->AddressType->equal(5));
 

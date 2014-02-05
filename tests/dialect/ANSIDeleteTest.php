@@ -14,6 +14,8 @@ class ANSIDeleteTest extends BaseTest {
             'Email' => 'String',
         ));
 
+        $users = $users->getRef();
+
         $query = Delete::init()->from($users)
                                ->where($users->Email->equal("user@example.com"));
 

@@ -29,7 +29,7 @@ class SessionSelect extends Monad {
         $table = $mapper::table();
 
         $this->value = new Select();
-        $this->value->columns($table->listColumns());
+        $this->value->columns($table->columns());
         $this->value->from($table);
     }
 

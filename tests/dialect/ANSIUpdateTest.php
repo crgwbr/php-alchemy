@@ -14,6 +14,8 @@ class ANSIUpdateTest extends BaseTest {
             'Email' => 'String',
         ));
 
+        $users = $users->getRef();
+
         $query = Update::init()->table($users)
                                ->set($users->UserName, "user1")
                                ->set($users->Email, "user1@example.com")

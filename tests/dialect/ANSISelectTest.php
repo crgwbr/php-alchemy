@@ -16,6 +16,8 @@ class ANSISelectTest extends BaseTest {
             'Email' => 'String',
         ));
 
+        $users = $users->getRef();
+
         $query = Select::init()->columns($users->UserName, $users->Email)
                                ->from($users)
                                ->limit(2);
@@ -38,6 +40,9 @@ class ANSISelectTest extends BaseTest {
             'UserID' => 'Integer',
             'StreetAddress' => 'String'
         ));
+
+        $addrs = $addrs->getRef();
+        $users = $users->getRef();
 
         $query = Select::init()->columns($users->UserName, $users->Email, $addrs->StreetAddress)
                                ->from($users)
@@ -67,6 +72,10 @@ class ANSISelectTest extends BaseTest {
             'PhoneNum' => 'String'
         ));
 
+        $addrs = $addrs->getRef();
+        $users = $users->getRef();
+        $phones = $phones->getRef();
+
         $addrJoin = E::AND_($addrs->UserID->equal($users->UserID),
                             $addrs->AddressType->equal(5));
 
@@ -89,6 +98,8 @@ class ANSISelectTest extends BaseTest {
             'UserID' => 'Integer',
             'UserName' => 'String',
         ));
+
+        $users = $users->getRef();
 
         $query = Select::init()->columns($users->UserID, $users->UserName)
                                ->from($users)

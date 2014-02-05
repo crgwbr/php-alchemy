@@ -1,6 +1,7 @@
 <?php
 
 namespace Alchemy\expression;
+use Alchemy\query\TableRef;
 use Alchemy\util\DataTypeLexer;
 use Alchemy\util\promise\IPromisable;
 use Exception;
@@ -25,10 +26,10 @@ class Table extends Element implements IPromisable {
 
 
     public static function list_promisable_methods() {
-        $NS = __NAMESPACE__;
         return array(
-            '__get' => "$NS\Column",
-            'copy'  => "$NS\Table");
+            'getColumn' => "Alchemy\expression\Column",
+            'getRef'    => "Alchemy\query\TableRef",
+            'copy'      => "Alchemy\expression\Table");
     }
 
 
@@ -54,7 +55,7 @@ class Table extends Element implements IPromisable {
      * @param array $columns array("name" => Column, "name" => Column, ...)
      * @param string $namespace Namespace of Column classes
      */
-    public function __construct($name, $propdefs, $indexdefs = array()) {
+    public function __construct($name, $propdefs = array(), $indexdefs = array()) {
         $this->name = $name;
         $this->propdefs  = $propdefs;
         $this->indexdefs = $indexdefs;
@@ -63,12 +64,7 @@ class Table extends Element implements IPromisable {
     }
 
 
-    /**
-     * Get a column instance by name
-     *
-     * @param string $name Column Name
-     */
-    public function __get($name) {
+    public function getColumn($name) {
         if (!array_key_exists($name, $this->properties)) {
             $this->resolveProperty($name);
         }
@@ -92,6 +88,11 @@ class Table extends Element implements IPromisable {
     }
 
 
+    public function getRef() {
+        return new TableRef($this);
+    }
+
+
     /**
      * Return true if the given column exists
      *
@@ -100,7 +101,7 @@ class Table extends Element implements IPromisable {
      */
     public function isColumn($name) {
         return array_key_exists($name, $this->propdefs)
-            && ($this->{$name} instanceof Column);
+            && ($this->getColumn($name) instanceof Column);
     }
 
 
@@ -149,16 +150,15 @@ class Table extends Element implements IPromisable {
 
 
     /**
-     * List the columns which make up this table's primary key
+     * Get this table's primary key index
      *
-     * @return array array(Name => Column)
+     * @return Index::PrimaryKey
      */
-    public function listPrimaryKeyComponents() {
-        foreach ($this->listIndexes() as $name => $index) {
-            if ($index->getType() == 'PrimaryKey') {
-                return $index->listColumns();
-            }
-        }
+    public function getPrimaryKey() {
+        $this->resolve();
+        return array_key_exists('PRIMARY', $this->indexes)
+            ? $this->indexes['PRIMARY']
+            : null;
     }
 
 
@@ -205,7 +205,7 @@ class Table extends Element implements IPromisable {
         $primary = array();
 
         foreach ($this->propdefs as $name => $prop) {
-            $column = $this->{$name};
+            $column = $this->getColumn($name);
             if (!($column instanceof Column)) {
                 continue;
             }

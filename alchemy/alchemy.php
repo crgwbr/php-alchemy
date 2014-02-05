@@ -31,6 +31,8 @@ require_once "expression/Element.php";
 require_once "expression/TableElement.php";
 
 // Basic expressions
+require_once "query/ColumnRef.php";
+require_once "query/TableRef.php";
 require_once "expression/Scalar.php";
 require_once "expression/Expression.php";
 require_once "expression/Predicate.php";

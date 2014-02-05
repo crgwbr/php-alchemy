@@ -30,7 +30,7 @@ class Compiler {
         if (is_array($obj)) {
             $result = $this->map('compile', $obj);
         } elseif (is_object($obj)) {
-            $fn = $this->getFunction($obj);
+            $fn = $this->getFunction($obj, static::$default_tag, '', true);
             $result = call_user_func($fn, $obj);
         }
 

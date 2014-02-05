@@ -96,6 +96,11 @@ class Element implements IElement {
     }
 
 
+    public function __clone() {
+        $this->id = null;
+    }
+
+
     public function __construct($type = null) {
         if ($type) {
             $def = self::get_definition($type);
@@ -129,6 +134,11 @@ class Element implements IElement {
         foreach ($tags as $tag => $value) {
             $this->addTag($tag, $value);
         }
+    }
+
+
+    public function copy() {
+        return clone $this;
     }
 
 
