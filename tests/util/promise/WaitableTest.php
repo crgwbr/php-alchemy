@@ -44,7 +44,7 @@ class WaitableTest extends BaseTest {
         $this->assertSame($obj, $waitable());
 
         // wrong types result in a TypeException
-        $waitable->resolve($obj = new \Alchemy\expression\Scalar(4));
+        $waitable->resolve($obj = new \Alchemy\core\query\Scalar(4));
         $this->assertTrue($waitable->check());
         $this->assertInstanceOf("Alchemy\util\promise\TypeException", $waitable());
 

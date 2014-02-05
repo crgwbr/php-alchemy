@@ -1,9 +1,9 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Expression;
-use Alchemy\expression\Scalar;
-use Alchemy\expression\Predicate;
+use Alchemy\core\query\Expression;
+use Alchemy\core\query\Scalar;
+use Alchemy\core\query\Predicate;
 
 
 class ExpressionTest extends BaseTest {
@@ -25,7 +25,7 @@ class ExpressionTest extends BaseTest {
 
 
     public function testStaticOperators() {
-        $this->assertInstanceOf('Alchemy\expression\Predicate', Expression::AND_());
+        $this->assertInstanceOf('Alchemy\core\query\Predicate', Expression::AND_());
     }
 
 

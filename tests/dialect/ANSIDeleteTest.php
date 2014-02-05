@@ -1,8 +1,8 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Table;
-use Alchemy\expression\Delete;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query\Delete;
 use Alchemy\dialect\ANSICompiler;
 
 

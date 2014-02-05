@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemy\expression;
+namespace Alchemy\core\schema;
 use Alchemy\util\promise\IPromisable;
 
 
@@ -31,8 +31,8 @@ class Column extends TableElement implements IPromisable {
 
     public static function list_promisable_methods() {
         return array(
-            'copy'     => "Alchemy\expression\Column",
-            'getTable' => "Alchemy\expression\Table");
+            'copy'     => "Alchemy\core\schema\Column",
+            'getTable' => "Alchemy\core\schema\Table");
     }
 
 

@@ -1,10 +1,10 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Table;
-use Alchemy\expression\Select;
-use Alchemy\expression\Scalar;
-use Alchemy\expression\Expression as E;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query\Select;
+use Alchemy\core\query\Scalar;
+use Alchemy\core\query\Expression as E;
 
 
 class SelectTest extends BaseTest {

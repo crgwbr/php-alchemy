@@ -1,13 +1,13 @@
 <?php
 
 namespace Alchemy\orm;
-use Alchemy\util\Promise;
+use Alchemy\core\schema\Table;
+use Alchemy\core\schema\Column;
+use Alchemy\core\query\Select;
+use Alchemy\core\query\Insert;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
-use Alchemy\expression\Table;
-use Alchemy\expression\Column;
-use Alchemy\expression\Select;
-use Alchemy\expression\Insert;
+use Alchemy\util\Promise;
 
 
 /**

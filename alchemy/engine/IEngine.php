@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\engine;
-use Alchemy\expression\IQuery;
+use Alchemy\core\query\IQuery;
 
 
 /**

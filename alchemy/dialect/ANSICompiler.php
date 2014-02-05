@@ -1,7 +1,6 @@
 <?php
 
 namespace Alchemy\dialect;
-use Alchemy\expression as expr;
 
 class ANSICompiler extends Compiler {
     protected static $expr_formats = array(

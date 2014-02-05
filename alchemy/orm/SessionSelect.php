@@ -1,8 +1,8 @@
 <?php
 
 namespace Alchemy\orm;
-use Alchemy\expression\Select;
-use Alchemy\expression\Table;
+use Alchemy\core\query\Select;
+use Alchemy\core\schema\Table;
 use Alchemy\util\Monad;
 use Exception;
 

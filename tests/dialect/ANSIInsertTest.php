@@ -1,8 +1,8 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Table;
-use Alchemy\expression\Insert;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query\Insert;
 use Alchemy\dialect\ANSICompiler;
 
 

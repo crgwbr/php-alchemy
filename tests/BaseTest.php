@@ -21,9 +21,6 @@ require_once 'resources/UploadedFile.php';
 
 abstract class BaseTest extends \PHPUnit_Framework_TestCase {
 
-    protected $backupStaticAttributesBlacklist = array(
-        'Alchemy\expression\Element' => array('typedefs'));
-
     protected $fnCallback;
 
     public function assertExpectedString($file, $str) {

@@ -1,7 +1,6 @@
 <?php
 
 namespace Alchemy\dialect;
-use Alchemy\expression as expr;
 
 class MySQLCompiler extends ANSICompiler {
 

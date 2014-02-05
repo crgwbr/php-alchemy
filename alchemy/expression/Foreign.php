@@ -1,7 +1,6 @@
 <?php
 
-namespace Alchemy\expression;
-use Alchemy\expression\Column;
+namespace Alchemy\core\schema;
 
 
 /**

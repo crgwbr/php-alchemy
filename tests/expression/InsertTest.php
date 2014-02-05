@@ -1,10 +1,9 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Table;
-use Alchemy\expression\Column;
-use Alchemy\expression\Insert;
-use Alchemy\expression\Scalar;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query\Insert;
+use Alchemy\core\query\Scalar;
 
 
 class InsertTest extends BaseTest {

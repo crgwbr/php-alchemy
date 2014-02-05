@@ -3,9 +3,11 @@
 namespace Alchemy\tests;
 
 use Alchemy\dialect\ANSICompiler;
-use Alchemy\expression as expr;
-use Alchemy\expression\Column;
-use Alchemy\expression\Predicate;
+use Alchemy\core\schema\Column;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query;
+use Alchemy\core\query\Predicate;
+use Alchemy\core\query\Scalar;
 
 
 class ANSICompilerTest extends BaseTest {
@@ -30,14 +32,14 @@ class ANSICompilerTest extends BaseTest {
     public function testPredicate() {
         $ansi = new ANSICompiler();
 
-        $exprA = Predicate::lt(new expr\Scalar(3), new expr\Scalar(5));
+        $exprA = Predicate::lt(new Scalar(3), new Scalar(5));
         $this->assertEquals(":p0 < :p1", $ansi->compile($exprA));
 
         $col = Column::Integer(null, null, 'Col');
         $exprB = Predicate::isNull($col);
         $this->assertEquals("NOT (Col IS NULL)", $ansi->compile($exprB->not()));
 
-        $exprC = Predicate::in($col, new expr\Scalar(3), new expr\Scalar(5));
+        $exprC = Predicate::in($col, new Scalar(3), new Scalar(5));
         $this->assertEquals("Col IN (:p2, :p3)", $ansi->compile($exprC));
 
         $exprD = Predicate::and_($exprA->not(), $exprB, $exprC);
@@ -65,7 +67,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testColumnRef() {
         $ansi = new ANSICompiler();
-        $table = new expr\Table('Tbl', array('Col' => Column::Bool()));
+        $table = new Table('Tbl', array('Col' => Column::Bool()));
         $table = $table->getRef();
 
         $this->assertEquals("tb1.Col",
@@ -85,8 +87,8 @@ class ANSICompilerTest extends BaseTest {
 
     public function testCreate() {
         $ansi = new ANSICompiler();
-        $expr = new expr\Create(
-            new expr\Table('Tbl', array(
+        $expr = new query\Create(
+            new Table('Tbl', array(
                 'Col' => Column::Integer(array(11, 'null' => false, 'auto_increment' => false)),
                 'Key' => Column::Foreign(array('self.Col', 'null' => true)) )));
 
@@ -123,7 +125,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testDrop() {
         $ansi = new ANSICompiler();
-        $expr = new expr\Drop(new expr\Table('Tbl', array()));
+        $expr = new query\Drop(new Table('Tbl', array()));
 
         $this->assertEquals("DROP TABLE IF EXISTS Tbl", $ansi->compile($expr));
     }
@@ -149,12 +151,12 @@ class ANSICompilerTest extends BaseTest {
 
     public function testJoin() {
         $ansi = new ANSICompiler();
-        $table = new expr\Table('Tbl', array(
+        $table = new Table('Tbl', array(
             'Col' => Column::Bool() ));
         $table = $table->getRef();
 
         $expr = Predicate::lt($table->Col, $table->Col);
-        $join = new expr\Join(expr\Join::LEFT, expr\Join::INNER, $table, $expr);
+        $join = new query\Join(query\Join::LEFT, query\Join::INNER, $table, $expr);
 
         $this->assertEquals("LEFT INNER JOIN Tbl ON Col < Col", $ansi->compile($join));
     }
@@ -171,7 +173,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testScalar() {
         $ansi = new ANSICompiler();
-        $scalar = new expr\Scalar(3);
+        $scalar = new Scalar(3);
 
         $this->assertEquals(":p0", $ansi->compile($scalar));
     }
@@ -196,7 +198,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testTableRef() {
         $ansi = new ANSICompiler();
-        $table = new expr\Table('Tbl', array());
+        $table = new Table('Tbl', array());
         $table = $table->getRef();
 
         $this->assertEquals("Tbl", $table->name());

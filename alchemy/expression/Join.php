@@ -1,7 +1,7 @@
 <?php
 
-namespace Alchemy\expression;
-use Alchemy\query;
+namespace Alchemy\core\query;
+use Alchemy\core\Element;
 
 
 /**
@@ -28,7 +28,7 @@ class Join extends Element implements IQueryFragment {
      * @param Table $table
      * @param Expression $on
      */
-    public function __construct($direction, $type, query\TableRef $table, Expression $on) {
+    public function __construct($direction, $type, TableRef $table, Expression $on) {
         $this->direction = $direction;
         $this->type = $type;
         $this->table = &$table;

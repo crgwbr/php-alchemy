@@ -2,7 +2,7 @@
 
 namespace Alchemy\tests;
 
-use Alchemy\expression\Element;
+use Alchemy\core\Element;
 
 
 class ElementTest extends BaseTest {
@@ -44,7 +44,7 @@ class ElementTest extends BaseTest {
         $expected = array('key' => 'element',
             'tags' => array(
                 'element.type' => 'Element',
-                'element.class' => 'Alchemy\expression\Element'));
+                'element.class' => 'Alchemy\core\Element'));
         $this->assertEquals($expected, Element::get_definition('Element'));
 
         // inherits from default 'Element' type
@@ -55,14 +55,14 @@ class ElementTest extends BaseTest {
             'a' => array(2, 'k' => 'v'),
             'tags' => array(
                 'element.type' => 'Subtype',
-                'element.class' => 'Alchemy\expression\Element'));
+                'element.class' => 'Alchemy\core\Element'));
         $this->assertEquals($expected, Element::get_definition('Subtype'));
 
         // doesn't exist
         $this->assertThrows('Exception', array("Element", "get_definition"), "Unknown");
 
         $obj = Element::Subtype();
-        $this->assertInstanceOf('Alchemy\expression\Element', $obj);
+        $this->assertInstanceOf('Alchemy\core\Element', $obj);
         $this->assertEquals('Subtype', $obj->getType());
     }
 

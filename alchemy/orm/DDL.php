@@ -1,8 +1,8 @@
 <?php
 
 namespace Alchemy\orm;
-use Alchemy\expression\Create;
-use Alchemy\expression\Drop;
+use Alchemy\core\query\Create;
+use Alchemy\core\query\Drop;
 
 
 /**

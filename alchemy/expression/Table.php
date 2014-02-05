@@ -1,7 +1,8 @@
 <?php
 
-namespace Alchemy\expression;
-use Alchemy\query\TableRef;
+namespace Alchemy\core\schema;
+use Alchemy\core\Element;
+use Alchemy\core\query\TableRef;
 use Alchemy\util\DataTypeLexer;
 use Alchemy\util\promise\IPromisable;
 use Exception;
@@ -27,9 +28,9 @@ class Table extends Element implements IPromisable {
 
     public static function list_promisable_methods() {
         return array(
-            'getColumn' => "Alchemy\expression\Column",
-            'getRef'    => "Alchemy\query\TableRef",
-            'copy'      => "Alchemy\expression\Table");
+            'getColumn' => "Alchemy\core\schema\Column",
+            'getRef'    => "Alchemy\core\query\TableRef",
+            'copy'      => "Alchemy\core\schema\Table");
     }
 
 
@@ -180,7 +181,7 @@ class Table extends Element implements IPromisable {
      *
      * @param string $name name of property
      */
-    protected function resolveProperty($name, $namespace="Alchemy\\expression") {
+    protected function resolveProperty($name, $namespace="Alchemy\\core\\schema") {
         if (array_key_exists($name, $this->propdefs)) {
             $column = $this->propdefs[$name];
 
@@ -200,7 +201,7 @@ class Table extends Element implements IPromisable {
     /**
      * Lazy-resolve the whole Table
      */
-    protected function resolve($namespace="Alchemy\\expression") {
+    protected function resolve($namespace="Alchemy\\core\\schema") {
         if ($this->columns) return;
         $primary = array();
 

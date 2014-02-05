@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemy\expression;
+namespace Alchemy\core\query;
 
 /**
  * Represents a true/false logical predicate

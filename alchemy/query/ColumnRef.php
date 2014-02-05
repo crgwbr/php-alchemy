@@ -1,14 +1,14 @@
 <?php
 
-namespace Alchemy\query;
+namespace Alchemy\core\query;
+use Alchemy\core\Element;
 use Alchemy\util\promise\IPromisable;
-use Alchemy\expression as expr;
 
 
 /**
  * Represents a reference to a column in SQL query
  */
-class ColumnRef extends expr\Element implements expr\IQueryValue, IPromisable {
+class ColumnRef extends Element implements IQueryValue, IPromisable {
 
     protected $schema;
     protected $table;
@@ -16,9 +16,9 @@ class ColumnRef extends expr\Element implements expr\IQueryValue, IPromisable {
 
     public static function list_promisable_methods() {
         return array(
-            'copy'   => "Alchemy\query\ColumnRef",
-            'schema' => "Alchemy\expression\Column",
-            'table'  => "Alchemy\query\TableRef");
+            'copy'   => "Alchemy\core\query\ColumnRef",
+            'schema' => "Alchemy\core\schema\Column",
+            'table'  => "Alchemy\core\query\TableRef");
     }
 
 
@@ -31,13 +31,13 @@ class ColumnRef extends expr\Element implements expr\IQueryValue, IPromisable {
      */
     public function __call($name, $args) {
         foreach ($args as &$value) {
-            if (!($value instanceof expr\IQueryValue)) {
-                $value = new expr\Scalar($value);
+            if (!($value instanceof IQueryValue)) {
+                $value = new Scalar($value);
             }
         }
 
         array_unshift($args, $this);
-        return expr\Predicate::$name($args);
+        return Predicate::$name($args);
     }
 
 

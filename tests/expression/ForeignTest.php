@@ -2,10 +2,10 @@
 
 namespace Alchemy\tests;
 use Alchemy\util\promise\Promise;
-use Alchemy\expression\Foreign;
-use Alchemy\expression\Integer;
-use Alchemy\expression\Column;
-use Alchemy\expression\Table;
+use Alchemy\core\schema\Foreign;
+use Alchemy\core\schema\Integer;
+use Alchemy\core\schema\Column;
+use Alchemy\core\schema\Table;
 
 
 class ForeignTest extends BaseTest {
@@ -76,7 +76,7 @@ class ForeignTest extends BaseTest {
             return new Table('Table', array(
                 'PK' => Column::Integer(11),
                 'FK' => Column::Foreign($table->getColumn('PK')) ));
-        }, "Alchemy\expression\Table");
+        }, "Alchemy\core\schema\Table");
 
         $this->assertInstanceOf("Alchemy\util\promise\Promise", $table->getColumn('FK'));
         $this->assertEquals(11, $table->getColumn('FK')->getArg(0));

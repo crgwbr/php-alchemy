@@ -1,23 +1,23 @@
 <?php
 
-namespace Alchemy\query;
+namespace Alchemy\core\query;
+use Alchemy\core\Element;
 use Alchemy\util\promise\IPromisable;
-use Alchemy\expression as expr;
 
 
 /**
  * Represents a reference to a table in a SQL query
  */
-class TableRef extends expr\Element implements IPromisable {
+class TableRef extends Element implements IPromisable {
 
     protected $schema;
 
 
     public static function list_promisable_methods() {
         return array(
-            '__get'  => "Alchemy\query\ColumnRef",
-            'copy'   => "Alchemy\query\TableRef",
-            'schema' => "Alchemy\expression\Table");
+            '__get'  => "Alchemy\core\query\ColumnRef",
+            'copy'   => "Alchemy\core\query\TableRef",
+            'schema' => "Alchemy\core\schema\Table");
     }
 
 

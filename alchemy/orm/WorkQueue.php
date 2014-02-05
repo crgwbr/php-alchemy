@@ -1,12 +1,11 @@
 <?php
 
 namespace Alchemy\orm;
+use Alchemy\core\query\Insert;
+use Alchemy\core\query\Update;
+use Alchemy\core\query\Delete;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
-use Alchemy\expression\Insert;
-use Alchemy\expression\Update;
-use Alchemy\expression\Delete;
-use Alchemy\expression\CompoundExpression;
 use Alchemy\util\Monad;
 use Alchemy\util\promise\Promise;
 

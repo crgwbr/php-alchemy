@@ -1,9 +1,9 @@
 <?php
 
 namespace  Alchemy\orm;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query;
 use Alchemy\util\promise\Promise;
-use Alchemy\expression\Table;
-use Alchemy\query;
 use Exception;
 
 
@@ -80,7 +80,7 @@ abstract class DataMapper {
                 return new Table($name, $props, $indexes);
             };
 
-            self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\expression\Table");
+            self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\core\schema\Table");
             self::$schema_cache[$cls]->register();
         }
 

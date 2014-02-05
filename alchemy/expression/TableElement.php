@@ -1,6 +1,7 @@
 <?php
 
-namespace Alchemy\expression;
+namespace Alchemy\core\schema;
+use Alchemy\core\Element;
 
 
 /**

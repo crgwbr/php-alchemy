@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Column;
+use Alchemy\core\schema\Column;
 
 
 class ColumnTypeTest extends BaseTest {

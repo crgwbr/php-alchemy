@@ -1,6 +1,7 @@
 <?php
 
-namespace Alchemy\expression;
+namespace Alchemy\core\query;
+use Alchemy\core\Element;
 use Alchemy\util\Monad;
 
 

@@ -1,9 +1,9 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Table;
-use Alchemy\expression\Select;
-use Alchemy\expression\Expression as E;
+use Alchemy\core\schema\Table;
+use Alchemy\core\query\Select;
+use Alchemy\core\query\Expression as E;
 use Alchemy\dialect\ANSICompiler;
 
 

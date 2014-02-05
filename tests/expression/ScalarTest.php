@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\tests;
-use Alchemy\expression\Scalar;
+use Alchemy\core\query\Scalar;
 
 
 

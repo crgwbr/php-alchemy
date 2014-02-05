@@ -1,7 +1,6 @@
 <?php
 
 namespace Alchemy\dialect;
-use Alchemy\expression as expr;
 
 class SQLiteCompiler extends ANSICompiler {
 
@@ -12,7 +11,7 @@ class SQLiteCompiler extends ANSICompiler {
         'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
 
 
-    public function Create(expr\Create $obj) {
+    public function Create($obj) {
         $table = $obj->getTable();
 
         $columns = $this->map('Create_Element', $table->listColumns());
@@ -36,7 +35,7 @@ class SQLiteCompiler extends ANSICompiler {
     }
 
 
-    public function Update(expr\Update $obj) {
+    public function Update($obj) {
         $this->pushConfig(array('alias_tables' => false));
         $sql = parent::Update($obj);
         $this->popConfig();
