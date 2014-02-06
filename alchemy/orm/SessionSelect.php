@@ -51,12 +51,7 @@ class SessionSelect extends Monad {
      */
     public function first() {
         $all = $this->limit(1)->all();
-
-        if (count($all) == 0) {
-            throw new Exception("Expected at least 1 row, got 0");
-        }
-
-        return $all[0];
+        return count($all) == 0 ? null : $all[0];
     }
 
 

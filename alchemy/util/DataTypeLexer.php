@@ -74,13 +74,13 @@ class DataTypeLexer {
             }
 
             // Escape character?
-            if ($char == "\\") {
+            if ($inString && $char == "\\") {
                 $buffer .= array_shift($def);
                 continue;
             }
 
             // Push value onto buffer
-            if ($inString || preg_match("/[a-zA-Z0-9_\-.]/", $char)) {
+            if ($inString || preg_match("/[a-zA-Z0-9_\-.\\\\]/", $char)) {
                 $buffer .= $char;
                 continue;
             }

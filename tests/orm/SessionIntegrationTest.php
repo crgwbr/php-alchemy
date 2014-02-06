@@ -65,8 +65,8 @@ class SessionIntegrationTest extends BaseTest {
         $session->ddl()->createAll();
 
         $objects = $session->objects('Alchemy\tests\Language');
-        $this->assertEquals(0, count($all   = $objects->all()));
-        $this->assertThrows("\Exception", array($objects, 'first'));
+        $this->assertEquals(0, count($objects->all()));
+        $this->assertEquals(0, count($objects->first()));
         $this->assertThrows("\Exception", array($objects, 'one'));
     }
 

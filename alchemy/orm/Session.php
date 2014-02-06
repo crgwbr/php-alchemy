@@ -8,6 +8,7 @@ use Alchemy\core\query\Insert;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
 use Alchemy\util\Promise;
+use Exception;
 
 
 /**
@@ -168,6 +169,24 @@ class Session {
 
 
     /**
+     * Get an object from the session store without running a query.
+     *
+     * @param string $cls DataMapper type
+     * @param string $sid SessionID
+     * @return DataMapper
+     */
+    public function object($cls, $sid) {
+        if (is_array($sid)) {
+            $sid = $this->getPrimaryKey($cls, $sid);
+        }
+
+        if (isset($this->records[$cls][$sid])) {
+            return $cls::from_session($this, $sid);
+        }
+    }
+
+
+    /**
      * Return a SessionSelect for the given class
      *
      * @return SessionSelect
@@ -213,7 +232,7 @@ class Session {
      * @return Promise Resolved when the query is run
      */
     public function save($cls, $id) {
-        // If nothing is in $htis->updated, theres nothing to do here
+        // If nothing is in $this->updated, theres nothing to do here
         if (empty($this->updated[$cls][$id])) {
             return;
         }
@@ -222,7 +241,14 @@ class Session {
         $pk = array();
         foreach ($cls::schema()->getPrimaryKey()->listColumns() as $column) {
             $name = $column->getName();
-            $pk[$name] = $this->getProperty($cls, $id, $name);
+            $value = $this->getProperty($cls, $id, $name);
+
+            // Abort if primary key is partial
+            if (is_null($value)) {
+                throw new Exception("Can not send UPDATE for model when primary key is null");
+            }
+
+            $pk[$name] = $value;
         }
 
         // Schedule the UPDATE
@@ -285,6 +311,9 @@ class Session {
         // Remove the transient record
         unset($this->records[$cls][$oldID]);
         unset($this->updated[$cls][$oldID]);
+
+        // Notify Object of it's relocation
+        $obj->onPrimaryKeyAllocated();
     }
 
 
@@ -300,15 +329,15 @@ class Session {
         $rows = $rows ?: array();
 
         foreach ($rows as $row) {
-            $pk = $this->getPrimaryKey($cls, $row);
+            $sid = $this->getPrimaryKey($cls, $row);
 
             $record = array();
             foreach ($row as $column => $value) {
                 $record[$column] = $table->getColumn($column)->decode($value);
             }
 
-            $this->records[$cls][$pk] = $record;
-            $objects[] = $cls::from_session($this, $pk);
+            $this->records[$cls][$sid] = $record;
+            $objects[] = $this->object($cls, $sid);
         }
 
         return $objects;

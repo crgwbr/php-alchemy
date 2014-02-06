@@ -4,6 +4,7 @@ namespace  Alchemy\orm;
 use Alchemy\core\schema\Table;
 use Alchemy\core\query;
 use Alchemy\util\promise\Promise;
+use Alchemy\util\DataTypeLexer;
 use Exception;
 
 
@@ -22,11 +23,47 @@ abstract class DataMapper {
     protected static $table_name = null;
     protected static $props = array();
     protected static $indexes = array();
+    protected static $relationships = array();
 
     private static $schema_cache = array();
+    private static $relationship_cache = array();
+
     private $deltas = array();
+    private $relatedSets = array();
     private $session;
     private $sessionID;
+
+    private $onPrimaryKeyAlloc = array();
+
+
+    /**
+     * Add a relationship to this model
+     *
+     * @param string $name
+     * @param string or Relationship $def
+     */
+    public static function add_relationship($name, $def) {
+        $cls = get_called_class();
+        if (!array_key_exists($cls, self::$relationship_cache)) {
+            self::$relationship_cache[$cls] = array();
+        }
+
+        // Already Exists?
+        if (array_key_exists($name, self::$relationship_cache[$cls])) {
+            return;
+        }
+
+        if (is_string($def)) {
+            $l = new DataTypeLexer($def);
+            $type = __NAMESPACE__ . '\\' . $l->getType();
+            $args = $l->getArgs();
+            $r = new $type($name, $cls, $args);
+        } else {
+            $r = $def;
+        }
+
+        self::$relationship_cache[$cls][$name] = $r;
+    }
 
 
     /**
@@ -53,12 +90,40 @@ abstract class DataMapper {
         $result = array();
         foreach (get_declared_classes() as $cls) {
             if (is_subclass_of($cls, __CLASS__)) {
-                $cls::schema(); // Force table register
                 $result[] = $cls;
             }
         }
 
         return $result;
+    }
+
+
+    /**
+     * List the relationships belonging to this model
+     *
+     * @return array
+     */
+    public static function list_relationships() {
+        $cls = get_called_class();
+        if (!array_key_exists($cls, self::$relationship_cache)) {
+            self::$relationship_cache[$cls] = array();
+        }
+
+        foreach (static::$relationships as $name => $def) {
+            static::add_relationship($name, $def);
+        }
+
+        return self::$relationship_cache[$cls];
+    }
+
+
+    /**
+     * Register the model's table and relationships. This should be called
+     * immediately after defining a new model class.
+     */
+    public static function register() {
+        static::schema(); // Table Registration
+        static::list_relationships(); // Relationship Registration
     }
 
 
@@ -88,6 +153,11 @@ abstract class DataMapper {
     }
 
 
+    /**
+     * Return a table reference for this model
+     *
+     * @return query\TableRef
+     */
     public static function table() {
         return new query\TableRef(static::schema());
     }
@@ -105,6 +175,17 @@ abstract class DataMapper {
     }
 
 
+
+    /**
+     * Object constructor.
+     */
+    public function __construct() {
+        foreach (static::list_relationships() as $name => $r) {
+            $this->relatedSets[$name] = new RelatedSet($this, $r);
+        }
+    }
+
+
     /**
      * Get the value of a column on this object
      *
@@ -112,6 +193,11 @@ abstract class DataMapper {
      * @return mixed
      */
     public function __get($prop) {
+        if (array_key_exists($prop, $this->relatedSets)) {
+            $set = $this->getRelatedSet($prop);
+            return $set->isSingleObject() ? $set->first() : $set;
+        }
+
         $table = static::schema();
         if (!$table->isColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
@@ -138,6 +224,11 @@ abstract class DataMapper {
      * @param mixed $value
      */
     public function __set($prop, $value) {
+        if (array_key_exists($prop, $this->relatedSets)) {
+            $this->relatedSets[$prop]->set($value);
+            return;
+        }
+
         $table = static::schema();
         if (!$table->isColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
@@ -164,12 +255,72 @@ abstract class DataMapper {
 
 
     /**
+     * Return a related set object by relationship name
+     */
+    public function getRelatedSet($name) {
+        return $this->relatedSets[$name];
+    }
+
+
+    /**
+     * Return the Session of this object
+     *
+     * @return Session
+     */
+    public function getSession() {
+        return $this->session;
+    }
+
+
+    /**
      * Return the ID used to identify this objects record in the Session
      *
      * @return string
      */
     public function getSessionID() {
         return $this->sessionID;
+    }
+
+
+    /**
+     * Return true if this model doesn't yet exist in the database
+     *
+     * @return bool
+     */
+    public function isTransient() {
+        foreach ($this->getPrimaryKey() as $value) {
+            if (is_null($value)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Event invoked by Session when this model is migrated from using a
+     * temporary in-memory key to a real (saved in the RDBMS) primary key.
+     */
+    public function onPrimaryKeyAllocated($fn = null) {
+        // Register callback?
+        if ($fn) {
+            $this->onPrimaryKeyAlloc[] = $fn;
+            return;
+        }
+
+        // Trigger callbacks
+        foreach ($this->onPrimaryKeyAlloc as $fn) {
+            $fn($this);
+        }
+    }
+
+
+    /**
+     * Revert all unsaved changed to this model
+     */
+    public function rollback() {
+        $this->deltas = array();
     }
 
 

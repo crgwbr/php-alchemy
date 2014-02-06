@@ -1,6 +1,7 @@
 <?php
 
 namespace Alchemy\core\schema;
+use Alchemy\core\query\ColumnRef;
 use Alchemy\util\promise\IPromisable;
 
 
@@ -21,7 +22,7 @@ class Column extends TableElement implements IPromisable {
         list($ref, $col) = explode('.', $column) + array('', '');
 
         $table = ($ref == 'self' || $ref == '') ? $self : Table::find($ref);
-        if (!($table instanceof Table)) {
+        if (!$table) {
             throw new \Exception("Cannot find Table '{$ref}'.");
         }
 
@@ -88,6 +89,16 @@ class Column extends TableElement implements IPromisable {
 
     public function getArg($arg) {
         return array_key_exists($arg, $this->args) ? $this->args[$arg] : null;
+    }
+
+
+    /**
+     * Return a reference to this column
+     *
+     * @return ColumnRef
+     */
+    public function getRef() {
+        return new ColumnRef($this, $this->getTable()->getRef());
     }
 
 

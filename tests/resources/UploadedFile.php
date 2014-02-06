@@ -18,3 +18,5 @@ class UploadedFile extends DataMapper {
         'Folder_Filename' => 'UniqueKey([self.Folder, self.Filename])',
     );
 }
+
+UploadedFile::register();

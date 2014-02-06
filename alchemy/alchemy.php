@@ -71,3 +71,10 @@ require_once "orm/WorkQueue.php";
 require_once "orm/Session.php";
 require_once "orm/SessionSelect.php";
 require_once "orm/DataMapper.php";
+
+// Relationships
+require_once "orm/Relationship.php";
+require_once "orm/OneToMany.php";
+require_once "orm/ManyToOne.php";
+require_once "orm/OneToOne.php";
+require_once "orm/RelatedSet.php";

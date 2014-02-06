@@ -79,14 +79,18 @@ class Engine implements IEngine {
      *
      * @param string $sql
      */
-    protected function echoQuery($sql) {
+    protected function echoQuery($sql, $params) {
         if (!$this->echoQueries) {
             return;
         }
 
         if (is_callable($this->echoQueries)) {
-            return $this->echoQueries($sql);
+            return $this->echoQueries($sql, $params);
         }
+
+        $sql = preg_replace_callback("/:([\w\d]+)/", function($match) use ($params) {
+            return "'{$params[$match[1]]}'";
+        }, $sql);
 
         echo $sql . "\n";
     }
@@ -127,13 +131,18 @@ class Engine implements IEngine {
      * @return ResultSet
      */
     public function execute($sql, $params = array()) {
-        $this->echoQuery($sql);
         $statement = $this->connector->prepare($sql);
 
+        $paramLog = array();
         foreach ($params as $param) {
             $type = $this->getBindParamType($param);
-            $statement->bindValue($this->compiler->alias($param), $param->getValue(), $type);
+            $alias = $this->compiler->alias($param);
+            $value = $param->getValue();
+            $paramLog[$alias] = $value;
+            $statement->bindValue($alias, $value, $type);
         }
+
+        $this->echoQuery($sql, $paramLog);
 
         $statement->execute();
         return new ResultSet($this->connector, $statement);
