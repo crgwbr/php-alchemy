@@ -97,7 +97,7 @@ class WorkQueue {
      * @return Promise resolved when query is actual run
      */
     protected function push(Monad $query) {
-        $promise = new Promise(null, "Alchemy\engine\ResultSet");
+        $promise = new Promise(null, 'Alchemy\engine\ResultSet');
         $this->queue[] = array($query->unwrap(), $promise);
         return $promise;
     }
