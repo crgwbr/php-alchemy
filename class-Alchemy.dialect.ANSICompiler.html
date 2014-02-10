@@ -7,7 +7,7 @@
 	<title>Class Alchemy\dialect\ANSICompiler</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3038140800"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,11 +23,16 @@
 			<ul>
 				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
 						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-Alchemy.dialect.html">dialect</a>
 						</li>
 				<li><a href="namespace-Alchemy.engine.html">engine</a>
-						</li>
-				<li><a href="namespace-Alchemy.expression.html">expression</a>
 						</li>
 				<li><a href="namespace-Alchemy.orm.html">orm</a>
 						</li>
@@ -55,10 +60,6 @@
 				<li><a href="class-Alchemy.dialect.SQLiteCompiler.html">SQLiteCompiler</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-Alchemy.dialect.ICompilable.html">ICompilable</a></li>
-			</ul>
 
 
 
@@ -136,13 +137,42 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.dialect.html">dialect</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.dialect.ANSICompiler.html#6-338" title="Go to source code">alchemy/dialect/ANSICompiler.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.dialect.ANSICompiler.html#5-326" title="Go to source code">alchemy/dialect/ANSICompiler.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="get_schema_format" id="_get_schema_format">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_schema_format">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#77-86" title="Go to source code">get_schema_format</a>( <span>mixed <var>$type</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="alias" id="_alias">
 
 		<td class="attributes"><code>
@@ -154,7 +184,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_alias">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#8-17" title="Go to source code">alias</a>( <span><code><a href="class-Alchemy.dialect.ANSICompiler.html#_Scalar">Alchemy\dialect\ANSICompiler::Scalar()</a></code>|<code><a href="class-Alchemy.dialect.ANSICompiler.html#_Table">Alchemy\dialect\ANSICompiler::Table()</a></code> <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#88-109" title="Go to source code">alias</a>( <span>Element <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -171,7 +201,7 @@
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$obj</var></dt>
-					<dd><code><code><a href="class-Alchemy.dialect.ANSICompiler.html#_Scalar">Alchemy\dialect\ANSICompiler::Scalar()</a></code>|<code><a href="class-Alchemy.dialect.ANSICompiler.html#_Table">Alchemy\dialect\ANSICompiler::Table()</a></code></code><br>$obj key</dd>
+					<dd><code>Element</code><br>$obj key</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -185,7 +215,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="Alias_Column" id="_Alias_Column">
+	<tr data-order="Alias_ColumnRef" id="_Alias_ColumnRef">
 
 		<td class="attributes"><code>
 			 public 
@@ -195,8 +225,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_Alias_Column">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#20-22" title="Go to source code">Alias_Column</a>( <span>mixed <var>$obj</var></span> )</code>
+		<a class="anchor" href="#_Alias_ColumnRef">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#112-114" title="Go to source code">Alias_ColumnRef</a>( <span>mixed <var>$obj</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -225,7 +255,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Alias_Scalar">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#25-27" title="Go to source code">Alias_Scalar</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#117-119" title="Go to source code">Alias_Scalar</a>( <span>mixed <var>$obj</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -243,7 +273,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="Alias_Table" id="_Alias_Table">
+	<tr data-order="Alias_TableRef" id="_Alias_TableRef">
 
 		<td class="attributes"><code>
 			 public 
@@ -253,37 +283,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_Alias_Table">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#30-32" title="Go to source code">Alias_Table</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="BinaryExpression" id="_BinaryExpression">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_BinaryExpression">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#35-38" title="Go to source code">BinaryExpression</a>( <span>mixed <var>$obj</var></span> )</code>
+		<a class="anchor" href="#_Alias_TableRef">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#122-124" title="Go to source code">Alias_TableRef</a>( <span>mixed <var>$obj</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -312,7 +313,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Column">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#41-53" title="Go to source code">Column</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#127-129" title="Go to source code">Column</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -330,7 +331,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="CompoundExpression" id="_CompoundExpression">
+	<tr data-order="ColumnRef" id="_ColumnRef">
 
 		<td class="attributes"><code>
 			 public 
@@ -340,8 +341,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_CompoundExpression">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#56-60" title="Go to source code">CompoundExpression</a>( <span>mixed <var>$obj</var></span> )</code>
+		<a class="anchor" href="#_ColumnRef">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#132-144" title="Go to source code">ColumnRef</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -370,152 +371,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Create">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#63-75" title="Go to source code">Create</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_BigInt" id="_Create_BigInt">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_BigInt">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#78-80" title="Go to source code">Create_BigInt</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Binary" id="_Create_Binary">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Binary">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#83-85" title="Go to source code">Create_Binary</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Blob" id="_Create_Blob">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Blob">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#88-90" title="Go to source code">Create_Blob</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Bool" id="_Create_Bool">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Bool">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#93-95" title="Go to source code">Create_Bool</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Char" id="_Create_Char">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Char">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#98-100" title="Go to source code">Create_Char</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#147-157" title="Go to source code">Create</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -544,123 +400,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Create_Column">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#103-109" title="Go to source code">Create_Column</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Date" id="_Create_Date">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Date">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#112-114" title="Go to source code">Create_Date</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Datetime" id="_Create_Datetime">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Datetime">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#117-119" title="Go to source code">Create_Datetime</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Decimal" id="_Create_Decimal">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Decimal">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#122-124" title="Go to source code">Create_Decimal</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Float" id="_Create_Float">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Float">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#127-129" title="Go to source code">Create_Float</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#160-172" title="Go to source code">Create_Column</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -689,7 +429,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Create_Index">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#132-137" title="Go to source code">Create_Index</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#175-181" title="Go to source code">Create_Index</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -718,7 +458,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Create_ForeignKey">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#140-150" title="Go to source code">Create_ForeignKey</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#184-194" title="Go to source code">Create_ForeignKey</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -736,7 +476,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="Create_Integer" id="_Create_Integer">
+	<tr data-order="Create_Element" id="_Create_Element">
 
 		<td class="attributes"><code>
 			 public 
@@ -746,269 +486,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_Create_Integer">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#153-155" title="Go to source code">Create_Integer</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Key" id="_Create_Key">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Key">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#158-161" title="Go to source code">Create_Key</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_MediumInt" id="_Create_MediumInt">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_MediumInt">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#164-166" title="Go to source code">Create_MediumInt</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_PrimaryKey" id="_Create_PrimaryKey">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_PrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#169-174" title="Go to source code">Create_PrimaryKey</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_SmallInt" id="_Create_SmallInt">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_SmallInt">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#177-179" title="Go to source code">Create_SmallInt</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_String" id="_Create_String">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_String">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#182-184" title="Go to source code">Create_String</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Time" id="_Create_Time">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Time">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#187-189" title="Go to source code">Create_Time</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Timestamp" id="_Create_Timestamp">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Timestamp">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#192-194" title="Go to source code">Create_Timestamp</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_TinyInt" id="_Create_TinyInt">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_TinyInt">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#197-199" title="Go to source code">Create_TinyInt</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_UniqueKey" id="_Create_UniqueKey">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_UniqueKey">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#202-207" title="Go to source code">Create_UniqueKey</a>( <span>mixed <var>$obj</var></span> )</code>
+		<a class="anchor" href="#_Create_Element">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#197-200" title="Go to source code">Create_Element</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1037,7 +516,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Delete">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#210-221" title="Go to source code">Delete</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#203-214" title="Go to source code">Delete</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1066,36 +545,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Drop">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#224-226" title="Go to source code">Drop</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="InclusiveExpression" id="_InclusiveExpression">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_InclusiveExpression">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#229-234" title="Go to source code">InclusiveExpression</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#217-219" title="Go to source code">Drop</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1124,7 +574,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Insert">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#237-249" title="Go to source code">Insert</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#222-234" title="Go to source code">Insert</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1153,7 +603,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Join">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#252-256" title="Go to source code">Join</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#237-241" title="Go to source code">Join</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1171,7 +621,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="Operator" id="_Operator">
+	<tr data-order="Expression" id="_Expression">
 
 		<td class="attributes"><code>
 			 public 
@@ -1181,8 +631,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_Operator">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#259-261" title="Go to source code">Operator</a>( <span>mixed <var>$obj</var></span> )</code>
+		<a class="anchor" href="#_Expression">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#244-249" title="Go to source code">Expression</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1211,7 +661,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Scalar">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#264-266" title="Go to source code">Scalar</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#252-254" title="Go to source code">Scalar</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1240,7 +690,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Select">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#269-284" title="Go to source code">Select</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#257-272" title="Go to source code">Select</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1258,7 +708,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="Table" id="_Table">
+	<tr data-order="TableRef" id="_TableRef">
 
 		<td class="attributes"><code>
 			 public 
@@ -1268,8 +718,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_Table">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#287-293" title="Go to source code">Table</a>( <span>mixed <var>$obj</var></span> )</code>
+		<a class="anchor" href="#_TableRef">#</a>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#275-281" title="Go to source code">TableRef</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1298,7 +748,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Update">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#296-313" title="Go to source code">Update</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#284-301" title="Go to source code">Update</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1327,7 +777,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Query_Join">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#316-318" title="Go to source code">Query_Join</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#304-306" title="Go to source code">Query_Join</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1356,7 +806,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Query_Limit">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#321-331" title="Go to source code">Query_Limit</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#309-319" title="Go to source code">Query_Limit</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1385,7 +835,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Query_Where">#</a>
-		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#334-337" title="Go to source code">Query_Where</a>( <span>mixed <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.ANSICompiler.html#322-325" title="Go to source code">Query_Where</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1410,8 +860,8 @@
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.dialect.Compiler.html#___construct">__construct()</a>, 
-			<a href="class-Alchemy.dialect.Compiler.html#_aliasID">aliasID()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_compile">compile()</a>, 
+			<a href="class-Alchemy.dialect.Compiler.html#_format">format()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_getConfig">getConfig()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_getFunction">getFunction()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_map">map()</a>, 
@@ -1431,7 +881,127 @@
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="expr_formats" id="$expr_formats">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
 
+		<td class="name">
+				<a href="source-class-Alchemy.dialect.ANSICompiler.html#6-42" title="Go to source code"><var>$expr_formats</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-comment">// operators</span>
+    <span class="php-quote">'add'</span>       =&gt; <span class="php-quote">'%s + %s'</span>,
+    <span class="php-quote">'sub'</span>       =&gt; <span class="php-quote">'%s - %s'</span>,
+    <span class="php-quote">'mult'</span>      =&gt; <span class="php-quote">'%s * %s'</span>,
+    <span class="php-quote">'div'</span>       =&gt; <span class="php-quote">'%s / %s'</span>,
+    <span class="php-quote">'mod'</span>       =&gt; <span class="php-quote">'MOD(%s, %s)'</span>,
+    <span class="php-quote">'abs'</span>       =&gt; <span class="php-quote">'ABS(%s)'</span>,
+    <span class="php-quote">'ceil'</span>      =&gt; <span class="php-quote">'CEIL(%s)'</span>,
+    <span class="php-quote">'exp'</span>       =&gt; <span class="php-quote">'EXP(%s)'</span>,
+    <span class="php-quote">'floor'</span>     =&gt; <span class="php-quote">'FLOOR(%s)'</span>,
+    <span class="php-quote">'ln'</span>        =&gt; <span class="php-quote">'LN(%s)'</span>,
+    <span class="php-quote">'sqrt'</span>      =&gt; <span class="php-quote">'SQRT(%s)'</span>,
+    <span class="php-quote">'extract'</span>   =&gt; <span class="php-quote">'EXTRACT(%s FROM %s)'</span>,
+    <span class="php-quote">'interval'</span>  =&gt; <span class="php-quote">'INTERVAL %s %s'</span>,
+    <span class="php-quote">'now'</span>       =&gt; <span class="php-quote">'NOW()'</span>,
+    <span class="php-quote">'lower'</span>     =&gt; <span class="php-quote">'LOWER(%s)'</span>,
+    <span class="php-quote">'upper'</span>     =&gt; <span class="php-quote">'UPPER(%s)'</span>,
+    <span class="php-quote">'convert'</span>   =&gt; <span class="php-quote">'CONVERT(%s USING %s)'</span>,
+    <span class="php-quote">'translate'</span> =&gt; <span class="php-quote">'TRANSLATE(%s USING %s)'</span>,
+    <span class="php-quote">'concat'</span>    =&gt; <span class="php-quote">'%s || %s'</span>,
+    <span class="php-quote">'coalesce'</span>  =&gt; <span class="php-quote">'COALESCE(%1//, /)'</span>,
+
+    <span class="php-comment">// predicates</span>
+    <span class="php-quote">'equal'</span>     =&gt; <span class="php-quote">'%s = %s'</span>,
+    <span class="php-quote">'lt'</span>        =&gt; <span class="php-quote">'%s &lt; %s'</span>,
+    <span class="php-quote">'gt'</span>        =&gt; <span class="php-quote">'%s &gt; %s'</span>,
+    <span class="php-quote">'ne'</span>        =&gt; <span class="php-quote">'%s != %s'</span>,
+    <span class="php-quote">'le'</span>        =&gt; <span class="php-quote">'%s &lt;= %s'</span>,
+    <span class="php-quote">'ge'</span>        =&gt; <span class="php-quote">'%s &gt;= %s'</span>,
+    <span class="php-quote">'between'</span>   =&gt; <span class="php-quote">'%s BETWEEN %s AND %s'</span>,
+    <span class="php-quote">'isnull'</span>    =&gt; <span class="php-quote">'%s IS NULL'</span>,
+    <span class="php-quote">'like'</span>      =&gt; <span class="php-quote">'%s LIKE %s'</span>,
+    <span class="php-quote">'in'</span>        =&gt; <span class="php-quote">'%s IN (%2//, /)'</span>,
+    <span class="php-quote">'and'</span>       =&gt; <span class="php-quote">'(%// AND /)'</span>,
+    <span class="php-quote">'or'</span>        =&gt; <span class="php-quote">'(%// OR /)'</span>,
+    <span class="php-quote">'not'</span>       =&gt; <span class="php-quote">'NOT (%s)'</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$expr_formats" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="schema_formats" id="$schema_formats">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.dialect.ANSICompiler.html#44-71" title="Go to source code"><var>$schema_formats</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-comment">// numerics</span>
+    <span class="php-quote">'Bool'</span>       =&gt; <span class="php-quote">&quot;BOOL&quot;</span>,
+    <span class="php-quote">'Integer'</span>    =&gt; <span class="php-quote">&quot;INT(%s)&quot;</span>,
+    <span class="php-quote">'TinyInt'</span>    =&gt; <span class="php-quote">&quot;TINYINT(%s)&quot;</span>,
+    <span class="php-quote">'SmallInt'</span>   =&gt; <span class="php-quote">&quot;SMALLINT(%s)&quot;</span>,
+    <span class="php-quote">'MediumInt'</span>  =&gt; <span class="php-quote">&quot;MEDIUMINT(%s)&quot;</span>,
+    <span class="php-quote">'BigInt'</span>     =&gt; <span class="php-quote">&quot;BIGINT(%s)&quot;</span>,
+    <span class="php-quote">'Float'</span>      =&gt; <span class="php-quote">&quot;FLOAT(%s)&quot;</span>,
+    <span class="php-quote">'Decimal'</span>    =&gt; <span class="php-quote">&quot;DECIMAL(%s, %s)&quot;</span>,
+
+    <span class="php-comment">//strings</span>
+    <span class="php-quote">'Blob'</span>       =&gt; <span class="php-quote">&quot;BLOB&quot;</span>,
+    <span class="php-quote">'Binary'</span>     =&gt; <span class="php-quote">&quot;BINARY(%s)&quot;</span>,
+    <span class="php-quote">'String'</span>     =&gt; <span class="php-quote">&quot;VARCHAR(%s)&quot;</span>,
+    <span class="php-quote">'Char'</span>       =&gt; <span class="php-quote">&quot;CHAR(%s)&quot;</span>,
+    <span class="php-quote">'Text'</span>       =&gt; <span class="php-quote">&quot;TEXT(%s)&quot;</span>,
+
+    <span class="php-comment">// datetimes</span>
+    <span class="php-quote">'Date'</span>       =&gt; <span class="php-quote">&quot;DATE&quot;</span>,
+    <span class="php-quote">'Time'</span>       =&gt; <span class="php-quote">&quot;TIME&quot;</span>,
+    <span class="php-quote">'Datetime'</span>   =&gt; <span class="php-quote">&quot;DATETIME&quot;</span>,
+    <span class="php-quote">'Timestamp'</span>  =&gt; <span class="php-quote">&quot;TIMESTAMP&quot;</span>,
+
+    <span class="php-comment">// indexes</span>
+    <span class="php-quote">'Index'</span>      =&gt; <span class="php-quote">&quot;KEY %s (%3</span><span class="php-var">$</span><span class="php-quote">//, /)&quot;</span>,
+    <span class="php-quote">'UniqueKey'</span>  =&gt; <span class="php-quote">&quot;UNIQUE KEY %s (%3</span><span class="php-var">$</span><span class="php-quote">//, /)&quot;</span>,
+    <span class="php-quote">'PrimaryKey'</span> =&gt; <span class="php-quote">&quot;PRIMARY KEY (%3</span><span class="php-var">$</span><span class="php-quote">//, /)&quot;</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$schema_formats" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.dialect.Compiler.html#properties">Alchemy\dialect\Compiler</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.dialect.Compiler.html#$default_tag"><var>$default_tag</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

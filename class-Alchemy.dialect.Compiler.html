@@ -7,7 +7,7 @@
 	<title>Class Alchemy\dialect\Compiler</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3038140800"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,11 +23,16 @@
 			<ul>
 				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
 						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-Alchemy.dialect.html">dialect</a>
 						</li>
 				<li><a href="namespace-Alchemy.engine.html">engine</a>
-						</li>
-				<li><a href="namespace-Alchemy.expression.html">expression</a>
 						</li>
 				<li><a href="namespace-Alchemy.orm.html">orm</a>
 						</li>
@@ -55,10 +60,6 @@
 				<li><a href="class-Alchemy.dialect.SQLiteCompiler.html">SQLiteCompiler</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-Alchemy.dialect.ICompilable.html">ICompilable</a></li>
-			</ul>
 
 
 
@@ -126,7 +127,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.dialect.html">dialect</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.dialect.Compiler.html#5-102" title="Go to source code">alchemy/dialect/Compiler.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.dialect.Compiler.html#5-118" title="Go to source code">alchemy/dialect/Compiler.php</a><br />
 	</div>
 
 
@@ -162,50 +163,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="aliasID" id="_aliasID">
-
-		<td class="attributes"><code>
-			 protected 
-			integer
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_aliasID">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#16-35" title="Go to source code">aliasID</a>( <span>string <var>$ns</var></span>, <span>string <var>$id</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Alias global IDs to query-level IDs within a namespace</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Alias global IDs to query-level IDs within a namespace</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$ns</var></dt>
-					<dd><code>string</code><br>$ns namespace</dd>
-					<dt><var>$id</var></dt>
-					<dd><code>string</code><br>$id global ID</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>integer</code><br>query-level alias<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="compile" id="_compile">
 
 		<td class="attributes"><code>
@@ -217,7 +174,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_compile">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#38-64" title="Go to source code">compile</a>( <span>array|Expression <var>$obj</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#16-42" title="Go to source code">compile</a>( <span>array|Expression <var>$obj</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$config</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -250,10 +207,67 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="format" id="_format">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_format">#</a>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#45-82" title="Go to source code">format</a>( <span>string <var>$format</var> = <span class="php-quote">''</span></span>, <span>array <var>$subject</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Apply the special Compiler-format to an array of strings (recursive).
+Variardic formatting is done with %/&lt;subformat&gt;/&lt;delimiter&gt;/, which
+applies a format &amp; implode to the remainder of the elements, if any (you may
+use any punctuation mark in place of '/'). &lt;subformat&gt; may contain
+recursive tokens. It is your responsibility to make sure $format and $subject
+make sense to use together.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Apply the special Compiler-format to an array of strings (recursive).
+Variardic formatting is done with %/&lt;subformat&gt;/&lt;delimiter&gt;/, which
+applies a format &amp; implode to the remainder of the elements, if any (you may
+use any punctuation mark in place of '/'). &lt;subformat&gt; may contain
+recursive tokens. It is your responsibility to make sure $format and $subject
+make sense to use together.</p>
+
+<p>Ex: "%s %s (%4/+%s/, /)" * [A, B, C, D, E] = "A B (D, E)" Ex: "%2$s
+(%2$1/+%s/, /)" * [[A, B, C], D] = "D (A, B, C)"</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$format</var></dt>
+					<dd><code>string</code><br>$format</dd>
+					<dt><var>$subject</var></dt>
+					<dd><code>array</code><br>$subject</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getConfig" id="_getConfig">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			
 			
 			</code>
@@ -261,7 +275,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getConfig">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#67-70" title="Go to source code">getConfig</a>( <span>mixed <var>$key</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#85-88" title="Go to source code">getConfig</a>( <span>mixed <var>$key</var></span> )</code>
 
 		<div class="description short">
 			
@@ -290,7 +304,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFunction">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#73-85" title="Go to source code">getFunction</a>( <span>mixed <var>$obj</var></span>, <span>mixed <var>$prefix</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$strict</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#91-101" title="Go to source code">getFunction</a>( <span>mixed <var>$obj</var></span>, <span>mixed <var>$tag</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$prefix</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$strict</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -311,7 +325,7 @@
 	<tr data-order="popConfig" id="_popConfig">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			
 			
 			</code>
@@ -319,7 +333,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_popConfig">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#88-90" title="Go to source code">popConfig</a>( )</code>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#104-106" title="Go to source code">popConfig</a>( )</code>
 
 		<div class="description short">
 			
@@ -340,7 +354,7 @@
 	<tr data-order="pushConfig" id="_pushConfig">
 
 		<td class="attributes"><code>
-			 protected 
+			 public 
 			
 			
 			</code>
@@ -348,7 +362,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pushConfig">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#93-96" title="Go to source code">pushConfig</a>( <span>mixed <var>$config</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#109-112" title="Go to source code">pushConfig</a>( <span>mixed <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
@@ -377,7 +391,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_map">#</a>
-		<code><a href="source-class-Alchemy.dialect.Compiler.html#99-101" title="Go to source code">map</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$objs</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.Compiler.html#115-117" title="Go to source code">map</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$objs</var></span> )</code>
 
 		<div class="description short">
 			
@@ -408,6 +422,32 @@
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="default_tag" id="$default_tag">
+		<td class="attributes"><code>
+			protected static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.dialect.Compiler.html#7" title="Go to source code"><var>$default_tag</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'sql.compile'</span></code></td>
+		<td class="description"><div>
+			<a href="#$default_tag" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

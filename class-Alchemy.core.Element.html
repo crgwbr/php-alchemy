@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Alchemy\core\Element</title>
+
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
+						</li>
+				<li><a href="namespace-Alchemy.engine.html">engine</a>
+						</li>
+				<li><a href="namespace-Alchemy.orm.html">orm</a>
+						</li>
+				<li><a href="namespace-Alchemy.tests.html">tests</a>
+						</li>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Alchemy.core.Element.html">Element</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Alchemy.core.IElement.html">IElement</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Alchemy.core.html" title="Summary of Alchemy\core"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Element</h1>
+
+
+	<div class="description">
+	
+<p>Base class for composable elements</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Alchemy\core\Element</span></b>			
+			 implements 
+				<a href="class-Alchemy.core.IElement.html"><span>Alchemy\core\IElement</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Alchemy.core.query.ColumnRef.html">Alchemy\core\query\ColumnRef</a>, 
+			<a href="class-Alchemy.core.query.DDLQuery.html">Alchemy\core\query\DDLQuery</a>, 
+			<a href="class-Alchemy.core.query.Expression.html">Alchemy\core\query\Expression</a>, 
+			<a href="class-Alchemy.core.query.Join.html">Alchemy\core\query\Join</a>, 
+			<a href="class-Alchemy.core.query.Query.html">Alchemy\core\query\Query</a>, 
+			<a href="class-Alchemy.core.query.Scalar.html">Alchemy\core\query\Scalar</a>, 
+			<a href="class-Alchemy.core.query.TableRef.html">Alchemy\core\query\TableRef</a>, 
+			<a href="class-Alchemy.core.schema.Table.html">Alchemy\core\schema\Table</a>, 
+			<a href="class-Alchemy.core.schema.TableElement.html">Alchemy\core\schema\TableElement</a>, 
+			<a href="class-Alchemy.tests.MockElement.html">Alchemy\tests\MockElement</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Alchemy.core.query.Create.html">Alchemy\core\query\Create</a>, 
+			<a href="class-Alchemy.core.query.Delete.html">Alchemy\core\query\Delete</a>, 
+			<a href="class-Alchemy.core.schema.Index.html">Alchemy\core\schema\Index</a>, 
+			<a href="class-Alchemy.core.query.Drop.html">Alchemy\core\query\Drop</a>, 
+			<a href="class-Alchemy.core.query.Insert.html">Alchemy\core\query\Insert</a>, 
+			<a href="class-Alchemy.core.query.Predicate.html">Alchemy\core\query\Predicate</a>, 
+			<a href="class-Alchemy.core.query.Select.html">Alchemy\core\query\Select</a>, 
+			<a href="class-Alchemy.core.query.Update.html">Alchemy\core\query\Update</a>, 
+			<a href="class-Alchemy.core.schema.Column.html">Alchemy\core\schema\Column</a>, 
+			<a href="class-Alchemy.core.schema.Foreign.html">Alchemy\core\schema\Foreign</a>, 
+			<a href="class-Alchemy.core.schema.ForeignKey.html">Alchemy\core\schema\ForeignKey</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.core.html">core</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Alchemy.core.Element.html#6-188" title="Go to source code">alchemy/core/Element.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__callStatic" id="___callStatic">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___callStatic">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#19-26" title="Go to source code">__callStatic</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$args</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return a new instance of an Element type. If the type is an alias, may return
+an instance of a different subclass.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return a new instance of an Element type. If the type is an alias, may return
+an instance of a different subclass.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="define" id="_define">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_define">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#29-59" title="Go to source code">define</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$base</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$def</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Define a new type for this Element class. Create an object of this type by
+calling Element::Type()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Define a new type for this Element class. Create an object of this type by
+calling Element::Type()</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type new type identifier (defaults to class name)</dd>
+					<dt><var>$base</var></dt>
+					<dd><code>string</code><br>$base type to inherit from (defaults to class name)</dd>
+					<dt><var>$def</var></dt>
+					<dd><code>array</code><br>$def [description]</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="define_alias" id="_define_alias">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_define_alias">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#62-75" title="Go to source code">define_alias</a>( <span>string <var>$type</var></span>, <span>string <var>$base</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Define a new type as an alias to another type, possibly of a different
+class.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Define a new type as an alias to another type, possibly of a different
+class.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type new type identifier</dd>
+					<dt><var>$base</var></dt>
+					<dd><code>string</code><br>$base type to alias</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_definition" id="_get_definition">
+
+		<td class="attributes"><code>
+			 public static
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_definition">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#78-96" title="Go to source code">get_definition</a>( <span>string <var>$type</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the definition array for "Type" or "Class::Type"</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the definition array for "Type" or "Class::Type"</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type type identifier</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>type definition<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__clone" id="___clone">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___clone">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#99-101" title="Go to source code">__clone</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#104-110" title="Go to source code">__construct</a>( <span>mixed <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addTag" id="_addTag">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addTag">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#113-130" title="Go to source code">addTag</a>( <span>string <var>$tag</var></span>, <span>string <var>$value</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Apply a tag to this element. The same tag cannot be applied with two
+different values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Apply a tag to this element. The same tag cannot be applied with two
+different values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value optional value to give tag</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.core.IElement.html#_addTag">Alchemy\core\IElement::addTag()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addTags" id="_addTags">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addTags">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#133-137" title="Go to source code">addTags</a>( <span>mixed <var>$tags</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="copy" id="_copy">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_copy">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#140-142" title="Go to source code">copy</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getID" id="_getID">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getID">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#145-156" title="Go to source code">getID</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the locally-unique element id</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the locally-unique element id</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.core.IElement.html#_getID">Alchemy\core\IElement::getID()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTag" id="_getTag">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTag">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#159-172" title="Go to source code">getTag</a>( <span>string <var>$tag</var></span> )</code>
+
+		<div class="description short">
+			
+<p>If the tag has been applied to this object, returns its value, else false</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>If the tag has been applied to this object, returns its value, else false</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tag</var></dt>
+					<dd><code>string</code><br>$tag tag name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>value or false<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.core.IElement.html#_getTag">Alchemy\core\IElement::getTag()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getType" id="_getType">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getType">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#175-177" title="Go to source code">getType</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listTags" id="_listTags">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listTags">#</a>
+		<code><a href="source-class-Alchemy.core.Element.html#180-187" title="Go to source code">listTags</a>( )</code>
+
+		<div class="description short">
+			
+<p>List of all tags that apply to this element</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>List of all tags that apply to this element</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Alchemy.core.IElement.html#_listTags">Alchemy\core\IElement::listTags()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="id" id="$id">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.Element.html#14" title="Go to source code"><var>$id</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$id" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="type" id="$type">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.Element.html#15" title="Go to source code"><var>$type</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$type" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="tags" id="$tags">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.Element.html#16" title="Go to source code"><var>$tags</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$tags" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

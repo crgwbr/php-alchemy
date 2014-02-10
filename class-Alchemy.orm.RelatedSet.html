@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Alchemy\orm\RelatedSet</title>
+
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
+						</li>
+				<li><a href="namespace-Alchemy.engine.html">engine</a>
+						</li>
+				<li class="active"><a href="namespace-Alchemy.orm.html">orm</a>
+						</li>
+				<li><a href="namespace-Alchemy.tests.html">tests</a>
+						</li>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Alchemy.orm.DataMapper.html">DataMapper</a></li>
+				<li><a href="class-Alchemy.orm.DDL.html">DDL</a></li>
+				<li><a href="class-Alchemy.orm.ManyToOne.html">ManyToOne</a></li>
+				<li><a href="class-Alchemy.orm.OneToMany.html">OneToMany</a></li>
+				<li><a href="class-Alchemy.orm.OneToOne.html">OneToOne</a></li>
+				<li class="active"><a href="class-Alchemy.orm.RelatedSet.html">RelatedSet</a></li>
+				<li><a href="class-Alchemy.orm.Relationship.html">Relationship</a></li>
+				<li><a href="class-Alchemy.orm.Session.html">Session</a></li>
+				<li><a href="class-Alchemy.orm.SessionSelect.html">SessionSelect</a></li>
+				<li><a href="class-Alchemy.orm.WorkQueue.html">WorkQueue</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Alchemy.orm.html" title="Summary of Alchemy\orm"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class RelatedSet</h1>
+
+
+	<div class="description">
+	
+<p>This class is used to manage the set of objects defined by a specific owner
+object and one of it's relationships.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Alchemy.orm.RelatedSet.html#9-228" title="Go to source code">alchemy/orm/RelatedSet.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#18-27" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$owner</var></span>, <span><code><a href="class-Alchemy.orm.Relationship.html">Alchemy\orm\Relationship</a></code> <var>$relationship</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Object constructor.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Object constructor.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$owner</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$owner</dd>
+					<dt><var>$relationship</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.Relationship.html">Alchemy\orm\Relationship</a></code></code><br>$relationship</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#30-37" title="Go to source code">__call</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$args</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Allows SessionSelect querying with a predefined filter for this
+relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Allows SessionSelect querying with a predefined filter for this
+relationship</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="add" id="_add">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_add">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#40-51" title="Go to source code">add</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add an object to this relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add an object to this relationship</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="buildSessionSelect" id="_buildSessionSelect">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Alchemy.orm.SessionSelect.html">Alchemy\orm\SessionSelect</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_buildSessionSelect">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#54-62" title="Go to source code">buildSessionSelect</a>( <span>mixed <var>$session</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Build a select with the where pre-seeded to match objects in this
+relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Build a select with the where pre-seeded to match objects in this
+relationship</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.SessionSelect.html">Alchemy\orm\SessionSelect</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="buildWhereCondition" id="_buildWhereCondition">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Alchemy.core.query.Predicate.html">Alchemy\core\query\Predicate</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_buildWhereCondition">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#65-89" title="Go to source code">buildWhereCondition</a>( )</code>
+
+		<div class="description short">
+			
+<p>Build and return a filter predicate for object that match this
+relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Build and return a filter predicate for object that match this
+relationship</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.core.query.Predicate.html">Alchemy\core\query\Predicate</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getParentChild" id="_getParentChild">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParentChild">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#92-108" title="Go to source code">getParentChild</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return the sorted parent/child object pair for the given object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the sorted parent/child object pair for the given object</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>array(Parent, Child)<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSession" id="_getSession">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSession">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#111-124" title="Go to source code">getSession</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the session associated with the owner of this set. Throws an exception if
+no session exists</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the session associated with the owner of this set. Throws an exception if
+no session exists</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isSingleObject" id="_isSingleObject">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isSingleObject">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#127-134" title="Go to source code">isSingleObject</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return true if this set provably contains no more than a single object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return true if this set provably contains no more than a single object</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="first" id="_first">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_first">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#137-166" title="Go to source code">first</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the first object in this relationship. If the relationship can one
+possibly have one member, try and fetch it from memory rather than running a
+query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the first object in this relationship. If the relationship can one
+possibly have one member, try and fetch it from memory rather than running a
+query.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="set" id="_set">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_set">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#169-180" title="Go to source code">set</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the object for this relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the object for this relationship</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setForeignKeyValue" id="_setForeignKeyValue">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setForeignKeyValue">#</a>
+		<code><a href="source-class-Alchemy.orm.RelatedSet.html#183-227" title="Go to source code">setForeignKeyValue</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Links the given $obj to $this-&gt;owner via setting the foreign key value
+equal to the source value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Links the given $obj to $this-&gt;owner via setting the foreign key value
+equal to the source value.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

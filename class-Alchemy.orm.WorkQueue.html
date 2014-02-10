@@ -7,7 +7,7 @@
 	<title>Class Alchemy\orm\WorkQueue</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3038140800"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,11 +23,16 @@
 			<ul>
 				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
 						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
 				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
 						</li>
 				<li><a href="namespace-Alchemy.engine.html">engine</a>
-						</li>
-				<li><a href="namespace-Alchemy.expression.html">expression</a>
 						</li>
 				<li class="active"><a href="namespace-Alchemy.orm.html">orm</a>
 						</li>
@@ -51,6 +56,11 @@
 			<ul>
 				<li><a href="class-Alchemy.orm.DataMapper.html">DataMapper</a></li>
 				<li><a href="class-Alchemy.orm.DDL.html">DDL</a></li>
+				<li><a href="class-Alchemy.orm.ManyToOne.html">ManyToOne</a></li>
+				<li><a href="class-Alchemy.orm.OneToMany.html">OneToMany</a></li>
+				<li><a href="class-Alchemy.orm.OneToOne.html">OneToOne</a></li>
+				<li><a href="class-Alchemy.orm.RelatedSet.html">RelatedSet</a></li>
+				<li><a href="class-Alchemy.orm.Relationship.html">Relationship</a></li>
 				<li><a href="class-Alchemy.orm.Session.html">Session</a></li>
 				<li><a href="class-Alchemy.orm.SessionSelect.html">SessionSelect</a></li>
 				<li class="active"><a href="class-Alchemy.orm.WorkQueue.html">WorkQueue</a></li>
@@ -119,7 +129,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.WorkQueue.html#14-138" title="Go to source code">alchemy/orm/WorkQueue.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.WorkQueue.html#13-137" title="Go to source code">alchemy/orm/WorkQueue.php</a><br />
 	</div>
 
 
@@ -137,7 +147,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#22-47" title="Go to source code">delete</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#21-46" title="Go to source code">delete</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span> )</code>
 
 		<div class="description short">
 			
@@ -181,7 +191,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_flush">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#50-65" title="Go to source code">flush</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#49-64" title="Go to source code">flush</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
 
 		<div class="description short">
 			
@@ -219,7 +229,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_insert">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#68-91" title="Go to source code">insert</a>( <span>string <var>$cls</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#67-90" title="Go to source code">insert</a>( <span>string <var>$cls</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -265,7 +275,7 @@ properties.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_push">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#94-104" title="Go to source code">push</a>( <span><code><a href="class-Alchemy.util.Monad.html">Alchemy\util\Monad</a></code> <var>$query</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#93-103" title="Go to source code">push</a>( <span><code><a href="class-Alchemy.util.Monad.html">Alchemy\util\Monad</a></code> <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -307,7 +317,7 @@ properties.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-Alchemy.orm.WorkQueue.html#107-137" title="Go to source code">update</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span>, <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.WorkQueue.html#106-136" title="Go to source code">update</a>( <span>string <var>$cls</var></span>, <span>array <var>$pk</var></span>, <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -366,7 +376,7 @@ update, and an array keys</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.WorkQueue.html#19" title="Go to source code"><var>$queue</var></a>
+				<a href="source-class-Alchemy.orm.WorkQueue.html#18" title="Go to source code"><var>$queue</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

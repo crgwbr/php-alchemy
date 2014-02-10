@@ -7,7 +7,7 @@
 	<title>Class Alchemy\tests\Language</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3038140800"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,11 +23,16 @@
 			<ul>
 				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
 						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
 				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
 						</li>
 				<li><a href="namespace-Alchemy.engine.html">engine</a>
-						</li>
-				<li><a href="namespace-Alchemy.expression.html">expression</a>
 						</li>
 				<li><a href="namespace-Alchemy.orm.html">orm</a>
 						</li>
@@ -55,23 +60,23 @@
 				<li><a href="class-Alchemy.tests.ANSISelectTest.html">ANSISelectTest</a></li>
 				<li><a href="class-Alchemy.tests.ANSIUpdateTest.html">ANSIUpdateTest</a></li>
 				<li><a href="class-Alchemy.tests.BaseTest.html">BaseTest</a></li>
-				<li><a href="class-Alchemy.tests.BinaryExpressionTest.html">BinaryExpressionTest</a></li>
-				<li><a href="class-Alchemy.tests.BoolTest.html">BoolTest</a></li>
+				<li><a href="class-Alchemy.tests.ColumnTypeTest.html">ColumnTypeTest</a></li>
+				<li><a href="class-Alchemy.tests.CompilerTest.html">CompilerTest</a></li>
 				<li><a href="class-Alchemy.tests.DataTypeLexerTest.html">DataTypeLexerTest</a></li>
-				<li><a href="class-Alchemy.tests.DecimalTest.html">DecimalTest</a></li>
+				<li><a href="class-Alchemy.tests.ElementTest.html">ElementTest</a></li>
+				<li><a href="class-Alchemy.tests.ExpressionTest.html">ExpressionTest</a></li>
 				<li><a href="class-Alchemy.tests.ForeignTest.html">ForeignTest</a></li>
 				<li><a href="class-Alchemy.tests.InsertTest.html">InsertTest</a></li>
-				<li><a href="class-Alchemy.tests.IntegerTest.html">IntegerTest</a></li>
 				<li class="active"><a href="class-Alchemy.tests.Language.html">Language</a></li>
 				<li><a href="class-Alchemy.tests.MapperTest.html">MapperTest</a></li>
+				<li><a href="class-Alchemy.tests.MockElement.html">MockElement</a></li>
 				<li><a href="class-Alchemy.tests.MockPromisable.html">MockPromisable</a></li>
 				<li><a href="class-Alchemy.tests.PromiseTest.html">PromiseTest</a></li>
+				<li><a href="class-Alchemy.tests.RelationshipTest.html">RelationshipTest</a></li>
 				<li><a href="class-Alchemy.tests.ScalarTest.html">ScalarTest</a></li>
 				<li><a href="class-Alchemy.tests.SelectTest.html">SelectTest</a></li>
 				<li><a href="class-Alchemy.tests.SessionIntegrationTest.html">SessionIntegrationTest</a></li>
 				<li><a href="class-Alchemy.tests.SignalTest.html">SignalTest</a></li>
-				<li><a href="class-Alchemy.tests.StringTest.html">StringTest</a></li>
-				<li><a href="class-Alchemy.tests.TimestampTest.html">TimestampTest</a></li>
 				<li><a href="class-Alchemy.tests.UploadedFile.html">UploadedFile</a></li>
 				<li><a href="class-Alchemy.tests.WaitableTest.html">WaitableTest</a></li>
 			</ul>
@@ -155,7 +160,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.tests.html">tests</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.tests.Language.html#7-20" title="Go to source code">tests/resources/Language.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.tests.Language.html#7-22" title="Go to source code">tests/resources/Language.php</a><br />
 	</div>
 
 
@@ -165,13 +170,23 @@ any data, it merely acts as an interface between Domain objects and the Session
 	<caption>Methods inherited from <a href="class-Alchemy.orm.DataMapper.html#methods">Alchemy\orm\DataMapper</a></caption>
 	<tr>
 		<td><code>
+			<a href="class-Alchemy.orm.DataMapper.html#___construct">__construct()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#___get">__get()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#___set">__set()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_add_relationship">add_relationship()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_from_session">from_session()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_getPrimaryKey">getPrimaryKey()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_getRelatedSet">getRelatedSet()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_getSession">getSession()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_getSessionID">getSessionID()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_isTransient">isTransient()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_list_mappers">list_mappers()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_list_relationships">list_relationships()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_onPrimaryKeyAllocated">onPrimaryKeyAllocated()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_register">register()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_rollback">rollback()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_save">save()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_schema">schema()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_setSession">setSession()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_table">table()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_table_name">table_name()</a>
@@ -227,12 +242,13 @@ used</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.tests.Language.html#9-14" title="Go to source code"><var>$props</var></a>
+				<a href="source-class-Alchemy.tests.Language.html#9-15" title="Go to source code"><var>$props</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
     <span class="php-quote">'LanguageID'</span> =&gt; <span class="php-quote">'Integer(primary_key = true, auto_increment = true)'</span>,
     <span class="php-quote">'ISO2Code'</span> =&gt; <span class="php-quote">'String(2, unique = true)'</span>,
     <span class="php-quote">'ParentLanguageID'</span> =&gt; <span class="php-quote">'Foreign(self.LanguageID, null = true)'</span>,
+    <span class="php-quote">'SpokenLanguageID'</span> =&gt; <span class="php-quote">'Foreign(self.LanguageID, null = true)'</span>,
     <span class="php-quote">'LatestChangeStamp'</span> =&gt; <span class="php-quote">'Timestamp'</span>,
 )</code></td>
 		<td class="description"><div>
@@ -255,11 +271,12 @@ used</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.tests.Language.html#16-19" title="Go to source code"><var>$relationships</var></a>
+				<a href="source-class-Alchemy.tests.Language.html#17-21" title="Go to source code"><var>$relationships</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'Files'</span> =&gt; <span class="php-quote">'OneToMany(UploadedFile, backref = Language)'</span>,
-    <span class="php-quote">'Parent'</span> =&gt; <span class="php-quote">'ManyToOne(Language, backref = Children)'</span>,
+    <span class="php-quote">'Files'</span> =&gt; <span class="php-quote">'OneToMany(Alchemy\\tests\\UploadedFile, backref = &quot;Language&quot;)'</span>,
+    <span class="php-quote">'Parent'</span> =&gt; <span class="php-quote">'ManyToOne(Alchemy\\tests\\Language, backref = &quot;Children&quot;, key = self.ParentLanguageID)'</span>,
+    <span class="php-quote">'SpokenLanguage'</span> =&gt; <span class="php-quote">'OneToOne(Alchemy\\tests\\Language, backref = &quot;WrittenLanguage&quot;, key = self.SpokenLanguageID)'</span>,
 )</code></td>
 		<td class="description"><div>
 			<a href="#$relationships" class="anchor">#</a>

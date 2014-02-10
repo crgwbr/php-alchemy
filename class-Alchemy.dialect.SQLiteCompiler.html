@@ -7,7 +7,7 @@
 	<title>Class Alchemy\dialect\SQLiteCompiler</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?3038140800"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -23,11 +23,16 @@
 			<ul>
 				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
 						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-Alchemy.dialect.html">dialect</a>
 						</li>
 				<li><a href="namespace-Alchemy.engine.html">engine</a>
-						</li>
-				<li><a href="namespace-Alchemy.expression.html">expression</a>
 						</li>
 				<li><a href="namespace-Alchemy.orm.html">orm</a>
 						</li>
@@ -55,10 +60,6 @@
 				<li class="active"><a href="class-Alchemy.dialect.SQLiteCompiler.html">SQLiteCompiler</a></li>
 			</ul>
 
-			<h3>Interfaces</h3>
-			<ul>
-				<li><a href="class-Alchemy.dialect.ICompilable.html">ICompilable</a></li>
-			</ul>
 
 
 
@@ -138,7 +139,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.dialect.html">dialect</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.dialect.SQLiteCompiler.html#6-64" title="Go to source code">alchemy/dialect/SQLiteCompiler.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.dialect.SQLiteCompiler.html#5-45" title="Go to source code">alchemy/dialect/SQLiteCompiler.php</a><br />
 	</div>
 
 
@@ -156,7 +157,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Create">#</a>
-		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#8-29" title="Go to source code">Create</a>( <span><code><a href="class-Alchemy.expression.Create.html">Alchemy\expression\Create</a></code> <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#14-35" title="Go to source code">Create</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -176,99 +177,6 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="Create_Index" id="_Create_Index">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Index">#</a>
-		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#32-39" title="Go to source code">Create_Index</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Index">Alchemy\dialect\ANSICompiler::Create_Index()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_Integer" id="_Create_Integer">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_Integer">#</a>
-		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#42-44" title="Go to source code">Create_Integer</a>( <span><code><a href="class-Alchemy.expression.Integer.html">Alchemy\expression\Integer</a></code> <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Integer">Alchemy\dialect\ANSICompiler::Create_Integer()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="Create_UniqueKey" id="_Create_UniqueKey">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_Create_UniqueKey">#</a>
-		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#47-54" title="Go to source code">Create_UniqueKey</a>( <span>mixed <var>$obj</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Alchemy.dialect.ANSICompiler.html#_Create_UniqueKey">Alchemy\dialect\ANSICompiler::Create_UniqueKey()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="Update" id="_Update">
 
 		<td class="attributes"><code>
@@ -280,7 +188,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_Update">#</a>
-		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#57-63" title="Go to source code">Update</a>( <span><code><a href="class-Alchemy.expression.Update.html">Alchemy\expression\Update</a></code> <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.dialect.SQLiteCompiler.html#38-44" title="Go to source code">Update</a>( <span>mixed <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -306,44 +214,28 @@
 	<caption>Methods inherited from <a href="class-Alchemy.dialect.ANSICompiler.html#methods">Alchemy\dialect\ANSICompiler</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Alias_Column">Alias_Column()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_Alias_ColumnRef">Alias_ColumnRef()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Alias_Scalar">Alias_Scalar()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Alias_Table">Alias_Table()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_BinaryExpression">BinaryExpression()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_Alias_TableRef">Alias_TableRef()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Column">Column()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_CompoundExpression">CompoundExpression()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_BigInt">Create_BigInt()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Binary">Create_Binary()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Blob">Create_Blob()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Bool">Create_Bool()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Char">Create_Char()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_ColumnRef">ColumnRef()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Column">Create_Column()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Date">Create_Date()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Datetime">Create_Datetime()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Decimal">Create_Decimal()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Float">Create_Float()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Element">Create_Element()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_ForeignKey">Create_ForeignKey()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Key">Create_Key()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_MediumInt">Create_MediumInt()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_PrimaryKey">Create_PrimaryKey()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_SmallInt">Create_SmallInt()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_String">Create_String()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Time">Create_Time()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Timestamp">Create_Timestamp()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_TinyInt">Create_TinyInt()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_Create_Index">Create_Index()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Delete">Delete()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Drop">Drop()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_InclusiveExpression">InclusiveExpression()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_Expression">Expression()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Insert">Insert()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Join">Join()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Operator">Operator()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Query_Join">Query_Join()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Query_Limit">Query_Limit()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Query_Where">Query_Where()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Scalar">Scalar()</a>, 
 			<a href="class-Alchemy.dialect.ANSICompiler.html#_Select">Select()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_Table">Table()</a>, 
-			<a href="class-Alchemy.dialect.ANSICompiler.html#_alias">alias()</a>
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_TableRef">TableRef()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_alias">alias()</a>, 
+			<a href="class-Alchemy.dialect.ANSICompiler.html#_get_schema_format">get_schema_format()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -352,8 +244,8 @@
 	<tr>
 		<td><code>
 			<a href="class-Alchemy.dialect.Compiler.html#___construct">__construct()</a>, 
-			<a href="class-Alchemy.dialect.Compiler.html#_aliasID">aliasID()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_compile">compile()</a>, 
+			<a href="class-Alchemy.dialect.Compiler.html#_format">format()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_getConfig">getConfig()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_getFunction">getFunction()</a>, 
 			<a href="class-Alchemy.dialect.Compiler.html#_map">map()</a>, 
@@ -373,7 +265,53 @@
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="schema_formats" id="$schema_formats">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
 
+		<td class="name">
+				<a href="source-class-Alchemy.dialect.SQLiteCompiler.html#7-11" title="Go to source code"><var>$schema_formats</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Integer'</span>    =&gt; <span class="php-quote">&quot;INTEGER&quot;</span>,
+    <span class="php-quote">'Index'</span>      =&gt; <span class="php-quote">&quot;CREATE INDEX %s ON %s (%3</span><span class="php-var">$</span><span class="php-quote">//, /)&quot;</span>,
+    <span class="php-quote">'UniqueKey'</span>  =&gt; <span class="php-quote">&quot;CREATE UNIQUE INDEX %s ON %s (%3</span><span class="php-var">$</span><span class="php-quote">//, /)&quot;</span>,
+    <span class="php-quote">'PrimaryKey'</span> =&gt; <span class="php-quote">&quot;PRIMARY KEY (%3</span><span class="php-var">$</span><span class="php-quote">//, /)&quot;</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$schema_formats" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.dialect.ANSICompiler.html#properties">Alchemy\dialect\ANSICompiler</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.dialect.ANSICompiler.html#$expr_formats"><var>$expr_formats</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.dialect.Compiler.html#properties">Alchemy\dialect\Compiler</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.dialect.Compiler.html#$default_tag"><var>$default_tag</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

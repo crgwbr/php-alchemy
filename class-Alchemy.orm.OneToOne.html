@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Alchemy\orm\OneToOne</title>
+
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
+						</li>
+				<li><a href="namespace-Alchemy.engine.html">engine</a>
+						</li>
+				<li class="active"><a href="namespace-Alchemy.orm.html">orm</a>
+						</li>
+				<li><a href="namespace-Alchemy.tests.html">tests</a>
+						</li>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Alchemy.orm.DataMapper.html">DataMapper</a></li>
+				<li><a href="class-Alchemy.orm.DDL.html">DDL</a></li>
+				<li><a href="class-Alchemy.orm.ManyToOne.html">ManyToOne</a></li>
+				<li><a href="class-Alchemy.orm.OneToMany.html">OneToMany</a></li>
+				<li class="active"><a href="class-Alchemy.orm.OneToOne.html">OneToOne</a></li>
+				<li><a href="class-Alchemy.orm.RelatedSet.html">RelatedSet</a></li>
+				<li><a href="class-Alchemy.orm.Relationship.html">Relationship</a></li>
+				<li><a href="class-Alchemy.orm.Session.html">Session</a></li>
+				<li><a href="class-Alchemy.orm.SessionSelect.html">SessionSelect</a></li>
+				<li><a href="class-Alchemy.orm.WorkQueue.html">WorkQueue</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Alchemy.orm.html" title="Summary of Alchemy\orm"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class OneToOne</h1>
+
+
+	<div class="description">
+	
+<p>Base class for defining the relationships between models Subclass this to
+create separate relationship types like OneToOne, OneToMany, etc.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Alchemy.orm.Relationship.html"><span>Alchemy\orm\Relationship</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Alchemy\orm\OneToOne</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Alchemy.orm.OneToOne.html#6-30" title="Go to source code">alchemy/orm/OneToOne.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Alchemy.orm.OneToOne.html#10-24" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span>string <var>$origin</var></span>, <span>array <var>$args</var></span>, <span>boolean <var>$createBackref</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Object constructor for an one-to-one relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Object constructor for an one-to-one relationship</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name Relationship Name</dd>
+					<dt><var>$origin</var></dt>
+					<dd><code>string</code><br>$origin Originating Class</dd>
+					<dt><var>$args</var></dt>
+					<dd><code>array</code><br>$args array([0] =&gt; "DestinationClass", [backref] =&gt; "BackrefName")</dd>
+					<dt><var>$createBackref</var></dt>
+					<dd><code>boolean</code><br>$createBackref Internal Use Only</dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.orm.Relationship.html#___construct">Alchemy\orm\Relationship::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasSingleObjectConstraint" id="_hasSingleObjectConstraint">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasSingleObjectConstraint">#</a>
+		<code><a href="source-class-Alchemy.orm.OneToOne.html#27-29" title="Go to source code">hasSingleObjectConstraint</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return true if this relationship can structurally only ever return a single
+object.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return true if this relationship can structurally only ever return a single
+object.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.orm.Relationship.html#methods">Alchemy\orm\Relationship</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.orm.Relationship.html#_createBackref">createBackref()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_findForeignKey">findForeignKey()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_findForeignKeyImpl">findForeignKeyImpl()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_getBackref">getBackref()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_getColumnPairings">getColumnPairings()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_getDestination">getDestination()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_getForeignKey">getForeignKey()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_getName">getName()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_getOrigin">getOrigin()</a>, 
+			<a href="class-Alchemy.orm.Relationship.html#_isParent">isParent()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="inverseType" id="$inverseType">
+		<td class="attributes"><code>
+			protected static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.OneToOne.html#7" title="Go to source code"><var>$inverseType</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'OneToOne'</span></code></td>
+		<td class="description"><div>
+			<a href="#$inverseType" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.orm.Relationship.html#properties">Alchemy\orm\Relationship</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.orm.Relationship.html#$backref"><var>$backref</var></a>, 
+			<a href="class-Alchemy.orm.Relationship.html#$destination"><var>$destination</var></a>, 
+			<a href="class-Alchemy.orm.Relationship.html#$foreignKey"><var>$foreignKey</var></a>, 
+			<a href="class-Alchemy.orm.Relationship.html#$isParent"><var>$isParent</var></a>, 
+			<a href="class-Alchemy.orm.Relationship.html#$name"><var>$name</var></a>, 
+			<a href="class-Alchemy.orm.Relationship.html#$origin"><var>$origin</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
