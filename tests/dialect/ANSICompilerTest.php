@@ -5,9 +5,10 @@ namespace Alchemy\tests;
 use Alchemy\dialect\ANSICompiler;
 use Alchemy\core\schema\Column;
 use Alchemy\core\schema\Table;
-use Alchemy\core\query;
+use Alchemy\core\query\Join;
 use Alchemy\core\query\Predicate;
 use Alchemy\core\query\Scalar;
+use Alchemy\core\query\Query;
 
 
 class ANSICompilerTest extends BaseTest {
@@ -85,7 +86,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testCreate() {
         $ansi = new ANSICompiler();
-        $expr = new query\Create(
+        $expr = Query::Create(
             new Table('Tbl', array(
                 'Col' => Column::Integer(array(11, 'null' => false, 'auto_increment' => false)),
                 'Key' => Column::Foreign(array('self.Col', 'null' => true)) )));
@@ -123,7 +124,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testDrop() {
         $ansi = new ANSICompiler();
-        $expr = new query\Drop(new Table('Tbl', array()));
+        $expr = Query::Drop(new Table('Tbl', array()));
 
         $this->assertEquals("DROP TABLE IF EXISTS Tbl", $ansi->compile($expr));
     }
@@ -154,7 +155,7 @@ class ANSICompilerTest extends BaseTest {
         $table = $table->getRef();
 
         $expr = Predicate::lt($table->Col, $table->Col);
-        $join = new query\Join(query\Join::LEFT, query\Join::INNER, $table, $expr);
+        $join = new Join(Join::LEFT, Join::INNER, $table, $expr);
 
         $this->assertEquals("LEFT INNER JOIN Tbl ON Col < Col", $ansi->compile($join));
     }

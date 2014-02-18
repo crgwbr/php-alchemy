@@ -1,8 +1,7 @@
 <?php
 
 namespace Alchemy\orm;
-use Alchemy\core\query\Create;
-use Alchemy\core\query\Drop;
+use Alchemy\core\query\Query;
 
 
 /**
@@ -27,7 +26,7 @@ class DDL {
      * @param string $cls Class Name of DataMapper child
      */
     public function create($cls) {
-        $create = new Create($cls::schema());
+        $create = Query::Create($cls::schema());
         $this->session->engine()->query($create);
     }
 
@@ -60,7 +59,7 @@ class DDL {
      * DROP the table for the given DataMapper class
      */
     public function drop($cls) {
-        $drop = new Drop($cls::schema());
+        $drop = Query::Drop($cls::schema());
         $this->session->engine()->query($drop);
     }
 

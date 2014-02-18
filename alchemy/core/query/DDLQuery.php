@@ -5,23 +5,20 @@ use Alchemy\core\Element;
 
 
 /**
- * Abstract class for representing a DDL transformation query
+ * Represents a DDL transformation query
  */
-abstract class DDLQuery extends Element implements IQuery {
-    protected $table;
+class DDLQuery extends Element implements IQuery {
 
+    protected $table;
 
     /**
      * Object constructor
      *
      * @param Table $table
      */
-    public function __construct($table) {
+    public function __construct($type, $table) {
+        parent::__construct($type);
         $this->table = $table;
-
-        $parts = explode('\\', get_called_class());
-        $cls = array_pop($parts);
-        $this->addTag("sql.compile", $cls);
     }
 
 

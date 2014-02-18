@@ -40,12 +40,8 @@ require_once "core/query/Predicate.php";
 require_once "core/query/Query.php";
 require_once "core/query/Insert.php";
 require_once "core/query/Join.php";
-require_once "core/query/query-elements.php";
-
-// DDL Queries
 require_once "core/query/DDLQuery.php";
-require_once "core/query/Create.php";
-require_once "core/query/Drop.php";
+require_once "core/query/query-elements.php";
 
 // Schema
 require_once "core/schema/Table.php";

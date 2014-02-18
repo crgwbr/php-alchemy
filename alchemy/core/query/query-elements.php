@@ -16,6 +16,15 @@ Insert::define(null, 'Query::Query');
 Query::define_alias('Insert', 'Insert::Insert');
 
 
+// DDL queries
+
+DDLQuery::define('Create', 'Query::Query');
+DDLQuery::define('Drop',   'Query::Query');
+
+Query::define_alias('Create', 'DDLQuery::Create');
+Query::define_alias('Drop',   'DDLQuery::Drop');
+
+
 // expressions
 
 Expression::define(null, null, array(
