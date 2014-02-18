@@ -13,5 +13,5 @@ interface IQueryFragment {
      *
      * @return array(Scalar, Scalar, ...)
      */
-    public function getParameters();
+    public function parameters();
 }

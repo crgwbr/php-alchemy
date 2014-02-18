@@ -35,15 +35,12 @@ require_once "core/query/TableRef.php";
 require_once "core/query/Scalar.php";
 require_once "core/query/Expression.php";
 require_once "core/query/Predicate.php";
-require_once "core/query/query-elements.php";
 
 // Queries
 require_once "core/query/Query.php";
-require_once "core/query/Select.php";
 require_once "core/query/Insert.php";
-require_once "core/query/Update.php";
-require_once "core/query/Delete.php";
 require_once "core/query/Join.php";
+require_once "core/query/query-elements.php";
 
 // DDL Queries
 require_once "core/query/DDLQuery.php";

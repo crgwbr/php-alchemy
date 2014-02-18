@@ -17,7 +17,7 @@ class ExpressionTest extends BaseTest {
                 new Scalar(9),
                 new Scalar(3)) );
 
-        $scalars = $expr->getParameters();
+        $scalars = $expr->parameters();
         $this->assertEquals(3, count($scalars));
         $this->assertEquals(5, $scalars[0]->getValue());
         $this->assertEquals(3, $scalars[2]->getValue());

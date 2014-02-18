@@ -38,7 +38,7 @@ abstract class DDLQuery extends Element implements IQuery {
      *
      * @return array array(Scalar, Scalar, ...)
      */
-    public function getParameters() {
+    public function parameters() {
         return array();
     }
 }

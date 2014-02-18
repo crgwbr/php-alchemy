@@ -14,15 +14,6 @@ abstract class TableElement extends Element {
     protected $name;
 
 
-    public static function __callStatic($name, $args) {
-        $def = self::get_definition($name);
-        array_unshift($args, $def['tags']['element.type']);
-
-        $cls = new \ReflectionClass($def['tags']['element.class']);
-        return $cls->newInstanceArgs($args);
-    }
-
-
     /**
      * Convert an argument's structure to be similar to the default
      * ie. (5, array(array())) -> array(array(5))

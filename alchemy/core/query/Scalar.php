@@ -19,13 +19,16 @@ class Scalar extends Element implements IQueryValue {
      * @param mixed $tag   Optional. Tags will be inferred if not provided
      */
     public function __construct($value, $tag = null) {
+        if (is_object($value)) {
+            throw new \Exception("Cannot build Scalar from object " . get_class($value));
+        }
         $this->value = $value;
         $this->addTag("expr.value", $tag ?: self::infer_type($value));
         $this->addTag("sql.compile", "Scalar");
     }
 
 
-    public function getParameters() {
+    public function parameters() {
         return array($this);
     }
 

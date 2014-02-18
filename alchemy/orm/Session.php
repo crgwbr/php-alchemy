@@ -3,7 +3,6 @@
 namespace Alchemy\orm;
 use Alchemy\core\schema\Table;
 use Alchemy\core\schema\Column;
-use Alchemy\core\query\Select;
 use Alchemy\core\query\Insert;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;

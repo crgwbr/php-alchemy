@@ -73,6 +73,10 @@ class ANSICompiler extends Compiler {
     private $counters = array();
     private $aliases = array();
 
+    protected $defaults = array(
+        'alias_columns' => true,
+        'alias_tables'  => false);
+
 
     public static function get_schema_format($type) {
         if (array_key_exists($type, static::$schema_formats)) {
@@ -136,10 +140,6 @@ class ANSICompiler extends Compiler {
             $column = "{$this->alias($obj->table())}.$column";
         }
 
-        if ($this->getConfig('alias_columns')) {
-            $column = "$column as {$this->alias($obj)}";
-        }
-
         return $column;
     }
 
@@ -201,11 +201,11 @@ class ANSICompiler extends Compiler {
 
 
     public function Delete($obj) {
-        $alias = $this->getConfig('alias_tables') ? $this->alias($obj->from()) : '';
+        $alias = $this->getConfig('alias_tables') ? $this->alias($obj->table()) : '';
 
         $parts = array(
             "DELETE", $alias,
-            "FROM {$this->compile($obj->from())}",
+            "FROM {$this->compile($obj->table())}",
             $this->Query_Join($obj),
             $this->Query_Where($obj),
             $this->Query_Limit($obj));
@@ -220,17 +220,14 @@ class ANSICompiler extends Compiler {
 
 
     public function Insert($obj) {
-        $columns = $this->compile($obj->columns());
-        $rows    = $this->compile($obj->rows());
+        $columns = implode(", ", array_keys($obj->columns()));
 
-        $rows    = array_map(function($row) {
-            return "(" . implode(", ", $row) . ")";
-        }, $rows);
+        $rows = $this->compile($obj->rows());
+        $data = $rows
+            ? $this->format("VALUES %/(%!!, !)/, /", $rows)
+            : $this->Select($obj);
 
-        $columns = implode(", ", $columns);
-        $rows    = implode(", ", $rows);
-
-        return "INSERT INTO {$obj->into()->name()} ({$columns}) VALUES {$rows}";
+        return "INSERT INTO {$obj->table()->name()} ({$columns}) {$data}";
     }
 
 
@@ -243,9 +240,15 @@ class ANSICompiler extends Compiler {
 
     public function Expression($obj) {
         $format = static::$expr_formats[$obj->getType()];
-        $elements = $this->compile($obj->getElements());
+        $elements = $this->compile($obj->elements());
 
         return $this->format($format, $elements);
+    }
+
+
+    public function Query($obj) {
+        $fn = $this->getFunction($obj, 'element.type');
+        return call_user_func($fn, $obj);
     }
 
 
@@ -255,15 +258,20 @@ class ANSICompiler extends Compiler {
 
 
     public function Select($obj) {
-        $columns = $this->compile($obj->columns(),
-            array('alias_columns' => true));
+        $columns = array();
+        foreach($obj->columns() as $name => $column) {
+            $alias = $this->getConfig('alias_columns')
+                ? " as {$name}" : "";
+            $columns[] = $this->compile($column) . $alias;
+        }
+
         $columns = implode(", ", $columns);
 
-        $from = $this->compile($obj->from());
+        $table = $this->compile($obj->table());
 
         $parts = array(
             "SELECT {$columns}",
-            $from ? "FROM {$from}" : "",
+            $table ? "FROM {$table}" : "",
             $this->Query_Join($obj),
             $this->Query_Where($obj),
             $this->Query_Limit($obj));
@@ -282,17 +290,20 @@ class ANSICompiler extends Compiler {
 
 
     public function Update($obj) {
-        $fn = function($value) {
-            list($column, $scalar) = $value;
-            return "{$column} = {$scalar}";
-        };
-
         $table = $this->compile($obj->table());
-        $sets  = $this->compile($obj->sets());
-        $sets  = implode(", ", array_map($fn, $sets));
+
+        $columns = array();
+        foreach($obj->columns() as $name => $column) {
+            if ($this->getConfig('alias_tables')) {
+                $name = "{$this->alias($obj->table())}.{$name}";
+            }
+            $columns[] = "{$name} = {$this->compile($column)}";
+        }
+
+        $columns = implode(", ", $columns);
 
         $parts = array(
-            "UPDATE {$table} SET {$sets}",
+            "UPDATE {$table} SET {$columns}",
             $this->Query_Join($obj),
             $this->Query_Where($obj),
             $this->Query_Limit($obj));
@@ -307,7 +318,8 @@ class ANSICompiler extends Compiler {
 
 
     public function Query_Limit($obj) {
-        list($offset, $limit) = $this->compile($obj->limit());
+        $offset = $this->compile($obj->offset());
+        $limit  = $this->compile($obj->limit());
 
         if (!$limit && !$offset) {
             return "";

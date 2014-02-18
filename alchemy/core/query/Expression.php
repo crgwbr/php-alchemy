@@ -41,7 +41,7 @@ class Expression extends Element {
     }
 
 
-    public function getElements() {
+    public function elements() {
         return $this->elements;
     }
 
@@ -51,12 +51,12 @@ class Expression extends Element {
      *
      * @return array array(Scalar, Scalar, ...)
      */
-    public function getParameters() {
+    public function parameters() {
         $params = array();
 
         foreach ($this->elements as $element) {
-            if (method_exists($element, 'getParameters')) {
-                $params = array_merge($params, $element->getParameters());
+            if (method_exists($element, 'parameters')) {
+                $params = array_merge($params, $element->parameters());
             }
         }
 

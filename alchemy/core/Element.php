@@ -22,7 +22,15 @@ class Element implements IElement {
      */
     public static function __callStatic($name, $args) {
         $def = self::get_definition($name);
-        return new $def['tags']['element.class']($def['tags']['element.type']);
+
+        if ($args) {
+            array_unshift($args, $def['tags']['element.type']);
+
+            $cls = new \ReflectionClass($def['tags']['element.class']);
+            return $cls->newInstanceArgs($args);
+        } else {
+            return new $def['tags']['element.class']($def['tags']['element.type']);
+        }
     }
 
 

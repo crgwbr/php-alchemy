@@ -105,7 +105,7 @@ class Engine implements IEngine {
     public function query(IQuery $query) {
         $sql = $this->compiler->compile($query);
         $sql = is_array($sql) ? $sql : array($sql);
-        $params = $query->getParameters();
+        $params = $query->parameters();
 
         // Because of the limitations of some RDBMS' (*cough*SQLite)
         // some operations can not be performed in a single query.

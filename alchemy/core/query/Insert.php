@@ -8,22 +8,7 @@ use Exception;
  * Represent an INSERT statement
  */
 class Insert extends Query {
-    protected $into;
     protected $rows = array();
-
-
-    /**
-     * Set the table to insert into
-     *
-     * @param Table $table
-     */
-    public function into($table = null) {
-        if (is_null($table)) {
-            return $this->into;
-        }
-
-        $this->into = $table;
-    }
 
 
     /**
@@ -44,6 +29,7 @@ class Insert extends Query {
         }
 
         $this->rows[] = $row;
+        return $this;
     }
 
 
@@ -53,7 +39,19 @@ class Insert extends Query {
      * @return array
      */
     public function rows() {
-        return $this->rows;
+        $default = array();
+        foreach (array_values($this->columns) as $index => $column) {
+            if ($column instanceof Scalar) {
+                $default[$index] = $column;
+            }
+        }
+
+        $rows = array();
+        foreach ($this->rows as $row) {
+            $rows[] = $row + $default;
+        }
+
+        return $rows;
     }
 
 
@@ -62,8 +60,8 @@ class Insert extends Query {
      *
      * @return array array(Scalar, Scalar, ...)
      */
-    public function getParameters() {
-        $params = parent::getParameters();
+    public function parameters() {
+        $params = parent::parameters();
         foreach ($this->rows as $row) {
             foreach ($row as $value) {
                 $params[] = $value;

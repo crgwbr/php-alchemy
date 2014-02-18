@@ -2,7 +2,7 @@
 
 namespace Alchemy\tests;
 use Alchemy\core\schema\Table;
-use Alchemy\core\query\Update;
+use Alchemy\core\query\Query;
 use Alchemy\dialect\ANSICompiler;
 
 
@@ -16,13 +16,14 @@ class ANSIUpdateTest extends BaseTest {
 
         $users = $users->getRef();
 
-        $query = Update::init()->table($users)
-                               ->set($users->UserName, "user1")
-                               ->set($users->Email, "user1@example.com")
+        $query = Query::Update($users)
+                               ->columns(array(
+                                    'UserName' => "user1",
+                                    'Email'    => "user1@example.com"))
                                ->where($users->Email->equal("user2@example.com"));
 
         $ansi = new ANSICompiler();
-        $vern = $ansi->compile($query->unwrap(), array('alias_tables' => true));
+        $vern = $ansi->compile($query, array('alias_tables' => true));
 
         $this->assertExpectedString('ANSIUpdateTest-1.sql', $vern);
     }

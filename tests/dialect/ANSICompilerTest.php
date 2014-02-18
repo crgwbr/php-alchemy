@@ -72,8 +72,6 @@ class ANSICompilerTest extends BaseTest {
 
         $this->assertEquals("tb1.Col",
             $ansi->compile($table->Col, array('alias_tables' => true)));
-        $this->assertEquals("Col as Col",
-            $ansi->compile($table->Col, array('alias_columns' => true)));
     }
 
 

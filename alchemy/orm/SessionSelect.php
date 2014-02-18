@@ -1,7 +1,7 @@
 <?php
 
 namespace Alchemy\orm;
-use Alchemy\core\query\Select;
+use Alchemy\core\query\Query;
 use Alchemy\core\schema\Table;
 use Alchemy\util\Monad;
 use Exception;
@@ -28,9 +28,8 @@ class SessionSelect extends Monad {
 
         $table = $mapper::table();
 
-        $this->value = new Select();
+        $this->value = Query::Select($table);
         $this->value->columns($table->columns());
-        $this->value->from($table);
     }
 
 

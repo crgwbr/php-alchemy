@@ -3,13 +3,11 @@
 ## Milestone 0.1
 
 Expression:
-    - INSERT...SELECT statements
     - String Collations
-    - Improve Expression building interface to be more understandable
 
 ORM:
     - Select query filtering
-    - ForeignKeys and object relationships
+    - Object relationships
         - Include options for eager / lazy relationship loading
             - Eager: join on initial object select
             - Lazy: Secondary select on reference
@@ -18,6 +16,8 @@ ORM:
             - ManyToOne
             - OnetoOne
             - ManyToMany
+        - Relationship expressions
+        - Basis for application-defined relationships and special columns
 
 
 ## Milestone 0.2

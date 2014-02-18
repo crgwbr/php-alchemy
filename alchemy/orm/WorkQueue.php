@@ -2,8 +2,7 @@
 
 namespace Alchemy\orm;
 use Alchemy\core\query\Insert;
-use Alchemy\core\query\Update;
-use Alchemy\core\query\Delete;
+use Alchemy\core\query\Query;
 use Alchemy\engine\IEngine;
 use Alchemy\engine\ResultSet;
 use Alchemy\util\Monad;
@@ -27,20 +26,8 @@ class WorkQueue {
      */
     public function delete($cls, $pk) {
         $table = $cls::table();
-
-        // Build UPDATE SETs
-        $query = Delete::init()->from($table);
-
-        // Filter the update by building a complex CompoundExpression
-        $where = null;
-        foreach ($pk as $name => $value) {
-            if (!$where) {
-                $where = $table->$name->equal($value);
-            } else {
-                $where = $where->and($table->$name->equal($value));
-            }
-        }
-        $query = $query->where($where);
+        $query = Query::Delete($table)
+            ->where($table->equal($pk));
 
         return $this->push($query);
     }
@@ -82,9 +69,9 @@ class WorkQueue {
             $scalars[] = $table->{$name}->schema()->encode($value);
         }
 
-        $query = Insert::init()->columns($columns)
-                               ->into($table)
-                               ->row($scalars);
+        $query = Query::Insert($table)
+            ->columns($columns)
+            ->row($scalars);
 
         return $this->push($query);
     }
@@ -93,12 +80,16 @@ class WorkQueue {
     /**
      * Push a query onto the end of the queue
      *
-     * @param Monad Query to push
-     * @return Promise resolved when query is actual run
+     * @param  Query|Monad Query to push
+     * @return Promise     resolved when query is actual run
      */
-    protected function push(Monad $query) {
+    protected function push($query) {
+        if ($query instanceof Monad) {
+            $query = $query->unwrap();
+        }
+
         $promise = new Promise(null, 'Alchemy\engine\ResultSet');
-        $this->queue[] = array($query->unwrap(), $promise);
+        $this->queue[] = array($query, $promise);
         return $promise;
     }
 
@@ -114,23 +105,9 @@ class WorkQueue {
      */
     public function update($cls, $pk, $data) {
         $table = $cls::table();
-
-        // Build UPDATE SETs
-        $query = Update::init()->table($table);
-        foreach ($data as $name => $value) {
-            $query = $query->set($table->{$name}, $table->{$name}->schema()->encode($value));
-        }
-
-        // Filter the update by building a complex CompoundExpression
-        $where = null;
-        foreach ($pk as $name => $value) {
-            if (!$where) {
-                $where = $table->$name->equal($value);
-            } else {
-                $where = $where->and($table->$name->equal($value));
-            }
-        }
-        $query = $query->where($where);
+        $query = Query::Update($table)
+            ->where($table->equal($pk))
+            ->columns($data);
 
         return $this->push($query);
     }

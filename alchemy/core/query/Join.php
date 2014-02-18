@@ -59,8 +59,8 @@ class Join extends Element implements IQueryFragment {
      *
      * @return array(Scalar, Scalar, ...)
      */
-    public function getParameters() {
-        return $this->on->getParameters();
+    public function parameters() {
+        return $this->on->parameters();
     }
 
 

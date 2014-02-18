@@ -5,11 +5,14 @@ namespace Alchemy\dialect;
 class Compiler {
 
     protected static $default_tag = 'sql.compile';
+
     private $config = array();
+
+    protected $defaults = array();
 
 
     public function __construct($config = array()) {
-        $this->pushConfig($config);
+        $this->pushConfig($config + $this->defaults);
     }
 
 

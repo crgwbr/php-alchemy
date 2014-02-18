@@ -2,6 +2,19 @@
 
 namespace Alchemy\core\query;
 
+// queries
+
+Query::define(null, null, array(
+    'tags' => array(
+        'sql.compile' => 'Query') ));
+
+Query::define('Select');
+Query::define('Update');
+Query::define('Delete');
+
+Insert::define(null, 'Query::Query');
+Query::define_alias('Insert', 'Insert::Insert');
+
 
 // expressions
 

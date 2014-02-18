@@ -6,48 +6,44 @@ use Alchemy\util\Monad;
 
 
 /**
- * Abstract base class for representing a query
+ * Represents a generalized SQL query
  */
-abstract class Query extends Element implements IQuery {
+class Query extends Element implements IQuery {
     protected $columns = array();
     protected $joins = array();
     protected $where;
     protected $limit;
     protected $offset;
+    protected $table;
 
 
-    /**
-     * Returns an instance of the called query type wrapped
-     * in an Monad
-     *
-     * @return Monad(Query)
-     */
-    public static function init() {
-        $cls = get_called_class();
-        return new Monad(new $cls());
+    public function __construct($type, TableRef $table) {
+        parent::__construct($type);
+        $this->table = $table;
     }
 
 
-    public function __construct() {
-        $parts = explode('\\', get_called_class());
-        $cls = array_pop($parts);
-        $this->addTag("sql.compile", $cls);
-    }
+    public function __set($name, $value) {
+        if (!($value instanceof Element) || !$value->getTag('expr.value')) {
+            $schema = $this->table->schema();
+            $value = $schema->isColumn($name)
+                ? $schema->getColumn($name)->encode($value)
+                : new Scalar($value);
+        }
 
-
-    /**
-     * Add a column to the query
-     *
-     * @param IQueryValue $column
-     */
-    public function column($column) {
-       $this->columns[] = $column;
+        $this->columns[$name] = $value;
     }
 
 
     /**
      * Add multiple columns to the query by providing
      * multiple arguments. See {@link Query::column()}
+     * Pass, ColumnRefs, ["Name", Value] pairs, or a
+     * single array of either as necessary.
+     *
+     * @param  array|ColumnRef
+     *         ...
+     * @return array           current column list if no arguments
      */
     public function columns() {
         if (func_num_args() == 0) {
@@ -55,11 +51,19 @@ abstract class Query extends Element implements IQuery {
         }
 
         $columns = func_get_args();
-        $columns = is_array($columns[0]) ? $columns[0] : $columns;
+        $columns = (count($columns) == 1 && is_array($columns[0])) ? $columns[0] : $columns;
 
-        foreach ($columns as $column) {
-            $this->column($column);
+        foreach ($columns as $name => $column) {
+            if (is_integer($name) && is_array($column)) {
+                $name   = $column[0];
+                $column = $column[1];
+            }
+
+            $name = is_string($name) ? $name : $column->name();
+            $this->__set($name, $column);
         }
+
+        return $this;
     }
 
 
@@ -68,8 +72,8 @@ abstract class Query extends Element implements IQuery {
      *
      * @return array array(Scalar, Scalar, ...)
      */
-    public function getParameters() {
-        $params = $this->where ? $this->where->getParameters() : array();
+    public function parameters() {
+        $params = $this->where ? $this->where->parameters() : array();
 
         if ($this->limit) {
             $params[] = $this->limit;
@@ -85,8 +89,8 @@ abstract class Query extends Element implements IQuery {
             }
         }
 
-        foreach ($this->joins as $expression) {
-            $params = array_merge($params, $expression->getParameters());
+        foreach ($this->joins as $join) {
+            $params = array_merge($params, $join->parameters());
         }
 
         return $params;
@@ -104,7 +108,9 @@ abstract class Query extends Element implements IQuery {
     public function join($table, Expression $on, $direction = null, $type = null) {
         $direction = $direction ?: Join::LEFT;
         $type = $type ?: Join::INNER;
+
         $this->joins[] = new Join($direction, $type, $table, $on);
+        return $this;
     }
 
 
@@ -126,6 +132,16 @@ abstract class Query extends Element implements IQuery {
 
 
     /**
+     * Return the table this query applies to
+     *
+     * @return TableRef $table
+     */
+    public function table() {
+        return $this->table;
+    }
+
+
+    /**
      * Set the Query's WHERE expression. Calling this
      * multiple times will overwrite the previous expressions.
      * You should instead call this once with a CompoundExpression.
@@ -138,30 +154,36 @@ abstract class Query extends Element implements IQuery {
         }
 
         $this->where = $expr;
+        return $this;
     }
 
 
+    /**
+     * Limit number of rows affected by query.
+     *
+     * @param integer $limit Query limit.
+     */
+    public function limit($limit = false) {
+        if ($limit === false) {
+            return $this->limit;
+        }
+
+        $this->limit = is_null($limit) ? null : new Scalar($limit);
+        return $this;
+    }
+
 
     /**
-     * Provide limit / offset to query.
+     * Offset start of rows affected by query.
      *
-     * @param integer $a Query offset if $b is provided; else query limit.
-     * @param integer $b Query limit.
+     * @param integer $offset Query offset.
      */
-    public function limit($a = null, $b = null) {
-        if (is_null($a) && is_null($b)) {
-            return array($this->offset, $this->limit);
+    public function offset($offset = false) {
+        if ($offset === false) {
+            return $this->offset;
         }
 
-        $a = is_null($a) ? null : new Scalar($a);
-        $b = is_null($b) ? null : new Scalar($b);
-
-        if (is_null($b)) {
-            $this->limit = $a;
-            $this->offset = null;
-        } else {
-            $this->limit = $b;
-            $this->offset = $a;
-        }
+        $this->offset = is_null($offset) ? null : new Scalar($offset);
+        return $this;
     }
 }

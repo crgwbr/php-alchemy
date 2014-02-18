@@ -1,0 +1,1 @@
+INSERT INTO users (UserName, Email) SELECT UserName as UserName, :p0 as Email FROM users

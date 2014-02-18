@@ -50,6 +50,25 @@ class TableRef extends Element implements IPromisable {
     }
 
 
+    /**
+     * Returns a Predicate for filtering rows of this table
+     * equal to the values of a map
+     *
+     * @param  array     $columns array('ColumnName' => Value)
+     * @return Predicate
+     */
+    public function equal(array $columns) {
+        $list = array();
+        foreach($columns as $name => $value) {
+            $list[] = $this->{$name}->equal($value);
+        }
+
+        return count($list) > 1
+            ? Predicate::AND_($list)
+            : ($list ? $list[0] : null);
+    }
+
+
     public function name() {
         return $this->schema->getName();
     }
