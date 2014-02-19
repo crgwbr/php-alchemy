@@ -8,13 +8,19 @@ use Alchemy\dialect\ANSICompiler;
 
 class ANSIInsertTest extends BaseTest {
 
-    public function testSimpleInsert() {
-        $users = new Table('users', array(
-            'UserName' => 'String',
-            'Email' => 'String',
-        ));
+    protected $users;
 
-        $users = $users->getRef();
+    public function setUp() {
+        $this->users = Table::Core('users', array(
+            'columns' => array(
+                'UserID' => 'Integer(11)',
+                'UserName' => 'String',
+                'Email' => 'String')
+        ));
+    }
+
+    public function testSimpleInsert() {
+        $users = $this->users->getRef();
 
         $query = Query::Insert($users)
             ->columns($users->UserName, array('Email', "user1@example.com"))
@@ -28,12 +34,7 @@ class ANSIInsertTest extends BaseTest {
     }
 
     public function testInsertSelect() {
-        $users = new Table('users', array(
-            'UserName' => 'String',
-            'Email' => 'String',
-        ));
-
-        $users = $users->getRef();
+        $users = $this->users->getRef();
 
         $query = Query::Insert($users)
             ->columns($users->UserName);

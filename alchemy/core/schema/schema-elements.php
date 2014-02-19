@@ -3,6 +3,16 @@
 namespace Alchemy\core\schema;
 use Alchemy\core\query\Scalar;
 
+// table
+
+Table::define('Core', 'Core', array(
+    'defaults' => array(
+        'columns' => array(),
+        'indexes' => array()),
+    'tags' => array(
+        'sql.compile' => 'Table',
+        'sql.create'  => 'Table')));
+
 
 // indexes
 

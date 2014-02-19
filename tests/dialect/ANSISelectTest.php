@@ -9,14 +9,34 @@ use Alchemy\dialect\ANSICompiler;
 
 class ANSISelectTest extends BaseTest {
 
-    public function testSimpleSelect() {
-        $users = new Table('users', array(
-            'UserID' => 'Integer(11)',
-            'UserName' => 'String',
-            'Email' => 'String',
+    protected $users;
+    protected $addrs;
+    protected $phones;
+
+    public function setUp() {
+        $this->users = Table::Core('users', array(
+            'columns' => array(
+                'UserID' => 'Integer(11)',
+                'UserName' => 'String',
+                'Email' => 'String')
         ));
 
-        $users = $users->getRef();
+        $this->addrs = Table::Core('addresses', array(
+            'columns' => array(
+                'UserID' => 'Integer',
+                'AddressType' => 'Integer',
+                'StreetAddress' => 'String')
+        ));
+
+        $this->phones = Table::Core('phones', array(
+            'columns' => array(
+                'UserID' => 'Integer',
+                'PhoneNum' => 'String')
+        ));
+    }
+
+    public function testSimpleSelect() {
+        $users = $this->users->getRef();
 
         $query = Query::Select($users)
             ->columns($users->UserName, $users->Email)
@@ -30,19 +50,8 @@ class ANSISelectTest extends BaseTest {
 
 
     public function testSingleJoinSelect() {
-        $users = new Table('users', array(
-            'UserID' => 'Integer',
-            'UserName' => 'String',
-            'Email' => 'String',
-        ));
-
-        $addrs = new Table('addresses', array(
-            'UserID' => 'Integer',
-            'StreetAddress' => 'String'
-        ));
-
-        $addrs = $addrs->getRef();
-        $users = $users->getRef();
+        $addrs = $this->addrs->getRef();
+        $users = $this->users->getRef();
 
         $query = Query::Select($users)
             ->columns($users->UserName, $users->Email, $addrs->StreetAddress)
@@ -56,25 +65,9 @@ class ANSISelectTest extends BaseTest {
 
 
     public function testMultiJoinSelect() {
-        $users = new Table('users', array(
-            'UserID' => 'Integer(11)',
-            'UserName' => 'String',
-        ));
-
-        $addrs = new Table('addresses', array(
-            'UserID' => 'Integer',
-            'AddressType' => 'Integer',
-            'StreetAddress' => 'String'
-        ));
-
-        $phones = new Table('phones', array(
-            'UserID' => 'Integer',
-            'PhoneNum' => 'String'
-        ));
-
-        $addrs = $addrs->getRef();
-        $users = $users->getRef();
-        $phones = $phones->getRef();
+        $addrs = $this->addrs->getRef();
+        $users = $this->users->getRef();
+        $phones = $this->phones->getRef();
 
         $addrJoin = E::AND_($addrs->UserID->equal($users->UserID),
                             $addrs->AddressType->equal(5));
@@ -94,12 +87,7 @@ class ANSISelectTest extends BaseTest {
 
 
     public function testWhereSelect() {
-        $users = new Table('users', array(
-            'UserID' => 'Integer',
-            'UserName' => 'String',
-        ));
-
-        $users = $users->getRef();
+        $users = $this->users->getRef();
 
         $query = Query::Select($users)
             ->columns($users->UserID, $users->UserName)

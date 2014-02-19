@@ -11,8 +11,8 @@ use Alchemy\core\schema\Table;
 class ForeignTest extends BaseTest {
 
     public function testCopy() {
-        $table = new Table('Table', array(
-            'Int' => Column::Integer(array(11, 'null' => true))));
+        $table = Table::Core('Table', array('columns' => array(
+            'Int' => Column::Integer(array(11, 'null' => true)) )));
 
         $fk = Column::Foreign('self.Int');
 
@@ -42,8 +42,8 @@ class ForeignTest extends BaseTest {
 
 
     public function testRegisteredTable() {
-        $table = new Table('Table', array(
-            'Int' => Column::Integer(11)));
+        $table = Table::Core('Table', array('columns' => array(
+            'Int' => Column::Integer(11) )));
 
         $fk = Column::Foreign('Table.Int');
 
@@ -55,9 +55,9 @@ class ForeignTest extends BaseTest {
 
 
     public function testSelfReferencingTable() {
-        $table = new Table('Table', array(
+        $table = Table::Core('Table', array('columns' => array(
             'Int' => Column::Integer(11),
-            'FK'  => Column::Foreign(array('self.Int', 'null' => true)) ));
+            'FK'  => Column::Foreign(array('self.Int', 'null' => true)) )));
 
         $col = $table->getColumn('FK');
         $this->assertEquals("Integer", $col->getType());
@@ -73,9 +73,9 @@ class ForeignTest extends BaseTest {
     public function testSelfReferencingTablePromise() {
         // Table promise with self-referencing foreign key
         $table = new Promise(function() use (&$table) {
-            return new Table('Table', array(
+            return Table::Core('Table', array('columns' => array(
                 'PK' => Column::Integer(11),
-                'FK' => Column::Foreign($table->getColumn('PK')) ));
+                'FK' => Column::Foreign($table->getColumn('PK')) )));
         }, "Alchemy\core\schema\Table");
 
         $this->assertInstanceOf("Alchemy\util\promise\Promise", $table->getColumn('FK'));

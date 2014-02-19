@@ -104,6 +104,27 @@ class Element implements IElement {
     }
 
 
+    /**
+     * Convert an argument's structure to be similar to the default
+     * ie. (5, array(array())) -> array(array(5))
+     *
+     * @return mixed
+     */
+    protected static function normalize_arg($arg, $default) {
+        if (is_array($default)) {
+            if (!is_array($arg)) {
+                $arg = !is_null($arg) ? array($arg) : $default;
+            }
+
+            foreach ($default as $k => $v) {
+                $arg[$k] = self::normalize_arg(array_key_exists($k, $arg) ? $arg[$k] : null, $v);
+            }
+        }
+
+        return $arg ?: $default;
+    }
+
+
     public function __clone() {
         $this->id = null;
     }

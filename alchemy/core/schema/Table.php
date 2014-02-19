@@ -15,13 +15,11 @@ class Table extends Element implements IPromisable {
     protected static $registered = array();
 
     protected $name;
+    protected $resolved;
+    protected $args = array();
+    protected $columns = array();
+    protected $indexes = array();
 
-    private $indexdefs  = array();
-    private $propdefs   = array();
-
-    private $columns    = array();
-    private $indexes    = array();
-    private $properties = array();
     private $dependancies = array();
     private $dependants = array();
 
@@ -52,30 +50,42 @@ class Table extends Element implements IPromisable {
     /**
      * Object constructor
      *
-     * @param string $tableName
-     * @param array $columns array("name" => Column, "name" => Column, ...)
-     * @param string $namespace Namespace of Column classes
+     * @param string $name       name of table
+     * @param array  $columndefs array("name" => Column, "name" => Column, ...)
+     * @param array  $indexdefs  array("name" => Index, "name" => Index, ...)
      */
-    public function __construct($name, $propdefs = array(), $indexdefs = array()) {
+    public function __construct($type, $name, $args = array()) {
+        parent::__construct($type);
+
         $this->name = $name;
-        $this->propdefs  = $propdefs;
-        $this->indexdefs = $indexdefs;
-        $this->addTag('sql.compile', 'Table');
-        $this->addTag('sql.create', 'Table');
+        $def = static::get_definition($this->type);
+        $this->args = self::normalize_arg($args, $def['defaults']);
     }
 
 
     public function getColumn($name) {
-        if (!array_key_exists($name, $this->properties)) {
-            $this->resolveProperty($name);
+        if (!array_key_exists($name, $this->columns)) {
+            if (array_key_exists($name, $this->args['columns'])) {
+                $column = $this->args['columns'][$name];
+
+                if (is_string($column)) {
+                    $type = new DataTypeLexer($column);
+                    $t = $type->getType();
+                    $column = Column::$t($type->getArgs());
+                }
+
+                $this->columns[$name] = $column->copy(array(), $this, $name);
+            } else {
+                throw new Exception("Unknown column '{$this->name}.{$name}'");
+            }
         }
 
-        return $this->properties[$name];
+        return $this->columns[$name];
     }
 
 
     public function copy() {
-        return new static($this->name, $this->propdefs, $this->indexdefs);
+        return new static($this->name, $this->args);
     }
 
 
@@ -101,8 +111,7 @@ class Table extends Element implements IPromisable {
      * @return bool
      */
     public function isColumn($name) {
-        return array_key_exists($name, $this->propdefs)
-            && ($this->getColumn($name) instanceof Column);
+        return array_key_exists($name, $this->args['columns']);
     }
 
 
@@ -177,51 +186,23 @@ class Table extends Element implements IPromisable {
 
 
     /**
-     * Lazy-resolve a named property of this Table
-     *
-     * @param string $name name of property
-     */
-    protected function resolveProperty($name, $namespace="Alchemy\\core\\schema") {
-        if (array_key_exists($name, $this->propdefs)) {
-            $column = $this->propdefs[$name];
-
-            if (is_string($column)) {
-                $type = new DataTypeLexer($column);
-                $t = $type->getType();
-                $column = Column::$t($type->getArgs());
-            }
-
-            $this->properties[$name] = $column->copy(array(), $this, $name);
-        } else {
-            throw new Exception("Column or relationship {$name} does not exist");
-        }
-    }
-
-
-    /**
      * Lazy-resolve the whole Table
      */
-    protected function resolve($namespace="Alchemy\\core\\schema") {
-        if ($this->columns) return;
+    protected function resolve() {
+        if ($this->resolved) return;
         $primary = array();
 
-        foreach ($this->propdefs as $name => $prop) {
+        foreach ($this->args['columns'] as $name => $prop) {
             $column = $this->getColumn($name);
-            if (!($column instanceof Column)) {
-                continue;
-            }
 
-            $this->columns[$name] = $column;
             $this->indexes[$name] = $column->getIndex();
 
-            $fk = $column->getForeignKey();
-            if ($fk) {
-                $this->indexes[] = $fk;
+            if ($fk = $column->getForeignKey()) {
+                $this->indexes[$fk->getName()] = $fk;
 
                 $source = $fk->getSourceTable();
-                $name = $source->getName();
-                if ($name != $this->getName()) {
-                    $this->dependancies[] = $name;
+                if ($source != $this) {
+                    $this->dependancies[] = $source->getName();
                     $source->dependants[] = $this->getName();
                 }
             }
@@ -236,7 +217,7 @@ class Table extends Element implements IPromisable {
         }
 
         // Set multi-column indexes
-        foreach ($this->indexdefs as $name => $index) {
+        foreach ($this->args['indexes'] as $name => $index) {
             if (is_string($index)) {
                 $type = new DataTypeLexer($index);
                 $t = $type->getType();
@@ -247,5 +228,6 @@ class Table extends Element implements IPromisable {
         }
 
         $this->indexes = array_filter($this->indexes);
+        $this->resolved = true;
     }
 }

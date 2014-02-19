@@ -68,7 +68,8 @@ class ANSICompilerTest extends BaseTest {
 
     public function testColumnRef() {
         $ansi = new ANSICompiler();
-        $table = new Table('Tbl', array('Col' => Column::Bool()));
+        $table = Table::Core('Tbl', array(
+            'columns' => array('Col' => Column::Bool())));
         $table = $table->getRef();
 
         $this->assertEquals("tb1.Col",
@@ -87,9 +88,9 @@ class ANSICompilerTest extends BaseTest {
     public function testCreate() {
         $ansi = new ANSICompiler();
         $expr = Query::Create(
-            new Table('Tbl', array(
+            Table::Core('Tbl', array('columns' => array(
                 'Col' => Column::Integer(array(11, 'null' => false, 'auto_increment' => false)),
-                'Key' => Column::Foreign(array('self.Col', 'null' => true)) )));
+                'Key' => Column::Foreign(array('self.Col', 'null' => true)) ))));
 
         $this->assertEquals(
             "CREATE TABLE IF NOT EXISTS Tbl (Col INT(11) NOT NULL, Key INT(11) NULL, FOREIGN KEY (Key) REFERENCES Tbl (Col))",
@@ -124,7 +125,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testDrop() {
         $ansi = new ANSICompiler();
-        $expr = Query::Drop(new Table('Tbl', array()));
+        $expr = Query::Drop(Table::Core('Tbl'));
 
         $this->assertEquals("DROP TABLE IF EXISTS Tbl", $ansi->compile($expr));
     }
@@ -150,8 +151,8 @@ class ANSICompilerTest extends BaseTest {
 
     public function testJoin() {
         $ansi = new ANSICompiler();
-        $table = new Table('Tbl', array(
-            'Col' => Column::Bool() ));
+        $table = Table::Core('Tbl', array('columns' => array(
+            'Col' => Column::Bool() )));
         $table = $table->getRef();
 
         $expr = Predicate::lt($table->Col, $table->Col);
@@ -197,7 +198,7 @@ class ANSICompilerTest extends BaseTest {
 
     public function testTableRef() {
         $ansi = new ANSICompiler();
-        $table = new Table('Tbl', array());
+        $table = Table::Core('Tbl');
         $table = $table->getRef();
 
         $this->assertEquals("Tbl", $table->name());

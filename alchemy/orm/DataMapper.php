@@ -137,12 +137,13 @@ abstract class DataMapper {
         $cls = get_called_class();
 
         if (!array_key_exists($cls, self::$schema_cache)) {
-            $name    = $cls::table_name();
-            $props   = $cls::$props;
-            $indexes = $cls::$indexes;
+            $name = $cls::table_name();
+            $args = array(
+                'columns' => $cls::$props,
+                'indexes' => $cls::$indexes);
 
-            $tablefn = function() use ($name, $props, $indexes) {
-                return new Table($name, $props, $indexes);
+            $tablefn = function() use ($name, $args) {
+                return Table::Core($name, $args);
             };
 
             self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\core\schema\Table");

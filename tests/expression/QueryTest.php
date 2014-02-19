@@ -10,20 +10,24 @@ use Alchemy\core\query\Expression as E;
 class QueryTest extends BaseTest {
 
     public function testGetParams() {
-        $users = new Table('users', array(
-            'UserID' => 'Integer(11)',
-            'UserName' => 'String',
+        $users = Table::Core('users', array(
+            'columns' => array(
+                'UserID' => 'Integer(11)',
+                'UserName' => 'String',
+                'Email' => 'String')
         ));
 
-        $addrs = new Table('addresses', array(
-            'UserID' => 'Integer',
-            'AddressType' => 'Integer',
-            'StreetAddress' => 'String'
+        $addrs = Table::Core('addresses', array(
+            'columns' => array(
+                'UserID' => 'Integer',
+                'AddressType' => 'Integer',
+                'StreetAddress' => 'String')
         ));
 
-        $phones = new Table('phones', array(
-            'UserID' => 'Integer',
-            'PhoneNum' => 'String'
+        $phones = Table::Core('phones', array(
+            'columns' => array(
+                'UserID' => 'Integer',
+                'PhoneNum' => 'String')
         ));
 
         $addrs  = $addrs->getRef();

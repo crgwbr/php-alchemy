@@ -9,9 +9,10 @@ use Alchemy\dialect\ANSICompiler;
 class ANSIDeleteTest extends BaseTest {
 
     public function testSimpleDelete() {
-        $users = new Table('users', array(
-            'UserName' => 'String',
-            'Email' => 'String',
+        $users = Table::Core('users', array(
+            'columns' => array(
+                'UserName' => 'String',
+                'Email' => 'String')
         ));
 
         $users = $users->getRef();
