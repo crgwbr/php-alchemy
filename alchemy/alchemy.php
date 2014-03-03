@@ -58,16 +58,22 @@ require_once "engine/IEngine.php";
 require_once "engine/ResultSet.php";
 require_once "engine/Engine.php";
 
+// ORM Queries
+require_once "orm/query/ORMQuery.php";
+require_once "orm/query/ORMTableRef.php";
+
+// ORM Schema
+require_once "orm/schema/Relationship.php";
+require_once "orm/schema/ORMTable.php";
+require_once "orm/schema/OneToMany.php";
+require_once "orm/schema/ManyToOne.php";
+require_once "orm/schema/OneToOne.php";
+require_once "orm/orm-elements.php";
+
 // ORM Proper
 require_once "orm/DDL.php";
 require_once "orm/WorkQueue.php";
 require_once "orm/Session.php";
 require_once "orm/SessionSelect.php";
-require_once "orm/DataMapper.php";
-
-// Relationships
-require_once "orm/Relationship.php";
-require_once "orm/OneToMany.php";
-require_once "orm/ManyToOne.php";
-require_once "orm/OneToOne.php";
 require_once "orm/RelatedSet.php";
+require_once "orm/DataMapper.php";

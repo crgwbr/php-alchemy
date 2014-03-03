@@ -57,4 +57,21 @@ class ExpressionTest extends BaseTest {
             $expr = Expression::zero($int);
         });
     }
+
+
+    public function testPredicateAll() {
+        $lt = Predicate::lt(new Scalar(2), new Scalar(5));
+        $eq = Predicate::equal(new Scalar(4), new Scalar(4));
+        $and = Predicate::AND_($lt, $eq);
+        $or = Predicate::OR_($eq, $lt);
+
+        $all = Predicate::AND_($lt, $eq, $or, $eq);
+        $this->assertEquals($all, Predicate::all(array($lt, $eq, $or, $eq)));
+        $this->assertEquals($all, Predicate::all(array(array($lt, array($eq, $or)), array($eq))));
+        $this->assertEquals($all, Predicate::all(array($and), $or, array($eq)));
+        $this->assertEquals($all, Predicate::all(Predicate::AND_($and, $or, $eq)));
+
+        $this->assertEquals($lt, Predicate::all($lt));
+        $this->assertEquals($and, Predicate::all($and));
+    }
 }

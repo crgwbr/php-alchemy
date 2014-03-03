@@ -47,6 +47,16 @@ class Table extends Element implements IPromisable {
     }
 
 
+    public static function register_name($name, $table, $force = false) {
+        if (!$force && isset(self::$registered[$name])
+            && self::$registered[$name] !== $table) {
+            throw new \Exception("A table is already registered for name '{$name}'.");
+        }
+
+        self::$registered[$name] = $table;
+    }
+
+
     /**
      * Object constructor
      *
@@ -110,7 +120,7 @@ class Table extends Element implements IPromisable {
      * @param string $name
      * @return bool
      */
-    public function isColumn($name) {
+    public function hasColumn($name) {
         return array_key_exists($name, $this->args['columns']);
     }
 
@@ -175,13 +185,8 @@ class Table extends Element implements IPromisable {
     /**
      * Register this Table as canonical for its name
      */
-    public function register() {
-        if (isset(self::$registered[$this->name])
-            && self::$registered[$this->name] !== $this) {
-            throw new \Exception("A table is already registered for name '{$this->name}'.");
-        }
-
-        self::$registered[$this->name] = $this;
+    public function register($force = false) {
+        self::register_name($this->name, $this, $force);
     }
 
 

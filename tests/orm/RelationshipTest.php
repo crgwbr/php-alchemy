@@ -23,15 +23,15 @@ class RelationshipTest extends BaseTest {
 
 
     public function testRelationshipDefinition() {
-        $l = Language::list_relationships();
-        $f = UploadedFile::list_relationships();
+        $l = Language::schema()->listRelationships();
+        $f = UploadedFile::schema()->listRelationships();
 
         $files = $l['Files'];
         $this->assertTrue($files instanceof OneToMany);
         $this->assertEquals($files->getBackref(), 'Language');
         $this->assertEquals($files->getName(), 'Files');
         $this->assertEquals($files->getForeignKey()->getSourceTable()->getName(), 'Language');
-        $this->assertFalse($files->hasSingleObjectConstraint());
+        $this->assertFalse($files->isSingleObject());
         $this->assertTrue($files->isParent());
 
         $language = $f['Language'];
@@ -39,7 +39,7 @@ class RelationshipTest extends BaseTest {
         $this->assertEquals($language->getBackref(), 'Files');
         $this->assertEquals($language->getName(), 'Language');
         $this->assertEquals($language->getForeignKey()->getSourceTable()->getName(), 'Language');
-        $this->assertTrue($language->hasSingleObjectConstraint());
+        $this->assertTrue($language->isSingleObject());
         $this->assertFalse($language->isParent());
 
         $parent = $l['Parent'];
@@ -47,7 +47,7 @@ class RelationshipTest extends BaseTest {
         $this->assertEquals($parent->getBackref(), 'Children');
         $this->assertEquals($parent->getName(), 'Parent');
         $this->assertEquals($parent->getForeignKey()->getSourceTable()->getName(), 'Language');
-        $this->assertTrue($parent->hasSingleObjectConstraint());
+        $this->assertTrue($parent->isSingleObject());
         $this->assertFalse($parent->isParent());
 
         $children = $l['Children'];
@@ -55,7 +55,7 @@ class RelationshipTest extends BaseTest {
         $this->assertEquals($children->getBackref(), 'Parent');
         $this->assertEquals($children->getName(), 'Children');
         $this->assertEquals($children->getForeignKey()->getSourceTable()->getName(), 'Language');
-        $this->assertFalse($children->hasSingleObjectConstraint());
+        $this->assertFalse($children->isSingleObject());
         $this->assertTrue($children->isParent());
     }
 

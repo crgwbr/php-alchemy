@@ -37,6 +37,18 @@ class ForeignKey extends Index {
     }
 
 
+    public function getNameMap() {
+        $this->resolve();
+
+        $map = array();
+        foreach($this->sources as $k => $source) {
+            $map[$source->getName()] = $this->columns[$k]->getName();
+        }
+
+        return $map;
+    }
+
+
     protected function resolve() {
         if ($this->columns) return;
 

@@ -2,6 +2,7 @@
 
 namespace Alchemy\core\schema;
 use Alchemy\core\query\ColumnRef;
+use Alchemy\core\query\TableRef;
 use Alchemy\util\promise\IPromisable;
 
 
@@ -95,10 +96,11 @@ class Column extends TableElement implements IPromisable {
     /**
      * Return a reference to this column
      *
+     * @param  TableRef  $table TableRef to build on, else create a new one
      * @return ColumnRef
      */
-    public function getRef() {
-        return new ColumnRef($this, $this->getTable()->getRef());
+    public function getRef(TableRef $table = null) {
+        return new ColumnRef($this, $table ?: $this->getTable()->getRef());
     }
 
 

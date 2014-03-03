@@ -4,22 +4,22 @@ namespace Alchemy\core\query;
 
 // queries
 
-Query::define(null, null, array(
+Query::define('Core', 'Core', array(
     'tags' => array(
         'sql.compile' => 'Query') ));
 
-Query::define('Select');
-Query::define('Update');
-Query::define('Delete');
+Query::define('Select', 'Core');
+Query::define('Update', 'Core');
+Query::define('Delete', 'Core');
 
-Insert::define(null, 'Query::Query');
+Insert::define(null, 'Query::Core');
 Query::define_alias('Insert', 'Insert::Insert');
 
 
 // DDL queries
 
-DDLQuery::define('Create', 'Query::Query');
-DDLQuery::define('Drop',   'Query::Query');
+DDLQuery::define('Create', 'Query::Core');
+DDLQuery::define('Drop',   'Query::Core');
 
 Query::define_alias('Create', 'DDLQuery::Create');
 Query::define_alias('Drop',   'DDLQuery::Drop');

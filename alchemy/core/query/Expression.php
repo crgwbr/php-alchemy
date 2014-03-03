@@ -62,4 +62,19 @@ class Expression extends Element {
 
         return $params;
     }
+
+
+    public function tables() {
+        $tables = array();
+
+        foreach($this->elements as $element) {
+            if ($element instanceof Expression) {
+                $tables += $element->tables();
+            } elseif ($element instanceof ColumnRef) {
+                $tables[$element->table()->getID()] = $element->table();
+            }
+        }
+
+        return $tables;
+    }
 }

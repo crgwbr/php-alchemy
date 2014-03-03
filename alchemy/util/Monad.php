@@ -34,9 +34,10 @@ class Monad {
 
         $method = array($that->value, $fn);
         $value = call_user_func_array($method, $args);
+        $cls = get_class($this->value);
 
         // Returned nothing, is probably just did internal mutation
-        if (is_object($value)) {
+        if ($value instanceof $cls) {
             $that->value = $value;
             return $that;
         }

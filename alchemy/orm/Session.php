@@ -305,14 +305,11 @@ class Session {
         $this->records[$cls][$storeID] = $this->records[$cls][$oldID];
 
         // Tell the object it's new address
-        $obj->setSession($this, $storeID);
+        $obj->setSession($this, $storeID, true);
 
         // Remove the transient record
         unset($this->records[$cls][$oldID]);
         unset($this->updated[$cls][$oldID]);
-
-        // Notify Object of it's relocation
-        $obj->onPrimaryKeyAllocated();
     }
 
 

@@ -21,49 +21,15 @@ abstract class DataMapper {
      * class name will be used
      */
     protected static $table_name = null;
-    protected static $props = array();
-    protected static $indexes = array();
-    protected static $relationships = array();
+    protected static $schema_args = array();
 
     private static $schema_cache = array();
-    private static $relationship_cache = array();
 
     private $deltas = array();
     private $relatedSets = array();
     private $session;
     private $sessionID;
-
-    private $onPrimaryKeyAlloc = array();
-
-
-    /**
-     * Add a relationship to this model
-     *
-     * @param string $name
-     * @param string or Relationship $def
-     */
-    public static function add_relationship($name, $def) {
-        $cls = get_called_class();
-        if (!array_key_exists($cls, self::$relationship_cache)) {
-            self::$relationship_cache[$cls] = array();
-        }
-
-        // Already Exists?
-        if (array_key_exists($name, self::$relationship_cache[$cls])) {
-            return;
-        }
-
-        if (is_string($def)) {
-            $l = new DataTypeLexer($def);
-            $type = __NAMESPACE__ . '\\' . $l->getType();
-            $args = $l->getArgs();
-            $r = new $type($name, $cls, $args);
-        } else {
-            $r = $def;
-        }
-
-        self::$relationship_cache[$cls][$name] = $r;
-    }
+    private $persisting;
 
 
     /**
@@ -75,7 +41,7 @@ abstract class DataMapper {
     public static function from_session(Session $session, $sessionID) {
         $cls = get_called_class();
         $obj = new $cls();
-        $obj->setSession($session, $sessionID);
+        $obj->setSession($session, $sessionID, true);
         return $obj;
     }
 
@@ -99,35 +65,6 @@ abstract class DataMapper {
 
 
     /**
-     * List the relationships belonging to this model
-     *
-     * @return array
-     */
-    public static function list_relationships() {
-        $cls = get_called_class();
-        if (!array_key_exists($cls, self::$relationship_cache)) {
-            self::$relationship_cache[$cls] = array();
-        }
-
-        foreach (static::$relationships as $name => $def) {
-            static::add_relationship($name, $def);
-        }
-
-        return self::$relationship_cache[$cls];
-    }
-
-
-    /**
-     * Register the model's table and relationships. This should be called
-     * immediately after defining a new model class.
-     */
-    public static function register() {
-        static::schema(); // Table Registration
-        static::list_relationships(); // Relationship Registration
-    }
-
-
-    /**
      * Gen an instance of Table that represents the schema of this
      * domain object.
      *
@@ -137,17 +74,16 @@ abstract class DataMapper {
         $cls = get_called_class();
 
         if (!array_key_exists($cls, self::$schema_cache)) {
-            $name = $cls::table_name();
-            $args = array(
-                'columns' => $cls::$props,
-                'indexes' => $cls::$indexes);
+            $name = static::table_name();
+            $args = static::$schema_args + array('class' => $cls);
 
             $tablefn = function() use ($name, $args) {
-                return Table::Core($name, $args);
+                return Table::ORM($name, $args);
             };
 
-            self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\core\schema\Table");
-            self::$schema_cache[$cls]->register();
+            self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\orm\ORMTable");
+            Table::register_name($name, self::$schema_cache[$cls], true);
+            self::$schema_cache[$cls]->register(true);
         }
 
         return self::$schema_cache[$cls];
@@ -157,10 +93,10 @@ abstract class DataMapper {
     /**
      * Return a table reference for this model
      *
-     * @return query\TableRef
+     * @return ORMTableRef
      */
     public static function table() {
-        return new query\TableRef(static::schema());
+        return new ORMTableRef(static::schema());
     }
 
 
@@ -181,7 +117,8 @@ abstract class DataMapper {
      * Object constructor.
      */
     public function __construct() {
-        foreach (static::list_relationships() as $name => $r) {
+        $this->persisting = new Promise();
+        foreach (static::schema()->listRelationships() as $name => $r) {
             $this->relatedSets[$name] = new RelatedSet($this, $r);
         }
     }
@@ -199,8 +136,7 @@ abstract class DataMapper {
             return $set->isSingleObject() ? $set->first() : $set;
         }
 
-        $table = static::schema();
-        if (!$table->isColumn($prop)) {
+        if (!static::schema()->hasColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
         }
 
@@ -230,12 +166,34 @@ abstract class DataMapper {
             return;
         }
 
-        $table = static::schema();
-        if (!$table->isColumn($prop)) {
+        if (!static::schema()->hasColumn($prop)) {
             throw new Exception("Property [{$prop}] is not a configured column");
         }
 
         $this->deltas[$prop] = $value;
+    }
+
+
+    /**
+     * Automatically apply properties of this object to another's foreign keys
+     * according to a Relationship.
+     *
+     * @param  DataMapper $child object to affect
+     * @param  Relationship $rel defines what properties to affect on the child
+     * @return Promise           resolves when FK is cascaded
+     */
+    public function cascadeForeignKey($child, $rel) {
+        return $this->persisting->then(function($self) use ($child, $rel) {
+            $child->set($rel->getRemoteColumnMap($self));
+
+            if ($child->getSession()) {
+                $child->save();
+            } else {
+                $self->getSession()->add($child);
+            }
+
+            return $self;
+        });
     }
 
 
@@ -300,20 +258,13 @@ abstract class DataMapper {
 
 
     /**
-     * Event invoked by Session when this model is migrated from using a
-     * temporary in-memory key to a real (saved in the RDBMS) primary key.
+     * Return a Promise for when this object is actually persisted,
+     * if it is not already.
+     *
+     * @return Promise resolves to $this when this DataMapper is persisted
      */
-    public function onPrimaryKeyAllocated($fn = null) {
-        // Register callback?
-        if ($fn) {
-            $this->onPrimaryKeyAlloc[] = $fn;
-            return;
-        }
-
-        // Trigger callbacks
-        foreach ($this->onPrimaryKeyAlloc as $fn) {
-            $fn($this);
-        }
+    public function onPersisted() {
+        return $this->persisting;
     }
 
 
@@ -351,13 +302,31 @@ abstract class DataMapper {
 
 
     /**
+     * Set multiple properties on this object.
+     *
+     * @param array $map [Property => Value, ...]
+     */
+    public function set(array $map) {
+        foreach ($map as $key => $value) {
+            $this->{$key} = $value;
+        }
+
+        return $this;
+    }
+
+
+    /**
      * Set the Session and Session pointer for this object
      *
      * @param Session $session Session which owns this object
      * @param string $sessionID Pointer to data record in $session
      */
-    public function setSession(Session $session, $sessionID) {
+    public function setSession(Session $session, $sessionID, $persisted = false) {
         $this->session = $session;
         $this->sessionID = $sessionID;
+
+        if ($persisted) {
+            $this->persisting->resolve($this);
+        }
     }
 }

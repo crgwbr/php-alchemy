@@ -34,7 +34,7 @@ class QueryTest extends BaseTest {
         $users  = $users->getRef();
         $phones = $phones->getRef();
 
-        $query = Query::Query($users)
+        $query = Query::Core($users)
             ->columns(array('Scalar', "value"), $users->UserName)
             ->join($addrs, E::AND_(
                 $addrs->UserID->equal($users->UserID),

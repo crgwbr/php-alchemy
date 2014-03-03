@@ -26,7 +26,7 @@ class Query extends Element implements IQuery {
     public function __set($name, $value) {
         if (!($value instanceof Element) || !$value->getTag('expr.value')) {
             $schema = $this->table->schema();
-            $value = $schema->isColumn($name)
+            $value = $schema->hasColumn($name)
                 ? $schema->getColumn($name)->encode($value)
                 : new Scalar($value);
         }
@@ -101,11 +101,11 @@ class Query extends Element implements IQuery {
      * Add a join to the query
      *
      * @param Table $table
-     * @param Expression $on
+     * @param Predicate $on
      * @param $direction Optional join direction
      * @param $type Optional join type
      */
-    public function join($table, Expression $on, $direction = null, $type = null) {
+    public function join($table, Predicate $on = null, $direction = null, $type = null) {
         $direction = $direction ?: Join::LEFT;
         $type = $type ?: Join::INNER;
 
@@ -123,10 +123,10 @@ class Query extends Element implements IQuery {
      * Shortcut for doing an OUTER JOIN
      *
      * @param Table $table
-     * @param Expression $on
+     * @param Predicate $on
      * @param $direction Optional join direction
      */
-    public function outerJoin($table, Expression $on, $direction = null) {
+    public function outerJoin($table, Predicate $on, $direction = null) {
         return $this->join($table, $on, $direction, Join::OUTER);
     }
 
@@ -148,12 +148,12 @@ class Query extends Element implements IQuery {
      *
      * @param Expression $expr
      */
-    public function where(Expression $expr = null) {
-        if (is_null($expr)) {
+    public function where($expr = false) {
+        if ($expr === false) {
             return $this->where;
         }
 
-        $this->where = $expr;
+        $this->where = is_null($expr) ? null : Predicate::ALL(func_get_args());
         return $this;
     }
 

@@ -28,8 +28,7 @@ class TableRef extends Element implements IPromisable {
      * @return ColumnRef       reference to Column
      */
     public function __get($name) {
-        $column = $this->schema->getColumn($name);
-        return new ColumnRef($column, $this);
+        return $this->schema->getColumn($name)->getRef($this);
     }
 
 
@@ -43,7 +42,7 @@ class TableRef extends Element implements IPromisable {
     public function columns() {
         $columns = array();
         foreach($this->schema->listColumns() as $column) {
-            $columns[] = new ColumnRef($column, $this);
+            $columns[$column->getName()] = $column->getRef($this);
         }
 
         return $columns;

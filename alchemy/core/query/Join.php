@@ -28,7 +28,7 @@ class Join extends Element implements IQueryFragment {
      * @param Table $table
      * @param Expression $on
      */
-    public function __construct($direction, $type, TableRef $table, Expression $on) {
+    public function __construct($direction, $type, TableRef $table, Expression $on = null) {
         $this->direction = $direction;
         $this->type = $type;
         $this->table = &$table;

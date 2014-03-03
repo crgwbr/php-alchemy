@@ -233,8 +233,8 @@ class ANSICompiler extends Compiler {
 
     public function Join($obj) {
         $table = $this->compile($obj->getTable());
-        $on    = $this->compile($obj->getOn());
-        return "{$obj->getDirection()} {$obj->getType()} JOIN {$table} ON {$on}";
+        $on    = $obj->getOn() ? " ON {$this->compile($obj->getOn())}" : "";
+        return "{$obj->getDirection()} {$obj->getType()} JOIN {$table}{$on}";
     }
 
 
