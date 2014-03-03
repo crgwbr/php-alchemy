@@ -49,6 +49,12 @@ class TableRef extends Element implements IPromisable {
     }
 
 
+    public function getDescription($maxdepth = 3, $curdepth = 0) {
+        $str = parent::getDescription($maxdepth, $curdepth);
+        return "$str ({$this->name()})";
+    }
+
+
     /**
      * Returns a Predicate for filtering rows of this table
      * equal to the values of a map

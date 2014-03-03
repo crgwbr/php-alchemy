@@ -41,6 +41,23 @@ class Expression extends Element {
     }
 
 
+    public function getDescription($maxdepth = 3, $curdepth = 0) {
+        $str = parent::getDescription($maxdepth, $curdepth);
+
+        if ($curdepth <= $maxdepth) {
+            $i = str_repeat('  ', $curdepth);
+            $elements = array();
+            foreach($this->elements as $element) {
+                $elements[] = $element->getDescription($maxdepth, $curdepth + 1);
+            }
+
+            $str .= " [\n$i  ".implode(",\n$i  ", $elements)."\n$i]";
+        }
+
+        return $str;
+    }
+
+
     public function elements() {
         return $this->elements;
     }

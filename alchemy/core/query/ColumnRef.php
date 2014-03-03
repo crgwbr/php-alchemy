@@ -50,6 +50,12 @@ class ColumnRef extends Element implements IQueryValue, IPromisable {
     }
 
 
+    public function getDescription($maxdepth = 3, $curdepth = 0) {
+        $str = parent::getDescription($maxdepth, $curdepth);
+        return "$str ({$this->table->name()}#{$this->table->getID()}.{$this->name()})";
+    }
+
+
     public function name() {
         return $this->schema->getName();
     }

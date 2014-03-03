@@ -33,6 +33,12 @@ class Scalar extends Element implements IQueryValue {
     }
 
 
+    public function getDescription($maxdepth = 3, $curdepth = 0) {
+        $str = parent::getDescription($maxdepth, $curdepth);
+        return "$str ({$this->value})";
+    }
+
+
     /**
      * Get the primitive value
      *

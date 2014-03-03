@@ -171,6 +171,13 @@ class Element implements IElement {
     }
 
 
+    public function getDescription($maxdepth = 3, $curdepth = 0) {
+        $parts = explode('\\', get_called_class());
+        $class = array_pop($parts);
+        return "{$class}::{$this->type} #{$this->getID()}";
+    }
+
+
     /**
      * Get the locally-unique element id
      *
