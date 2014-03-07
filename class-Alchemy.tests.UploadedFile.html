@@ -7,7 +7,7 @@
 	<title>Class Alchemy\tests\UploadedFile</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -71,10 +71,11 @@
 				<li><a href="class-Alchemy.tests.MapperTest.html">MapperTest</a></li>
 				<li><a href="class-Alchemy.tests.MockElement.html">MockElement</a></li>
 				<li><a href="class-Alchemy.tests.MockPromisable.html">MockPromisable</a></li>
+				<li><a href="class-Alchemy.tests.ORMQueryTest.html">ORMQueryTest</a></li>
 				<li><a href="class-Alchemy.tests.PromiseTest.html">PromiseTest</a></li>
+				<li><a href="class-Alchemy.tests.QueryTest.html">QueryTest</a></li>
 				<li><a href="class-Alchemy.tests.RelationshipTest.html">RelationshipTest</a></li>
 				<li><a href="class-Alchemy.tests.ScalarTest.html">ScalarTest</a></li>
-				<li><a href="class-Alchemy.tests.SelectTest.html">SelectTest</a></li>
 				<li><a href="class-Alchemy.tests.SessionIntegrationTest.html">SessionIntegrationTest</a></li>
 				<li><a href="class-Alchemy.tests.SignalTest.html">SignalTest</a></li>
 				<li class="active"><a href="class-Alchemy.tests.UploadedFile.html">UploadedFile</a></li>
@@ -173,7 +174,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 			<a href="class-Alchemy.orm.DataMapper.html#___construct">__construct()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#___get">__get()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#___set">__set()</a>, 
-			<a href="class-Alchemy.orm.DataMapper.html#_add_relationship">add_relationship()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_cascadeForeignKey">cascadeForeignKey()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_from_session">from_session()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_getPrimaryKey">getPrimaryKey()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_getRelatedSet">getRelatedSet()</a>, 
@@ -181,12 +182,11 @@ any data, it merely acts as an interface between Domain objects and the Session
 			<a href="class-Alchemy.orm.DataMapper.html#_getSessionID">getSessionID()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_isTransient">isTransient()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_list_mappers">list_mappers()</a>, 
-			<a href="class-Alchemy.orm.DataMapper.html#_list_relationships">list_relationships()</a>, 
-			<a href="class-Alchemy.orm.DataMapper.html#_onPrimaryKeyAllocated">onPrimaryKeyAllocated()</a>, 
-			<a href="class-Alchemy.orm.DataMapper.html#_register">register()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_onPersisted">onPersisted()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_rollback">rollback()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_save">save()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_schema">schema()</a>, 
+			<a href="class-Alchemy.orm.DataMapper.html#_set">set()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_setSession">setSession()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_table">table()</a>, 
 			<a href="class-Alchemy.orm.DataMapper.html#_table_name">table_name()</a>
@@ -235,49 +235,28 @@ used</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="props" id="$props">
+	<tr data-order="schema_args" id="$schema_args">
 		<td class="attributes"><code>
 			protected static 
 			array
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.tests.UploadedFile.html#9-15" title="Go to source code"><var>$props</var></a>
+				<a href="source-class-Alchemy.tests.UploadedFile.html#9-19" title="Go to source code"><var>$schema_args</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'UploadedFileID'</span> =&gt; <span class="php-quote">'Integer(primary_key = true, auto_increment = true)'</span>,
-    <span class="php-quote">'LanguageID'</span> =&gt; <span class="php-quote">'Foreign(Language.LanguageID)'</span>,
-    <span class="php-quote">'Folder'</span> =&gt; <span class="php-quote">'String(40)'</span>,
-    <span class="php-quote">'Filename'</span> =&gt; <span class="php-quote">'String(40)'</span>,
-    <span class="php-quote">'LatestChangeStamp'</span> =&gt; <span class="php-quote">'Timestamp'</span>,
-)</code></td>
+    <span class="php-quote">'columns'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'UploadedFileID'</span> =&gt; <span class="php-quote">'Integer(primary_key = true, auto_increment = true)'</span>,
+        <span class="php-quote">'LanguageID'</span> =&gt; <span class="php-quote">'Foreign(Language.LanguageID)'</span>,
+        <span class="php-quote">'Folder'</span> =&gt; <span class="php-quote">'String(40)'</span>,
+        <span class="php-quote">'Filename'</span> =&gt; <span class="php-quote">'String(40)'</span>,
+        <span class="php-quote">'LatestChangeStamp'</span> =&gt; <span class="php-quote">'Timestamp'</span>,
+    ),
+    <span class="php-quote">'indexes'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'Folder_Filename'</span> =&gt; <span class="php-quote">'UniqueKey([self.Folder, self.Filename])'</span>,
+    ))</code></td>
 		<td class="description"><div>
-			<a href="#$props" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="indexes" id="$indexes">
-		<td class="attributes"><code>
-			protected static 
-			array
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.tests.UploadedFile.html#17-19" title="Go to source code"><var>$indexes</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'Folder_Filename'</span> =&gt; <span class="php-quote">'UniqueKey([self.Folder, self.Filename])'</span>,
-)</code></td>
-		<td class="description"><div>
-			<a href="#$indexes" class="anchor">#</a>
+			<a href="#$schema_args" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -291,14 +270,6 @@ used</p>
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Alchemy.orm.DataMapper.html#properties">Alchemy\orm\DataMapper</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Alchemy.orm.DataMapper.html#$relationships"><var>$relationships</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

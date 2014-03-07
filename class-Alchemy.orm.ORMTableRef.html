@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Alchemy\orm\ORMTableRef</title>
+
+	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Alchemy.html">Alchemy<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.html">core<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.core.query.html">query</a>
+						</li>
+				<li><a href="namespace-Alchemy.core.schema.html">schema</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Alchemy.dialect.html">dialect</a>
+						</li>
+				<li><a href="namespace-Alchemy.engine.html">engine</a>
+						</li>
+				<li class="active"><a href="namespace-Alchemy.orm.html">orm</a>
+						</li>
+				<li><a href="namespace-Alchemy.tests.html">tests</a>
+						</li>
+				<li><a href="namespace-Alchemy.util.html">util<span></span></a>
+						<ul>
+				<li><a href="namespace-Alchemy.util.promise.html">promise</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Alchemy.orm.DataMapper.html">DataMapper</a></li>
+				<li><a href="class-Alchemy.orm.DDL.html">DDL</a></li>
+				<li><a href="class-Alchemy.orm.ManyToOne.html">ManyToOne</a></li>
+				<li><a href="class-Alchemy.orm.OneToMany.html">OneToMany</a></li>
+				<li><a href="class-Alchemy.orm.OneToOne.html">OneToOne</a></li>
+				<li><a href="class-Alchemy.orm.ORMQuery.html">ORMQuery</a></li>
+				<li><a href="class-Alchemy.orm.ORMTable.html">ORMTable</a></li>
+				<li class="active"><a href="class-Alchemy.orm.ORMTableRef.html">ORMTableRef</a></li>
+				<li><a href="class-Alchemy.orm.RelatedSet.html">RelatedSet</a></li>
+				<li><a href="class-Alchemy.orm.Relationship.html">Relationship</a></li>
+				<li><a href="class-Alchemy.orm.Session.html">Session</a></li>
+				<li><a href="class-Alchemy.orm.SessionSelect.html">SessionSelect</a></li>
+				<li><a href="class-Alchemy.orm.WorkQueue.html">WorkQueue</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Alchemy.orm.html" title="Summary of Alchemy\orm"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ORMTableRef</h1>
+
+
+	<div class="description">
+	
+<p>Represents a table reference through a singular relationship</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Alchemy.core.Element.html"><span>Alchemy\core\Element</span></a>
+			
+			 implements 
+				<a href="class-Alchemy.core.IElement.html"><span>Alchemy\core\IElement</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Alchemy.core.query.TableRef.html"><span>Alchemy\core\query\TableRef</span></a>
+			
+			 implements 
+				<a href="class-Alchemy.util.promise.IPromisable.html"><span>Alchemy\util\promise\IPromisable</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Alchemy\orm\ORMTableRef</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Alchemy.orm.ORMTableRef.html#10-78" title="Go to source code">alchemy/orm/query/ORMTableRef.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#22-25" title="Go to source code">__construct</a>( <span>mixed <var>$schema</var></span>, <span>mixed <var>$predicate</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.core.query.TableRef.html#___construct">Alchemy\core\query\TableRef::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+			ColumnRef
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#28-40" title="Go to source code">__get</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a column reference by name</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a column reference by name</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name Column name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>ColumnRef</code><br>reference to Column<br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.core.query.TableRef.html#___get">Alchemy\core\query\TableRef::__get()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="all" id="_all">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_all">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#43" title="Go to source code">all</a>( <span><code><a href="class-Alchemy.core.query.Predicate.html">Alchemy\core\query\Predicate</a></code> <var>$expr</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDescription" id="_getDescription">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDescription">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#46-50" title="Go to source code">getDescription</a>( <span>mixed <var>$maxdepth</var> = <span class="php-num">3</span></span>, <span>mixed <var>$curdepth</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.core.query.TableRef.html#_getDescription">Alchemy\core\query\TableRef::getDescription()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="none" id="_none">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_none">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#53" title="Go to source code">none</a>( <span><code><a href="class-Alchemy.core.query.Predicate.html">Alchemy\core\query\Predicate</a></code> <var>$expr</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="predicate" id="_predicate">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_predicate">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#56-62" title="Go to source code">predicate</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="relationships" id="_relationships">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_relationships">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#65-72" title="Go to source code">relationships</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="where" id="_where">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_where">#</a>
+		<code><a href="source-class-Alchemy.orm.ORMTableRef.html#75-77" title="Go to source code">where</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.core.query.TableRef.html#methods">Alchemy\core\query\TableRef</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.core.query.TableRef.html#_columns">columns()</a>, 
+			<a href="class-Alchemy.core.query.TableRef.html#_equal">equal()</a>, 
+			<a href="class-Alchemy.core.query.TableRef.html#_list_promisable_methods">list_promisable_methods()</a>, 
+			<a href="class-Alchemy.core.query.TableRef.html#_name">name()</a>, 
+			<a href="class-Alchemy.core.query.TableRef.html#_schema">schema()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.core.Element.html#methods">Alchemy\core\Element</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.core.Element.html#___callStatic">__callStatic()</a>, 
+			<a href="class-Alchemy.core.Element.html#___clone">__clone()</a>, 
+			<a href="class-Alchemy.core.Element.html#_addTag">addTag()</a>, 
+			<a href="class-Alchemy.core.Element.html#_addTags">addTags()</a>, 
+			<a href="class-Alchemy.core.Element.html#_copy">copy()</a>, 
+			<a href="class-Alchemy.core.Element.html#_define">define()</a>, 
+			<a href="class-Alchemy.core.Element.html#_define_alias">define_alias()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getID">getID()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getTag">getTag()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getType">getType()</a>, 
+			<a href="class-Alchemy.core.Element.html#_get_definition">get_definition()</a>, 
+			<a href="class-Alchemy.core.Element.html#_listTags">listTags()</a>, 
+			<a href="class-Alchemy.core.Element.html#_normalize_arg">normalize_arg()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="predicate" id="$predicate">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.ORMTableRef.html#15" title="Go to source code"><var>$predicate</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$predicate" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="relcache" id="$relcache">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.ORMTableRef.html#16" title="Go to source code"><var>$relcache</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$relcache" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.core.query.TableRef.html#properties">Alchemy\core\query\TableRef</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.core.query.TableRef.html#$schema"><var>$schema</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.core.Element.html#properties">Alchemy\core\Element</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.core.Element.html#$id"><var>$id</var></a>, 
+			<a href="class-Alchemy.core.Element.html#$tags"><var>$tags</var></a>, 
+			<a href="class-Alchemy.core.Element.html#$type"><var>$type</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

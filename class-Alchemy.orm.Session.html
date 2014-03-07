@@ -7,7 +7,7 @@
 	<title>Class Alchemy\orm\Session</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -59,6 +59,9 @@
 				<li><a href="class-Alchemy.orm.ManyToOne.html">ManyToOne</a></li>
 				<li><a href="class-Alchemy.orm.OneToMany.html">OneToMany</a></li>
 				<li><a href="class-Alchemy.orm.OneToOne.html">OneToOne</a></li>
+				<li><a href="class-Alchemy.orm.ORMQuery.html">ORMQuery</a></li>
+				<li><a href="class-Alchemy.orm.ORMTable.html">ORMTable</a></li>
+				<li><a href="class-Alchemy.orm.ORMTableRef.html">ORMTableRef</a></li>
 				<li><a href="class-Alchemy.orm.RelatedSet.html">RelatedSet</a></li>
 				<li><a href="class-Alchemy.orm.Relationship.html">Relationship</a></li>
 				<li class="active"><a href="class-Alchemy.orm.Session.html">Session</a></li>
@@ -130,7 +133,7 @@ the RDBMS Engine layer. Manages queuing of work and transactions</p>
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.Session.html#14-345" title="Go to source code">alchemy/orm/Session.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.Session.html#13-341" title="Go to source code">alchemy/orm/Session.php</a><br />
 	</div>
 
 
@@ -148,7 +151,7 @@ the RDBMS Engine layer. Manages queuing of work and transactions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#25-33" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#24-32" title="Go to source code">__construct</a>( <span><code><a href="class-Alchemy.engine.IEngine.html">Alchemy\engine\IEngine</a></code> <var>$engine</var></span> )</code>
 
 		<div class="description short">
 			
@@ -186,7 +189,7 @@ the RDBMS Engine layer. Manages queuing of work and transactions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_add">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#36-67" title="Go to source code">add</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#35-66" title="Go to source code">add</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -228,7 +231,7 @@ the RDBMS Engine layer. Manages queuing of work and transactions</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_commit">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#70-79" title="Go to source code">commit</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#69-78" title="Go to source code">commit</a>( )</code>
 
 		<div class="description short">
 			
@@ -263,7 +266,7 @@ You should almost always call this instead of <code><a href="class-Alchemy.orm.S
 
 		<td class="name"><div>
 		<a class="anchor" href="#_ddl">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#82-89" title="Go to source code">ddl</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#81-88" title="Go to source code">ddl</a>( )</code>
 
 		<div class="description short">
 			
@@ -300,7 +303,7 @@ You should almost always call this instead of <code><a href="class-Alchemy.orm.S
 
 		<td class="name"><div>
 		<a class="anchor" href="#_engine">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#92-99" title="Go to source code">engine</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#91-98" title="Go to source code">engine</a>( )</code>
 
 		<div class="description short">
 			
@@ -337,7 +340,7 @@ You should almost always call this instead of <code><a href="class-Alchemy.orm.S
 
 		<td class="name"><div>
 		<a class="anchor" href="#_execute">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#102-113" title="Go to source code">execute</a>( <span>string <var>$cls</var></span>, <span>Query <var>$query</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#101-112" title="Go to source code">execute</a>( <span>string <var>$cls</var></span>, <span>Query <var>$query</var></span> )</code>
 
 		<div class="description short">
 			
@@ -381,7 +384,7 @@ You should almost always call this instead of <code><a href="class-Alchemy.orm.S
 
 		<td class="name"><div>
 		<a class="anchor" href="#_flush">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#116-124" title="Go to source code">flush</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#115-123" title="Go to source code">flush</a>( )</code>
 
 		<div class="description short">
 			
@@ -418,7 +421,7 @@ for you to commit / rollback.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#127-155" title="Go to source code">getPrimaryKey</a>( <span>string <var>$cls</var></span>, <span>array <var>$record</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#126-154" title="Go to source code">getPrimaryKey</a>( <span>string <var>$cls</var></span>, <span>array <var>$record</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -466,7 +469,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getProperty">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#158-168" title="Go to source code">getProperty</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>string <var>$prop</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#157-167" title="Go to source code">getProperty</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>string <var>$prop</var></span> )</code>
 
 		<div class="description short">
 			
@@ -512,7 +515,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_object">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#171-186" title="Go to source code">object</a>( <span>string <var>$cls</var></span>, <span>string <var>$sid</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#170-185" title="Go to source code">object</a>( <span>string <var>$cls</var></span>, <span>string <var>$sid</var></span> )</code>
 
 		<div class="description short">
 			
@@ -556,7 +559,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_objects">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#189-196" title="Go to source code">objects</a>( <span>mixed <var>$cls</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#188-195" title="Go to source code">objects</a>( <span>mixed <var>$cls</var></span> )</code>
 
 		<div class="description short">
 			
@@ -593,7 +596,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_remove">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#199-223" title="Go to source code">remove</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>&amp; $obj</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#198-222" title="Go to source code">remove</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>&amp; $obj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -630,7 +633,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#226-262" title="Go to source code">save</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#225-261" title="Go to source code">save</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -674,7 +677,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setProperty">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#265-281" title="Go to source code">setProperty</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#264-280" title="Go to source code">setProperty</a>( <span>string <var>$cls</var></span>, <span>mixed <var>$id</var></span>, <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -718,7 +721,7 @@ a real key.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updatePrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#284-317" title="Go to source code">updatePrimaryKey</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span>, <span>mixed <var>$oldID</var></span>, <span>mixed <var>$newID</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#283-313" title="Go to source code">updatePrimaryKey</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span>, <span>mixed <var>$oldID</var></span>, <span>mixed <var>$newID</var></span> )</code>
 
 		<div class="description short">
 			
@@ -764,7 +767,7 @@ db-allocated key after an INSERT.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_wrap">#</a>
-		<code><a href="source-class-Alchemy.orm.Session.html#320-344" title="Go to source code">wrap</a>( <span>string <var>$cls</var></span>, <span>array <var>$rows</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Session.html#316-340" title="Go to source code">wrap</a>( <span>string <var>$cls</var></span>, <span>array <var>$rows</var></span> )</code>
 
 		<div class="description short">
 			
@@ -815,7 +818,7 @@ db-allocated key after an INSERT.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#19" title="Go to source code"><var>$queue</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#18" title="Go to source code"><var>$queue</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -838,7 +841,7 @@ db-allocated key after an INSERT.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#20" title="Go to source code"><var>$engine</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#19" title="Go to source code"><var>$engine</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -861,7 +864,7 @@ db-allocated key after an INSERT.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#21" title="Go to source code"><var>$records</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#20" title="Go to source code"><var>$records</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -884,7 +887,7 @@ db-allocated key after an INSERT.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Session.html#22" title="Go to source code"><var>$updated</var></a>
+				<a href="source-class-Alchemy.orm.Session.html#21" title="Go to source code"><var>$updated</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

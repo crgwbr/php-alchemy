@@ -8,7 +8,7 @@
 	<title>File alchemy/core/schema/ForeignKey.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -142,23 +142,35 @@
 </span><span id="37" class="l"><a class="l" href="#37">37: </a>    }
 </span><span id="38" class="l"><a class="l" href="#38">38: </a>
 </span><span id="39" class="l"><a class="l" href="#39">39: </a>
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_resolve" href="#_resolve">resolve</a>() {
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;columns) <span class="php-keyword1">return</span>;
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getNameMap" href="#_getNameMap">getNameMap</a>() {
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>        <span class="php-var">$this</span>-&gt;resolve();
 </span><span id="42" class="l"><a class="l" href="#42">42: </a>
-</span><span id="43" class="l"><a class="l" href="#43">43: </a>        parent::resolve();
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>
-</span><span id="45" class="l"><a class="l" href="#45">45: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">1</span>]) || <span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">0</span>]) != <span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">1</span>])) {
-</span><span id="46" class="l"><a class="l" href="#46">46: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">&quot;ForeignKey received the wrong number of sources.&quot;</span>);
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>        }
-</span><span id="48" class="l"><a class="l" href="#48">48: </a>
-</span><span id="49" class="l"><a class="l" href="#49">49: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">1</span>] <span class="php-keyword1">as</span> <span class="php-var">$source</span>) {
-</span><span id="50" class="l"><a class="l" href="#50">50: </a>            <span class="php-var">$this</span>-&gt;sources[] = <span class="php-keyword2">is_string</span>(<span class="php-var">$source</span>)
-</span><span id="51" class="l"><a class="l" href="#51">51: </a>                ? Column::find(<span class="php-var">$source</span>, <span class="php-var">$this</span>-&gt;table)
-</span><span id="52" class="l"><a class="l" href="#52">52: </a>                : <span class="php-var">$source</span>;
-</span><span id="53" class="l"><a class="l" href="#53">53: </a>        }
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>    }
-</span><span id="55" class="l"><a class="l" href="#55">55: </a>}
-</span><span id="56" class="l"><a class="l" href="#56">56: </a></span></code></pre>
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>        <span class="php-var">$map</span> = <span class="php-keyword1">array</span>();
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;sources <span class="php-keyword1">as</span> <span class="php-var">$k</span> =&gt; <span class="php-var">$source</span>) {
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>            <span class="php-var">$map</span>[<span class="php-var">$source</span>-&gt;getName()] = <span class="php-var">$this</span>-&gt;columns[<span class="php-var">$k</span>]-&gt;getName();
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>        }
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>        <span class="php-keyword1">return</span> <span class="php-var">$map</span>;
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>    }
+</span><span id="50" class="l"><a class="l" href="#50">50: </a>
+</span><span id="51" class="l"><a class="l" href="#51">51: </a>
+</span><span id="52" class="l"><a class="l" href="#52">52: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <a id="_resolve" href="#_resolve">resolve</a>() {
+</span><span id="53" class="l"><a class="l" href="#53">53: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;columns) <span class="php-keyword1">return</span>;
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>        parent::resolve();
+</span><span id="56" class="l"><a class="l" href="#56">56: </a>
+</span><span id="57" class="l"><a class="l" href="#57">57: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">1</span>]) || <span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">0</span>]) != <span class="php-keyword2">count</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">1</span>])) {
+</span><span id="58" class="l"><a class="l" href="#58">58: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \Exception(<span class="php-quote">&quot;ForeignKey received the wrong number of sources.&quot;</span>);
+</span><span id="59" class="l"><a class="l" href="#59">59: </a>        }
+</span><span id="60" class="l"><a class="l" href="#60">60: </a>
+</span><span id="61" class="l"><a class="l" href="#61">61: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;args[<span class="php-num">1</span>] <span class="php-keyword1">as</span> <span class="php-var">$source</span>) {
+</span><span id="62" class="l"><a class="l" href="#62">62: </a>            <span class="php-var">$this</span>-&gt;sources[] = <span class="php-keyword2">is_string</span>(<span class="php-var">$source</span>)
+</span><span id="63" class="l"><a class="l" href="#63">63: </a>                ? Column::find(<span class="php-var">$source</span>, <span class="php-var">$this</span>-&gt;table)
+</span><span id="64" class="l"><a class="l" href="#64">64: </a>                : <span class="php-var">$source</span>;
+</span><span id="65" class="l"><a class="l" href="#65">65: </a>        }
+</span><span id="66" class="l"><a class="l" href="#66">66: </a>    }
+</span><span id="67" class="l"><a class="l" href="#67">67: </a>}
+</span><span id="68" class="l"><a class="l" href="#68">68: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

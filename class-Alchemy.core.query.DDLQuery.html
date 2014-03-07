@@ -7,7 +7,7 @@
 	<title>Class Alchemy\core\query\DDLQuery</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -55,19 +55,14 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Alchemy.core.query.ColumnRef.html">ColumnRef</a></li>
-				<li><a href="class-Alchemy.core.query.Create.html">Create</a></li>
 				<li class="active"><a href="class-Alchemy.core.query.DDLQuery.html">DDLQuery</a></li>
-				<li><a href="class-Alchemy.core.query.Delete.html">Delete</a></li>
-				<li><a href="class-Alchemy.core.query.Drop.html">Drop</a></li>
 				<li><a href="class-Alchemy.core.query.Expression.html">Expression</a></li>
 				<li><a href="class-Alchemy.core.query.Insert.html">Insert</a></li>
 				<li><a href="class-Alchemy.core.query.Join.html">Join</a></li>
 				<li><a href="class-Alchemy.core.query.Predicate.html">Predicate</a></li>
 				<li><a href="class-Alchemy.core.query.Query.html">Query</a></li>
 				<li><a href="class-Alchemy.core.query.Scalar.html">Scalar</a></li>
-				<li><a href="class-Alchemy.core.query.Select.html">Select</a></li>
 				<li><a href="class-Alchemy.core.query.TableRef.html">TableRef</a></li>
-				<li><a href="class-Alchemy.core.query.Update.html">Update</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
@@ -121,7 +116,7 @@
 
 	<div class="description">
 	
-<p>Abstract class for representing a DDL transformation query</p>
+<p>Represents a DDL transformation query</p>
 
 	</div>
 
@@ -145,11 +140,6 @@
 	</dl>
 
 
-	<div>
-		<h4>Direct known subclasses</h4>
-			<a href="class-Alchemy.core.query.Create.html">Alchemy\core\query\Create</a>, 
-			<a href="class-Alchemy.core.query.Drop.html">Alchemy\core\query\Drop</a>
-	</div>
 
 
 
@@ -157,12 +147,12 @@
 
 
 	<div class="info">
-		<b>Abstract</b><br />
+		
 		
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.core.html">core</a>\<a href="namespace-Alchemy.core.query.html">query</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.core.query.DDLQuery.html#7-44" title="Go to source code">alchemy/core/query/DDLQuery.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.core.query.DDLQuery.html#7-41" title="Go to source code">alchemy/core/query/DDLQuery.php</a><br />
 	</div>
 
 
@@ -180,7 +170,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.core.query.DDLQuery.html#14-25" title="Go to source code">__construct</a>( <span>Table <var>$table</var></span> )</code>
+		<code><a href="source-class-Alchemy.core.query.DDLQuery.html#14-22" title="Go to source code">__construct</a>( <span>Table <var>$type</var></span>, <span>mixed <var>$table</var></span> )</code>
 
 		<div class="description short">
 			
@@ -196,8 +186,10 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$table</var></dt>
+					<dt><var>$type</var></dt>
 					<dd><code>Table</code><br>$table</dd>
+					<dt><var>$table</var></dt>
+					<dd></dd>
 				</dl></div>
 
 
@@ -220,7 +212,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getTable">#</a>
-		<code><a href="source-class-Alchemy.core.query.DDLQuery.html#28-33" title="Go to source code">getTable</a>( )</code>
+		<code><a href="source-class-Alchemy.core.query.DDLQuery.html#25-30" title="Go to source code">getTable</a>( )</code>
 
 		<div class="description short">
 			
@@ -242,7 +234,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getParameters" id="_getParameters">
+	<tr data-order="parameters" id="_parameters">
 
 		<td class="attributes"><code>
 			 public 
@@ -252,8 +244,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getParameters">#</a>
-		<code><a href="source-class-Alchemy.core.query.DDLQuery.html#36-43" title="Go to source code">getParameters</a>( )</code>
+		<a class="anchor" href="#_parameters">#</a>
+		<code><a href="source-class-Alchemy.core.query.DDLQuery.html#33-40" title="Go to source code">parameters</a>( )</code>
 
 		<div class="description short">
 			
@@ -277,7 +269,7 @@
 
 
 				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Alchemy.core.query.IQueryFragment.html#_getParameters">Alchemy\core\query\IQueryFragment::getParameters()</a></code></div>
+				<div class="list"><code><a href="class-Alchemy.core.query.IQueryFragment.html#_parameters">Alchemy\core\query\IQueryFragment::parameters()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -294,11 +286,13 @@
 			<a href="class-Alchemy.core.Element.html#_copy">copy()</a>, 
 			<a href="class-Alchemy.core.Element.html#_define">define()</a>, 
 			<a href="class-Alchemy.core.Element.html#_define_alias">define_alias()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getDescription">getDescription()</a>, 
 			<a href="class-Alchemy.core.Element.html#_getID">getID()</a>, 
 			<a href="class-Alchemy.core.Element.html#_getTag">getTag()</a>, 
 			<a href="class-Alchemy.core.Element.html#_getType">getType()</a>, 
 			<a href="class-Alchemy.core.Element.html#_get_definition">get_definition()</a>, 
-			<a href="class-Alchemy.core.Element.html#_listTags">listTags()</a>
+			<a href="class-Alchemy.core.Element.html#_listTags">listTags()</a>, 
+			<a href="class-Alchemy.core.Element.html#_normalize_arg">normalize_arg()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -322,7 +316,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.core.query.DDLQuery.html#11" title="Go to source code"><var>$table</var></a>
+				<a href="source-class-Alchemy.core.query.DDLQuery.html#12" title="Go to source code"><var>$table</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

@@ -7,7 +7,7 @@
 	<title>Class Alchemy\core\schema\Table</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -131,6 +131,10 @@
 	</dl>
 
 
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Alchemy.orm.ORMTable.html">Alchemy\orm\ORMTable</a>
+	</div>
 
 
 
@@ -143,7 +147,7 @@
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.core.html">core</a>\<a href="namespace-Alchemy.core.schema.html">schema</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.core.schema.Table.html#11-251" title="Go to source code">alchemy/core/schema/Table.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.core.schema.Table.html#11-238" title="Go to source code">alchemy/core/schema/Table.php</a><br />
 	</div>
 
 
@@ -161,7 +165,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_list_promisable_methods">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#29-34" title="Go to source code">list_promisable_methods</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#27-32" title="Go to source code">list_promisable_methods</a>( )</code>
 
 		<div class="description short">
 			
@@ -204,7 +208,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_find">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#37-49" title="Go to source code">find</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#35-47" title="Go to source code">find</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -235,6 +239,35 @@ return an instance of a certain type.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="register_name" id="_register_name">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_register_name">#</a>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#50-57" title="Go to source code">register_name</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$table</var></span>, <span>mixed <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
@@ -246,7 +279,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#52-65" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span>array <var>$propdefs</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$indexdefs</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#60-73" title="Go to source code">__construct</a>( <span>string <var>$type</var></span>, <span>array <var>$name</var></span>, <span>array <var>$args</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -262,12 +295,12 @@ return an instance of a certain type.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$name name of table</dd>
 					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$tableName</dd>
-					<dt><var>$propdefs</var></dt>
-					<dd><code>array</code><br>$columns array("name" =&gt; Column, "name" =&gt; Column, ...)</dd>
-					<dt><var>$indexdefs</var></dt>
-					<dd><code>string</code><br>$namespace Namespace of Column classes</dd>
+					<dd><code>array</code><br>$columndefs array("name" =&gt; Column, "name" =&gt; Column, ...)</dd>
+					<dt><var>$args</var></dt>
+					<dd><code>array</code><br>$indexdefs array("name" =&gt; Index, "name" =&gt; Index, ...)</dd>
 				</dl></div>
 
 
@@ -290,7 +323,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getColumn">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#68-74" title="Go to source code">getColumn</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#76-94" title="Go to source code">getColumn</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -319,7 +352,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_copy">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#77-79" title="Go to source code">copy</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#97-99" title="Go to source code">copy</a>( )</code>
 
 		<div class="description short">
 			
@@ -350,7 +383,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getName">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#82-89" title="Go to source code">getName</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#102-109" title="Go to source code">getName</a>( )</code>
 
 		<div class="description short">
 			
@@ -387,7 +420,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRef">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#92-94" title="Go to source code">getRef</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#112-114" title="Go to source code">getRef</a>( )</code>
 
 		<div class="description short">
 			
@@ -405,7 +438,7 @@ return an instance of a certain type.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="isColumn" id="_isColumn">
+	<tr data-order="hasColumn" id="_hasColumn">
 
 		<td class="attributes"><code>
 			 public 
@@ -415,8 +448,8 @@ return an instance of a certain type.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_isColumn">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#97-106" title="Go to source code">isColumn</a>( <span>string <var>$name</var></span> )</code>
+		<a class="anchor" href="#_hasColumn">#</a>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#117-125" title="Go to source code">hasColumn</a>( <span>string <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -458,7 +491,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listColumns">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#109-117" title="Go to source code">listColumns</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#128-136" title="Go to source code">listColumns</a>( )</code>
 
 		<div class="description short">
 			
@@ -495,7 +528,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listDependancies">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#120-128" title="Go to source code">listDependancies</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#139-147" title="Go to source code">listDependancies</a>( )</code>
 
 		<div class="description short">
 			
@@ -532,7 +565,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listDependants">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#131-139" title="Go to source code">listDependants</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#150-158" title="Go to source code">listDependants</a>( )</code>
 
 		<div class="description short">
 			
@@ -569,7 +602,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_listIndexes">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#142-150" title="Go to source code">listIndexes</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#161-169" title="Go to source code">listIndexes</a>( )</code>
 
 		<div class="description short">
 			
@@ -606,7 +639,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#153-163" title="Go to source code">getPrimaryKey</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#172-182" title="Go to source code">getPrimaryKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -643,7 +676,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_register">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#166-176" title="Go to source code">register</a>( )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#185-190" title="Go to source code">register</a>( <span>mixed <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -657,46 +690,6 @@ return an instance of a certain type.</p>
 
 
 
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="resolveProperty" id="_resolveProperty">
-
-		<td class="attributes"><code>
-			 protected 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_resolveProperty">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#179-198" title="Go to source code">resolveProperty</a>( <span>string <var>$name</var></span>, <span>mixed <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\core\\schema&quot;</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Lazy-resolve a named property of this Table</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Lazy-resolve a named property of this Table</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name name of property</dd>
-					<dt><var>$namespace</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 
@@ -716,7 +709,7 @@ return an instance of a certain type.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_resolve">#</a>
-		<code><a href="source-class-Alchemy.core.schema.Table.html#201-250" title="Go to source code">resolve</a>( <span>mixed <var>$namespace</var> = <span class="php-quote">&quot;Alchemy\\core\\schema&quot;</span></span> )</code>
+		<code><a href="source-class-Alchemy.core.schema.Table.html#193-237" title="Go to source code">resolve</a>( )</code>
 
 		<div class="description short">
 			
@@ -750,11 +743,13 @@ return an instance of a certain type.</p>
 			<a href="class-Alchemy.core.Element.html#_addTags">addTags()</a>, 
 			<a href="class-Alchemy.core.Element.html#_define">define()</a>, 
 			<a href="class-Alchemy.core.Element.html#_define_alias">define_alias()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getDescription">getDescription()</a>, 
 			<a href="class-Alchemy.core.Element.html#_getID">getID()</a>, 
 			<a href="class-Alchemy.core.Element.html#_getTag">getTag()</a>, 
 			<a href="class-Alchemy.core.Element.html#_getType">getType()</a>, 
 			<a href="class-Alchemy.core.Element.html#_get_definition">get_definition()</a>, 
-			<a href="class-Alchemy.core.Element.html#_listTags">listTags()</a>
+			<a href="class-Alchemy.core.Element.html#_listTags">listTags()</a>, 
+			<a href="class-Alchemy.core.Element.html#_normalize_arg">normalize_arg()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -806,6 +801,98 @@ return an instance of a certain type.</p>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$name" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolved" id="$resolved">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.schema.Table.html#18" title="Go to source code"><var>$resolved</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$resolved" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="args" id="$args">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.schema.Table.html#19" title="Go to source code"><var>$args</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$args" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="columns" id="$columns">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.schema.Table.html#20" title="Go to source code"><var>$columns</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$columns" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="indexes" id="$indexes">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.core.schema.Table.html#21" title="Go to source code"><var>$indexes</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$indexes" class="anchor">#</a>
 
 			<div class="description short">
 				

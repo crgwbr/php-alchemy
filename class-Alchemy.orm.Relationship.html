@@ -7,7 +7,7 @@
 	<title>Class Alchemy\orm\Relationship</title>
 
 	<script type="text/javascript" src="resources/combined.js?3361484702"></script>
-	<script type="text/javascript" src="elementlist.js?4283196867"></script>
+	<script type="text/javascript" src="elementlist.js?1149347256"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -59,6 +59,9 @@
 				<li><a href="class-Alchemy.orm.ManyToOne.html">ManyToOne</a></li>
 				<li><a href="class-Alchemy.orm.OneToMany.html">OneToMany</a></li>
 				<li><a href="class-Alchemy.orm.OneToOne.html">OneToOne</a></li>
+				<li><a href="class-Alchemy.orm.ORMQuery.html">ORMQuery</a></li>
+				<li><a href="class-Alchemy.orm.ORMTable.html">ORMTable</a></li>
+				<li><a href="class-Alchemy.orm.ORMTableRef.html">ORMTableRef</a></li>
 				<li><a href="class-Alchemy.orm.RelatedSet.html">RelatedSet</a></li>
 				<li class="active"><a href="class-Alchemy.orm.Relationship.html">Relationship</a></li>
 				<li><a href="class-Alchemy.orm.Session.html">Session</a></li>
@@ -116,6 +119,22 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Alchemy.core.Element.html"><span>Alchemy\core\Element</span></a>
+			
+			 implements 
+				<a href="class-Alchemy.core.IElement.html"><span>Alchemy\core\IElement</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Alchemy\orm\Relationship</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 	<div>
@@ -131,12 +150,12 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 
 	<div class="info">
-		<b>Abstract</b><br />
+		
 		
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.Relationship.html#9-233" title="Go to source code">alchemy/orm/Relationship.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.Relationship.html#12-254" title="Go to source code">alchemy/orm/schema/Relationship.php</a><br />
 	</div>
 
 
@@ -154,7 +173,7 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#24-52" title="Go to source code">__construct</a>( <span>string <var>$name</var></span>, <span>string <var>$origin</var></span>, <span>array <var>$args</var></span>, <span>boolean <var>$createBackref</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#26-55" title="Go to source code">__construct</a>( <span>string <var>$type</var></span>, <span>string <var>$args</var></span>, <span>array <var>$origin</var></span>, <span>boolean <var>$name</var></span>, <span>mixed <var>$createBackref</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -170,15 +189,48 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$name</var></dt>
+					<dt><var>$type</var></dt>
 					<dd><code>string</code><br>$name Relationship Name</dd>
-					<dt><var>$origin</var></dt>
-					<dd><code>string</code><br>$origin Originating Class</dd>
 					<dt><var>$args</var></dt>
+					<dd><code>string</code><br>$origin Originating Class</dd>
+					<dt><var>$origin</var></dt>
 					<dd><code>array</code><br>$args array([0] =&gt; "DestinationClass", [backref] =&gt; "BackrefName")</dd>
-					<dt><var>$createBackref</var></dt>
+					<dt><var>$name</var></dt>
 					<dd><code>boolean</code><br>$createBackref Internal Use Only</dd>
+					<dt><var>$createBackref</var></dt>
+					<dd></dd>
 				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Alchemy.core.Element.html#___construct">Alchemy\core\Element::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="assertDestinationType" id="_assertDestinationType">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_assertDestinationType">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#58-63" title="Go to source code">assertDestinationType</a>( <span>mixed <var>$dest</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
 
 
 
@@ -198,7 +250,7 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createBackref">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#55-72" title="Go to source code">createBackref</a>( <span>string <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#66-81" title="Go to source code">createBackref</a>( )</code>
 
 		<div class="description short">
 			
@@ -212,11 +264,6 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$name</var></dt>
-					<dd><code>string</code><br>$name</dd>
-				</dl></div>
 
 
 
@@ -236,7 +283,7 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findForeignKey">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#75-115" title="Go to source code">findForeignKey</a>( <span>mixed <var>$args</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#84-106" title="Go to source code">findForeignKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -273,7 +320,7 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_findForeignKeyImpl">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#118-140" title="Go to source code">findForeignKeyImpl</a>( <span>Table <var>$tableA</var></span>, <span>Table <var>$tableB</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#109-131" title="Go to source code">findForeignKeyImpl</a>( <span><code><a href="class-Alchemy.core.schema.Table.html">Alchemy\core\schema\Table</a></code> <var>$tableA</var></span>, <span><code><a href="class-Alchemy.core.schema.Table.html">Alchemy\core\schema\Table</a></code> <var>$tableB</var></span> )</code>
 
 		<div class="description short">
 			
@@ -290,9 +337,9 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$tableA</var></dt>
-					<dd><code>Table</code><br>$tableA</dd>
+					<dd><code><code><a href="class-Alchemy.core.schema.Table.html">Alchemy\core\schema\Table</a></code></code><br>$tableA</dd>
 					<dt><var>$tableB</var></dt>
-					<dd><code>Table</code><br>$tableB</dd>
+					<dd><code><code><a href="class-Alchemy.core.schema.Table.html">Alchemy\core\schema\Table</a></code></code><br>$tableB</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -317,7 +364,7 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getBackref">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#143-150" title="Go to source code">getBackref</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#134-141" title="Go to source code">getBackref</a>( )</code>
 
 		<div class="description short">
 			
@@ -343,46 +390,7 @@ create separate relationship types like OneToOne, OneToMany, etc.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getColumnPairings" id="_getColumnPairings">
-
-		<td class="attributes"><code>
-			 public 
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getColumnPairings">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#153-171" title="Go to source code">getColumnPairings</a>( )</code>
-
-		<div class="description short">
-			
-<p>Get an array of local/remote columns that map to each other to form this
-relationship</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Get an array of local/remote columns that map to each other to form this
-relationship</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>array</code><br>array(array(LocaleColumn, RemoteColumn), ...)<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getDestination" id="_getDestination">
+	<tr data-order="getInverse" id="_getInverse">
 
 		<td class="attributes"><code>
 			 public 
@@ -392,8 +400,45 @@ relationship</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getDestination">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#174-181" title="Go to source code">getDestination</a>( )</code>
+		<a class="anchor" href="#_getInverse">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#144-151" title="Go to source code">getInverse</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the inverse side of this relationship</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the inverse side of this relationship</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDestinationClass" id="_getDestinationClass">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDestinationClass">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#155-162" title="Go to source code">getDestinationClass</a>( )</code>
 
 		<div class="description short">
 			
@@ -430,7 +475,7 @@ relationship</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getName">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#184-191" title="Go to source code">getName</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#165-172" title="Go to source code">getName</a>( )</code>
 
 		<div class="description short">
 			
@@ -456,6 +501,35 @@ relationship</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getRef" id="_getRef">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRef">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#175-183" title="Go to source code">getRef</a>( <span>mixed <var>$origin</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getForeignKey" id="_getForeignKey">
 
 		<td class="attributes"><code>
@@ -467,7 +541,7 @@ relationship</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getForeignKey">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#194-201" title="Go to source code">getForeignKey</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#186-196" title="Go to source code">getForeignKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -493,7 +567,7 @@ relationship</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getOrigin" id="_getOrigin">
+	<tr data-order="getOriginClass" id="_getOriginClass">
 
 		<td class="attributes"><code>
 			 public 
@@ -503,8 +577,8 @@ relationship</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getOrigin">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#204-211" title="Go to source code">getOrigin</a>( )</code>
+		<a class="anchor" href="#_getOriginClass">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#199-206" title="Go to source code">getOriginClass</a>( )</code>
 
 		<div class="description short">
 			
@@ -530,18 +604,18 @@ relationship</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="hasSingleObjectConstraint" id="_hasSingleObjectConstraint">
+	<tr data-order="isSingleObject" id="_isSingleObject">
 
 		<td class="attributes"><code>
-			abstract public 
+			 public 
 			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_hasSingleObjectConstraint">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#214-220" title="Go to source code">hasSingleObjectConstraint</a>( )</code>
+		<a class="anchor" href="#_isSingleObject">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#209-217" title="Go to source code">isSingleObject</a>( )</code>
 
 		<div class="description short">
 			
@@ -580,7 +654,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isParent">#</a>
-		<code><a href="source-class-Alchemy.orm.Relationship.html#223-232" title="Go to source code">isParent</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#220-229" title="Go to source code">isParent</a>( )</code>
 
 		<div class="description short">
 			
@@ -610,8 +684,114 @@ relationship</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="isNullable" id="_isNullable">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isNullable">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#232-239" title="Go to source code">isNullable</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return true if this relationship can potentially be NULL (empty).</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return true if this relationship can potentially be NULL (empty).</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRemoteColumnMap" id="_getRemoteColumnMap">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRemoteColumnMap">#</a>
+		<code><a href="source-class-Alchemy.orm.Relationship.html#242-253" title="Go to source code">getRemoteColumnMap</a>( <span>mixed <var>$origin</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Return a map of remote column names and their values according to this
+relationship, relative to $origin, for querying. Applies whether $origin is a
+table reference or a DataMapper. Must be implemented by all Relationship
+types.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return a map of remote column names and their values according to this
+relationship, relative to $origin, for querying. Applies whether $origin is a
+table reference or a DataMapper. Must be implemented by all Relationship
+types.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$origin</var></dt>
+					<dd><code>mixed</code><br>$origin</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>[Column =&gt; Value, ...]<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Alchemy.core.Element.html#methods">Alchemy\core\Element</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.core.Element.html#___callStatic">__callStatic()</a>, 
+			<a href="class-Alchemy.core.Element.html#___clone">__clone()</a>, 
+			<a href="class-Alchemy.core.Element.html#_addTag">addTag()</a>, 
+			<a href="class-Alchemy.core.Element.html#_addTags">addTags()</a>, 
+			<a href="class-Alchemy.core.Element.html#_copy">copy()</a>, 
+			<a href="class-Alchemy.core.Element.html#_define">define()</a>, 
+			<a href="class-Alchemy.core.Element.html#_define_alias">define_alias()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getDescription">getDescription()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getID">getID()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getTag">getTag()</a>, 
+			<a href="class-Alchemy.core.Element.html#_getType">getType()</a>, 
+			<a href="class-Alchemy.core.Element.html#_get_definition">get_definition()</a>, 
+			<a href="class-Alchemy.core.Element.html#_listTags">listTags()</a>, 
+			<a href="class-Alchemy.core.Element.html#_normalize_arg">normalize_arg()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -625,29 +805,6 @@ relationship</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="inverseType" id="$inverseType">
-		<td class="attributes"><code>
-			protected static 
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.orm.Relationship.html#15" title="Go to source code"><var>$inverseType</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">null</span></code></td>
-		<td class="description"><div>
-			<a href="#$inverseType" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
 	<tr data-order="name" id="$name">
 		<td class="attributes"><code>
 			protected  
@@ -655,7 +812,7 @@ relationship</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Relationship.html#16" title="Go to source code"><var>$name</var></a>
+				<a href="source-class-Alchemy.orm.Relationship.html#18" title="Go to source code"><var>$name</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -678,7 +835,7 @@ relationship</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Relationship.html#17" title="Go to source code"><var>$origin</var></a>
+				<a href="source-class-Alchemy.orm.Relationship.html#19" title="Go to source code"><var>$origin</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -701,57 +858,11 @@ relationship</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.Relationship.html#18" title="Go to source code"><var>$destination</var></a>
+				<a href="source-class-Alchemy.orm.Relationship.html#20" title="Go to source code"><var>$destination</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$destination" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="backref" id="$backref">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.orm.Relationship.html#19" title="Go to source code"><var>$backref</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$backref" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="isParent" id="$isParent">
-		<td class="attributes"><code>
-			protected  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Alchemy.orm.Relationship.html#20" title="Go to source code"><var>$isParent</var></a>
-		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$isParent" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -786,8 +897,64 @@ relationship</p>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="args" id="$args">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.Relationship.html#22" title="Go to source code"><var>$args</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$args" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="inverse" id="$inverse">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Alchemy.orm.Relationship.html#23" title="Go to source code"><var>$inverse</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$inverse" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Alchemy.core.Element.html#properties">Alchemy\core\Element</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Alchemy.core.Element.html#$id"><var>$id</var></a>, 
+			<a href="class-Alchemy.core.Element.html#$tags"><var>$tags</var></a>, 
+			<a href="class-Alchemy.core.Element.html#$type"><var>$type</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
