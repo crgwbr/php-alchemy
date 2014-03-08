@@ -49,12 +49,19 @@ Column::define(null, null, array(
       'sql.compile' => 'Column',
       'expr.value' => 'string'),
    'decode' => function($self, $value) {
-      settype($value, $self->getTag('expr.value'));
+
+      if (!is_null($value)) {
+         settype($value, $self->getTag('expr.value'));
+      }
       return $value;
    },
    'encode' => function($self, $value) {
       $type = $self->getTag('expr.value');
-      settype($value, $type);
+
+      if (!is_null($value)) {
+         settype($value, $type);
+      }
+
       return new Scalar($value, $type);
    } ));
 
@@ -122,9 +129,13 @@ Column::define('Datetime', null, array(
    'tags' => array(
       'expr.value' => 'datetime'),
    'decode' => function ($self, $value) {
-      return new \Datetime($value);
+      return is_null($value) ? null : new \Datetime($value);
    },
    'encode' => function ($self, $value) {
+      if (is_null($value)) {
+         return null;
+      }
+
       if (!($value instanceof \Datetime)) {
          $value = $self->decode($value);
       }

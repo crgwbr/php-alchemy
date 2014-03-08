@@ -65,6 +65,10 @@ class WorkQueue {
         $scalars = array();
         $columns = array();
         foreach ($data as $name => $value) {
+            if (is_null($value)) {
+                continue;
+            }
+
             $columns[] = $table->$name;
             $scalars[] = $table->{$name}->schema()->encode($value);
         }

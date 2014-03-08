@@ -6,6 +6,7 @@ use Alchemy\core\query;
 use Alchemy\util\promise\Promise;
 use Alchemy\util\DataTypeLexer;
 use Exception;
+use ReflectionClass;
 
 
 /**
@@ -26,6 +27,7 @@ abstract class DataMapper {
     private static $schema_cache = array();
 
     private $deltas = array();
+    private $dependancies = array();
     private $relatedSets = array();
     private $session;
     private $sessionID;
@@ -56,11 +58,22 @@ abstract class DataMapper {
         $result = array();
         foreach (get_declared_classes() as $cls) {
             if (is_subclass_of($cls, __CLASS__)) {
-                $result[] = $cls;
+                $reflection = new ReflectionClass($cls);
+                if (!$reflection->isAbstract()) {
+                    $result[] = $cls;
+                }
             }
         }
 
         return $result;
+    }
+
+
+    /**
+     * Call immediately after data mapper definition
+     */
+    public static function register() {
+        static::schema();
     }
 
 
@@ -175,6 +188,19 @@ abstract class DataMapper {
 
 
     /**
+     * Add an object to the list of objects that must be persisted
+     * before this object can be persisted.
+     *
+     * @param DataMapper $obj
+     */
+    protected function addPersistanceDependancy(DataMapper $obj) {
+        if ($this->isTransient()) {
+            $this->dependancies[] = $obj;
+        }
+    }
+
+
+    /**
      * Automatically apply properties of this object to another's foreign keys
      * according to a Relationship.
      *
@@ -183,11 +209,13 @@ abstract class DataMapper {
      * @return Promise           resolves when FK is cascaded
      */
     public function cascadeForeignKey($child, $rel) {
+        $child->addPersistanceDependancy($this);
+
         return $this->persisting->then(function($self) use ($child, $rel) {
             $child->set($rel->getRemoteColumnMap($self));
 
             if ($child->getSession()) {
-                $child->save();
+                $child->save(!$child->isTransient());
             } else {
                 $self->getSession()->add($child);
             }
@@ -254,6 +282,22 @@ abstract class DataMapper {
         }
 
         return false;
+    }
+
+
+    /**
+     * Return a promise resolved when all objects that this object references
+     * by foreign key have been persisted
+     *
+     * @return Promise
+     */
+    public function onDependanciesPersisted() {
+        $promises = array();
+        foreach ($this->dependancies as $d) {
+            $promises[] = $d->onPersisted();
+        }
+
+        return Promise::when($promises);
     }
 
 
@@ -327,6 +371,7 @@ abstract class DataMapper {
 
         if ($persisted) {
             $this->persisting->resolve($this);
+            $this->dependancies = array();
         }
     }
 }

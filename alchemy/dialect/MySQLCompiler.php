@@ -3,6 +3,8 @@
 namespace Alchemy\dialect;
 
 class MySQLCompiler extends ANSICompiler {
+    protected static $schema_formats = array(
+        'Timestamp'  => "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
     public function Create_Integer($obj) {
         $format = static::get_schema_format($obj->getType());

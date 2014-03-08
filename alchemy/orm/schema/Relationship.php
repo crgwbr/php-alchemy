@@ -118,7 +118,7 @@ class Relationship extends Element {
 
         foreach ($tableA->listIndexes() as $index) {
             if ($index instanceof ForeignKey) {
-                if ($index->getSourceTable() == $tableB) {
+                if ($index->getSourceTable()->getName() == $tableB->getName()) {
                     if ($fk) {
                         throw new Exception("ForeignKey selection is ambiguous for table[{$tableB->getName()}]");
                     }

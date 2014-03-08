@@ -49,17 +49,29 @@ class Session {
         $obj->setSession($this, $tempID);
         $obj->save(false);
 
+        // Queue insert query
+        $self = $this;
+        return $obj->onDependanciesPersisted()->then(function() use (&$self, &$obj) {
+            $self->queueInsert($obj);
+        });
+    }
+
+
+    public function queueInsert(DataMapper $obj) {
+        $cls = get_class($obj);
+        $sid = $obj->getSessionID();
+
         // Queue an INSERT query to be run later
-        $inserting = $this->queue->insert($obj, $this->records[$cls][$tempID]);
+        $inserting = $this->queue->insert($obj, $this->records[$cls][$sid]);
 
         // When the insert is run, update our record of the primary key
         $self = $this;
-        $inserting->then(function(ResultSet $r) use ($self, $obj, $tempID) {
-            $self->updatePrimaryKey($obj, $tempID, $r->lastInsertID());
+        $inserting->then(function(ResultSet $r) use ($self, $obj, $sid) {
+            $self->updatePrimaryKey($obj, $sid, $r->lastInsertID());
         });
 
         // Kill the updated records for this object since this is the initial inset
-        unset($this->updated[$cls][$tempID]);
+        unset($this->updated[$cls][$sid]);
 
         // Return the promise for the user to do fun things with
         return $inserting;
@@ -244,7 +256,7 @@ class Session {
 
             // Abort if primary key is partial
             if (is_null($value)) {
-                throw new Exception("Can not send UPDATE for model when primary key is null");
+                throw new Exception("Can not send UPDATE for DataMapper[{$cls}] when primary key is null");
             }
 
             $pk[$name] = $value;

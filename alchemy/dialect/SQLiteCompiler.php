@@ -8,7 +8,8 @@ class SQLiteCompiler extends ANSICompiler {
         'Integer'    => "INTEGER",
         'Index'      => "CREATE INDEX %s ON %s (%3$//, /)",
         'UniqueKey'  => "CREATE UNIQUE INDEX %s ON %s (%3$//, /)",
-        'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
+        'PrimaryKey' => "PRIMARY KEY (%3$//, /)",
+        'Timestamp'  => "TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
 
 
     public function Create($obj) {

@@ -13,6 +13,35 @@ class Promise extends Signal {
     protected $onResolvePromises = array();
 
 
+    /**
+     * Return a single promise that is resolved when the given array
+     * of promise are all resolved.
+     *
+     * @param array $promises
+     * @return Promise
+     */
+    public static function when(array $promises = array()) {
+        $results = array();
+        $when = new Promise();
+
+        $wait = function() use (&$promises, &$results, &$when, &$wait) {
+            if (count($promises) == 0) {
+                $when->resolve($results);
+                return;
+            }
+
+            $p = array_pop($promises);
+            $p->then(function($r) use (&$results, &$wait) {
+                $results[] = $r;
+                $wait();
+            });
+        };
+
+        $wait();
+        return $when;
+    }
+
+
     public function __get($name) {
         return $this->__call('__get', array($name));
     }
