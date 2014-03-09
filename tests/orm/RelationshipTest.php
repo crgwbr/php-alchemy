@@ -71,6 +71,7 @@ class RelationshipTest extends BaseTest {
 
         $spanish->Parent = $english;
 
+        $this->session->add($spanish);
         $this->session->add($english);
         $this->session->commit();
 
@@ -113,6 +114,7 @@ class RelationshipTest extends BaseTest {
         $spanish->LatestChangeStamp = new DateTime("1984-01-01");
 
         $spanish->Parent = $english;
+        $this->session->add($spanish);
 
         $this->session->commit();
 
@@ -134,6 +136,7 @@ class RelationshipTest extends BaseTest {
         $english->Children->add($spanish);
 
         $this->session->add($english);
+        $this->session->add($spanish);
         $this->session->commit();
 
         $s = $english->Children->one();
@@ -174,6 +177,8 @@ class RelationshipTest extends BaseTest {
         $spanish->LatestChangeStamp = new DateTime("1984-01-01");
 
         $english->Children->add($spanish);
+
+        $this->session->add($spanish);
         $this->session->commit();
 
         $s = $english->Children->one();
@@ -192,6 +197,7 @@ class RelationshipTest extends BaseTest {
         $simplified->LatestChangeStamp = new DateTime("1984-01-01");
         $simplified->SpokenLanguage = $mandarin;
 
+        $this->session->add($mandarin);
         $this->session->add($simplified);
         $this->session->commit();
 

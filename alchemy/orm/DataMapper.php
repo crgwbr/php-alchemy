@@ -216,8 +216,6 @@ abstract class DataMapper {
 
             if ($child->getSession()) {
                 $child->save(!$child->isTransient());
-            } else {
-                $self->getSession()->add($child);
             }
 
             return $self;

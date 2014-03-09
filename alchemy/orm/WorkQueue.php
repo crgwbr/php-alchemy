@@ -59,16 +59,12 @@ class WorkQueue {
      * @param array $data Array of properties to send in the INSERT
      * @return Promise resolved when INSERT is actual run
      */
-    public function insert($cls, $data) {
+    public function insert($cls, array $data) {
         $table = $cls::table();
 
         $scalars = array();
         $columns = array();
         foreach ($data as $name => $value) {
-            if (is_null($value)) {
-                continue;
-            }
-
             $columns[] = $table->$name;
             $scalars[] = $table->{$name}->schema()->encode($value);
         }
