@@ -230,7 +230,7 @@
 </span><span id="118" class="l"><a class="l" href="#118">118: </a>
 </span><span id="119" class="l"><a class="l" href="#119">119: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$tableA</span>-&gt;listIndexes() <span class="php-keyword1">as</span> <span class="php-var">$index</span>) {
 </span><span id="120" class="l"><a class="l" href="#120">120: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$index</span> <span class="php-keyword1">instanceof</span> ForeignKey) {
-</span><span id="121" class="l"><a class="l" href="#121">121: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$index</span>-&gt;getSourceTable() == <span class="php-var">$tableB</span>) {
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$index</span>-&gt;getSourceTable()-&gt;getName() == <span class="php-var">$tableB</span>-&gt;getName()) {
 </span><span id="122" class="l"><a class="l" href="#122">122: </a>                    <span class="php-keyword1">if</span> (<span class="php-var">$fk</span>) {
 </span><span id="123" class="l"><a class="l" href="#123">123: </a>                        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> Exception(<span class="php-quote">&quot;ForeignKey selection is ambiguous for table[</span><span class="php-var">{$tableB-&gt;getName()}</span><span class="php-quote">]&quot;</span>);
 </span><span id="124" class="l"><a class="l" href="#124">124: </a>                    }

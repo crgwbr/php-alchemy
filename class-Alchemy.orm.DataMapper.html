@@ -139,7 +139,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 		<b>Namespace:</b> <a href="namespace-Alchemy.html">Alchemy</a>\<a href="namespace-Alchemy.orm.html">orm</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Alchemy.orm.DataMapper.html#11-332" title="Go to source code">alchemy/orm/DataMapper.php</a><br />
+		<b>Located at</b> <a href="source-class-Alchemy.orm.DataMapper.html#12-389" title="Go to source code">alchemy/orm/DataMapper.php</a><br />
 	</div>
 
 
@@ -157,7 +157,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 
 		<td class="name"><div>
 		<a class="anchor" href="#_from_session">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#35-46" title="Go to source code">from_session</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#37-48" title="Go to source code">from_session</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>mixed <var>$sessionID</var></span> )</code>
 
 		<div class="description short">
 			
@@ -197,7 +197,7 @@ any data, it merely acts as an interface between Domain objects and the Session
 
 		<td class="name"><div>
 		<a class="anchor" href="#_list_mappers">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#49-64" title="Go to source code">list_mappers</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#51-69" title="Go to source code">list_mappers</a>( )</code>
 
 		<div class="description short">
 			
@@ -225,6 +225,39 @@ PHP.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="register" id="_register">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_register">#</a>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#72-77" title="Go to source code">register</a>( )</code>
+
+		<div class="description short">
+			
+<p>Call immediately after data mapper definition</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Call immediately after data mapper definition</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="schema" id="_schema">
 
 		<td class="attributes"><code>
@@ -236,7 +269,7 @@ PHP.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_schema">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#67-90" title="Go to source code">schema</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#80-103" title="Go to source code">schema</a>( )</code>
 
 		<div class="description short">
 			
@@ -275,7 +308,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_table">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#93-100" title="Go to source code">table</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#106-113" title="Go to source code">table</a>( )</code>
 
 		<div class="description short">
 			
@@ -312,7 +345,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_table_name">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#103-112" title="Go to source code">table_name</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#116-125" title="Go to source code">table_name</a>( )</code>
 
 		<div class="description short">
 			
@@ -349,7 +382,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#116-124" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#129-137" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -382,7 +415,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___get">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#127-153" title="Go to source code">__get</a>( <span>string <var>$prop</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#140-166" title="Go to source code">__get</a>( <span>string <var>$prop</var></span> )</code>
 
 		<div class="description short">
 			
@@ -424,7 +457,7 @@ object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___set">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#156-174" title="Go to source code">__set</a>( <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#169-187" title="Go to source code">__set</a>( <span>string <var>$prop</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -455,6 +488,83 @@ the session until {@DataMapper::save()} is called.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="__toString" id="___toString">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___toString">#</a>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#190-201" title="Go to source code">__toString</a>( )</code>
+
+		<div class="description short">
+			
+<p>String repr of object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>String repr of object</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addPersistanceDependancy" id="_addPersistanceDependancy">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addPersistanceDependancy">#</a>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#204-214" title="Go to source code">addPersistanceDependancy</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$obj</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add an object to the list of objects that must be persisted before this
+object can be persisted.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add an object to the list of objects that must be persisted before this
+object can be persisted.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$obj</var></dt>
+					<dd><code><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code></code><br>$obj</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="cascadeForeignKey" id="_cascadeForeignKey">
 
 		<td class="attributes"><code>
@@ -466,7 +576,7 @@ the session until {@DataMapper::save()} is called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cascadeForeignKey">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#177-197" title="Go to source code">cascadeForeignKey</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$child</var></span>, <span><code><a href="class-Alchemy.orm.Relationship.html">Alchemy\orm\Relationship</a></code> <var>$rel</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#217-237" title="Go to source code">cascadeForeignKey</a>( <span><code><a href="class-Alchemy.orm.DataMapper.html">Alchemy\orm\DataMapper</a></code> <var>$child</var></span>, <span><code><a href="class-Alchemy.orm.Relationship.html">Alchemy\orm\Relationship</a></code> <var>$rel</var></span> )</code>
 
 		<div class="description short">
 			
@@ -512,7 +622,7 @@ according to a Relationship.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPrimaryKey">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#200-213" title="Go to source code">getPrimaryKey</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#240-253" title="Go to source code">getPrimaryKey</a>( )</code>
 
 		<div class="description short">
 			
@@ -549,7 +659,7 @@ according to a Relationship.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRelatedSet">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#216-221" title="Go to source code">getRelatedSet</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#256-261" title="Go to source code">getRelatedSet</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -582,7 +692,7 @@ according to a Relationship.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSession">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#224-231" title="Go to source code">getSession</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#264-271" title="Go to source code">getSession</a>( )</code>
 
 		<div class="description short">
 			
@@ -619,7 +729,7 @@ according to a Relationship.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSessionID">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#234-241" title="Go to source code">getSessionID</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#274-281" title="Go to source code">getSessionID</a>( )</code>
 
 		<div class="description short">
 			
@@ -656,7 +766,7 @@ according to a Relationship.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isTransient">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#244-257" title="Go to source code">isTransient</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#284-297" title="Go to source code">isTransient</a>( )</code>
 
 		<div class="description short">
 			
@@ -682,6 +792,45 @@ according to a Relationship.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="onDependanciesPersisted" id="_onDependanciesPersisted">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Alchemy.util.promise.Promise.html">Alchemy\util\promise\Promise</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_onDependanciesPersisted">#</a>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#300-313" title="Go to source code">onDependanciesPersisted</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return a promise resolved when all objects that this object references by
+foreign key have been persisted</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return a promise resolved when all objects that this object references by
+foreign key have been persisted</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Alchemy.util.promise.Promise.html">Alchemy\util\promise\Promise</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="onPersisted" id="_onPersisted">
 
 		<td class="attributes"><code>
@@ -693,7 +842,7 @@ according to a Relationship.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_onPersisted">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#260-268" title="Go to source code">onPersisted</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#316-324" title="Go to source code">onPersisted</a>( )</code>
 
 		<div class="description short">
 			
@@ -732,7 +881,7 @@ already.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rollback">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#271-276" title="Go to source code">rollback</a>( )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#327-332" title="Go to source code">rollback</a>( )</code>
 
 		<div class="description short">
 			
@@ -765,7 +914,7 @@ already.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_save">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#279-301" title="Go to source code">save</a>( <span>boolean <var>$queueUpdate</var> = <span class="php-keyword1">true</span></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#335-357" title="Go to source code">save</a>( <span>boolean <var>$queueUpdate</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
 			
@@ -807,7 +956,7 @@ called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_set">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#304-315" title="Go to source code">set</a>( <span>array <var>$map</var></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#360-371" title="Go to source code">set</a>( <span>array <var>$map</var></span> )</code>
 
 		<div class="description short">
 			
@@ -845,7 +994,7 @@ called.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSession">#</a>
-		<code><a href="source-class-Alchemy.orm.DataMapper.html#318-331" title="Go to source code">setSession</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$sessionID</var></span>, <span>mixed <var>$persisted</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Alchemy.orm.DataMapper.html#374-388" title="Go to source code">setSession</a>( <span><code><a href="class-Alchemy.orm.Session.html">Alchemy\orm\Session</a></code> <var>$session</var></span>, <span>string <var>$sessionID</var></span>, <span>mixed <var>$persisted</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -898,7 +1047,7 @@ called.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.DataMapper.html#19-23" title="Go to source code"><var>$table_name</var></a>
+				<a href="source-class-Alchemy.orm.DataMapper.html#20-24" title="Go to source code"><var>$table_name</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -927,7 +1076,7 @@ used</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Alchemy.orm.DataMapper.html#24" title="Go to source code"><var>$schema_args</var></a>
+				<a href="source-class-Alchemy.orm.DataMapper.html#25" title="Go to source code"><var>$schema_args</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
