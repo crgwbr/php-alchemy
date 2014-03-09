@@ -88,8 +88,20 @@ class Engine implements IEngine {
             return $this->echoQueries($sql, $params);
         }
 
-        $sql = preg_replace_callback("/:([\w\d]+)/", function($match) use ($params) {
-            return "'{$params[$match[1]]}'";
+        $sql = preg_replace_callback("/:([\w\d]+)/sui", function($match) use ($params) {
+            $v = $params[$match[1]];
+            if (is_null($v)) {
+                return 'NULL';
+            }
+
+            if (is_numeric($v)) {
+                return $v;
+            }
+
+            if (mb_strlen($v) > 13) {
+               $v = mb_substr($v, 0, 10) . '...';
+            }
+            return "'{$v}'";
         }, $sql);
 
         echo $sql . "\n";
@@ -131,7 +143,11 @@ class Engine implements IEngine {
      * @return ResultSet
      */
     public function execute($sql, $params = array()) {
-        $statement = $this->connector->prepare($sql);
+        try {
+            $statement = $this->connector->prepare($sql);
+        } catch (Exception $e) {
+            throw new Exception("Could not prepare query: " . $sql);
+        }
 
         $paramLog = array();
         foreach ($params as $param) {

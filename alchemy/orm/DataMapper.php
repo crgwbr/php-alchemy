@@ -188,6 +188,20 @@ abstract class DataMapper {
 
 
     /**
+     * String repr of object
+     *
+     * @return string
+     */
+    public function __toString() {
+        $s = '<' . get_class($this) . ' ';
+        $s .= implode(', ', $this->getPrimaryKey());
+        $s = trim($s);
+        $s .= '>';
+        return $s;
+    }
+
+
+    /**
      * Add an object to the list of objects that must be persisted
      * before this object can be persisted.
      *
