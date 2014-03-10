@@ -28,7 +28,7 @@ class SessionSelect extends Monad {
 
         $table = $mapper::table();
 
-        $this->value = Query::Select($table);
+        $this->value = Query::ORM($table);
         $this->value->columns($table->columns());
     }
 

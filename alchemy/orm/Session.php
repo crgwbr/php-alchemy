@@ -44,6 +44,7 @@ class Session {
         // Get the primary key for this object. This is most likely
         // transient, until the DB replaces it with an AutoInc value
         $tempID = $this->getPrimaryKey($cls);
+        $this->records[$cls][$tempID] = array();
 
         // Configure the object to use this session as it's data source
         $obj->setSession($this, $tempID);

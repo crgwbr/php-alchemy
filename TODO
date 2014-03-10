@@ -7,20 +7,26 @@ Expression:
 
 ORM:
     - Select query filtering
-    - Object relationships
-        - Include options for eager / lazy relationship loading
-            - Eager: join on initial object select
-            - Lazy: Secondary select on reference
-        - Types:
-            - OneToMany
-            - ManyToOne
-            - OnetoOne
-            - ManyToMany
-        - Relationship expressions
-        - Basis for application-defined relationships and special columns
+    - Expression Columns
+    - Include options for eager / lazy relationship loading
+        - Eager: join on initial object select
+        - Lazy: Secondary select on reference
 
 
 ## Milestone 0.2
+
+Expression:
+    - Many-column expressions
+        - count/sum
+        - min/max/avg
+    - Many-row expressions
+        - count
+        - none
+        - any
+        - all
+
+Relationships:
+    - ManyToMany
 
 ORM:
     - DataMapper sub-class tree support through single/joined table inheritance

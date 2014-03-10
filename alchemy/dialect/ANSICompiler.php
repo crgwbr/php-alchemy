@@ -4,6 +4,8 @@ namespace Alchemy\dialect;
 
 class ANSICompiler extends Compiler {
     protected static $expr_formats = array(
+        'null'      => 'NULL',
+
         // operators
         'add'       => '%s + %s',
         'sub'       => '%s - %s',
@@ -105,7 +107,7 @@ class ANSICompiler extends Compiler {
             }
 
             $id = $this->counters[$tag]++;
-            $fn = $this->getFunction($obj, 'sql.compile', 'Alias_');
+            $fn = $this->getFunction($obj, 'sql.compile', 'Alias_', true);
             $this->aliases[$key] = call_user_func($fn, $obj, $id);
         }
 
@@ -195,7 +197,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Create_Element($obj) {
-        $fn = $this->getFunction($obj, 'sql.create', 'Create_');
+        $fn = $this->getFunction($obj, 'sql.create', 'Create_', true);
         return call_user_func($fn, $obj);
     }
 
@@ -247,7 +249,7 @@ class ANSICompiler extends Compiler {
 
 
     public function Query($obj) {
-        $fn = $this->getFunction($obj, 'element.type');
+        $fn = $this->getFunction($obj, 'element.type', '', true);
         return call_user_func($fn, $obj);
     }
 

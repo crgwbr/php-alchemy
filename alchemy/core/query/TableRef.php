@@ -39,9 +39,17 @@ class TableRef extends Element implements IPromisable {
     }
 
 
-    public function columns() {
+    /**
+     * Return a map of column names to columns references on this
+     * table reference
+     *
+     * @param  boolean $primary primary key columns only
+     * @return array            [Name => ColumRef]
+     */
+    public function columns($primary = false) {
         $columns = array();
-        foreach($this->schema->listColumns() as $column) {
+        $schema = $primary ? $this->schema->getPrimaryKey() : $this->schema;
+        foreach($schema->listColumns() as $column) {
             $columns[$column->getName()] = $column->getRef($this);
         }
 

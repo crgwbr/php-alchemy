@@ -204,4 +204,26 @@ class RelationshipTest extends BaseTest {
         $this->assertEquals($simplified->SpokenLanguage->ISO2Code, 'zh');
         $this->assertEquals($mandarin->WrittenLanguage->ISO2Code, 'hans');
     }
+
+
+    public function testSelfReferencingMany() {
+        $root  = new Tree();
+        $treeA = new Tree();
+        $treeB = new Tree();
+        $treeC = new Tree();
+
+        $root->Children->add($treeA);
+        $treeB->Parent = $root;
+        $treeC->Parent = $treeB;
+
+        $this->session->add($root);
+        $this->session->commit();
+
+        $this->assertEquals($root->TreeID, $treeC->Parent->Parent->TreeID);
+
+        $branches = $root->Children->all();
+        $this->assertEquals(2, count($branches));
+        $this->assertEquals($treeA->TreeID, $branches[0]->TreeID);
+        $this->assertEquals($treeB->TreeID, $branches[1]->TreeID);
+    }
 }

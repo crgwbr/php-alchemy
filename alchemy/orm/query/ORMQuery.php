@@ -13,14 +13,14 @@ use Alchemy\core\query\TableRef;
 class ORMQuery extends Query {
 
     protected $joinedTables = array();
+    protected $with = array();
 
     public function __construct($type, TableRef $table) {
         parent::__construct($type, $table);
 
         $this->joinedTables[$table->getID()] = $table;
-        if ($table instanceof ORMTableRef && $table->predicate()) {
-            $this->joins($table->predicate()->tables());
-            $this->where = $table->predicate();
+        if ($table instanceof ORMTableRef && ($this->where = $table->predicate())) {
+            $this->joins($this->where->tables());
         }
 
         $this->columns($table->columns());
@@ -72,17 +72,4 @@ class ORMQuery extends Query {
 
         return $this;
     }
-
-
-    public function with() {
-        $this->joins(func_get_args());
-
-        // columns
-    }
-
-
-    public function without() {
-        // columns
-    }
-
 }

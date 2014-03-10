@@ -40,9 +40,11 @@ class Insert extends Query {
      */
     public function rows() {
         $default = array();
-        foreach (array_values($this->columns) as $index => $column) {
+        foreach (array_values($this->columns()) as $index => $column) {
             if ($column instanceof Scalar) {
                 $default[$index] = $column;
+            } elseif ($column instanceof ColumnRef) {
+                $default[$index] = Expression::NULL();
             }
         }
 

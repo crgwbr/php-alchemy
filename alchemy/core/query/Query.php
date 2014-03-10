@@ -47,7 +47,7 @@ class Query extends Element implements IQuery {
      */
     public function columns() {
         if (func_num_args() == 0) {
-            return $this->columns;
+            return $this->columns ?: $this->table->columns(true);
         }
 
         $columns = func_get_args();

@@ -35,6 +35,8 @@ Expression::define(null, null, array(
         'expr.value' => true) ));
 
 $expressions = array(
+    'null'      => 0,
+
     // numeric
     'add'       => 2,
     'sub'       => 2,

@@ -29,29 +29,31 @@ class Relationship extends Element {
      * @param string $name Relationship Name
      * @param string $origin Originating Class
      * @param array $args array([0] => "DestinationClass", [backref] => "BackrefName")
-     * @param bool $createBackref Internal Use Only
      */
-    public function __construct($type, $args, $origin, $name, $createBackref = true) {
+    public function __construct($type, $args, $origin, $name) {
         parent::__construct($type);
 
         $this->name = $name;
         $this->origin = $origin;
 
         $def = static::get_definition($this->type);
-        $this->args = self::normalize_arg($args, $def['defaults']) +
-            array('backref' => "AutoBackref_{$origin->getName()}_{$name}");
+        $this->args = self::normalize_arg($args, $def['defaults']);
 
-        if ($dest = $this->args[0]) {
-            $this->destination = is_object($dest) ? $dest
-                : (class_exists($dest) ? $dest::schema() : Table::find($dest));
-        } else {
+        $dest = $this->args[0];
+        $inverse = $this->args['inverse'];
+
+        if (!$dest) {
             throw new Exception("Must provide Relationship Destination");
         }
 
-        // Assemble the inverse side of this relationship
-        if ($this->args['backref'] && $createBackref) {
-            $this->createBackref();
-        }
+        // class name, table name, or ORMTable object
+        $this->destination = is_string($dest)
+            ? (class_exists($dest) ? $dest::schema() : Table::find($dest))
+            : $dest;
+
+        $this->inverse = is_string($inverse)
+            ? $this->createInverse($this->destination, $inverse)
+            : $inverse;
     }
 
 
@@ -68,16 +70,18 @@ class Relationship extends Element {
      *
      * @param string $name
      */
-    protected function createBackref() {
+    protected function createInverse($dest, $name) {
         $args = array(
             $this->origin,
-            'backref' => $this->name,
-            'key' => $this->getForeignKey()
+            'inverse' => $this,
+            'key' => $this->getForeignKey(),
         );
 
         $type = $this->getTag('rel.inverse');
-        $this->inverse = Relationship::$type($args, $this->destination, $this->getBackref(), false);
-        $this->destination->addRelationship($this->getBackref(), $this->inverse);
+        $inverse = Relationship::$type($args, $dest, $name);
+        $dest->addRelationship($name, $inverse);
+
+        return $inverse;
     }
 
 
@@ -137,7 +141,7 @@ class Relationship extends Element {
      * @return string
      */
     public function getBackref() {
-        return $this->args['backref'];
+        return $this->inverse ? $this->inverse->getName() : '';
     }
 
 
@@ -173,10 +177,8 @@ class Relationship extends Element {
 
 
     public function getRef($origin) {
-        $dest = $this->destination;
         $expr = new Promise(null, "Alchemy\core\query\Predicate");
-
-        $ref = new ORMTableRef($dest, $expr);
+        $ref = new ORMTableRef($this->destination, $expr);
         $expr->resolve($ref->equal($this->getRemoteColumnMap($origin)));
 
         return $ref;

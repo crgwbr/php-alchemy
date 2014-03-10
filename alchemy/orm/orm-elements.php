@@ -7,8 +7,8 @@ use Alchemy\core\schema\Table;
 
 // query
 
-ORMQuery::define(null, 'Query::Core');
-Query::define_alias('ORM', 'ORMQuery::ORMQuery');
+ORMQuery::define('Select', 'Query::Select');
+Query::define_alias('ORM', 'ORMQuery::Select');
 
 
 // table
@@ -25,7 +25,7 @@ Table::define_alias('ORM', 'ORMTable::ORMTable');
 
 Relationship::define('Null', 'Null', array(
     'defaults' => array(null,
-        'backref' => '',
+        'inverse' => null,
         'key' => ''),
     'tags' => array(
         'rel.inverse' => 'Relationship')));
@@ -50,3 +50,12 @@ ManyToOne::define(null, 'Relationship::Null', array(
         'rel.single' => true)));
 
 Relationship::define_alias('ManyToOne', 'ManyToOne::ManyToOne');
+
+/*ManyVia::define(null, 'Relationship::Null', array(
+    'defaults' => array(
+        'keys' => array()),
+    'tags' => array(
+        //'rel.inverse' => 'OneToMany',
+        'rel.parent' => true)));
+
+Relationship::define_alias('ManyVia', 'ManyVia::ManyVia');*/

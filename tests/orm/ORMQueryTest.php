@@ -28,7 +28,7 @@ class ORMQueryTest extends BaseTest {
                 'StreetAddress' => 'String',
             ),
             'relationships' => array(
-                'User' => 'OneToOne(users, backref = "Address")',
+                'User' => 'OneToOne(users, inverse = "Address")',
             ) ));
 
         $this->phones = Table::ORM('phones', array(
@@ -37,7 +37,7 @@ class ORMQueryTest extends BaseTest {
                 'PhoneNum' => 'String',
             ),
             'relationships' => array(
-                'User' => 'ManyToOne(users, backref = "Phones")',
+                'User' => 'ManyToOne(users, inverse = "Phones")',
             ) ));
 
         $this->users->register(true);
