@@ -217,6 +217,9 @@ class RelationshipTest extends BaseTest {
         $treeC->Parent = $treeB;
 
         $this->session->add($root);
+        $this->session->add($treeA);
+        $this->session->add($treeB);
+        $this->session->add($treeC);
         $this->session->commit();
 
         $this->assertEquals($root->TreeID, $treeC->Parent->Parent->TreeID);

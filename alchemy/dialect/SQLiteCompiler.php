@@ -6,8 +6,8 @@ class SQLiteCompiler extends ANSICompiler {
 
     protected static $schema_formats = array(
         'Integer'    => "INTEGER",
-        'Index'      => "CREATE INDEX %s ON %s (%3$//, /)",
-        'UniqueKey'  => "CREATE UNIQUE INDEX %s ON %s (%3$//, /)",
+        'Index'      => 'CREATE INDEX %s_%s ON %1$s (%3$//, /)',
+        'UniqueKey'  => 'CREATE UNIQUE INDEX %s_%s ON %1$s (%3$//, /)',
         'PrimaryKey' => "PRIMARY KEY (%3$//, /)",
         'Timestamp'  => "TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
 

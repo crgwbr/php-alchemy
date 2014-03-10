@@ -14,6 +14,7 @@ class Query extends Element implements IQuery {
     protected $where;
     protected $limit;
     protected $offset;
+    protected $order;
     protected $table;
 
 
@@ -184,6 +185,21 @@ class Query extends Element implements IQuery {
         }
 
         $this->offset = is_null($offset) ? null : new Scalar($offset);
+        return $this;
+    }
+
+
+    /**
+     * Order in which to return query rows
+     *
+     * @param Column|Expression $order
+     */
+    public function order($order = false) {
+        if ($order === false) {
+            return $this->order;
+        }
+
+        $this->order = $order;
         return $this;
     }
 }

@@ -37,6 +37,11 @@ Expression::define(null, null, array(
 $expressions = array(
     'null'      => 0,
 
+    // aggregate
+    'max'       => 1,
+    'min'       => 1,
+    'count'     => 1,
+
     // numeric
     'add'       => 2,
     'sub'       => 2,
@@ -49,6 +54,7 @@ $expressions = array(
     'floor'     => 1,
     'ln'        => 1,
     'sqrt'      => 1,
+    'rand'      => 0,
 
     // datetime
     'extract'   => 2,

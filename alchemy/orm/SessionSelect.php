@@ -1,6 +1,7 @@
 <?php
 
 namespace Alchemy\orm;
+use Alchemy\core\query\Expression;
 use Alchemy\core\query\Query;
 use Alchemy\core\schema\Table;
 use Alchemy\util\Monad;
@@ -70,5 +71,15 @@ class SessionSelect extends Monad {
         }
 
         return $all[0];
+    }
+
+
+    /**
+     * Execute the query and return exactly one random result
+     *
+     * @return array
+     */
+    public function random() {
+        return $this->order(Expression::RAND())->first();
     }
 }

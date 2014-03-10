@@ -6,6 +6,11 @@ class ANSICompiler extends Compiler {
     protected static $expr_formats = array(
         'null'      => 'NULL',
 
+        // aggregate
+        'max'        => "MAX(%s)",
+        'min'        => "MIN(%s)",
+        'count'      => "COUNT(%s)",
+
         // operators
         'add'       => '%s + %s',
         'sub'       => '%s - %s',
@@ -27,6 +32,7 @@ class ANSICompiler extends Compiler {
         'translate' => 'TRANSLATE(%s USING %s)',
         'concat'    => '%s || %s',
         'coalesce'  => 'COALESCE(%1//, /)',
+        'rand'      => "RANDOM()",
 
         // predicates
         'equal'     => '%s = %s',
@@ -68,8 +74,8 @@ class ANSICompiler extends Compiler {
         'Timestamp'  => "TIMESTAMP",
 
         // indexes
-        'Index'      => "KEY %s (%3$//, /)",
-        'UniqueKey'  => "UNIQUE KEY %s (%3$//, /)",
+        'Index'      => "KEY %s_%s (%3$//, /)",
+        'UniqueKey'  => "UNIQUE KEY %s_%s (%3$//, /)",
         'PrimaryKey' => "PRIMARY KEY (%3$//, /)");
 
     private $counters = array();
@@ -176,7 +182,7 @@ class ANSICompiler extends Compiler {
 
     public function Create_Index($obj) {
         $format = static::get_schema_format($obj->getType());
-        $elements = array($obj->getName(), $obj->getTable()->getName(),
+        $elements = array($obj->getTable()->getName(), $obj->getName(),
             $this->compile($obj->listColumns()));
 
         return $this->format($format, $elements);
@@ -276,6 +282,7 @@ class ANSICompiler extends Compiler {
             $table ? "FROM {$table}" : "",
             $this->Query_Join($obj),
             $this->Query_Where($obj),
+            $this->Query_Order($obj),
             $this->Query_Limit($obj));
 
         return implode(' ', array_filter($parts));
@@ -330,6 +337,12 @@ class ANSICompiler extends Compiler {
         }
 
         return "LIMIT {$offset}, {$limit}";
+    }
+
+
+    public function Query_Order($obj) {
+        $order = $this->compile($obj->order());
+        return $order ? "ORDER BY {$order}" : "";
     }
 
 
