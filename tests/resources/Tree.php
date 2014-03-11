@@ -12,6 +12,6 @@ class Tree extends DataMapper {
             'ParentTreeID' => 'Foreign(self.TreeID, null = true)',
         ),
         'relationships' => array(
-            'Parent' => 'ManyToOne(Alchemy\\tests\\Tree, inverse = "Children", key = self.ParentTreeID)',
+            'Parent' => 'ManyToOne(Tree, inverse = "Children", key = self.ParentTreeID)',
         ));
 }

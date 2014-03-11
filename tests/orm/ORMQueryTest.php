@@ -40,9 +40,10 @@ class ORMQueryTest extends BaseTest {
                 'User' => 'ManyToOne(users, inverse = "Phones")',
             ) ));
 
-        $this->users->register(true);
+        Table::register($this->users);
         $this->addrs->getRelationship('User');
         $this->phones->getRelationship('User');
+        Table::unregister($this->users);
     }
 
     public function testTableRelated() {
@@ -50,7 +51,7 @@ class ORMQueryTest extends BaseTest {
         $this->assertTrue($this->users->hasRelationship('Address'));
         $this->assertTrue($this->users->hasRelationship('Phones'));
 
-        $this->assertEquals('OneToOne',  $this->users->getRelationship('Address')->getType());
+        $this->assertEquals('OneFromOne',  $this->users->getRelationship('Address')->getType());
         $this->assertEquals('OneToMany', $this->users->getRelationship('Phones')->getType());
 
         $relationships = array(

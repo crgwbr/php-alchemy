@@ -15,8 +15,8 @@ class Language extends DataMapper {
             'LatestChangeStamp' => 'Timestamp',
         ),
         'relationships' => array(
-            'Files' => 'OneToMany(Alchemy\\tests\\UploadedFile, inverse = "Language")',
-            'Parent' => 'ManyToOne(Alchemy\\tests\\Language, inverse = "Children", key = self.ParentLanguageID)',
-            'SpokenLanguage' => 'OneToOne(Alchemy\\tests\\Language, inverse = "WrittenLanguage", key = self.SpokenLanguageID)'
+            'Files' => 'OneToMany(UploadedFile, inverse = "Language")',
+            'Parent' => 'ManyToOne(Language, inverse = "Children", key = self.ParentLanguageID)',
+            'SpokenLanguage' => 'OneToOne(Language, inverse = "WrittenLanguage", key = self.SpokenLanguageID)'
         ));
 }

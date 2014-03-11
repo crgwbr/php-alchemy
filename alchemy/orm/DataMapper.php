@@ -70,14 +70,6 @@ abstract class DataMapper {
 
 
     /**
-     * Call immediately after data mapper definition
-     */
-    public static function register() {
-        static::schema();
-    }
-
-
-    /**
      * Gen an instance of Table that represents the schema of this
      * domain object.
      *
@@ -95,8 +87,6 @@ abstract class DataMapper {
             };
 
             self::$schema_cache[$cls] = new Promise($tablefn, "Alchemy\orm\ORMTable");
-            Table::register_name($name, self::$schema_cache[$cls], true);
-            self::$schema_cache[$cls]->register(true);
         }
 
         return self::$schema_cache[$cls];

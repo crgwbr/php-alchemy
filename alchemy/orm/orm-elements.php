@@ -32,10 +32,15 @@ Relationship::define('Null', 'Null', array(
 
 OneToOne::define(null, 'Relationship::Null', array(
     'tags' => array(
-        'rel.inverse' => 'OneToOne',
+        'rel.inverse' => 'OneFromOne',
         'rel.single' => true)));
 
-Relationship::define_alias('OneToOne', 'OneToOne::OneToOne');
+OneToOne::define('OneFromOne', 'OneToOne', array(
+    'tags' => array(
+        'rel.parent' => true)));
+
+Relationship::define_alias('OneToOne', 'OneToOne::OneToOne'); // FK side
+Relationship::define_alias('OneFromOne', 'OneToOne::OneFromOne'); // PK side
 
 OneToMany::define(null, 'Relationship::Null', array(
     'tags' => array(
@@ -50,12 +55,3 @@ ManyToOne::define(null, 'Relationship::Null', array(
         'rel.single' => true)));
 
 Relationship::define_alias('ManyToOne', 'ManyToOne::ManyToOne');
-
-/*ManyVia::define(null, 'Relationship::Null', array(
-    'defaults' => array(
-        'keys' => array()),
-    'tags' => array(
-        //'rel.inverse' => 'OneToMany',
-        'rel.parent' => true)));
-
-Relationship::define_alias('ManyVia', 'ManyVia::ManyVia');*/

@@ -47,10 +47,12 @@ class ForeignTest extends BaseTest {
 
         $fk = Column::Foreign('Table.Int');
 
-        $table->register();
+        Table::register($table);
 
         $col = $fk->copy();
         $this->assertEquals(array($table->getColumn('Int')), $col->getForeignKey()->listSources());
+
+        Table::unregister($table);
     }
 
 

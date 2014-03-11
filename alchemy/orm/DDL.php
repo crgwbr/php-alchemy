@@ -2,6 +2,7 @@
 
 namespace Alchemy\orm;
 use Alchemy\core\query\Query;
+use Alchemy\core\schema\Table;
 
 
 /**
@@ -21,34 +22,32 @@ class DDL {
 
 
     /**
-     * CREATE the table for the given DataMapper class
+     * CREATE a Table
      *
-     * @param string $cls Class Name of DataMapper child
+     * @param Table $table
      */
-    public function create($cls) {
-        $create = Query::Create($cls::schema());
+    public function create($table) {
+        $create = Query::Create($table);
         $this->session->engine()->query($create);
     }
 
 
     /**
-     * Find all subclasses of DataMapper and run {@see DDL::create()} on each
-     * of them.
+     * Run {@see DDL::create()} on all registered Tables.
      */
     public function createAll() {
-        $mappers = DataMapper::list_mappers();
+        $tables = Table::list_registered();
         $created = array();
 
-        while (count($mappers) > 0) {
-            $mapper = array_pop($mappers);
-            $table = $mapper::schema();
+        while (count($tables) > 0) {
+            $table = array_pop($tables);
             $dependancies = $table->listDependancies();
             $dependancies = array_diff($dependancies, $created);
 
             if (count($dependancies) > 0) {
-                array_unshift($mappers, $mapper);
+                array_unshift($tables, $table);
             } else {
-                $this->create($mapper);
+                $this->create($table);
                 $created[] = $table->getName();
             }
         }
@@ -56,32 +55,30 @@ class DDL {
 
 
     /**
-     * DROP the table for the given DataMapper class
+     * DROP a Table
      */
-    public function drop($cls) {
-        $drop = Query::Drop($cls::schema());
+    public function drop($table) {
+        $drop = Query::Drop($table);
         $this->session->engine()->query($drop);
     }
 
 
     /**
-     * Find all subclasses of DataMapper and run {DDL::drop()} on each
-     * of them.
+     * Run {@see DDL::drop()} on all registered Tables.
      */
     public function dropAll() {
-        $mappers = DataMapper::list_mappers();
+        $tables = Table::list_registered();
         $dropped = array();
 
-        while (count($mappers) > 0) {
-            $mapper = array_pop($mappers);
-            $table = $mapper::schema();
+        while (count($tables) > 0) {
+            $table = array_pop($tables);
             $dependants = $table->listDependants();
             $dependants = array_diff($dependants, $dropped);
 
             if (count($dependants) > 0) {
-                array_unshift($mappers, $mapper);
+                array_unshift($tables, $table);
             } else {
-                $this->drop($mapper);
+                $this->drop($table);
                 $dropped[] = $table->getName();
             }
         }

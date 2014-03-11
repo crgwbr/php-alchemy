@@ -33,27 +33,59 @@ class Table extends Element implements IPromisable {
 
 
     /**
-     * Retrieve the table registered for a given name.
+     * Retrieve the table registered for a given name. If a callable
+     * was registered to the name, it will be resolved once.
      *
      * @param  string $name
      * @return Table
      */
     public static function find($name) {
         if (isset(self::$registered[$name])) {
-            return self::$registered[$name];
+            $source = self::$registered[$name];
+            while (is_callable($source)) {
+                self::$registered[$name] = $source = call_user_func($source);
+            }
+
+            if (!($source instanceof Table)) {
+                $type = is_object($source) ? get_class($source) : gettype($source);
+                throw new \Exception("Expected a Table for name '{$name}', got a [{$type}].");
+            }
+
+            return $source;
         }
 
         throw new \Exception("No table registered for name '{$name}'.");
     }
 
 
-    public static function register_name($name, $table, $force = false) {
-        if (!$force && isset(self::$registered[$name])
-            && self::$registered[$name] !== $table) {
-            throw new \Exception("A table is already registered for name '{$name}'.");
+    /**
+     * Register a Table or Promise to a particular table name, so
+     * other objects will get Table when they call Table::find($name)
+     *
+     * @param  Table|callable $table
+     * @param  string         $name
+     */
+    public static function register($table, $name = '') {
+        if (!$name && $table instanceof Table) {
+            $name = $table->getName();
         }
 
         self::$registered[$name] = $table;
+    }
+
+
+    public static function unregister($name) {
+        unset(self::$registered[is_string($name) ? $name : $name->getName()]);
+    }
+
+
+    public static function list_registered() {
+        $tables = array();
+        foreach(array_keys(self::$registered) as $name) {
+            $tables[] = Table::find($name);
+        }
+
+        return $tables;
     }
 
 
@@ -179,14 +211,6 @@ class Table extends Element implements IPromisable {
         return array_key_exists('PRIMARY', $this->indexes)
             ? $this->indexes['PRIMARY']
             : null;
-    }
-
-
-    /**
-     * Register this Table as canonical for its name
-     */
-    public function register($force = false) {
-        self::register_name($this->name, $this, $force);
     }
 
 

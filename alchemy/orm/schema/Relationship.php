@@ -28,7 +28,7 @@ class Relationship extends Element {
      *
      * @param string $name Relationship Name
      * @param string $origin Originating Class
-     * @param array $args array([0] => "DestinationClass", [backref] => "BackrefName")
+     * @param array $args array("DestinationTable", [inverse] => "InverseName")
      */
     public function __construct($type, $args, $origin, $name) {
         parent::__construct($type);
@@ -46,10 +46,8 @@ class Relationship extends Element {
             throw new Exception("Must provide Relationship Destination");
         }
 
-        // class name, table name, or ORMTable object
-        $this->destination = is_string($dest)
-            ? (class_exists($dest) ? $dest::schema() : Table::find($dest))
-            : $dest;
+        // table name or ORMTable
+        $this->destination = is_string($dest) ? Table::find($dest) : $dest;
 
         $this->inverse = is_string($inverse)
             ? $this->createInverse($this->destination, $inverse)
@@ -58,9 +56,9 @@ class Relationship extends Element {
 
 
     public function assertDestinationType($dest) {
-        $type = $this->getDestinationClass();
+        $type = $this->destination->getClass();
         if (!($dest instanceof $type)) {
-            throw new Exception(get_class($dest) . " is not {$type}");
+            throw new Exception(get_class($dest) . " is not a {$type}");
         }
     }
 

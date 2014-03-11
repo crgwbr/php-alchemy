@@ -3,6 +3,7 @@
 namespace Alchemy\tests;
 require_once "alchemy/alchemy.php";
 
+use Alchemy\core\schema\Table;
 use Alchemy\engine\Engine;
 use Alchemy\dialect\SQLiteCompiler;
 use Alchemy\dialect\MySQLCompiler;
@@ -14,6 +15,10 @@ error_reporting(E_ALL | E_STRICT);
 
 // Update include path so that the following includes work
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__));
+
+Table::register("Alchemy\\tests\\UploadedFile::schema", "UploadedFile");
+Table::register("Alchemy\\tests\\Language::schema", "Language");
+Table::register("Alchemy\\tests\\Tree::schema", "Tree");
 
 require_once 'resources/UploadedFile.php';
 require_once 'resources/Language.php';
